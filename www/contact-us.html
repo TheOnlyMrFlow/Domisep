@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Contact-us</title>
+
+
+  <link rel="stylesheet" href="modal.css">
+  <script src="script.js"></script>
+
+
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+
+</head>
+
+<body>
+
+  <!-- Trigger/Open The Modal -->
+  <button id="button-contact-us">Open Modal</button>
+
+  <!-- The Modal -->
+  <div id="modal-contact" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close" id="close-contact">&times;</span>
+      <form>
+        
+        <h2>Contact us</h2>
+
+        <input type="text" name="email" placeholder="Your e-mail adress">
+        <br>
+        <input type="text" name="request-object" placeholder="Object of your request">
+        <br>
+        <textarea style="resize: none;" cols="86" rows="20" name="request-content"></textarea>
+        <br>
+        <input type="submit">
+      </form>
+    </div>
+
+  </div>
+
+  <script src="modal.js">
+
+  </script>
+
+</body>
+
+</html>
