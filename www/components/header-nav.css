@@ -1,0 +1,50 @@
+header{
+  height: 8vh;
+  display: flex;
+  border-bottom: 3px #45bc3a solid;
+}
+
+
+#main-menu-container{
+  float: right;
+  margin-right: 15vw;
+  flex: 1;
+  text-align: center;
+}
+
+#menu-logo{
+    height : 85%;
+    padding: 5px;
+}
+
+#menu-logo-container{
+  margin-left: 15vw;
+  flex : 1;
+}
+
+#main-menu{
+  display: inline-block;
+
+  height: 100%;
+}
+
+#menu-list{
+  display: block;
+  margin: 0px;
+  height : 100%;
+  padding: 0px;
+}
+
+.menu-item{
+  display: inline-block;
+  height : 100%;
+}
+
+.menu-item a{
+  display : block;
+  padding: 3vh 1.5vw 3vh 1.5vw;
+  font-size: 100%;
+  font-size : 2vh;
+  text-decoration: none;
+  color:  #262626;
+}
