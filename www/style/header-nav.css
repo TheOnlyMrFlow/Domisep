@@ -1,7 +1,11 @@
+body{
+  margin : 0;
+}
+
 header{
   height: 8vh;
   display: flex;
-  border-bottom: 3px #45bc3a solid;
+  border-bottom: 3px #206ea5 solid;
 }
 
 
@@ -47,4 +51,10 @@ header{
   font-size : 2vh;
   text-decoration: none;
   color:  #262626;
+  transition: all linear 0.1s ;
+}
+
+.menu-item:hover a{
+  background-color: #206ea5;
+  color : #fff;
 }
