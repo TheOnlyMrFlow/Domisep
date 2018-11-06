@@ -1,18 +1,8 @@
-<div class="footer">
-
-
-	<!-- Trigger/Open The Modal -->
-	<p>&copy; Copyright 2018 Domisep. All rights reserved.</p>
-	<button id="button-contact">Contact us</button>
-
-	<!-- The Modal -->
-
-
-</div>
 
 
 
 <div id="modal-contact" class="modal">
+
 
 	<?php
 //if "email" variable is filled out, send email
@@ -39,7 +29,11 @@
 
 	<!-- Modal content -->
 	<div class="modal-content">
-		<span class="close" id="close-contact">&times;</span>
+        <span ></span>
+
+
+<a class="close" id="close-contact" href='<?php strtok($_SERVER["REQUEST_URI"],'?')?>? '>&times;</a>
+
 		<form action="/" method="post">
 
 			<h2>Contact us</h2>
@@ -56,8 +50,6 @@
 
 </div>
 
-<script src="../scripts/modal-contact.js">
-</script>
 
 <?php
  } 
