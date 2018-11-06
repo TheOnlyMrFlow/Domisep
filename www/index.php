@@ -7,10 +7,10 @@
 	<title>Domisep</title>
 
 	<link rel="stylesheet" type="text/css" media="screen" href="../style/style.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.css"/>
+	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/header-nav/header-nav.css" />
 
-	
+
 
 </head>
 
@@ -19,9 +19,9 @@
 
 	include('components/header-nav/header-nav.html');
 
-	  include('pages/homepage/homepage.html');
+	include('pages/homepage/homepage.html');
 	  
-	  include('components/footer/footer.php'); 
+	include('components/footer/footer.php'); 
 
 	if (isset($_GET['contact'])){
 		include('components/modals/contact/contact.php');
