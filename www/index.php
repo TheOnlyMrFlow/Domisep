@@ -8,8 +8,6 @@
 
 	<link rel="stylesheet" type="text/css" media="screen" href="../style/style.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="components/header-nav/header-nav.css" />
-
 
 
 </head>
@@ -19,7 +17,54 @@
 
 	include('components/header-nav/header-nav.html');
 
-	include('pages/homepage/homepage.html');
+	?>
+
+	<center>
+
+<div class="page-content">
+
+	<h1>
+		Your House. Reinvented.
+		<br/>
+	</h1>
+	<p>
+		<img src=" ../resources/images/smarthome1.jpg" width="1200" height="580">
+	</p>
+	<h2>
+		What is Domisep ?
+	</h2>
+	<p>
+		<img src="../resources/images/smart-home-tablet.jpg" width="1200" height="650">
+	</p>
+	<p>
+		At Domisep, we propose our customers a complete range of finely crafted smart sensors. At Domisep, we offer you a doorway
+		to the future.
+	</p>
+	<p>
+		<img src="../resources/images/phone-bed.jpg" width="1200" height="650">
+	</p>
+	<p>
+		Control everything from the confort of your bed.
+	</p>
+	<br/>
+	<h1>
+		Ready to upgrade your life ? Create your account now
+	</h1>
+	<br/>
+	<br/>
+	<a href='<?php strtok($_SERVER["REQUEST_URI"],'?')?>?signup=true'>
+		<h2>
+			Create my account
+		</h2>
+	</a>
+
+</div>
+
+</center>
+
+	<?php 
+
+	//include('pages/homepage/homepage.html');
 	  
 	include('components/footer/footer.php'); 
 

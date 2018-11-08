@@ -1,3 +1,6 @@
+<link rel="stylesheet" href="components/modals/signup/signup.css" />
+
+
 <div id="modal-contact" class="modal">
 
 	<!-- Modal content -->
@@ -6,76 +9,45 @@
 
 		<a class="close" id="close-contact" href='<?php strtok($_SERVER["REQUEST_URI"],)?>'times;</a>
 
-		<form>
-			<table>
+		<div class="modal-subcontent">
+			<form>
 
-				<tr>
-				<td align ="right">
-				<h2>Créez votre compte</h2>
-				</td>
-				</tr>
+				<h2>Register an account</h2>
+				<br/>
 
-				<tr>
-				<td align ="right">
-				Nom de famille :
-				<input type="text" placeholder="Nom de famille" name="lastname">
-				</td>
-				</tr>
-				
-				<tr>
-				<td align ="right">
-				<br> Prénom :
-				<input type="text" placeholder = "Prénom" name="firstname">
-				</td>
-				</tr>
+				<section>
+					Last name:
+					<br> First name:
+					<br> Email address:
+					<br> Phone number:
+					<br> Create a password:
+					<br> Confirm your password:
+					<br> Domisep product's serial number :
+					<br>
+				</section>
 
-				<tr>
-				<td align ="right">
-				<br> Adresse email :
-				<input type="emailaddress" placeholder = "Votre adresse mail" name="emailaddress">
-				</td>
-				</tr>
-
-				<tr>
-				<td align ="right">
-				<br> Numéro de téléphone :
-				<input type="tel" placeholder ="Votre numéro de téléphone" name="telephonenumber">
-				</td>
-				</tr>
-				
-				<tr>
-				<td align ="right">
-				<br> Créer son mot de passe :
-				<input type="password" placeholder ="Mot de passe" name="password">
-				</td>
-				</tr>
-
-				<tr>
-				<td align ="right">
-				<br> Confirmer son mot de passe :
-				<input type="password" placeholder ="Confirmer me mot de passe" name="password confirmation">
-				</td>
-				</tr>
-
-				<tr>
-				<td align ="right">
-				<br> Numéro de série de l'un de vos composant Domisep :
-				<input type="text" placeholder = "Numéro de série" name="serialnumber">
-				</td>
-				</tr>
-
-				<tr>
-				<td align ="right">
+				<aside>
+					<input type="text" name="lastname">
+					<br>
+					<input type="text" name="firstname">
+					<br>
+					<input type="emailaddress" name="emailaddress">
+					<br>
+					<input type="tel" name="telephonenumber">
+					<br>
+					<input type="password" name="password">
+					<br>
+					<input type="password" name="password confirmation">
+					<br>
+					<input type="text" name="serialnumber">
+					<br>
+				</aside>
 				<br>
-				<input type="submit">
-				</td>
-				</tr>
-				
-			</table>
-		</form>
+				<p class="submit">
+					<input type="submit" value="Submit">
+				</p>
+			</form>
+		</div>
 	</div>
 
 </div>
-
-
-

@@ -1,0 +1,33 @@
+input:focus
+{
+	background-color: #FFFF;
+}
+input
+{
+	background-color: #DCDCDC;
+}
+section
+{
+	display:inline-block;
+	width:250px;
+	/*border:1px solid black;*/
+	vertical-align: top;
+	line-height: 1.5
+}
+
+
+aside
+{
+	/*background-color: #CCC;*/
+	display: inline-block;
+	line-height: 1.5
+	/*margin-right: 170px; 
+	float:right;*/
+}
+
+p.submit
+{
+	position:relative;
+	top: 10px;
+	left: 170px;
+}
