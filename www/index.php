@@ -52,32 +52,23 @@
 	</h1>
 	<br/>
 	<br/>
-	<a href='<?php strtok($_SERVER["REQUEST_URI"],'?')?>?signup=true'>
-		<h2>
-			Create my account
-		</h2>
-	</a>
+	<a class="signup-opener"><h2>Create my account</h2></a>
 
 </div>
 
 </center>
 
 	<?php 
-
-	//include('pages/homepage/homepage.html');
-	  
 	include('components/footer/footer.php'); 
-
-	if (isset($_GET['contact'])){
-		include('components/modals/contact/contact.php');
-	}
-	else if (isset($_GET['login'])){
-		include('components/modals/login/login.html');
-	}
-	else if (isset($_GET['signup'])){
-		include('components/modals/signup/signup.html');
-	}
+	include('components/modals/contact/contact.php');
+	include('components/modals/login/login.html');
+	include('components/modals/signup/signup.php');
   ?>
+
+	<script src="scripts/open-modals.js"></script>
+
 </body>
+
+
 
 </html>

@@ -13,3 +13,6 @@ div {
     font-family: "Lucida Console";
 }
 
+.signup-opener, .login-opener, .contact-opener {
+    cursor: pointer;
+}

@@ -1,13 +1,13 @@
-<link rel="stylesheet" href="components/modals/signup/signup.css" />
+<link rel="stylesheet" type="text/css" media="screen" href="components/modals/signup/signup.css" />
 
 
-<div id="modal-contact" class="modal">
+<div id="modal-signup" class="modal">
 
 	<!-- Modal content -->
 	<div class="modal-content" align="center">
 
 
-		<a class="close" id="close-contact" href='<?php strtok($_SERVER["REQUEST_URI"],)?>'times;</a>
+		<a class="close" id="close-signup">&times;</a>
 
 		<div class="modal-subcontent">
 			<form>

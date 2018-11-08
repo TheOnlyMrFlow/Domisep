@@ -32,7 +32,7 @@
         <span ></span>
 
 
-<a class="close" id="close-contact" href='<?php strtok($_SERVER["REQUEST_URI"],'?')?>? '>&times;</a>
+<a class="close" id="close-contact">&times;</a>
 
 		<form action="/" method="post">
 
