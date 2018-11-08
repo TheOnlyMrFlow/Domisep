@@ -60,3 +60,12 @@ contactCloser.addEventListener("click", function() {
         contactModal.style.display = "none";
     }
 });
+
+ jQuery('.modal').click(function(e) {
+    e.stopPropagation();
+    if (!jQuery(e.target).closest('.modal-content').length && jQuery(e.target).is('.modal')) {
+      jQuery('.modal').css({
+        'display': 'none',
+      });
+    }
+  });
