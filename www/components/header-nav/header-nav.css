@@ -3,10 +3,20 @@ body{
 }
 
 header{
-  height: 8vh;
+  max-height: 8vh;
   display: flex;
   border-bottom: 3px #206ea5 solid;
+  position: sticky;
+  top:0;
+  transition: max-height background-color 0.3s;
 }
+
+header.sticky{
+  max-height: 5.5vh;
+  transition: max-height background-color 0.3s;
+  background-color: #206ea5;
+}
+
 
 
 #main-menu-container{
@@ -16,7 +26,7 @@ header{
   text-align: center;
 }
 
-#menu-logo{
+#menu-logo,#menu-logo-white{
     height : 85%;
     padding: 5px;
 }
@@ -26,10 +36,22 @@ header{
   flex : 1;
 }
 
+header.sticky #menu-logo-white{
+  display: block;
+}
+
+header.sticky #menu-logo{
+  display: none;
+}
+
 #main-menu{
   display: inline-block;
-
   height: 100%;
+  transition: margin-top 0.2s;
+}
+
+header.sticky #main-menu{
+  margin-top: -1.25vh;
 }
 
 #menu-list{
@@ -52,6 +74,16 @@ header{
   text-decoration: none;
   color:  #262626;
   transition: all linear 0.1s ;
+}
+
+header.sticky .menu-item a{
+  color : #fff;
+}
+
+header.sticky .menu-item:hover a{
+  color : #206ea5;
+  background-color: #fff;
+  padding: 1.75vh 1.5vw 1.75vh 1.5vw;
 }
 
 .menu-item:hover a{

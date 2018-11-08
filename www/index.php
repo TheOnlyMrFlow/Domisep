@@ -13,7 +13,7 @@
 </head>
 
 <body>
-	<?php 
+	<?php
 
 	include('components/header-nav/header-nav.html');
 
@@ -58,8 +58,8 @@
 
 </center>
 
-	<?php 
-	include('components/footer/footer.php'); 
+	<?php
+	include('components/footer/footer.php');
 	include('components/modals/contact/contact.php');
 	include('components/modals/login/login.html');
 	include('components/modals/signup/signup.php');
