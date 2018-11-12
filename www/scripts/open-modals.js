@@ -41,8 +41,6 @@ Array.prototype.forEach.call(contactOpeners, function(el) {
 });
 
 
-
-
 signupCloser.addEventListener("click", function() {
     if (signupModal != undefined){
         signupModal.style.display = "none";
