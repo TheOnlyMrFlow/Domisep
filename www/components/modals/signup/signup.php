@@ -10,7 +10,7 @@
 		<a class="close" id="close-signup">&times;</a>
 
 		<div class="modal-subcontent">
-			<form>
+			<form method="post" action ="index.php">
 
 				<h2>Register an account</h2>
 				<br/>
@@ -19,10 +19,16 @@
 					Last name:
 					<br> First name:
 					<br> Email address:
+					<br> Birth date:
 					<br> Phone number:
 					<br> Create a password:
 					<br> Confirm your password:
 					<br> Domisep product's serial number :
+					<br>
+					<br> Address :
+					<br> City :
+					<br> Zip code :
+					<br> Country :
 					<br>
 				</section>
 
@@ -31,20 +37,31 @@
 					<br>
 					<input type="text" name="firstname">
 					<br>
-					<input type="emailaddress" name="emailaddress">
+					<input type="date" name="birthdate">
 					<br>
-					<input type="tel" name="telephonenumber">
+					<input type="emailaddress" name="email">
 					<br>
-					<input type="password" name="password">
+					<input type="tel" name="phone">
 					<br>
-					<input type="password" name="password confirmation">
+					<input type="password" name="password1">
+					<br>
+					<input type="password" name="password2">
 					<br>
 					<input type="text" name="serialnumber">
+					<br><br>
+					<input type="text" name="address">
+					<br>
+					<input type="text" name="city">
+					<br>
+					<input type="text" name="zipcode">
+					<br>
+					<input type="text" name="country">
 					<br>
 				</aside>
 				<br>
+				<p>By creating an account, you agree to our <strong>Terms and Conditions</strong></p>
 				<p class="submit">
-					<input type="submit" value="Submit">
+					<input type="submit" value="Submit" name="signup">
 				</p>
 			</form>
 		</div>
