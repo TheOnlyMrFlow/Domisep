@@ -8,13 +8,12 @@ header{
   border-bottom: 3px #206ea5 solid;
   position: sticky;
   top:0;
-  transition: max-height background-color 0.3s;
 }
 
 header.sticky{
   max-height: 5.5vh;
-  transition: max-height background-color 0.3s;
   background-color: #206ea5;
+  border-bottom: none;
 }
 
 
@@ -50,10 +49,6 @@ header.sticky #menu-logo{
   transition: margin-top 0.2s;
 }
 
-header.sticky #main-menu{
-  margin-top: -1.25vh;
-}
-
 #menu-list{
   display: block;
   margin: 0px;
@@ -77,13 +72,13 @@ header.sticky #main-menu{
 }
 
 header.sticky .menu-item a{
+  padding: 1.75vh 1.5vw 1.75vh 1.5vw;
   color : #fff;
 }
 
 header.sticky .menu-item:hover a{
   color : #206ea5;
   background-color: #fff;
-  padding: 1.75vh 1.5vw 1.75vh 1.5vw;
 }
 
 .menu-item:hover a{
