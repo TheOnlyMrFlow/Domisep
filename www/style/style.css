@@ -4,10 +4,6 @@ div {
     font-family: Verdana, Geneva, sans-serif;
 }
 
-.footer {
-    border-top-style: solid;
-}
-
 *
 {
     font-family: "Lucida Console";
@@ -15,5 +11,5 @@ div {
 
 .signup-opener, .login-opener, .contact-opener {
     cursor: pointer;
-    
+
 }

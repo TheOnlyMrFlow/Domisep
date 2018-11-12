@@ -1,7 +1,4 @@
-/* .footer {
-    margin-top: 50px;
-    display: flex;
-    flex-direction: row;
-
-    justify-content: center;
-} */
+footer {
+    border-top: 2px solid #206ea5;
+    margin: none;
+}
