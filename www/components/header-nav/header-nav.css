@@ -3,7 +3,6 @@ body{
 }
 
 header{
-  max-height: 8vh;
   display: flex;
   border-bottom: 3px #206ea5 solid;
   position: sticky;
@@ -11,32 +10,27 @@ header{
 }
 
 header.sticky{
-  max-height: 5.5vh;
   background-color: #206ea5;
   border-bottom: none;
 }
 
-
-
-#main-menu-container{
-  float: right;
-  margin-right: 5vw;
-  flex: 2;
-  text-align: center;
+#nav-container{
+  margin-left: auto;
+  margin-right: auto;
+  width: 980px;
 }
 
 #menu-logo,#menu-logo-white{
-    height : 85%;
-    padding: 5px;
-}
-
-#menu-logo-container{
-  margin-left: 15vw;
-  flex : 1;
+    height : 40px;
+    width: 40px;
+    margin-top : 4.6px;
+    float: left;
 }
 
 header.sticky #menu-logo-white{
-  display: block;
+  margin-top : 2.8px;
+  height : 32px;
+  width: 32px;
 }
 
 header.sticky #menu-logo{
@@ -44,9 +38,9 @@ header.sticky #menu-logo{
 }
 
 #main-menu{
-  display: inline-block;
   height: 100%;
   transition: margin-top 0.2s;
+  float: right;
 }
 
 #menu-list{
@@ -63,17 +57,17 @@ header.sticky #menu-logo{
 
 .menu-item a{
   display : block;
-  padding: 3vh 1.5vw 3vh 1.5vw;
-  font-size: 100%;
-  font-size : 2vh;
+  padding: 15px 15px 15px 15px;
+  font-size : 1.2em;
   text-decoration: none;
   color:  #262626;
   transition: all linear 0.1s ;
 }
 
 header.sticky .menu-item a{
-  padding: 1.75vh 1.5vw 1.75vh 1.5vw;
+  padding: 10px 15px 10px 15px;
   color : #fff;
+  font-size : 1.1em;
 }
 
 header.sticky .menu-item:hover a{

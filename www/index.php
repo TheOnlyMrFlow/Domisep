@@ -29,26 +29,26 @@
 
 		<center>
 
-			<div class="page-content">
+			<div class="page-content" width="980">
 
 				<h1>
 		Your House. Reinvented.
 		<br/>
 	</h1>
 				<p>
-					<img src=" ../resources/images/smarthome1.jpg" width="1200" height="580">
+					<img src=" ../resources/images/smarthome1.jpg" width="900">
 				</p>
 				<h2>
 		What is Domisep ?
 	</h2>
 				<p>
-					<img src="../resources/images/smart-home-tablet.jpg" width="1200" height="650">
+					<img src="../resources/images/smart-home-tablet.jpg" width="900" >
 				</p>
 				<p>
 					At Domisep, we propose our customers a complete range of finely crafted smart sensors. At Domisep, we offer you a doorway to the future.
 				</p>
 				<p>
-					<img src="../resources/images/phone-bed.jpg" width="1200" height="650">
+					<img src="../resources/images/phone-bed.jpg" width="900">
 				</p>
 				<p>
 					Control everything from the confort of your bed.
