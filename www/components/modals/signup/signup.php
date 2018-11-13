@@ -7,16 +7,16 @@
 	<div class="modal-content" align="center">
 
 
-		<a class="close" id="close-signup">&times;</a>
+		<a class="close" id="close-signup">&times;</a>		
 
 		<div class="modal-subcontent">
-			<form method="post" action ="index.php">
+			<form method="post" action="handlers/handle_signup.php" target="signup-result">
 
 				<h2>Register an account</h2>
 				<br/>
 
 				<section>
-					Last name:
+						 Last name:
 					<br> First name:
 					<br> Email address:
 					<br> Birth date:
@@ -37,9 +37,9 @@
 					<br>
 					<input type="text" name="firstname">
 					<br>
-					<input type="date" name="birthdate">
-					<br>
 					<input type="emailaddress" name="email">
+					<br>
+					<input type="date" name="birthdate">
 					<br>
 					<input type="tel" name="phone">
 					<br>
@@ -48,7 +48,8 @@
 					<input type="password" name="password2">
 					<br>
 					<input type="text" name="serialnumber">
-					<br><br>
+					<br>
+					<br>
 					<input type="text" name="address">
 					<br>
 					<input type="text" name="city">
@@ -59,11 +60,14 @@
 					<br>
 				</aside>
 				<br>
-				<p>By creating an account, you agree to our <strong>Terms and Conditions</strong></p>
+				<p>By creating an account, you agree to our
+					<strong>Terms and Conditions</strong>
+				</p>
 				<p class="submit">
 					<input type="submit" value="Submit" name="signup">
 				</p>
 			</form>
+			<iframe name="signup-result"></iframe>
 		</div>
 	</div>
 

@@ -1,4 +1,4 @@
-<?php include('handlers/handle_signup.php') ?>
+<?php //include('handlers/handle_signup.php') ?> 
 
 
 
