@@ -1,5 +1,5 @@
 <?php
-session_start();
+//session_start();
 
 
 $errors = array(); 
@@ -12,7 +12,7 @@ if (isset($_POST['signup'])) {
   // receive all input values from the form
   $lastName = mysqli_real_escape_string($db, $_POST['lastname']);
   $firstName = mysqli_real_escape_string($db, $_POST['firstname']);
-  $birthDate = date( 'Y-m-d', strtotime( mysqli_real_escape_string($db, $_POST['birthdate']) ) );
+  $birthDate = mysqli_real_escape_string($db, $_POST['birthdate']);
   $email = mysqli_real_escape_string($db, $_POST['email']);
   $phone = mysqli_real_escape_string($db, $_POST['phone']);
   $password1 = mysqli_real_escape_string($db, $_POST['password1']);
@@ -28,9 +28,12 @@ if (isset($_POST['signup'])) {
   // by adding (array_push()) corresponding error unto $errors array
   if (empty($lastName)) { array_push($errors, "Last name is required"); }
   if (empty($firstName)) { array_push($errors, "First name is required"); }
-  if (empty($email)) { array_push($errors, "Email is required"); }
+  if (empty($email)) {  }
+  //if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {array_push($errors, "Email is not valid"); }
+  if (empty($birthDate)) { array_push($errors, "Birthdate is required"); }
   if (empty($phone)) { array_push($errors, "Phone number name is required"); }
   if (empty($password1)) { array_push($errors, "Password is required"); }
+  //if (!filter_var($email, FILTER_VALIDATE_REGEXP	))
   if (empty($password2)) { array_push($errors, "Password confirmation is required"); }
   if ($password1 != $password2) {
 	array_push($errors, "The two passwords do not match");
@@ -53,7 +56,9 @@ if (isset($_POST['signup'])) {
 
   // Finally, register user if there are no errors in the form
   if (count($errors) == 0) {
-  	$password = $password1;//va falloir l'encrypter plus tard
+    $password = $password1;//va falloir l'encrypter plus tard
+    $birthDate = date( 'Y-m-d', strtotime( $birthDate ) );
+
 
     $newHomeQuery = "INSERT INTO homes (address,    city,     zip_code,     country) 
                       VALUES           (address',   '$city',  '$zipCode',   '$country')";
@@ -67,11 +72,14 @@ if (isset($_POST['signup'])) {
     mysqli_query($db, $newUserQuery);
     error_log(mysqli_error($db), 0);
   	$_SESSION['email'] = $email;
-  	$_SESSION['success'] = "You are now logged in";
-  	header('location: index.php');
+    $_SESSION['success'] = "You are now logged in";
+    //header('location: my-house.php');
+    echo "<script>window.top.location.href =  'http://' + window.location.hostname + '/my-house.php'; </script>";
+
   }
 
   else{
     error_log("caca !");
+    echo $errors[0];
   }
 }
