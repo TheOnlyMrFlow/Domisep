@@ -12,7 +12,6 @@
 
 	<link rel="stylesheet" type="text/css" media="screen" href="../style/style.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.css" />
-	<script src="scripts/open-modals.js"></script>
 	<link rel="stylesheet" type="text/css" media="screen" href="components/footer/footer.min.css" />
 	<link rel="stylesheet" href="components/header-nav/header-nav.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -75,6 +74,9 @@
 
 
 </body>
+
+	<script src="scripts/open-modals.js"></script>
+
 
 
 

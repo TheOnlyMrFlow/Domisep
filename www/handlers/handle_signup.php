@@ -12,11 +12,11 @@ if (isset($_POST['signup'])) {
   // receive all input values from the form
   $lastName = mysqli_real_escape_string($db, $_POST['lastname']);
   $firstName = mysqli_real_escape_string($db, $_POST['firstname']);
-  $birthDate = mysqli_real_escape_string($db, $_POST['birthdate']);
+  $birthDate = date( 'Y-m-d', strtotime( mysqli_real_escape_string($db, $_POST['birthdate']) ) );
   $email = mysqli_real_escape_string($db, $_POST['email']);
   $phone = mysqli_real_escape_string($db, $_POST['phone']);
-  $password_1 = mysqli_real_escape_string($db, $_POST['password1']);
-  $password_2 = mysqli_real_escape_string($db, $_POST['password2']);
+  $password1 = mysqli_real_escape_string($db, $_POST['password1']);
+  $password2 = mysqli_real_escape_string($db, $_POST['password2']);
   $serialNumber = mysqli_real_escape_string($db, $_POST['serialnumber']);
   $address = mysqli_real_escape_string($db, $_POST['address']);
   $city = mysqli_real_escape_string($db, $_POST['city']);
@@ -32,7 +32,7 @@ if (isset($_POST['signup'])) {
   if (empty($phone)) { array_push($errors, "Phone number name is required"); }
   if (empty($password1)) { array_push($errors, "Password is required"); }
   if (empty($password2)) { array_push($errors, "Password confirmation is required"); }
-  if ($password_1 != $password_2) {
+  if ($password1 != $password2) {
 	array_push($errors, "The two passwords do not match");
   }
   if (empty($serialNumber)) { array_push($errors, "Your product's serial number is required"); }
@@ -55,16 +55,23 @@ if (isset($_POST['signup'])) {
   if (count($errors) == 0) {
   	$password = $password1;//va falloir l'encrypter plus tard
 
-    $newHomeQuery = "INSERT INTO homes (address, city, zip_code, country) VALUES ('$address', '$city', '$zipCode', '$country')";
-    mysqli_query($db, $query);
-    $homeId = mysqli_insert_id($con);
+    $newHomeQuery = "INSERT INTO homes (address,    city,     zip_code,     country) 
+                      VALUES           (address',   '$city',  '$zipCode',   '$country')";
+    mysqli_query($db, $newHomeQuery);
+    $homeId = mysqli_insert_id($db);
 
+    error_log("pas caca !", 0);
 
-  	$newUserQuery = "INSERT INTO users (first_name last_name, email, birthdate, phone, password, id_home) 
-  			  VALUES('$firstName', '$lastName', '$email', '$birthDate', '$phone', '$password', '$homeID')";
-  	mysqli_query($db, $newUserQuery);
+  	$newUserQuery = "INSERT INTO users (  first_name,   last_name,    email,    birthdate,          phone,      password,     id_home,    role)
+                     VALUES(              '$firstName', '$lastName',  '$email', DATE '$birthDate', '$phone',   '$password',   '$homeId',  'house_manager')";
+    mysqli_query($db, $newUserQuery);
+    error_log(mysqli_error($db), 0);
   	$_SESSION['email'] = $email;
   	$_SESSION['success'] = "You are now logged in";
   	header('location: index.php');
+  }
+
+  else{
+    error_log("caca !");
   }
 }
