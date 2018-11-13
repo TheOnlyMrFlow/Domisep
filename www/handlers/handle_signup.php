@@ -29,11 +29,13 @@ if (isset($_POST['signup'])) {
   if (empty($lastName)) { array_push($errors, "Last name is required"); }
   if (empty($firstName)) { array_push($errors, "First name is required"); }
   if (empty($email)) {  }
-  //if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {array_push($errors, "Email is not valid"); }
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {array_push($errors, "Email is not valid"); }
   if (empty($birthDate)) { array_push($errors, "Birthdate is required"); }
   if (empty($phone)) { array_push($errors, "Phone number name is required"); }
   if (empty($password1)) { array_push($errors, "Password is required"); }
-  //if (!filter_var($email, FILTER_VALIDATE_REGEXP	))
+  if (!filter_var($password1, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,16}$/")))){
+    array_push($errors, "Password must be at least 4 characters, no more than 16 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit.");
+  };
   if (empty($password2)) { array_push($errors, "Password confirmation is required"); }
   if ($password1 != $password2) {
 	array_push($errors, "The two passwords do not match");
@@ -79,7 +81,6 @@ if (isset($_POST['signup'])) {
   }
 
   else{
-    error_log("caca !");
     echo $errors[0];
   }
 }
