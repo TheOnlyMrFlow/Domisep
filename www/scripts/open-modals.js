@@ -42,18 +42,22 @@ $('document').ready(function () {
         console.log(el.tagName);
     });
 
+    if (signupCloser != undefined){
+      signupCloser.addEventListener("click", function () {
+          if (signupModal != undefined) {
+              signupModal.style.display = "none";
+          }
+      });
+    };
 
-    signupCloser.addEventListener("click", function () {
-        if (signupModal != undefined) {
-            signupModal.style.display = "none";
-        }
-    });
+     if(loginCloser != undefined){
+       loginCloser.addEventListener("click", function () {
+           if (loginModal != undefined) {
+               loginModal.style.display = "none";
+           }
+       });
+     };
 
-    loginCloser.addEventListener("click", function () {
-        if (loginModal != undefined) {
-            loginModal.style.display = "none";
-        }
-    });
 
     contactCloser.addEventListener("click", function () {
         if (contactModal != undefined) {

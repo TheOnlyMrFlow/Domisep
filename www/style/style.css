@@ -3,6 +3,10 @@ div {
     font-family: Verdana, Geneva, sans-serif;
 }
 
+.page-content{
+  width: 980px;
+}
+
 *
 {
     font-family: "Lucida Console";

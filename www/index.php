@@ -1,4 +1,4 @@
-<?php //include('handlers/handle_signup.php') ?> 
+<?php //include('handlers/handle_signup.php') ?>
 
 
 
@@ -29,7 +29,7 @@
 
 		<center>
 
-			<div class="page-content" width="980">
+			<div class="page-content">
 
 				<h1>
 		Your House. Reinvented.
@@ -63,7 +63,6 @@
 
 			</div>
 
-		</center>
 
 		<?php
     include('components/footer/footer.php');
@@ -71,7 +70,8 @@
     include('components/modals/login/login.html');
     include('components/modals/signup/signup.php');
   ?>
-
+	
+</center>
 
 </body>
 
