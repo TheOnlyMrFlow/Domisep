@@ -62,19 +62,28 @@ if (isset($_POST['signup'])) {
     $birthDate = date( 'Y-m-d', strtotime( $birthDate ) );
 
 
-    $newHomeQuery = "INSERT INTO homes (address,    city,     zip_code,     country) 
-                      VALUES           (address',   '$city',  '$zipCode',   '$country')";
-    mysqli_query($db, $newHomeQuery);
+    $stmt = $db->prepare("INSERT INTO homes (address, city, zip_code, country) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $address, $city, $zipCode, $country);
+    $stmt->execute();
+
+    // $newHomeQuery = "INSERT INTO homes (address,    city,     zip_code,     country) 
+    //                   VALUES           (address',   '$city',  '$zipCode',   '$country')";
+    // mysqli_query($db, $newHomeQuery);
     $homeId = mysqli_insert_id($db);
 
-    error_log("pas caca !", 0);
+    $stmt = $db->prepare("INSERT INTO  users (first_name, last_name, email, birthdate, phone, password, id_home, role)  VALUES (?, ?, ?, ?, ?, ?, ?, 'house_manager')");
+    $stmt->bind_param("ssssssi", $firstName, $lastName, $email, $birthDate, $phone, $password, $homeId);
+    $stmt->execute();
 
-  	$newUserQuery = "INSERT INTO users (  first_name,   last_name,    email,    birthdate,          phone,      password,     id_home,    role)
-                     VALUES(              '$firstName', '$lastName',  '$email', DATE '$birthDate', '$phone',   '$password',   '$homeId',  'house_manager')";
-    mysqli_query($db, $newUserQuery);
+    //error_log("pas caca !", 0);
+
+  	// $newUserQuery = "INSERT INTO users (  first_name,   last_name,    email,    birthdate,          phone,      password,     id_home,    role)
+    //                  VALUES(              '$firstName', '$lastName',  '$email', DATE '$birthDate', '$phone',   '$password',   '$homeId',  'house_manager')";
+    // mysqli_query($db, $newUserQuery);
     error_log(mysqli_error($db), 0);
+
   	$_SESSION['email'] = $email;
-    $_SESSION['success'] = "You are now logged in";
+    //$_SESSION['success'] = "You are now logged in";
     //header('location: my-house.php');
     echo "<script>window.top.location.href =  'http://' + window.location.hostname + '/my-house.php'; </script>";
 
