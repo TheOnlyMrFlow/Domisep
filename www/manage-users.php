@@ -20,7 +20,6 @@
 
     include('components/header-nav/header-nav.php');
 		$db = mysqli_connect('localhost', 'root', '', 'mff');
-
     ?>
 
 		<div class="page-content-container dashboard">
@@ -49,16 +48,35 @@
 								<col width="30%"/>
 								<col width="10%"/>
 							</colgroup>
-							<tr>
-								<th>Mail</th>
-								<th>First Name</th>
-								<th>Last Name</th>
-								<th></th>
-							</tr>
-							<tr>
-								<?php  ?>
-							</tr>
+							<thead>
+								<tr>
+									<th>Mail</th>
+									<th>First Name</th>
+									<th>Last Name</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<?php
+								$users_array = mysqli_query($db,"SELECT first_name, last_name, email FROM users ORDER BY last_name ASC");
+								$html = '';
+								while ($user_row = mysqli_fetch_array($users_array)) {
+									$first_name = $user_row[0];
+									$last_name = $user_row[1];
+									$email = $user_row[2];
+
+									$html .= "		<tr>
+																<td>$first_name</td>
+																<td>$last_name</td>
+																<td>$email</td>
+																<td></td>
+															</tr>";
+								}
+								echo $html;
+								?>
+							</tbody>
 						</table>
+
 					</div>
 				</div>
 			</div>
