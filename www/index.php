@@ -63,16 +63,13 @@
 
 			</div>
 
-
-		<?php
-    include('components/footer/footer.php');
-    include('components/modals/contact/contact.php');
-    include('components/modals/login/login.html');
-    include('components/modals/signup/signup.php');
-  ?>
-	
 </center>
-
+<?php
+include('components/footer/footer.php');
+include('components/modals/contact/contact.php');
+include('components/modals/login/login.html');
+include('components/modals/signup/signup.php');
+?>
 </body>
 
 	<script src="scripts/open-modals.js"></script>

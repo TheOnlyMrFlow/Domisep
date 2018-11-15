@@ -21,16 +21,16 @@
 
     ?>
 
-		<center>
-
-			<div class="page-content">
+		<div class="page-content-container">
+      <div class="page-content">
 
 			</div>
-		<?php
-		include('components/modals/contact/contact.php');
-    include('components/footer/footer.php');
-  ?>
-</center>
+		</div>
+		
+<?php
+include('components/modals/contact/contact.php');
+include('components/footer/footer.php');
+?>
 </body>
 
 <script src="scripts/open-modals.js"></script>
