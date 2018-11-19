@@ -34,8 +34,10 @@ if (isset($_POST['login']))
 
             if($row = mysqli_fetch_assoc($result))
             {
+
+
                
-                $passwordCheck = $password == $row['password'];
+                $passwordCheck = password_verify($password, $row['password']);
 
                 if($passwordCheck == false)
                 {

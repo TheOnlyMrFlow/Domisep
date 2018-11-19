@@ -1,6 +1,3 @@
-<?php //include('handlers/handle_signup.php') ?>
-
-
 
 <!DOCTYPE html>
 

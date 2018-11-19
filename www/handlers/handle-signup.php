@@ -58,7 +58,8 @@ if (isset($_POST['signup'])) {
 
   // Finally, register user if there are no errors in the form
   if (count($errors) == 0) {
-    $password = $password1;//va falloir l'encrypter plus tard
+    $password = password_hash($password1, PASSWORD_BCRYPT);
+
     $birthDate = date( 'Y-m-d', strtotime( $birthDate ) );
 
 
