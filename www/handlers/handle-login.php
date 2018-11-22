@@ -3,7 +3,7 @@
 if (isset($_POST['login'])) 
 {
     $db = mysqli_connect('localhost', 'root', '', 'mff');    
-    $emailaddress = $_POST['mail'];
+    $emailaddress = mysqli_real_escape_string($db, $_POST['mail']);
     $password = $_POST['password'];
 
     
@@ -67,6 +67,10 @@ if (isset($_POST['login']))
         }
     }
 } 
+
+else if (isset($_POST['forgot-password'])) {
+    include("./handle-forgot-password.php");
+}
 
 else
 {
