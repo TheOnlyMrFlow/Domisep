@@ -1,8 +1,14 @@
+<?php 
+
+session_start();
+
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta charset="UTF-8"/>
-		<link rel="stylesheet" href="myhouse.css"/>
+		<link rel="stylesheet" href="style/myhouse.css"/>
 		<title>myhouse.html</title>
 	</head>
 	<body>
@@ -39,14 +45,14 @@
 						<br>
 					<div class="component_middle">
 						<div class="logo">
-							<img src="C:\Users\Julie\Documents\Julie devoirs\APP\lightbulb3.png" alt="light">
+							<img src="./resources/images/lightbulb3.png" alt="light">
 						</div>
 						<div class="fleches"> 
 							<div class="flechehaut">
-								<img src="C:\Users\Julie\Documents\Julie devoirs\APP\fleche_haut2.png" alt="fleche haut">
+								<img src="./resources/images/fleche_haut2.png" alt="fleche haut">
 							</div>
 							<div class="flechebas">
-								<img src="C:\Users\Julie\Documents\Julie devoirs\APP\fleche_bas2.png" alt="fleche bas">
+								<img src="./resources/images/fleche_bas2.png" alt="fleche bas">
 							</div>
 						</div>
 					</div>

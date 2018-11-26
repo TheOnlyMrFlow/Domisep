@@ -51,6 +51,8 @@ if (isset($_POST['login']))
                     $_SESSION['email'] = $row['email'];
                     $_SESSION['last_name'] = $row['last_name'];
                     //echo 'success';
+                    $_SESSION['connected'] = true;
+
                     echo "<script>window.top.location.href =  'http://' + window.location.hostname + '/my-house.php'; </script>";
                     exit();
                 }
