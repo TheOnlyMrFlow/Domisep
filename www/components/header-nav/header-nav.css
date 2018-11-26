@@ -2,15 +2,20 @@ body{
   margin : 0;
 }
 
+:root{
+  --main-theme-color : #206ea5;
+}
+
 header{
   display: flex;
-  border-bottom: 3px #206ea5 solid;
+  border-bottom: 3px var(--main-theme-color) solid;
   position: sticky;
   top:0;
+  transition:
 }
 
 header.sticky{
-  background-color: #206ea5;
+  background-color: var(--main-theme-color);
   border-bottom: none;
 }
 
@@ -39,7 +44,6 @@ header.sticky #menu-logo{
 
 #main-menu{
   height: 100%;
-  transition: margin-top 0.2s;
   float: right;
 }
 
@@ -59,9 +63,11 @@ header.sticky #menu-logo{
   display : block;
   padding: 15px 15px 15px 15px;
   font-size : 1.2em;
+  font-family: Trebuchet MS,Helvetica,Sans-serif;
+  font-weight: lighter;
   text-decoration: none;
   color:  #262626;
-  transition: all linear 0.1s ;
+  transition: ease-in-out 0.15s ;
 }
 
 header.sticky .menu-item a{
@@ -71,11 +77,12 @@ header.sticky .menu-item a{
 }
 
 header.sticky .menu-item:hover a{
-  color : #206ea5;
+  color : var(--main-theme-color);
   background-color: #fff;
 }
 
 .menu-item:hover a{
   background-color: #206ea5;
   color : #fff;
+  /* transition: ease-out 0.1s ; */
 }
