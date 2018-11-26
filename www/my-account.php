@@ -30,8 +30,12 @@ session_start();
     <div class="page-content-container">
       <div class="page-content">
 
-			</div>
+		  <form method="post" action="./handlers/handle-logout.php">
+			<input type="submit" value="Log out" name="logout">
+		  </form>
+
 		</div>
+	</div>
 
 <?php
 include('components/modals/contact/contact.php');

@@ -1,6 +1,7 @@
 <?php
 //session_start();
 
+include('../utils/input-checker.php');
 
 $errors = array(); 
 
@@ -33,7 +34,7 @@ if (isset($_POST['signup'])) {
   if (empty($birthDate)) { array_push($errors, "Birthdate is required"); }
   if (empty($phone)) { array_push($errors, "Phone number name is required"); }
   if (empty($password1)) { array_push($errors, "Password is required"); }
-  if (!filter_var($password1, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,16}$/")))){
+  if (!checkPassword($password1)){
     array_push($errors, "Password must be at least 4 characters, no more than 16 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit.");
   };
   if (empty($password2)) { array_push($errors, "Password confirmation is required"); }

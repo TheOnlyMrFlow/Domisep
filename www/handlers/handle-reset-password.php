@@ -1,5 +1,7 @@
 <?php 
 
+include('../utils/input-checker.php');
+
 if (isset($_POST['id']) && isset($_POST['key'])) {
     $db = mysqli_connect('localhost', 'root', '', 'mff');    
     $id = mysqli_real_escape_string($db, $_POST['id']);
@@ -38,7 +40,7 @@ if (isset($_POST['id']) && isset($_POST['key'])) {
 
                     if ($password1 != $password2){
                         displayErrorAndLeave("Passwords do not match");
-                    } else if (!filter_var($password1, FILTER_VALIDATE_REGEXP, array("options"=>array("regexp"=>"/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{4,16}$/")))){
+                    } else if (!checkPassword($password1)){
                         displayErrorAndLeave("Password must be at least 4 characters, no more than 16 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit.");
                     } else {
 
