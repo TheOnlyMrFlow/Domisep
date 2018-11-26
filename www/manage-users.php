@@ -1,3 +1,10 @@
+<?php 
+
+session_start();
+
+?>
+
+
 <!DOCTYPE html>
 <?php 	header('Content-Type: text/html; charset=ISO-8859-1'); ?>
 <html>
