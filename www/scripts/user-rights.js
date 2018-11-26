@@ -1,27 +1,72 @@
 $(document).ready(function() {
+  $("select[name='user-id']").change(function(){
+    var data = {
+      'user_id' : $(this).children('option:selected').val()
+    }
+    $.post('../handlers/display-user-rights.php',data, function(response) {
+      var parsed_response = JSON.parse(response);
+      for (var i in parsed_response) {
+        var serial_number = parsed_response[i][0];
+        var level = parsed_response[i][1];
+        if(level=='read'){
+          $("tr."+serial_number+" td span.view-button").removeClass('off').addClass('on');
+          $("tr."+serial_number+" td span.edit-button").css('display','block');
+        }
+        else if (level=='write') {
+          $("tr."+serial_number+" td span.edit-button").css('display','block');
+          $("tr."+serial_number+" td span.view-button").removeClass('off').addClass('on');
+          $("tr."+serial_number+" td span.edit-button").removeClass('off').addClass('on');
+        }
+      }
+      $('div.dashboard-inner-container.change-user-rights').css('display','flex');
+    });
+  });
   $('.view-button').on('click', function(event){
-    if($(this).hasClass('off')){
-      $(this).removeClass('off').addClass('on');
-      $(this).parent().next().children().css('display', 'block');
+    var triggered_button = $(this);
+    if(triggered_button.hasClass('off')){
       var data = {
         'level' : 'read',
-        'component' : $(this).parents('tr').attr('class')
+        'component' : triggered_button.parents('tr').attr('class'),
+        'user_id' : $("select[name='user-id']").children('option:selected').val()
       }
-      $.post('./handlers/update-rights.php',data, function(data) {
-        /*optional stuff to do after success */
+      $.post('../handlers/update-rights.php',data, function(response) {
+        triggered_button.removeClass('off').addClass('on');
+        triggered_button.parent().next().children().css('display', 'block');
       });
     }
     else{
-      $(this).removeClass('on').addClass('off');
-      $(this).parent().next().children().css('display', 'none');
+      var data = {
+        'level' : 'none',
+        'component' : triggered_button.parents('tr').attr('class'),
+        'user_id' : $("select[name='user-id']").children('option:selected').val()
+      }
+      $.post('../handlers/update-rights.php',data, function(response) {
+        triggered_button.removeClass('on').addClass('off');
+        triggered_button.parent().next().children().css('display', 'none');
+      });
     }
   })
   $('.edit-button').on('click', function(event){
-    if($(this).hasClass('off')){
-      $(this).removeClass('off').addClass('on');
+    var triggered_button = $(this);
+    if(triggered_button.hasClass('off')){
+      var data = {
+        'level' : 'write',
+        'component' : triggered_button.parents('tr').attr('class'),
+        'user_id' : $("select[name='user-id']").children('option:selected').val()
+      }
+      $.post('../handlers/update-rights.php',data, function(response) {
+        triggered_button.removeClass('off').addClass('on');
+      });
     }
     else{
-      $(this).removeClass('on').addClass('off');
+      var data = {
+        'level' : 'read',
+        'component' : triggered_button.parents('tr').attr('class'),
+        'user_id' : $("select[name='user-id']").children('option:selected').val()
+      }
+      $.post('../handlers/update-rights.php',data, function(response) {
+        triggered_button.removeClass('on').addClass('off');
+      });
     }
   })
 });

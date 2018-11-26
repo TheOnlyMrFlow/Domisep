@@ -68,7 +68,9 @@ session_start();
 								</thead>
 								<tbody>
 									<?php
-									$users_array = mysqli_query($db,"SELECT id, first_name, last_name, email FROM users ORDER BY last_name ASC");
+									// $home_id = $_SESSION['id_home'];
+									$home_id = 1;
+									$users_array = mysqli_query($db,"SELECT id, first_name, last_name, email FROM users WHERE id_home=$home_id ORDER BY last_name,first_name ASC");
 									$html = '';
 									while ($user_row = mysqli_fetch_array($users_array)) {
 										$id = $user_row[0];
@@ -100,20 +102,26 @@ session_start();
 							<div>
 								<select name="user-id" placeholder="select user">
 									<?php
-									$users_array = mysqli_query($db,"SELECT id, first_name, last_name, email FROM users ORDER BY last_name ASC");
+									// $home_id = $_SESSION['id_home'];
 									$html = '';
+									$home_id = 1;
+									// $current_user_id = $_SESSION['id'];
+									$current_user_id = 1;
+
+									$users_array = mysqli_query($db,"SELECT id, first_name, last_name, email FROM users WHERE id_home=$home_id AND id<>$current_user_id ORDER BY last_name,first_name ASC");
+									$html = "<option disabled selected value > select user </option>";
 									while ($user_row = mysqli_fetch_row($users_array)) {
 										$id = $user_row[0];
 										$first_name = $user_row[1];
 										$last_name = $user_row[2];
-										$html .= "<option value='user-id'>$first_name $last_name</option>";
+										$html .= "<option value='$id'>$first_name $last_name</option>";
 									}
 									echo $html;
 									?>
 								</select>
 							</div>
 						</div>
-						<div class="dashboard-inner-container">
+						<div class="dashboard-inner-container change-user-rights">
 							<?php
 								// $id_home = $_SESSION['id_home'];
 								$id_home = 1;

@@ -41,6 +41,10 @@
   border-collapse: collapse;
 }
 
+div.dashboard-inner-container.change-user-rights{
+  display: none;
+}
+
 .view-button,.edit-button{
   font-size: 22px;
   cursor: pointer;
