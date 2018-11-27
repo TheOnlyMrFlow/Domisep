@@ -1,0 +1,127 @@
+body
+{
+    background-color: #0E0E0E;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+    color: white;
+}
+#NewTask
+{
+    background-color: #242424; 
+    width: 90%;
+    height:250px; 
+    border-radius:15px; 
+    margin: auto;
+    margin-top: 3%;
+}
+
+#contentNewTask
+{
+    padding-left: 3%;
+    padding-top: 1%;
+    padding-right: 1%;
+}
+#titleNewTask
+{
+    color:#1DB954;
+}
+#c1
+{
+    text-align: right;
+    float:left;
+    width:15%;
+    height:120px;
+    line-height:190%;
+}
+#c2
+{
+    padding-left: 2%;
+    text-align: left;
+    float:left;
+    width:15%;
+    height:120px;
+}
+#selectComponent
+{
+    background-color: #242424
+}
+#c3
+{
+    text-align: right;
+    float:left;
+    width:15%;
+    height:120px;
+    border-width:10px
+}
+#c4
+{
+    padding-left: 2%;
+    text-align: left;
+    float:left;
+    width:15%;
+    height:120px;
+}
+#c5
+{
+    text-align: right;
+    float:left;
+    width:15%;
+    height:120px;
+}
+#c6
+{
+    padding-left: 2%;
+    text-align: left;
+    float:left;
+    width:15%;
+    height:120px;
+}
+#SaveTask
+{
+    text-align: right;
+    padding-top: 5%;
+    padding-right: 2%;
+}
+#buttonSaveTask
+{
+
+}
+
+#ScheduledTask
+{
+    background-color: #242424;
+    width: 90%;
+    height:320px; 
+    border-radius:15px; 
+    margin: auto;
+    margin-top: 3%;
+}
+
+#contentScheduledTask
+{
+    padding-left: 3%;
+    padding-top: 1%;
+    padding-right: 1%;
+}
+#titleScheduledTask
+{
+    color:#1DB954;   
+}
+#presetsTable
+{
+    margin: auto;
+    width: 90%;
+    float: center;
+    background-color: #0E0E0E
+
+}
+#presetsTable, th, td
+{
+    border: 1px solid #1DB954;
+    border-collapse: collapse;
+    padding: 2%;
+}
+th
+{
+   text-align: left;
+}
