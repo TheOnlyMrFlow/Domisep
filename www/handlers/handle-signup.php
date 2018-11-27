@@ -35,7 +35,7 @@ if (isset($_POST['signup'])) {
   if (empty($phone)) { array_push($errors, "Phone number name is required"); }
   if (empty($password1)) { array_push($errors, "Password is required"); }
   if (!checkPassword($password1)){
-    array_push($errors, "Password must be at least 4 characters, no more than 16 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit.");
+    array_push($errors, passwordRequirements);
   };
   if (empty($password2)) { array_push($errors, "Password confirmation is required"); }
   if ($password1 != $password2) {

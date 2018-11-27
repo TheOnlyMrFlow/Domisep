@@ -48,10 +48,16 @@ if (isset($_POST['login']))
                 else if ($passwordCheck == true)
                 {
                     session_start();
-                    $_SESSION['email'] = $row['email'];
-                    $_SESSION['last_name'] = $row['last_name'];
-                    //echo 'success';
                     $_SESSION['connected'] = true;
+                    $_SESSION['email'] = $row['email'];
+                    $_SESSION['id'] = $row['id'];
+                    $_SESSION['last_name'] = $row['last_name'];
+                    $_SESSION['first_name'] = $row['first_name'];
+                    $_SESSION['role'] = $row['role'];
+                    $_SESSION['birthdate'] = $row['birthdate'];
+                    $_SESSION['phone'] = $row['phone'];
+                    //echo 'success';
+                    
 
                     echo "<script>window.top.location.href =  'http://' + window.location.hostname + '/my-house.php'; </script>";
                     exit();
