@@ -5,8 +5,7 @@ if (!isset($_SESSION['connected']) || $_SESSION['connected'] == false) {
     displayErrorAndLeave('Unauthorized access');
 }
 
-if (!isset($_POST['change-password']) ||
-    !isset($_POST['firstname']) ||
+if (!isset($_POST['firstname']) ||
     !isset($_POST['lastname']) ||
     !isset($_POST['address']) ||
     !isset($_POST['city']) ||
@@ -27,8 +26,19 @@ $city = mysqli_real_escape_string($db, $_POST['city']);
 $zipCode = mysqli_real_escape_string($db, $_POST['zipcode']);
 $country = mysqli_real_escape_string($db, $_POST['country']);
 
+
+$id = $_SESSION['id'];
+
 $stmt = $db->prepare("UPDATE users SET last_name = ?, first_name = ?, phone = ? WHERE id = ?");
-$stmt->bind_param("sss", $lastname, $firstName, $phone);
+$stmt->bind_param("sssi", $lastName, $firstName, $phone, $id);
 $stmt->execute();
 
+echo mysqli_error($db);
 
+
+
+function displayErrorAndLeave($error = 'Sorry, an error occured')
+{
+    echo $error;
+    exit();
+}
