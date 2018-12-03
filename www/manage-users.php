@@ -33,7 +33,6 @@ session_start();
 		<div class="page-content-container dashboard">
 			<div class="page-content dashboard">
 				<div class="dashboard-big-container">
-					<div class="dashboard-section-container">
 						<h2>Users</h2>
 						<div class="dashboard-inner-container">
 							<table id="users-table" width="100%">
@@ -88,10 +87,8 @@ session_start();
 								</div>
 							</form>
 						</div>
-					</div>
 				</div>
 				<div class="dashboard-big-container">
-					<div class="dashboard-section-container">
 						<h2>User Rights</h2>
 						<div class="dashboard-inner-container select-user">
 							<div>
@@ -166,7 +163,6 @@ session_start();
 								echo $html;
 							?>
 						</div>
-					</div>
 				</div>
 			</div>
 		</div>

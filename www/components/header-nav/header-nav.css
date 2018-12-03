@@ -11,7 +11,7 @@ header{
   border-bottom: 3px var(--main-theme-color) solid;
   position: sticky;
   top:0;
-  transition:
+  background-color: #fff;
 }
 
 header.sticky{

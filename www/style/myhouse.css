@@ -1,6 +1,5 @@
 /*section haute: preset*/
 
-
 .section_preset{
 	display:flex;
 	justify-content: flex-start;
@@ -24,7 +23,7 @@
 	padding: 30px;
 	border:none;
 	border-radius: 50%;
-	background-color: #2DCED6;
+	background-color: #206ea5;
 	color: #FFF;
 	box-shadow: 4px 4px 18px 2px rgba(0, 0, 0, 0.2);
 	cursor:pointer;
@@ -46,38 +45,10 @@
 }
 
 
-
-.add_preset a:link{
-	margin:5px;
-	text-decoration: none;
-	text-align:center;
-	display:inline-block;
-	vertical-align: top;
-	line-height: 80%;
-	width: 20px;
-	height: 20px;
-	padding: 10px;
-	border:grey;
-	border-radius: 50%;
-	background-color: white;
-	color: black;
-	box-shadow: 2px 2px 16px 0px rgba(0, 0, 0, 0.2);
-	cursor:pointer;
-	transition: 0.2s;
-	}
-
-.add_preset a:visited{
-	text-decoration: none
-}
-
 .create_preset{
 	margin-left: 0.5em;
 }
 
-/*section centrale: room*/
- .room{
-	 padding: 12px 20px 12px 20px;
- }
 .room_header{
 	display: flex;
 	align-items: center;
@@ -97,6 +68,14 @@
 	max-height: 100%;
 }
 
+.components_line{
+	display: flex;
+}
+
+.components_line:not(:last-child){
+	margin-bottom: 20px;
+}
+
 
 .component{
 	border-radius: 5%;
@@ -114,7 +93,7 @@
 	box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.3);
 	}
 .component:not(:first-child){
-	margin-left: 5%;
+	margin-left: 4%;
 }
 .component_title{
 	align-self: center;
@@ -206,7 +185,7 @@
 .onoffswitch-inner:before {
     content: "";
     padding-left: 4px;
-    background-color: #2DCED6; color: #FFFFFF;
+    background-color: #206ea5; color: #FFFFFF;
 }
 .onoffswitch-inner:after {
     content: "";
@@ -288,29 +267,6 @@
 	align-items: center;
 	align-content: center;
 
-}
-
-.add_room a:link{
-	margin:5px;
-	text-decoration: none;
-	text-align:center;
-	display:inline-block;
-	vertical-align: top;
-	line-height: 80%;
-	width: 20px;
-	height: 20px;
-	padding: 10px;
-	border:grey;
-	border-radius: 50%;
-	background-color: white;
-	color: black;
-	box-shadow: 2px 2px 16px 0px rgba(0, 0, 0, 0.2);
-	cursor:pointer;
-	transition: 0.2s;
-	}
-
-.add_room a:visited{
-	text-decoration: none
 }
 
 .create_room{
