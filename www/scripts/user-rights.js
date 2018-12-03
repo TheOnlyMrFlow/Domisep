@@ -9,13 +9,13 @@ $(document).ready(function() {
         var serial_number = parsed_response[i][0];
         var level = parsed_response[i][1];
         if(level=='read'){
-          $("tr."+serial_number+" td span.view-button").removeClass('off').addClass('on');
-          $("tr."+serial_number+" td span.edit-button").css('display','block');
+          $("tr."+serial_number+" td div.view-button").removeClass('off').addClass('on');
+          $("tr."+serial_number+" td div.edit-button").css('display','block');
         }
         else if (level=='write') {
-          $("tr."+serial_number+" td span.edit-button").css('display','block');
-          $("tr."+serial_number+" td span.view-button").removeClass('off').addClass('on');
-          $("tr."+serial_number+" td span.edit-button").removeClass('off').addClass('on');
+          $("tr."+serial_number+" td div.edit-button").css('display','block');
+          $("tr."+serial_number+" td div.view-button").removeClass('off').addClass('on');
+          $("tr."+serial_number+" td div.edit-button").removeClass('off').addClass('on');
         }
       }
       $('div.dashboard-inner-container.change-user-rights').css('display','flex');
@@ -43,6 +43,7 @@ $(document).ready(function() {
       $.post('../handlers/update-rights.php',data, function(response) {
         triggered_button.removeClass('on').addClass('off');
         triggered_button.parent().next().children().css('display', 'none');
+        triggered_button.parent().next().children().removeClass('on').addClass('off');
       });
     }
   })

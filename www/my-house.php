@@ -11,7 +11,8 @@ session_start();
 <head>
 	<meta charset="utf-8" />
 	<title>My House - Domisep</title>
-	<link rel="stylesheet" type="text/css" media="screen" href="../style/style.css" />
+	<!-- <link rel="stylesheet" type="text/css" media="screen" href="../style/style.css" /> -->
+	<link rel="stylesheet" type="text/css" media="screen" href="../style/dashboard-style.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/footer/footer.min.css" />
 	<link rel="stylesheet" href="style/myhouse.css"/>
@@ -23,9 +24,9 @@ session_start();
 <body>
 	<?php
 
-if ($_SESSION['connected']){
-	
-}
+// if ($_SESSION['connected']){
+//
+// }
 include 'components/header-nav/header-nav.php';
 
 ?>
@@ -43,21 +44,18 @@ include 'components/header-nav/header-nav.php';
 					<button>Preset name</button>
 				</div>
 
-				<div class="add_preset">
-					<a href="add_preset.html">+</a>
-				</div>
-
-				<div class="create_preset">
-					Create a new preset
-				</div>
+				<button class="plus-button plus-button--large" href="add_component.html"></button><span id="add-preset-title">Create new preset</span>
 
 			</section>
 
 
-			<section class="room">
+			<section class="dashboard-big-container room">
 
-				<div class="room_title">
-					Room 1
+				<div class="room_header">
+					<h3>Room 1</h3>
+					<div class="section_add_component">
+							<button class="plus-button" href="add_component.html"></button><span id="add-comp-title">Add a component</span>
+					</div>
 				</div>
 
 				<div class="section_components">
@@ -96,22 +94,10 @@ include 'components/header-nav/header-nav.php';
 				</div>
 
 
-				<div class="section_add_component">
-					<div class="add_component">
-						<a href="add_component.html">+</a>
-					</div>
-					<!-- <div class="create_component"> -->
-						<!-- Add a component -->
-					<!-- </div> -->
-				</div>
+
 			</section>
 			<div class="section_add_room">
-				<div class="add_room">
-					<a href="add_room.html">+</a>
-				</div>
-				<div class="create_room">
-					Add a room
-				</div>
+				<button class="plus-button plus-button--large" href="add_component.html"></button><span id="add-room-title">Add a room</span>
 			</div>
 		</div>
 

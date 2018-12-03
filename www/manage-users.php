@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 
@@ -13,6 +13,7 @@ session_start();
 	<title>My House - Domisep</title>
 	<link rel="stylesheet" type="text/css" media="screen" href="../style/dashboard-style.min.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="../style/manage-users.min.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../style/icons.min.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/footer/footer.min.css" />
 	<link rel="stylesheet" href="components/header-nav/header-nav.min.css">
@@ -33,23 +34,7 @@ session_start();
 			<div class="page-content dashboard">
 				<div class="dashboard-big-container">
 					<div class="dashboard-section-container">
-						<h2>Add User</h2>
-						<div class="dashboard-inner-container">
-							<form id="add-user-form" action="handlers/handle-add-user.php" method="post">
-								<div>
-									<h3>E-mail</h3>
-								</div>
-								<div>
-									<input type="text" name="e-mail" placeholder="ilove@domisep.fr">
-								</div>
-								<div>
-									<input type="submit" value="Add">
-								</div>
-							</form>
-						</div>
-					</div>
-					<div class="dashboard-section-container">
-						<h2>Current Users</h2>
+						<h2>Users</h2>
 						<div class="dashboard-inner-container">
 							<table id="users-table" width="100%">
 								<colgroup>
@@ -60,9 +45,9 @@ session_start();
 								</colgroup>
 								<thead>
 									<tr>
-										<th>Mail</th>
-										<th>First Name</th>
 										<th>Last Name</th>
+										<th>First Name</th>
+										<th>Mail</th>
 										<th></th>
 									</tr>
 								</thead>
@@ -89,6 +74,19 @@ session_start();
 									?>
 								</tbody>
 							</table>
+						</div>
+						<div class="dashboard-inner-container">
+							<form id="add-user-form" action="handlers/handle-add-user.php" method="post">
+								<div>
+									<h3>Add a member</h3>
+								</div>
+								<div>
+									<input type="text" name="e-mail" placeholder="zac.smith@example.com">
+								</div>
+								<div>
+									<input type="submit" value="Add">
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
@@ -149,8 +147,8 @@ session_start();
 																		</colgroup>
 																		<tr class='$component_id'>
 																			<td>$component_name</td>
-																			<td><span class='view-button off'>&#128065;</span></td>
-																			<td><span class='edit-button off'>&#x1f589;</span></td>
+																			<td><div class='view-button ic ic-eye off'></div></td>
+																			<td><div class='edit-button ic ic-pencil off'></div></td>
 																		</tr>";
 									}
 									else{
@@ -158,8 +156,8 @@ session_start();
 										$component_name = $component_array[3];
 										$html .= "<tr class='$component_id'>
 																			<td>$component_name</td>
-																			<td><span class='view-button off'>&#128065;</span></td>
-																			<td><span class='edit-button off'>&#x1f589;</span></td>
+																			<td><div class='view-button ic ic-eye off'></div></td>
+																			<td><div class='edit-button ic ic-pencil off'></div></td>
 																		</tr>";
 									}
 
