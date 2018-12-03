@@ -34,9 +34,7 @@ if (isset($_POST['signup'])) {
   if (empty($birthDate)) { array_push($errors, "Birthdate is required"); }
   if (empty($phone)) { array_push($errors, "Phone number name is required"); }
   if (empty($password1)) { array_push($errors, "Password is required"); }
-  if (!checkPassword($password1)){
-    array_push($errors, passwordRequirements);
-  };
+  if (!checkPassword($password1)){ array_push($errors, passwordRequirements()); }
   if (empty($password2)) { array_push($errors, "Password confirmation is required"); }
   if ($password1 != $password2) {
 	array_push($errors, "The two passwords do not match");
@@ -47,8 +45,6 @@ if (isset($_POST['signup'])) {
   if (empty($zipCode)) { array_push($errors, "Your zip code is required"); }
   if (empty($country)) { array_push($errors, "Your country is required"); }
 
-  // first check the database to make sure 
-  // a user does not already exist with the same username and/or email
   $user_check_query = "SELECT * FROM users WHERE email='$email' LIMIT 1";
   $result = mysqli_query($db, $user_check_query);
   $user = mysqli_fetch_assoc($result);
@@ -77,16 +73,11 @@ if (isset($_POST['signup'])) {
     $stmt->bind_param("ssssssi", $firstName, $lastName, $email, $birthDate, $phone, $password, $homeId);
     $stmt->execute();
 
-    //error_log("pas caca !", 0);
-
-  	// $newUserQuery = "INSERT INTO users (  first_name,   last_name,    email,    birthdate,          phone,      password,     id_home,    role)
-    //                  VALUES(              '$firstName', '$lastName',  '$email', DATE '$birthDate', '$phone',   '$password',   '$homeId',  'house_manager')";
-    // mysqli_query($db, $newUserQuery);
+   
     error_log(mysqli_error($db), 0);
 
   	$_SESSION['email'] = $email;
-    //$_SESSION['success'] = "You are now logged in";
-    //header('location: my-house.php');
+ 
     echo "<script>window.top.location.href =  'http://' + window.location.hostname + '/my-house.php'; </script>";
 
   }

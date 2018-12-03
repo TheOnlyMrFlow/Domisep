@@ -55,3 +55,9 @@ h3{
 img.content-image{
   width: 100%;
 }
+
+iframe {
+  height: 30px;
+  width: 300px;
+  border-style: none;
+}

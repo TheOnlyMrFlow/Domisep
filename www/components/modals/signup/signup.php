@@ -10,7 +10,7 @@
 		<a class="close" id="close-signup">&times;</a>		
 
 		<div class="modal-subcontent">
-			<form method="post" action="handlers/handle-signup.php" target="signup-result">
+			<form method="post" action="./handlers/handle-signup.php" target="signup-result">
 
 				<h2>Register an account</h2>
 				<br/>
