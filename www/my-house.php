@@ -65,7 +65,7 @@ include 'components/header-nav/header-nav.php';
 
 				<div class="section_components">
 					<div class="components_line">
-						<div class="component">
+						<div class="component" id="iyutdysjd875443">
 							<div class="component_title">
 							Component
 							</div>
@@ -93,7 +93,7 @@ include 'components/header-nav/header-nav.php';
 									</label>
 								</div>
 								<div class="bouton_3_points">
-									<a href="component_parameters.html">...</a>
+									<a href="#">...</a>
 								</div>
 							</div>
 						</div>
@@ -405,9 +405,15 @@ include 'components/header-nav/header-nav.php';
 <?php
 include 'components/modals/contact/contact.php';
 include 'components/footer/footer.php';
+include 'components/modals/component-details/component-details.php';
 ?>
 </body>
 
 <script src="scripts/open-modals.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
+
+<script src="components/modals/component-details/component-details.js"></script>
+
 
 </html>
