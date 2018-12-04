@@ -13,7 +13,12 @@ session_start();
 	<title>My House - Domisep</title>
 	<!-- <link rel="stylesheet" type="text/css" media="screen" href="../style/style.css" /> -->
 	<link rel="stylesheet" type="text/css" media="screen" href="../style/dashboard-style.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../style/full-site-style.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../style/component-style.css" />
+
 	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.css" />
+
 	<link rel="stylesheet" type="text/css" media="screen" href="components/footer/footer.min.css" />
 	<link rel="stylesheet" href="style/myhouse.css"/>
 	<link rel="stylesheet" href="components/header-nav/header-nav.min.css">

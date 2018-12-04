@@ -23,6 +23,7 @@ $(document).ready(function () {
                 compDetailModal.style.display = "block";
                 document.getElementById("comp-details-title").innerHTML = data[0];
                 document.getElementById("comp-details-name").value = data[0];
+                
 
             });
     });
