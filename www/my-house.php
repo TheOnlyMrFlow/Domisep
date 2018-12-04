@@ -12,7 +12,8 @@ require('scripts/fonction_php_component.php');
 <head>
 	<meta charset="utf-8" />
 	<title>My House - Domisep</title>
-	<!-- <link rel="stylesheet" type="text/css" media="screen" href="../style/style.css" /> -->
+	<link rel="stylesheet" type="text/css" media="screen" href="../style/full-site-style.min.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../style/component-style.min.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="../style/dashboard-style.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/footer/footer.min.css" />
@@ -46,7 +47,7 @@ include 'components/header-nav/header-nav.php';
 
 				<div class= "preset">
 <!-- 					<button>Preset name</button>
- -->					
+ -->
 				</div>
 
 				<button class="plus-button plus-button--large" href="add_component.html"></button><span id="add-preset-title">Create new preset</span>
@@ -83,7 +84,7 @@ include 'components/header-nav/header-nav.php';
 							while ($donnees_room = mysqli_fetch_array($rooms))
 							{
 								$name_room = $donnees_room[0];
-					
+
 							}
 
 							echo "<h3> $name_room </h3>";
@@ -99,11 +100,11 @@ include 'components/header-nav/header-nav.php';
 <!-- 										<?php
 							//$id_home = $_SESSION['id_home'];
 							$id_home=1;
-						
+
 							$components= mysqli_query($db,"SELECT name FROM components");
 							while ($donnees_component = mysqli_fetch_array($components))
 							{
-								$name_component = $donnees_component[0];								
+								$name_component = $donnees_component[0];
 							}
 							echo $name_component;
 							?> -->
@@ -114,10 +115,10 @@ include 'components/header-nav/header-nav.php';
 							<?php
 							componentsFunction('efgg','evrt','verg','ferf');
 							?>
-					
-						
+
+
 							</div>
-	
+
 					</div>
 
 
