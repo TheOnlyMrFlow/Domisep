@@ -2,13 +2,8 @@ div {
     color: #262626;
 }
 
-.page-content{
-  width: 980px;
-}
-
 .signup-opener, .login-opener, .contact-opener {
     cursor: pointer;
-
 }
 
 a,p{
@@ -39,11 +34,6 @@ h3{
   color :  #404040;
 }
 
-.content-wrapper{
-  background-color: #fafafa;
-  padding-top: 80px;
-  margin-top: 12px;
-}
 .full-screen-image{
   background-image: url("../resources/images/smarthome1.jpg");
   padding: 40vh 0 40vh 0;

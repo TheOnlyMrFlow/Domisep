@@ -11,7 +11,7 @@ session_start();
 <head>
 	<meta charset="utf-8" />
 	<title>My House - Domisep</title>
-	<!-- <link rel="stylesheet" type="text/css" media="screen" href="../style/style.css" /> -->
+	<link rel="stylesheet" type="text/css" media="screen" href="../style/full-site-style.min.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="../style/dashboard-style.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/footer/footer.min.css" />

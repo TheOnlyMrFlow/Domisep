@@ -1,5 +1,5 @@
 
-<?php 
+<?php
 
 session_start();
 
@@ -14,7 +14,8 @@ session_start();
 	<meta charset="utf-8" />
 	<title>Domisep</title>
 
-	<link rel="stylesheet" type="text/css" media="screen" href="../style/style.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../style/full-site-style.min.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../style/style.min.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/footer/footer.min.css" />
 	<link rel="stylesheet" href="components/header-nav/header-nav.min.css">
@@ -39,23 +40,17 @@ session_start();
 						<h1 style="margin-left:-15vw">Your House.
 							<br> Reinvented.</h1>
 				</div>
-
-				<div class="content-wrapper">
+				<div class="page-content-container">
 					<div class="page-content">
 						<h2>What is Domisep ?</h2>
 						<h3>At Domisep, we propose our customers a complete range of finely crafted smart sensors. At Domisep, we offer you a doorway to the future.</h3>
 						<img class='content-image' src="../resources/images/smart-home-tablet.jpg">
-					</div>
-				</div>
 
-				<div class="content-wrapper">
-					<div class="page-content">
 						<h2>Freedom</h2>
 						<h3>Control everything from the confort of your bed.</h3>
 						<img class='content-image' src="../resources/images/phone-bed.jpg">
-					</div>
 				</div>
-
+				</div>
 				<a class="signup-opener">Ready to upgrade your life ? Create your account now</a>
 
 		</center>
