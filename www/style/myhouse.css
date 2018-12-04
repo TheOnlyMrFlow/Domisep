@@ -4,6 +4,7 @@
 	display:flex;
 	justify-content: flex-start;
 	align-items: center;
+	margin : 20px 0 20px 0;
 }
 
 .preset
@@ -15,38 +16,23 @@
 
 .preset button{
 	display: inline-block;
-	/*display: none;
-	/*vertical-align: top;*/
-	margin: 20px;
-	width:100px;
-	height: 100px;
-	padding: 30px;
+	margin-right: 20px;
+	width:60px;
+	height: 60px;
 	border:none;
 	border-radius: 50%;
-	background-color: #206ea5;
-	color: #FFF;
+	background-color: #fff;
+	color: #444444;
 	box-shadow: 4px 4px 18px 2px rgba(0, 0, 0, 0.2);
-	cursor:pointer;
-	outline:none;
-	transition: 0.2s;
+	cursor: pointer;
 }
-
-.preset button:hover
-{
-	transform: scale(1.01);
-	box-shadow: 4px 4px 23px 2px rgba(0, 0, 0, 0.18);
-}
-
-.preset button:active
-{
-	box-shadow:4px 4px 16px 0px rgba(0, 0, 0, 0.23);
-	transform: scale(0.98);
-	background-color: grey;
-}
-
 
 .create_preset{
 	margin-left: 0.5em;
+}
+
+.room{
+	color:#262626;
 }
 
 .room_header{
@@ -74,6 +60,10 @@
 
 .components_line:not(:last-child){
 	margin-bottom: 20px;
+}
+
+.component_title{
+	margin-bottom: 0.7em;
 }
 
 

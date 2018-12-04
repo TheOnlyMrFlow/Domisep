@@ -1,12 +1,11 @@
 <?php
 
 session_start();
-
+header('Content-Type: text/html; charset=ISO-8859-1');
 ?>
 
 
 <!DOCTYPE html>
-<?php 	header('Content-Type: text/html; charset=ISO-8859-1'); ?>
 <html>
 
 <head>
@@ -18,6 +17,7 @@ session_start();
 	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/footer/footer.min.css" />
 	<link rel="stylesheet" href="components/header-nav/header-nav.min.css">
+	<link rel="stylesheet" href="components/header-nav/header-dashboard.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="components/header-nav/sticky-header.min.js"></script>
 	<script src="scripts/user-rights.min.js"></script>

@@ -1,0 +1,36 @@
+:root{
+  --main-theme-color : #206ea5;
+}
+
+header.sticky{
+  background-color: #444444;
+  border-bottom: none;
+}
+
+#menu-logo{
+  display: none;
+}
+
+#menu-logo,#menu-logo-white{
+    height : 40px;
+    width: 40px;
+    margin-top : 4.6px;
+    float: left;
+}
+
+header.sticky #menu-logo-white{
+  margin-top : 4.6px;
+  height : 32px;
+  width: 32px;
+  display: block;
+}
+
+.menu-item a{
+  color:  #fff;
+  border-radius: 5px;
+}
+
+
+.menu-item:hover a{
+  background-color: rgba(255, 255, 255, 0.2);
+}

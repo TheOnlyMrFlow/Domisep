@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+header('Content-Type: text/html; charset=ISO-8859-1');
 
 ?>
 
@@ -19,6 +20,7 @@ session_start();
 	<link rel="stylesheet" type="text/css" media="screen" href="components/footer/footer.min.css" />
 	<link rel="stylesheet" href="style/myhouse.css"/>
 	<link rel="stylesheet" href="components/header-nav/header-nav.min.css">
+	<link rel="stylesheet" href="components/header-nav/header-dashboard.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="components/header-nav/sticky-header.min.js"></script>
 </head>
@@ -35,9 +37,9 @@ include 'components/header-nav/header-nav.php';
 
 		<div class="page-content-container">
       <div class="page-content">
-
-		  <div class="page_content">
-
+				<div class="page-title">
+					<h1>My House</h1>
+				</div>
 			<section class="section_preset">
 
 				<div class= "preset">
