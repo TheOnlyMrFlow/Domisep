@@ -12,13 +12,12 @@ header('Content-Type: text/html; charset=ISO-8859-1');
 <head>
 	<meta charset="utf-8" />
 	<title>My House - Domisep</title>
-	<link rel="stylesheet" type="text/css" media="screen" href="../style/dashboard-style.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="../style/full-site-style.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="../style/component-style.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../style/dashboard-style.min.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../style/full-site-style.min.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="../style/component-style.min.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.min.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/footer/footer.min.css" />
-	<link rel="stylesheet" href="style/myhouse.css"/>
+	<link rel="stylesheet" href="style/myhouse.min.css"/>
 	<link rel="stylesheet" href="components/header-nav/header-nav.min.css">
 	<link rel="stylesheet" href="components/header-nav/header-dashboard.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -52,8 +51,7 @@ include 'components/header-nav/header-nav.php';
 
 			<?php
 			$db = mysqli_connect('localhost', 'root', '', 'mff');
-			// $id_home = $_SESSION['id_home'];
-			$id_home = 1;
+			$id_home = $_SESSION['home_id'];
 			$components_array = mysqli_query($db, "SELECT id_room,rooms.name,serial_number,components.name,value FROM components INNER JOIN rooms ON components.id_room=rooms.id WHERE rooms.id_home=$id_home ORDER BY rooms.name,components.name");
 			$html = '';
 			$current_room_id = null;
@@ -150,7 +148,9 @@ include 'components/header-nav/header-nav.php';
 					</div>";
 				}
 			}
+			if($components_array->num_rows!=0){
 				$html .= "</div></div></section>";
+			}
 				echo $html;
 			?>
 

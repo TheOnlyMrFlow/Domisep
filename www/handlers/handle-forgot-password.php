@@ -7,7 +7,7 @@ require_once '../../globalVars.php';
 if (isset($_POST['forgot-password'])) {
     $db = mysqli_connect('localhost', 'root', '', 'mff');
     $emailaddress = mysqli_real_escape_string($db, $_POST['mail']);
-    
+
     if (empty($emailaddress)) {
         echo 'Please fill your email address';
         exit();
@@ -15,7 +15,7 @@ if (isset($_POST['forgot-password'])) {
         echo 'This is not a valid email';
         exit();
     }
-    
+
     $sql = "SELECT id, email FROM users WHERE email = ?";
     $stmt = mysqli_stmt_init($db);
     if (!mysqli_stmt_prepare($stmt, $sql)) {
@@ -27,9 +27,9 @@ if (isset($_POST['forgot-password'])) {
         mysqli_stmt_execute($stmt);
         $result = mysqli_stmt_get_result($stmt);
         if ($row = mysqli_fetch_assoc($result)) {
-            
+
             //$secret_key = random_bytes(60);
-            
+
             $seed = str_split('abcdefghijklmnopqrstuvwxyz'
             . 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
             . '0123456789'); // and any other characters
@@ -38,21 +38,21 @@ if (isset($_POST['forgot-password'])) {
             foreach (array_rand($seed, 30) as $k) {
                 $secret_key .= $seed[$k];
             }
-            
+
             $hashed_secret_key = password_hash($secret_key, PASSWORD_BCRYPT);
-            
+
             $expirationTime = time() + 86400; //24 hours
             $expiration = date('Y-m-d H:i:s', $expirationTime);
             //$expiration = date( 'Y-m-d H:i:s', $expiration );
-            
+
             $stmt = $db->prepare("REPLACE INTO  password_reset_keys (id_user, hashed_key, expiration)  VALUES (?, ?, ?)");
             $stmt->bind_param("iss", $row['id'], $hashed_secret_key, $expiration);
             $stmt->execute();
-            
+
             echo (mysqli_error($db));
-            
+
             sendResetMail($row['email'], $row['id'], $secret_key);
-            
+
         }
     }
 } else {
@@ -64,11 +64,11 @@ function sendResetMail($email, $id, $secret_key)
     $transport = (new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'))
     ->setUsername('contact.domisep@gmail.com')
     ->setPassword('WeLoveC00kies');
-    
+
     $mailer = new Swift_Mailer($transport);
-    
+
     $base_url = constant('BASE_URL');
-    
+
     // Create a message
     $messageToCustomer = (new Swift_Message("Reset your password"))
     ->setFrom(['contact.domisep@gmail.com' => 'Service client Domisep'])
@@ -79,15 +79,15 @@ function sendResetMail($email, $id, $secret_key)
         <a href='$base_url/reset-password?id=$id&key=$secret_key'>Reset your password</a>
         ", 'text/html'
     );
-    
+
     $result = $mailer->send($messageToCustomer);
-    
+
     if ($result > 0) {
         echo 'message sent';
     } else {
         echo 'fail sending mail';
     }
-    
+
 }
 
 // $messageToSelf = (new Swift_Message("New request received"))
@@ -101,7 +101,6 @@ function sendResetMail($email, $id, $secret_key)
     //       </div>
     //     ", 'text/html'
     //     );
-    
+
     // // Send the message
     // $result = $mailer->send($messageToSelf);
-    

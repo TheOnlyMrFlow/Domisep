@@ -1,12 +1,12 @@
 <?php
 
-if (isset($_POST['login'])) 
+if (isset($_POST['login']))
 {
-    $db = mysqli_connect('localhost', 'root', '', 'mff');    
+    $db = mysqli_connect('localhost', 'root', '', 'mff');
     $emailaddress = mysqli_real_escape_string($db, $_POST['mail']);
     $password = $_POST['password'];
 
-    
+
 
     if(empty($emailaddress) || empty($password))
     {
@@ -30,39 +30,39 @@ if (isset($_POST['login']))
             mysqli_stmt_bind_param($stmt, "s", $emailaddress );
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
-            echo (serialize($result));
+            // echo (serialize($result));
 
             if($row = mysqli_fetch_assoc($result))
             {
 
 
-               
                 $passwordCheck = password_verify($password, $row['password']);
 
                 if($passwordCheck == false)
                 {
                     //header("Location: ../index.php?error=passworderror");
-                    echo '';
+                    echo('wrong password');
                     exit();
                 }
                 else if ($passwordCheck == true)
                 {
+
                     session_start();
                     $_SESSION['connected'] = true;
                     $_SESSION['email'] = $row['email'];
                     $_SESSION['id'] = $row['id'];
+                    $_SESSION['home_id'] = $row['id_home'];
                     $_SESSION['last_name'] = $row['last_name'];
                     $_SESSION['first_name'] = $row['first_name'];
                     $_SESSION['role'] = $row['role'];
                     $_SESSION['birthdate'] = $row['birthdate'];
                     $_SESSION['phone'] = $row['phone'];
                     //echo 'success';
-                    
 
                     echo "<script>window.top.location.href =  'http://' + window.location.hostname + '/my-house.php'; </script>";
                     exit();
                 }
-                else 
+                else
                 {
                     //header("Location: ../index.php?error=passworderror");
                     echo 'Incorrect name or password';
@@ -74,7 +74,7 @@ if (isset($_POST['login']))
             }
         }
     }
-} 
+}
 
 else if (isset($_POST['forgot-password'])) {
     include("./handle-forgot-password.php");

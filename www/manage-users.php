@@ -1,7 +1,7 @@
 <?php
 
-session_start();
 header('Content-Type: text/html; charset=ISO-8859-1');
+session_start();
 ?>
 
 
@@ -14,7 +14,7 @@ header('Content-Type: text/html; charset=ISO-8859-1');
 	<link rel="stylesheet" type="text/css" media="screen" href="../style/dashboard-style.min.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="../style/manage-users.min.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="../style/icons.min.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.min.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/footer/footer.min.css" />
 	<link rel="stylesheet" href="components/header-nav/header-nav.min.css">
 	<link rel="stylesheet" href="components/header-nav/header-dashboard.min.css">
@@ -33,6 +33,9 @@ header('Content-Type: text/html; charset=ISO-8859-1');
 
 		<div class="page-content-container dashboard">
 			<div class="page-content dashboard">
+				<div class="page-title">
+					<h1>Manage Users</h1>
+				</div>
 				<div class="dashboard-big-container">
 						<h2>Users</h2>
 						<div class="dashboard-inner-container">
@@ -53,8 +56,7 @@ header('Content-Type: text/html; charset=ISO-8859-1');
 								</thead>
 								<tbody>
 									<?php
-									// $home_id = $_SESSION['id_home'];
-									$home_id = 1;
+									$home_id = $_SESSION['home_id'];
 									$users_array = mysqli_query($db,"SELECT id, first_name, last_name, email FROM users WHERE id_home=$home_id ORDER BY last_name,first_name ASC");
 									$html = '';
 									while ($user_row = mysqli_fetch_array($users_array)) {
@@ -104,7 +106,7 @@ header('Content-Type: text/html; charset=ISO-8859-1');
 									// $current_user_id = $_SESSION['id'];
 									$current_user_id = 1;
 
-									$users_array = mysqli_query($db,"SELECT id, first_name, last_name, email FROM users WHERE id_home=$home_id AND id<>$current_user_id ORDER BY last_name,first_name ASC");
+									$users_array = mysqli_query($db,"SELECT id, first_name, last_name, email FROM users WHERE id_home=$home_id AND role='house_member' ORDER BY last_name,first_name ASC");
 									$html = "<option disabled selected value > select user </option>";
 									while ($user_row = mysqli_fetch_row($users_array)) {
 										$id = $user_row[0];

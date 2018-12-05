@@ -44,6 +44,7 @@ header.sticky{
   font-weight: lighter;
   text-decoration: none;
   transition: ease-in-out 0.12s ;
+  cursor: pointer;
 }
 
 header.sticky .menu-item a{
