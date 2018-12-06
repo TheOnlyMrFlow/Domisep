@@ -12,6 +12,7 @@ header('Content-Type: text/html; charset=ISO-8859-1');
 <head>
 	<meta charset="utf-8" />
 	<title>My House - Domisep</title>
+	<link rel="stylesheet" type="text/css" media="screen" href="style/add_a_component_pop_up.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="style/dashboard-style.min.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="style/full-site-style.min.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="style/component-style.min.css" />
@@ -72,7 +73,7 @@ include 'components/header-nav/header-nav.php';
 								<div class='room_header'>
 									<h3>$room_name</h3>
 									<div class='section_add_component'>
-											<button class='plus-button' href='add_component.html'></button><span id='add-comp-title'>Add a component</span>
+											<button class='plus-button new-comp-opener'></button><span id='add-comp-title'>Add a component</span>
 									</div>
 								</div>
 
@@ -165,6 +166,7 @@ include 'components/header-nav/header-nav.php';
 include 'components/modals/contact/contact.php';
 include 'components/footer/footer.php';
 include 'components/modals/component-details/component-details.php';
+include 'components/modals/new-component/new-component.php';
 ?>
 </body>
 
