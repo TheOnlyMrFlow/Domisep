@@ -60,7 +60,6 @@
   font-size: 1.2em;
   transition: all 0.15s;
   padding: 15px 25px 15px 25px;
-  margin-top: 20px;
 }
 
 .modal-content input[type=submit]:hover {
