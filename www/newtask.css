@@ -7,10 +7,10 @@ body
 }
 #NewTask
 {
-    background-color: #242424; 
+    background-color: #242424;
     width: 90%;
-    height:250px; 
-    border-radius:15px; 
+    height:250px;
+    border-radius:15px;
     margin: auto;
     margin-top: 3%;
 }
@@ -91,8 +91,8 @@ body
 {
     background-color: #242424;
     width: 90%;
-    height:320px; 
-    border-radius:15px; 
+    height:320px;
+    border-radius:15px;
     margin: auto;
     margin-top: 3%;
 }
@@ -105,11 +105,11 @@ body
 }
 #titleScheduledTask
 {
-    color:#1DB954;   
+    color:#1DB954;
 }
 #presetsTable
 {
-    margin: auto;
+    margin : 5% 0px 0px 3%;
     width: 90%;
     float: center;
     background-color: #0E0E0E

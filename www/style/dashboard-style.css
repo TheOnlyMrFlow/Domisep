@@ -1,5 +1,6 @@
 body{
-  background-image:linear-gradient(to bottom right, #ffaf7b  0, #d76d77  33%, #3a1c71 80%);
+  /* background-image:linear-gradient(to bottom right, #ffaf7b  0, #d76d77  33%, #3a1c71 80%); */
+  background-image: linear-gradient(to bottom right, #fff 0, #206ea5 50%);
 }
 
 

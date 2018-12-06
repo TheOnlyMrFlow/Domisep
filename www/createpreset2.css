@@ -15,7 +15,7 @@ p
     font-size: 80%;
     /*border: 2px solid green;*/
     background-color:#242424;
-    color:  #1DB954;
+    color:  #fff;
     padding: 1%;
     text-align:center;
 }
@@ -23,17 +23,18 @@ p
 ::placeholder
 {
     font-style : italic;
+    color:#cccccc;
 }
 
 #MainDiv
 {
     background-color:#242424;
     width:90%;
-    height:250px; 
-    border-radius:15px; 
+    height:250px;
+    border-radius:15px;
     margin: auto;
     color: white;
-    
+
 }
 
 /*#TextMainDiv
@@ -47,35 +48,41 @@ p
 
 /*#DropdownDiv
 {
-    background-color: #434141; 
-    width:20%; 
+    background-color: #434141;
+    width:20%;
     height:10%;
     margin-left: auto;
     border: 2px solid  #1DB954;
     border-radius: 10px;
 }*/
 
+#addedZone{
+  padding: 20px 25px 20px 25px;
+  display: flex;
+}
+
 #CapteursDiv
 {
     font-weight: thin;
     font-family: Arial, Helvetica, sans-serif;
     color: #1DB954;
+    margin-left: 2%;
     /*text-align: right;
     width: 10%;
     margin-left: auto;
     padding-right: 4%;
     padding-top: 3.5%;
     display:inline-block;*/
-    position: relative;
+    /* position: relative;
     left: 85%;
-    top: 35%;
+    top: 35%; */
 }
 
 #SaveZone
 {
     text-align: center;
     margin-top: 2%;
-    opacity: 0.7;
+    /* opacity: 0.8; */
 }
 
 #SaveZone:hover #Save
@@ -86,8 +93,7 @@ p
 {
     border-radius: 10px;
     font-size: 120%;
-    border: 2px solid #1DB954;
-    background-color: #1DB954;
+    background-color: #fff;
     padding: 1%;
     text-align:center;
     width: 25%;
@@ -98,7 +104,7 @@ p
 {
     padding-left: 8.5%;
     font-size: 150%;
-    color: #1DB954;
+    color: #fff;
 }
 
 .fa:hover .fa-arrow-left
