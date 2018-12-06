@@ -11,24 +11,21 @@
 		<a class="close" id="close-new-comp">&times;</a>
 
 		<div class="title_add_a_component">
-			<h2>Add a component</h2><br/>
+			<h2>Add a component</h2><br/><br>
 		</div>
 
 		<form action= "handlers/handle_new_component_information.php" method="post" target="new-comp-result">
-			<div class="gros_bloc">
 			
-				<div class="nom_des_requetes">
-					Name your component:<br>
-					Serial number:<br>
-				</div>
+			<div class="gros_bloc">
+				<section class="input-container">
+					<span>Name your component:</span><input type="text" name="component_name">
+				</section>
 
-				<div class="champ_des_requetes">
-					<input type="text" name="component_name"><br>
-					<input type="text" name="serialnumber"><br>
-				</div>
+				<section class="input-container">
+					<span>Serial number:</span><input type="text" name="serialnumber">
+				</section>
 
 			</div>
-
 			<br>
 			<br>
 			<div class="submit">
