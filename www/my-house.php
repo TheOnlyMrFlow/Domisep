@@ -78,7 +78,7 @@ include 'components/header-nav/header-nav.php';
 
 								<div class='section_components'>
 									<div class='components_line'>
-										<div class='$component_id component'>
+										<div class='component' id='$component_id'>
 											<div class='component_title'>
 											$component_name
 											</div>
