@@ -5,9 +5,9 @@
     <title>New Task</title>
     <meta charset="utf-8" />
     <title>My House - Domisep</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="../style/dashboard-style.min.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="../style/full-site-style.min.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="../style/component-style.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="style/dashboard-style.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="style/full-site-style.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="style/component-style.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="components/footer/footer.min.css" />
     <link rel="stylesheet" href="style/myhouse.min.css"/>
@@ -15,9 +15,7 @@
     <link rel="stylesheet" href="components/header-nav/header-dashboard.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="components/header-nav/sticky-header.min.js"></script>
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css"/>
-    <link rel="stylesheet" type="text/css" href="newtask.css"/>
-    <script src="main.js"></script>
+    <link rel="stylesheet" type="text/css" href="../style/newtask.css"/>
 </head>
 <body>
   <?php

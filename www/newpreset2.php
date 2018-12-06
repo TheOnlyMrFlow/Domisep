@@ -15,9 +15,9 @@ require("scripts/fonction_php_component.php");
     <link rel="stylesheet" type="text/css" href="./style/createpreset2.css" />
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
         crossorigin="anonymous">
-      <link rel="stylesheet" type="text/css" media="screen" href="../style/dashboard-style.min.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="../style/full-site-style.min.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="../style/component-style.min.css" />
+      <link rel="stylesheet" type="text/css" media="screen" href="style/dashboard-style.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="style/full-site-style.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="style/component-style.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="components/footer/footer.min.css" />
     <link rel="stylesheet" href="components/header-nav/header-nav.min.css">

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 session_start();
 
@@ -12,7 +12,7 @@ session_start();
 <head>
 	<meta charset="utf-8" />
 	<title>My House - Domisep</title>
-	<link rel="stylesheet" type="text/css" media="screen" href="../style/style.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="style/style.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/footer/footer.min.css" />
 	<link rel="stylesheet" href="components/header-nav/header-nav.min.css">
@@ -33,7 +33,7 @@ session_start();
 
 			</div>
 		</div>
-		
+
 <?php
 include('components/modals/contact/contact.php');
 include('components/footer/footer.php');

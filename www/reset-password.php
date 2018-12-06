@@ -5,7 +5,7 @@
 <head>
 	<meta charset="utf-8" />
 	<title>Reset my password</title>
-	<link rel="stylesheet" type="text/css" media="screen" href="../style/style.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="style/style.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/footer/footer.min.css" />
 	<link rel="stylesheet" href="components/header-nav/header-nav.min.css">
@@ -22,7 +22,7 @@ include('components/header-nav/header-nav.php');
 ?>
 
 
-<?php 
+<?php
 
     if (isset($_GET['id']) && isset($_GET['key'])) {
         $id = $_GET['id'];
@@ -40,7 +40,7 @@ include('components/header-nav/header-nav.php');
                 <input name="id" value="<?php echo $id; ?>" style="display: none;"></input>
                 <input name="key" value="<?php echo $secret_key; ?>" style="display: none;"></input>
                 <input type="submit" value="submit" name="reset-password"></input>
-                
+
         </form>
         <iframe name="reset-password-result"></iframe>
 	</div>

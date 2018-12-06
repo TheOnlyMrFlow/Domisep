@@ -14,8 +14,8 @@ session_start();
 	<meta charset="utf-8" />
 	<title>Domisep</title>
 
-	<link rel="stylesheet" type="text/css" media="screen" href="../style/full-site-style.min.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="../style/style.min.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="style/full-site-style.min.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="style/style.min.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/footer/footer.min.css" />
 	<link rel="stylesheet" href="components/header-nav/header-nav.min.css">
