@@ -1,11 +1,6 @@
 .page-content-container{
   background-color: #fafafa;
 }
-
-div {
-    color: #262626;
-}
-
 .signup-opener, .login-opener, .contact-opener {
     cursor: pointer;
 }
@@ -16,24 +11,24 @@ a,p{
 }
 
 h1{
-  font-size: 4.5em;
+  font-size: 5em;
   margin: 30px 0px 50px 0px;
-  font-family: 'Arial',sans-serif;
-  font-weight: 400;
-  color: #333333;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  color: #262626;
 }
 
 h2{
   font-size : 2.4em;
   margin: 30px 0px 30px 0px;
-  font-family: 'Arial',sans-serif;
-  font-weight: 500;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
 }
 
 h3{
   font-size: 1.3em;
   margin: 25px 0px 25px 0px;
-  font-family: "SF Pro Display","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   color :  #404040;
 }
@@ -54,4 +49,28 @@ iframe {
   height: 30px;
   width: 300px;
   border-style: none;
+}
+
+div.signup-wrapper{
+  margin: 50px 0 30px 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+a.signup-opener{
+  padding: 15px 20px 15px 20px;
+  background-color: #206ea5;
+  border-radius: 5px;
+  color: #fff;
+  border: 1px solid #206ea5;
+  transition: all 0.1s;
+}
+
+a.signup-opener:hover{
+  background-color: #fff;
+  color: #206ea5;
+  border: 1px solid #206ea5;
+}
+
+a.contact-opener{
+  margin: 1em 0 1em 0;
 }

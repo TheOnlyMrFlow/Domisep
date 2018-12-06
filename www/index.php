@@ -50,9 +50,11 @@ session_start();
 						<h2>Freedom</h2>
 						<h3>Control everything from the confort of your bed.</h3>
 						<img class='content-image' src="../resources/images/phone-bed.jpg">
+						<div class="signup-wrapper">
+							<a class="signup-opener">Ready to upgrade your life ? Create your account now</a>
+						</div>
 				</div>
 				</div>
-				<a class="signup-opener">Ready to upgrade your life ? Create your account now</a>
 
 		</center>
 		<?php

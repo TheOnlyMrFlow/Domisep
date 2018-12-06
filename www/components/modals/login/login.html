@@ -11,10 +11,16 @@
 		<form method="post" action="handlers/handle-login.php" target="login-result">
 
 			<h2>Connexion</h2>
-			<span>Mail :</span>
-			<input type="text" name="mail"><br>
-			Mot de passe :<span></span>
-			<input type="password" name="password"><br>
+			<section class="input-container">
+				<span>Mail</span>
+				<input type="text" name="mail"><br>
+			</section>
+
+			<section class="input-container">
+				<span>Mot de passe </span>
+				<input type="password" name="password"><br>
+			</section>
+
 			<input type="submit" value="Se connecter" name="login">
 			<input type="submit" value="Forgot password ?" name="forgot-password">
 
