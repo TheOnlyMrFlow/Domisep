@@ -1,15 +1,23 @@
 var addedZone = document.getElementById("addedZone");
+var select = document.getElementById("select-sensor");
+//var sensors = document.getElementsByClassName("li-sensor");
 
-var sensors = document.getElementsByClassName("li-sensor");
+$('#add-preset-title').on('click',function(event) {
+  window.location.href =  'http://' + window.location.hostname + '/createpreset2.php';
+});
 
-for (var i = 0; i < sensors.length; i++) {
-    sensors[i].addEventListener("click", function () {
-        console.log(this.id);
-        addedZone.innerHTML += '<p>' + this.id + '</p>';
-        this.style = "display: none;";
+
+    select.addEventListener("change", function () {
+
+        var el = this.options[this.selectedIndex];
+        var data = {
+            'serialNumber' : el.value
+        };
+        $.post('handlers/handle_display_component.php', data, function(response){
+            addedZone.innerHTML += response;
+        })
+        //addedZone.innerHTML += el.value;
     });
-}
 
 function clickCallback(){
-    
 }
