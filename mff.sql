@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.3
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
--- Hôte : 127.0.0.1
--- Généré le :  jeu. 15 nov. 2018 à 14:53
--- Version du serveur :  10.1.36-MariaDB
--- Version de PHP :  7.2.11
+-- Host: 127.0.0.1
+-- Generation Time: Dec 06, 2018 at 02:03 PM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `mff`
+-- Database: `mff`
 --
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `components`
+-- Table structure for table `components`
 --
 
 CREATE TABLE `components` (
@@ -36,16 +36,18 @@ CREATE TABLE `components` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
--- Déchargement des données de la table `components`
+-- Dumping data for table `components`
 --
 
 INSERT INTO `components` (`name`, `serial_number`, `id_room`, `value`) VALUES
-('Veilleuse', 'iyutdysjd875443', 1, 0);
+('Veilleuse', 'iyutdysjd875443', 1, 0),
+('Thermomètre', 'jhzerijeor5489', 2, 21),
+('Machine à café', 'uiezyriuer86', 3, 15);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `homes`
+-- Table structure for table `homes`
 --
 
 CREATE TABLE `homes` (
@@ -57,16 +59,31 @@ CREATE TABLE `homes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
--- Déchargement des données de la table `homes`
+-- Dumping data for table `homes`
 --
 
 INSERT INTO `homes` (`id`, `address`, `city`, `country`, `zip_code`) VALUES
-(1, '7 allée du Basilic', 'Saint Germain-lès-Corbeil', 'France', '91250');
+(1, '7 allée du Basilic', 'Saint Germain-lès-Corbeil', 'France', '91250'),
+(2, '666 rue des crapauds mÃ©talleux', 'Clisson', 'France', '44190'),
+(3, '45 rue des bons raisins', 'Prais', 'france', '75998');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `presets`
+-- Table structure for table `password_reset_keys`
+--
+
+CREATE TABLE `password_reset_keys` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `hashed_key` varchar(60) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `expiration` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `presets`
 --
 
 CREATE TABLE `presets` (
@@ -76,7 +93,7 @@ CREATE TABLE `presets` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
--- Déchargement des données de la table `presets`
+-- Dumping data for table `presets`
 --
 
 INSERT INTO `presets` (`id`, `id_home`, `name`) VALUES
@@ -85,7 +102,7 @@ INSERT INTO `presets` (`id`, `id_home`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `preset_values`
+-- Table structure for table `preset_values`
 --
 
 CREATE TABLE `preset_values` (
@@ -97,7 +114,7 @@ CREATE TABLE `preset_values` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
--- Déchargement des données de la table `preset_values`
+-- Dumping data for table `preset_values`
 --
 
 INSERT INTO `preset_values` (`id`, `id_preset`, `serial_number`, `on_off`, `value`) VALUES
@@ -106,7 +123,7 @@ INSERT INTO `preset_values` (`id`, `id_preset`, `serial_number`, `on_off`, `valu
 -- --------------------------------------------------------
 
 --
--- Structure de la table `rooms`
+-- Table structure for table `rooms`
 --
 
 CREATE TABLE `rooms` (
@@ -116,16 +133,18 @@ CREATE TABLE `rooms` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
--- Déchargement des données de la table `rooms`
+-- Dumping data for table `rooms`
 --
 
 INSERT INTO `rooms` (`id`, `id_home`, `name`) VALUES
-(1, 1, 'Antichambre');
+(1, 1, 'Antichambre'),
+(2, 1, 'Salon'),
+(3, 1, 'La Couuuisine');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `tasks`
+-- Table structure for table `tasks`
 --
 
 CREATE TABLE `tasks` (
@@ -138,7 +157,7 @@ CREATE TABLE `tasks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
--- Déchargement des données de la table `tasks`
+-- Dumping data for table `tasks`
 --
 
 INSERT INTO `tasks` (`id`, `id_preset`, `on_off`, `name`, `deadline`, `frequency`) VALUES
@@ -147,7 +166,7 @@ INSERT INTO `tasks` (`id`, `id_preset`, `on_off`, `name`, `deadline`, `frequency
 -- --------------------------------------------------------
 
 --
--- Structure de la table `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -158,24 +177,26 @@ CREATE TABLE `users` (
   `email` varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `birthdate` date NOT NULL,
   `phone` varchar(20) COLLATE utf8mb4_unicode_520_ci NOT NULL,
-  `password` varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `password` char(60) COLLATE utf8mb4_unicode_520_ci NOT NULL,
   `id_home` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
--- Déchargement des données de la table `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `role`, `first_name`, `last_name`, `email`, `birthdate`, `phone`, `password`, `id_home`) VALUES
 (1, 'administrator', 'Matthieu', 'LORMEAU', 'matthieulormeau@gmail.com', '1997-01-15', '0685910051', 'in the court of Matthew king', NULL),
 (2, 'administrator', 'Julie', 'Adalian', 'julie.adalian@isep.fr', '1997-03-01', '+33634601799', 'jesappelleroot', NULL),
 (3, 'administrator', 'COMTE', 'Florian', 'comte.florian@gmail.com', '1997-09-27', '', 'koukou', NULL),
-(4, 'administrator', 'strap', 'on', 'ilikestrapon@strapon.com', '2018-10-02', '', 'heyheyhey', NULL);
+(4, 'administrator', 'strap', 'on', 'ilikestrapon@strapon.com', '2018-10-02', '', 'heyheyhey', NULL),
+(5, 'house_member', 'house', 'member', 'house.member@test.com', '2018-11-27', '0687489685', 'housemember', 1),
+(7, 'house_manager', 'Jean-Michel', 'Crapaud', 'jean-michel@crapaud.com', '2018-11-28', '0666666666', '$2y$10$MdH0758RQscq53ATcJ3.refnZ/JV1cbY7A89c0eFSQ./L72zaHq.a', 1);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `user_rights`
+-- Table structure for table `user_rights`
 --
 
 CREATE TABLE `user_rights` (
@@ -186,16 +207,19 @@ CREATE TABLE `user_rights` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
--- Déchargement des données de la table `user_rights`
+-- Dumping data for table `user_rights`
 --
 
 INSERT INTO `user_rights` (`id`, `id_user`, `serial_number`, `access_level`) VALUES
-(1, 2, 'iyutdysjd875443', 'write');
+(1, 2, 'iyutdysjd875443', 'write'),
+(2, 5, 'iyutdysjd875443', 'write'),
+(3, 5, 'jhzerijeor5489', 'write'),
+(4, 5, 'uiezyriuer86', 'read');
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `values_history`
+-- Table structure for table `values_history`
 --
 
 CREATE TABLE `values_history` (
@@ -206,111 +230,124 @@ CREATE TABLE `values_history` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
--- Index pour les tables déchargées
+-- Indexes for dumped tables
 --
 
 --
--- Index pour la table `components`
+-- Indexes for table `components`
 --
 ALTER TABLE `components`
   ADD PRIMARY KEY (`serial_number`);
 
 --
--- Index pour la table `homes`
+-- Indexes for table `homes`
 --
 ALTER TABLE `homes`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `presets`
+-- Indexes for table `password_reset_keys`
+--
+ALTER TABLE `password_reset_keys`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_user` (`id_user`);
+
+--
+-- Indexes for table `presets`
 --
 ALTER TABLE `presets`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `preset_values`
+-- Indexes for table `preset_values`
 --
 ALTER TABLE `preset_values`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `rooms`
+-- Indexes for table `rooms`
 --
 ALTER TABLE `rooms`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `tasks`
+-- Indexes for table `tasks`
 --
 ALTER TABLE `tasks`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `user_rights`
+-- Indexes for table `user_rights`
 --
 ALTER TABLE `user_rights`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `values_history`
+-- Indexes for table `values_history`
 --
 ALTER TABLE `values_history`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT pour les tables déchargées
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT pour la table `homes`
+-- AUTO_INCREMENT for table `homes`
 --
 ALTER TABLE `homes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT pour la table `presets`
+-- AUTO_INCREMENT for table `password_reset_keys`
+--
+ALTER TABLE `password_reset_keys`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+
+--
+-- AUTO_INCREMENT for table `presets`
 --
 ALTER TABLE `presets`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT pour la table `preset_values`
+-- AUTO_INCREMENT for table `preset_values`
 --
 ALTER TABLE `preset_values`
   MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT pour la table `rooms`
+-- AUTO_INCREMENT for table `rooms`
 --
 ALTER TABLE `rooms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT pour la table `tasks`
+-- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT pour la table `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT pour la table `user_rights`
+-- AUTO_INCREMENT for table `user_rights`
 --
 ALTER TABLE `user_rights`
-  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT pour la table `values_history`
+-- AUTO_INCREMENT for table `values_history`
 --
 ALTER TABLE `values_history`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;

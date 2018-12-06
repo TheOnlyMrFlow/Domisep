@@ -45,7 +45,7 @@ include 'components/header-nav/header-nav.php';
 					<button>Preset name</button>
 				</div>
 
-				<button class="plus-button plus-button--large" href="add_component.html"></button><span id="add-preset-title">Create new preset</span>
+				<button class="plus-button plus-button--large"  onclick="location.href='newpreset2.php'" type="button"></button><span id="add-preset-title">Create new preset</span>
 
 			</section>
 

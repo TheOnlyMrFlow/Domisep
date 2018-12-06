@@ -2,6 +2,10 @@ var addedZone = document.getElementById("addedZone");
 var select = document.getElementById("select-sensor");
 //var sensors = document.getElementsByClassName("li-sensor");
 
+$('#add-preset-title').on('click',function(event) {
+  window.location.href =  'http://' + window.location.hostname + '/createpreset2.php';
+});
+
 
     select.addEventListener("change", function () {
 
@@ -15,8 +19,5 @@ var select = document.getElementById("select-sensor");
         //addedZone.innerHTML += el.value;
     });
 
-function clickCallback(){ 
+function clickCallback(){
 }
-
-
-
