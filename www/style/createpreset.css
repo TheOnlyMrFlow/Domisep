@@ -4,7 +4,7 @@ body
 }
 p
 {
-    padding-left: 8.5%;
+    padding-left: 7%;
     font-size: 120%;
 }
 
@@ -13,9 +13,8 @@ p
     border-radius: 5px;
     border-width: thin;
     font-size: 80%;
-    /*border: 2px solid green;*/
-    background-color:#242424;
-    color:  #fff;
+    background-color:#fff;
+    color:  #206ea5;
     padding: 1%;
     text-align:center;
 }
@@ -28,33 +27,15 @@ p
 
 #MainDiv
 {
-    background-color:#242424;
+    background-color:#fff;
     width:90%;
     height:250px;
     border-radius:15px;
     margin: auto;
     color: white;
+    box-sizing: border-box;
 
 }
-
-/*#TextMainDiv
-{
-    padding-left:2%;
-    padding-top: 3%;
-    width: 10%;
-    background-color: aliceblue;
-    display:inline-block;
-}*/
-
-/*#DropdownDiv
-{
-    background-color: #434141;
-    width:20%;
-    height:10%;
-    margin-left: auto;
-    border: 2px solid  #1DB954;
-    border-radius: 10px;
-}*/
 
 #addedZone{
   padding: 20px 25px 20px 25px;
@@ -66,28 +47,22 @@ p
     font-weight: thin;
     font-family: Arial, Helvetica, sans-serif;
     color: #1DB954;
-    margin-left: 2%;
-    /*text-align: right;
-    width: 10%;
-    margin-left: auto;
-    padding-right: 4%;
-    padding-top: 3.5%;
-    display:inline-block;*/
-    /* position: relative;
-    left: 85%;
-    top: 35%; */
+}
+
+#dropdown
+{
+    margin-left: 3%;
 }
 
 #SaveZone
 {
     text-align: center;
     margin-top: 2%;
-    /* opacity: 0.8; */
 }
 
 #SaveZone:hover #Save
 {
-    background-color:#4ff74f;
+    background-color:#3b91ce;
 }
 #Save
 {
@@ -102,12 +77,7 @@ p
 
 .fa-arrow-left
 {
-    padding-left: 8.5%;
+    padding-left: 8%;
     font-size: 150%;
     color: #fff;
-}
-
-.fa:hover .fa-arrow-left
-{
-    color: #66ff66;
 }

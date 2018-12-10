@@ -45,7 +45,7 @@ include 'components/header-nav/header-nav.php';
 
       <div id="MainDiv">
               <div id="CapteursDiv"><br/>
-                  <form>
+                <section id="dropdown">
                       <select id="select-sensor">
                           <option value="Select a sensor" disabled selected>-- Select a sensor --</option>
                           <option value="sensor A" class="li-sensor" id="1">Sensor A</option>
@@ -53,7 +53,7 @@ include 'components/header-nav/header-nav.php';
                           <option value="sensor C" class="li-sensor" id="3">Sensor 4</option>
                           <option value="sensor D" class="li-sensor" id="4">Sensor C</option>
                       </select>
-                  </form>
+                </section>
               </div>
 
           <div id="addedZone">
