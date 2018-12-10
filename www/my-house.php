@@ -3,6 +3,11 @@
 session_start();
 header('Content-Type: text/html; charset=ISO-8859-1');
 
+if (!isset($_SESSION['connected']) || !$_SESSION['connected']){
+	header('Location: ./index.php');
+}
+
+
 ?>
 
 <!DOCTYPE html>
