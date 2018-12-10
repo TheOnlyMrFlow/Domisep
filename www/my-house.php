@@ -115,7 +115,7 @@ include 'components/header-nav/header-nav.php';
 			else{
 					$component_id = $component_array[2];
 					$component_name = $component_array[3];
-					$html .= "<div class='$component_id component'>
+					$html .= "<div class='component' id='$component_id'>
 						<div class='component_title'>
 						$component_name
 						</div>
