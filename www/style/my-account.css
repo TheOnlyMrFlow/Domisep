@@ -1,0 +1,13 @@
+form {
+    width: 60%;
+}
+
+form > div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+form input[type=submit] {
+    margin-left: auto;
+}
