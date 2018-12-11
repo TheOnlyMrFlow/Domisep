@@ -47,7 +47,9 @@ if (isset($_POST['login']))
                 else if ($passwordCheck == true)
                 {
 
-                    session_start();
+                    if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
                     $_SESSION['connected'] = true;
                     $_SESSION['email'] = $row['email'];
                     $_SESSION['id'] = $row['id'];

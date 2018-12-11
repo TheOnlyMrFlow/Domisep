@@ -1,3 +1,16 @@
+<?php
+
+header('Content-Type: text/html; charset=ISO-8859-1');
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+if(!isset($_SESSION['language'])){
+	$_SESSION['language'] = 'en';
+}
+require("scripts/fonction_php_component.php");
+
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,11 +29,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="components/header-nav/sticky-header.min.js"></script>
     <link rel="stylesheet" type="text/css" href="../style/newtask.css"/>
+    <script src="scripts/change-language.min.js"></script>
 </head>
 <body>
   <?php
 
-  session_start();
+  if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 // if ($_SESSION['connected']){
 //

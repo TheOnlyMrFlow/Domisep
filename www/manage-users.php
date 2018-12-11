@@ -1,7 +1,14 @@
 <?php
 
 header('Content-Type: text/html; charset=ISO-8859-1');
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+if(!isset($_SESSION['language'])){
+	$_SESSION['language'] = 'en';
+}
+
 ?>
 
 
@@ -21,6 +28,7 @@ session_start();
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="components/header-nav/sticky-header.min.js"></script>
 	<script src="scripts/user-rights.min.js"></script>
+	<script src="scripts/change-language.min.js"></script>
 
 </head>
 

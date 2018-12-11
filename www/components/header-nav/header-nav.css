@@ -9,6 +9,18 @@ header{
   z-index: 9999;
 }
 
+header a img{
+  width: 30px;
+  height: 30px;
+  margin: 12px 20px 0px 0px;
+  transition: ease-in-out 0.12s ;
+}
+
+
+header.sticky a img{
+  margin-top: 7px;
+}
+
 header.sticky{
   min-height: 42px;
 }

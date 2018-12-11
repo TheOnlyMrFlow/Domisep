@@ -6,11 +6,11 @@
 
 		<a class="close" id="close-signup">&times;</a>
 
-			<form method="post" action="./handlers/handle-signup.php" target="signup-result">
+		<form method="post" action="./handlers/handle-signup.php" target="signup-result">
 
-				<h2>Register an account</h2>
-				<div class="form-container">
-					<div class="half-form-container">
+			<h2>Register an account</h2>
+			<div class="form-container">
+				<div class="half-form-container">
 					<section class="input-container">
 						<span>Last name</span><input type="text" name="lastname">
 					</section>
@@ -54,15 +54,15 @@
 						<span>Domisep product's serial number</span><input type="text" name="serialnumber">
 					</section>
 				</div>
-				</div>
+			</div>
 
 
 
-				<p>By creating an account, you agree to our
-					<strong>Terms and Conditions</strong>
-				</p>
-					<input type="submit" value="Submit" name="signup"><iframe name="signup-result"></iframe>
-			</form>
+			<p>By creating an account, you agree to our
+				<strong>Terms and Conditions</strong>
+			</p>
+			<input type="submit" value="Submit" name="signup"><iframe name="signup-result"></iframe>
+		</form>
 	</div>
 
 </div>

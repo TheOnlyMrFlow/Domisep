@@ -1,6 +1,14 @@
 <?php
-session_start();
+
+header('Content-Type: text/html; charset=ISO-8859-1');
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+if(!isset($_SESSION['language'])){
+	$_SESSION['language'] = 'en';
+}
 require("scripts/fonction_php_component.php");
+
 ?>
 
 
@@ -24,7 +32,7 @@ require("scripts/fonction_php_component.php");
     <link rel="stylesheet" href="components/header-nav/header-dashboard.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="components/header-nav/sticky-header.min.js"></script>
-
+    <script src="scripts/change-language.min.js"></script>
 </head>
 
 <body>
