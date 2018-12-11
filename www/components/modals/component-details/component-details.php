@@ -13,14 +13,17 @@
 
         <h2 id="comp-details-title"></h2>
 
+        <p>Renommer le composant :</p>
         <input id="comp-details-name" type="text" name="name" placeholder="*Name*" />
         <br>
-        <select id="comp-details-room">
-            <option value="1">Room 1</option>
+        <p>Deplacer le composant :</p>
+        <select id="comp-details-room" name="room">
         </select>
+
+        <input id="comp-details-id" name="comp-id" style="display: none;" />
         
         <br>
-        <input type="submit" value="Send" name="contact">
+        <input type="submit" value="Sauvegarder les modifications" name="update-comp">
 </form>
 </div>
 
