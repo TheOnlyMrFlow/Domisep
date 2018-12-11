@@ -51,7 +51,7 @@ input:focus,button:focus {
 
 
 .dashboard-inner-container{
-  margin: 40px 10px 40px 15%;
+  margin: 40px 10px 40px 90px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -63,4 +63,8 @@ h1,h2,h3,h4,button{
 
 h1{
   font-size: 2.5em;
+}
+
+h2{
+  color: #206ea5;
 }
