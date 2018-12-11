@@ -27,7 +27,7 @@ if (count($errors)==0){
 
 //cest probablement ici qu'il faudra inserer l'obtention du type de component et image à partir du serial number
 
-$stmt = $db->prepare("INSERT INTO components (name, serial_number) VALUES (?,?)");
+$stmt = $db->prepare("INSERT INTO components (name, serial_number, id_room) VALUES (?,?, 1)");
 $stmt->bind_param("ss", $componentName, $serialNumber);
 $stmt->execute();
 
