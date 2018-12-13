@@ -1,8 +1,12 @@
 <?php
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 if (!isset($_SESSION['connected']) || $_SESSION['connected'] == false) {
 
-    displayErrorAndLeave('Unauthorized access');
+    displayErrorAndLeave('You are not connected', 401);
 }
 
 if (!isset($_POST['firstname']) ||
@@ -13,7 +17,7 @@ if (!isset($_POST['firstname']) ||
     !isset($_POST['country']) ||
     !isset($_POST['phone'])) {
 
-    displayErrorAndLeave('Please fill all the fields');
+    displayErrorAndLeave('Please fill all the fields', 400);
 }
 
 $db = mysqli_connect('localhost', 'root', '', 'mff');
@@ -33,12 +37,10 @@ $stmt = $db->prepare("UPDATE users SET last_name = ?, first_name = ?, phone = ? 
 $stmt->bind_param("sssi", $lastName, $firstName, $phone, $id);
 $stmt->execute();
 
-echo mysqli_error($db);
+echo 'Your information have been successfully updated';
 
-
-
-function displayErrorAndLeave($error = 'Sorry, an error occured')
+function displayErrorAndLeave($error = 'Sorry, an error occured', $status = 500)
 {
-    echo $error;
+    header("HTTP/1.1 " . $status ." " . $error);
     exit();
 }

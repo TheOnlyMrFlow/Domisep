@@ -1,10 +1,13 @@
 <?php
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 include '../utils/input-checker.php';
 
 if (!isset($_SESSION['connected']) || $_SESSION['connected'] == false) {
-
-    displayErrorAndLeave('Unauthorized access');
+    displayErrorAndLeave('You are not connected', 401);
 }
 
 if (!isset($_POST['change-password']) ||
@@ -12,7 +15,7 @@ if (!isset($_POST['change-password']) ||
     !isset($_POST['new-password1']) ||
     !isset($_POST['new-password2'])) {
 
-    displayErrorAndLeave('Please fill all the fields');
+    displayErrorAndLeave('Please fill all the fields', 400);
 }
 
 $oldPassword = $_POST['old-password'];
@@ -20,11 +23,11 @@ $newPassword1 = $_POST['new-password1'];
 $newPassword2 = $_POST['new-password2'];
 
 if (empty($oldPassword) || empty($newPassword1) || empty($newPassword2)) {
-    displayErrorAndLeave('Please fill all the fields');
+    displayErrorAndLeave('Please fill all the fields', 400);
 }
 
 if (!isset($_SESSION['id'])) {
-    displayErrorAndLeave('You must be connected');
+    displayErrorAndLeave('You must be connected', 401);
 }
 
 $id = $_SESSION['id'];
@@ -48,15 +51,15 @@ if (!$row) {
 }
 
 if (!password_verify($oldPassword, $row['password'])) {
-    displayErrorAndLeave('Wrong password');
+    displayErrorAndLeave('Wrong password', 400);
 }
 
 if ($newPassword1 != $newPassword2) {
-    displayErrorAndLeave('Passwords dont match');
+    displayErrorAndLeave('Passwords dont match', 400);
 }
 
 if (!checkPassword($newPassword1)) {
-    displayErrorAndLeave(passwordRequirements);
+    displayErrorAndLeave(passwordRequirements(), 400);
 }
 
 $newPassword = password_hash($newPassword1, PASSWORD_BCRYPT);
@@ -68,8 +71,8 @@ echo mysqli_error($db);
 
 echo 'Password has been successfully changed';
 
-function displayErrorAndLeave($error = 'Sorry, an error occured')
+function displayErrorAndLeave($error = 'Sorry, an error occured', $status = 500)
 {
-    echo $error;
+    header("HTTP/1.1 " . $status ." " . $error);
     exit();
 }
