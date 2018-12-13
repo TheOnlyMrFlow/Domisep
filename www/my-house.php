@@ -80,15 +80,15 @@ include 'components/header-nav/header-nav.php';
 			$html = '';
 			$current_room_id = null;
 			$first_room = 1;
-			while($component_array = mysqli_fetch_row($components_array)){
+			while($component_row = mysqli_fetch_row($components_array)){
         $new_component_line = 0;
-				if($component_array[0]!=$current_room_id){
+				if($component_row[0]!=$current_room_id){
           $new_component_line = 0;
-					$current_room_id = $component_array[0];
-					$room_name = $component_array[1];
-					$component_id = $component_array[2];
-					$component_name = $component_array[3];
-					$component_value = $component_array[4];
+					$current_room_id = $component_row[0];
+					$room_name = $component_row[1];
+					$component_id = $component_row[2];
+					$component_name = $component_row[3];
+					$component_value = $component_row[4];
 					if(!$first_room){
 						$html .= "</div></div></section>";
 					}
@@ -115,11 +115,17 @@ include 'components/header-nav/header-nav.php';
         if($new_component_line%5==0){
           $html .= "</div><div class='components_line'>";
         }
-					$component_id = $component_array[2];
-					$component_name = $component_array[3];
+					$component_id = $component_row[2];
+					$component_name = $component_row[3];
 					$html .= componentsFunction($component_id, $component_name, $component_value);
 				}
 			}
+
+      // $empty_rooms_array = mysqli_query($db, "SELECT id,name FROM rooms LEFT JOIN components ON rooms.id=components.id_room WHERE count(components.id_room)=0");
+      // while($empty_rooms_row = mysqli_fetch_row($empty_rooms_array)){
+      //
+      // }
+
 			if($components_array->num_rows!=0){
 				$html .= "</div></div></section>";
 			}
