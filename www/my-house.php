@@ -81,7 +81,9 @@ include 'components/header-nav/header-nav.php';
 			$current_room_id = null;
 			$first_room = 1;
 			while($component_array = mysqli_fetch_row($components_array)){
+        $new_component_line = 0;
 				if($component_array[0]!=$current_room_id){
+          $new_component_line = 0;
 					$current_room_id = $component_array[0];
 					$room_name = $component_array[1];
 					$component_id = $component_array[2];
@@ -106,75 +108,16 @@ include 'components/header-nav/header-nav.php';
 								</div>
 
 								<div class='section_components'>
-									<div class='components_line'>
-										<div class='component' id='$component_id'>
-											<div class='component_title'>
-											$component_name
-											</div>
-												<br>
-											<div class='component_middle'>
-												<div class='logo'>
-													<img src='./resources/images/lightbulb3.png' alt='light'>
-												</div>
-												<div class='fleches'>
-													<div class='flechehaut'>
-														<img src='./resources/images/fleche_haut2.png' alt='fleche haut'>
-													</div>
-													<div class='flechebas'>
-														<img src='./resources/images/fleche_bas2.png' alt='fleche bas'>
-													</div>
-												</div>
-											</div>
-											<div class='component_bas'>
-
-												<div class='onoffswitch'>
-														<input type='checkbox' name='onoffswitch' class='onoffswitch-checkbox' id='myonoffswitch' checked>
-													<label class='onoffswitch-label' for='myonoffswitch'>
-														<span class='onoffswitch-inner'></span>
-														<span class='onoffswitch-switch'></span>
-													</label>
-												</div>
-												<div class='bouton_3_points'>
-													<a href='#'>...</a>
-												</div>
-											</div>
-										</div>";
+									<div class='components_line'>";
+            $html .= componentsFunction($component_id, $component_name, $component_value);
 			}
 			else{
+        if($new_component_line%5==0){
+          $html .= "</div><div class='components_line'>";
+        }
 					$component_id = $component_array[2];
 					$component_name = $component_array[3];
-					$html .= "<div class='component' id='$component_id'>
-						<div class='component_title'>
-						$component_name
-						</div>
-							<br>
-						<div class='component_middle'>
-							<div class='logo'>
-								<img src='./resources/images/lightbulb3.png' alt='light'>
-							</div>
-							<div class='fleches'>
-								<div class='flechehaut'>
-									<img src='./resources/images/fleche_haut2.png' alt='fleche haut'>
-								</div>
-								<div class='flechebas'>
-									<img src='./resources/images/fleche_bas2.png' alt='fleche bas'>
-								</div>
-							</div>
-						</div>
-						<div class='component_bas'>
-
-							<div class='onoffswitch'>
-									<input type='checkbox' name='onoffswitch' class='onoffswitch-checkbox' id='myonoffswitch' checked>
-								<label class='onoffswitch-label' for='myonoffswitch'>
-									<span class='onoffswitch-inner'></span>
-									<span class='onoffswitch-switch'></span>
-								</label>
-							</div>
-							<div class='bouton_3_points'>
-								<a href='#'>...</a>
-							</div>
-						</div>
-					</div>";
+					$html .= componentsFunction($component_id, $component_name, $component_value);
 				}
 			}
 			if($components_array->num_rows!=0){

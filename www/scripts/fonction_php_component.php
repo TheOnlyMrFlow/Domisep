@@ -4,7 +4,7 @@
 
 function componentsFunction($serial_number, $name_component, $component_value){
 
-				$html=	"<div class='$serial_number component'>
+				$html=	"<div class='component' id='$serial_number'>
 							<div class='component_title'>
 							$name_component
 							</div>
@@ -23,19 +23,15 @@ function componentsFunction($serial_number, $name_component, $component_value){
 								</div>
 							</div>
 							<div class='component_bas'>
-
-								<div class='onoffswitch'>
-										<input type='checkbox' name='onoffswitch' class='onoffswitch-checkbox' id='myonoffswitch' checked>
-									<label class='onoffswitch-label' for='myonoffswitch'>
-										<span class='onoffswitch-inner'></span>
-										<span class='onoffswitch-switch'></span>
-									</label>
-								</div>
+							<label class='switch'>
+							  <input type='checkbox' checked>
+							  <span class='slider round'></span>
+							</label>
 								<div class='bouton_3_points'>
-									<a href='component_parameters.html'>...</a>
+									<a href='#'>...</a>
 								</div>
 							</div>
 						</div>";
-				echo($html);
+				return($html);
 	}
 ?>

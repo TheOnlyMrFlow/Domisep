@@ -4,7 +4,7 @@ $(document).ready(function () {
         url: 'http://localhost/handlers/handle-modify-component.php',
         type: 'post',
         success: function(data) {console.log(data); location.reload();},
-        error: function(err) {console.log("An error occured");} 
+        error: function(err) {console.log("An error occured");}
     })
 
     var buttons = document.getElementsByClassName("bouton_3_points");
@@ -14,7 +14,7 @@ $(document).ready(function () {
         el.addEventListener("click", function () {
             var root = this;
             var safetyCount = 0;
-    
+
             while (!root.className.split(' ').includes("component")) {
                 root = root.parentElement;
                 safetyCount++;
@@ -24,7 +24,7 @@ $(document).ready(function () {
                 }
             }
             document.getElementById('comp-details-id').value = root.id;
-            let compDetailModal = document.getElementById("modal-comp-details");
+            var compDetailModal = document.getElementById("modal-comp-details");
             $.get(
                 encodeURI('http://localhost/handlers/ajax-component-details.php?id=' + root.id),
                 function (compData) {
@@ -35,28 +35,28 @@ $(document).ready(function () {
                     document.getElementById("comp-details-name").value = compData[0];
 
                     var roomSelect = document.getElementById("comp-details-room");
-                    
+
                     roomSelect.innerHTML = "";
-                    
+
                     $.get(
-                        'http://localhost/handlers/ajax-rooms-of-house',
+                        'http://localhost/handlers/ajax-rooms-of-house.php',
                         function (roomsData) {
                             console.log(roomsData);
                             roomsData = JSON.parse(roomsData);
                             for (var i = 0; i < roomsData.length; i++) {
-                                roomSelect.innerHTML += 
+                                roomSelect.innerHTML +=
                                     "<option value = '"+roomsData[i][0]+"'>" + roomsData[i][1] + "</option>";
-                                
+
                             }
                             roomSelect.value = compData[2];
                         }
                     );
 
-    
+
                 });
         });
     });
 
 
-    
+
 });
