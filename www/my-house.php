@@ -80,8 +80,9 @@ include 'components/header-nav/header-nav.php';
 			$html = '';
 			$current_room_id = null;
 			$first_room = 1;
+      $new_component_line;
+
 			while($component_row = mysqli_fetch_row($components_array)){
-        $new_component_line = 0;
 				if($component_row[0]!=$current_room_id){
           $new_component_line = 0;
 					$current_room_id = $component_row[0];
@@ -112,6 +113,7 @@ include 'components/header-nav/header-nav.php';
 								<div class='section_components'>
 									<div class='components_line'>";
             $html .= componentsFunction($component_id, $component_name, $component_value);
+            $new_component_line++;
 			}
 			else{
         if($new_component_line%5==0){
@@ -120,13 +122,24 @@ include 'components/header-nav/header-nav.php';
 					$component_id = $component_row[2];
 					$component_name = $component_row[3];
 					$html .= componentsFunction($component_id, $component_name, $component_value);
+          $new_component_line++;
 				}
 			}
 
-      // $empty_rooms_array = mysqli_query($db, "SELECT id,name FROM rooms LEFT JOIN components ON rooms.id=components.id_room WHERE count(components.id_room)=0");
-      // while($empty_rooms_row = mysqli_fetch_row($empty_rooms_array)){
-      //
-      // }
+      $empty_rooms_array = mysqli_query($db, "SELECT rooms.id,rooms.name FROM rooms LEFT JOIN components ON rooms.id=components.id_room WHERE count(components.id_room)=0");
+      while($empty_rooms_row = mysqli_fetch_row($empty_rooms_array)){
+        $current_room_id = $component_row[0];
+        $room_name = $component_row[1];
+        $html .= "<section id='$current_room_id' class='dashboard-big-container room'>
+
+              <div class='room_header'>
+                <h3>$room_name</h3>
+                <div class='section_add_component'>
+                    <button class='plus-button new-comp-opener'></button><span id='add-comp-title'>$add_component</span>
+                </div>
+              </div>
+              </section>";
+      }
 
 			if($components_array->num_rows!=0){
 				$html .= "</div></div></section>";
