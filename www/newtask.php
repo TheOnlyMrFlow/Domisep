@@ -90,12 +90,7 @@ include 'components/header-nav/header-nav.php';
                   <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
                 </section>
               </div>
-
-              <div class="half-wrapper">
-                <section class="saveSection">
-                  <input id="buttonSaveTask" type="button" value="Save the task">
-                </section>
-              </div>
+              <input id="buttonSaveTask" type="button" value="Save the task">
             </div>
           </div>
           <div class="dashboard-big-container">

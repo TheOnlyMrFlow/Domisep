@@ -11,20 +11,24 @@ body
     display: flex;
 }
 
-.half-wrapper:last-child
-{
-    width: 15%;
-    text-align: left;
-}
-.half-wrapper:first-child
+.half-wrapper
 {
     width: 90%;
 }
-.half-wrapper:first-child section
+.half-wrapper section
 {
     display: flex;
     flex-wrap: wrap;
     width : 95%;
+}
+
+.half-wrapper section select{
+  width : 45%;
+  text-indent: 5%;
+}
+
+.half-wrapper section select option{
+  text-align: center;
 }
 
 .selectors

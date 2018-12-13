@@ -7,15 +7,38 @@
         <ul id="menu-list">
           <?php if (isset($_SESSION['connected']) && $_SESSION['connected']) {
 
-            echo "<li class='menu-item my-house-opener'><a href='../../my-house.php'>My house</a></li>
-            <li class='menu-item schedule-opener'><a href='../../newtask.php'>Schedule tasks</a></li>
-            <li class='menu-item manage-users-opener'><a href='../../manage-users.php'>Manage users</a></li>
-            <li class='menu-item my-account-opener'><a href='../../my-account.php'>My account</a></li>
-            <li class='menu-item contact-opener'><a>Contact us</a></li>";
+            if($_SESSION['language']=='en'){
+              $house = 'My house';
+              $schedule = "Schedule tasks";
+              $manage = "Manage users";
+              $account = "My account";
+              $contact = "Contact us";
+            }elseif ($_SESSION['language']=='fr') {
+              $house = 'Ma maison';
+              $schedule = htmlentities("Planifier des tâches");
+              $manage = htmlentities("Gérer les utilisateurs");
+              $account = "Mon compte";
+              $contact = "Contactez-nous";
+            }
+
+            echo "<li class='menu-item my-house-opener'><a href='../../my-house.php'>$house</a></li>
+            <li class='menu-item schedule-opener'><a href='../../newtask.php'>$schedule</a></li>
+            <li class='menu-item manage-users-opener'><a href='../../manage-users.php'>$manage</a></li>
+            <li class='menu-item my-account-opener'><a href='../../my-account.php'>$account</a></li>
+            <li class='menu-item contact-opener'><a>$contact</a></li>";
           } else {
-            echo "<li class='menu-item contact-opener'><a>Contact us</a></li>
-            <li class='menu-item signup-opener'><a>Sign up</a></li>
-            <li class='menu-item login-opener'><a>Log in</a></li>";
+            if($_SESSION['language']=='en'){
+              $contact = "Contact us";
+              $sign = "Sign up";
+              $log = "Log in";
+            }elseif ($_SESSION['language']=='fr') {
+              $contact = htmlentities("Contactez-nous");
+              $sign = htmlentities("Créer un compte");
+              $log = htmlentities("Se connecter");
+            }
+            echo "<li class='menu-item contact-opener'><a>$contact</a></li>
+            <li class='menu-item signup-opener'><a>$sign</a></li>
+            <li class='menu-item login-opener'><a>$log</a></li>";
             }
           ?>
         </ul>

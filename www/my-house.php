@@ -21,7 +21,11 @@ if (!isset($_SESSION['connected']) || !$_SESSION['connected']){
 
 <head>
 	<meta charset="utf-8" />
-	<title>My House - Domisep</title>
+	<title><?php if($_SESSION['language']=='en'){
+    echo('My House - Domisep');
+  }elseif ($_SESSION['language']=='fr') {
+    echo('Ma maison - Domisep');
+  } ?></title>
 	<link rel="stylesheet" type="text/css" media="screen" href="style/add_a_component_pop_up.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="style/dashboard-style.min.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="style/full-site-style.min.css" />
@@ -49,7 +53,11 @@ include 'components/header-nav/header-nav.php';
 		<div class="page-content-container">
       <div class="page-content">
 				<div class="page-title">
-					<h1>My House</h1>
+					<h1><?php if($_SESSION['language']=='en'){
+            echo('My House');
+          }elseif ($_SESSION['language']=='fr') {
+            echo('Ma maison');
+          } ?></h1>
 				</div>
 			<section class="section_preset">
 
@@ -57,7 +65,11 @@ include 'components/header-nav/header-nav.php';
 					<button>Preset name</button>
 				</div>
 
-				<button class="plus-button plus-button--large"  onclick="location.href='newpreset2.php'" type="button"></button><span id="add-preset-title">Create new preset</span>
+				<button class="plus-button plus-button--large"  onclick="location.href='newpreset2.php'" type="button"></button><span id="add-preset-title"><?php if($_SESSION['language']=='en'){
+          echo htmlentities('Create a preset');
+        }elseif ($_SESSION['language']=='fr') {
+          echo htmlentities('Créer un preset');
+        } ?></span>
 
 			</section>
 
@@ -79,12 +91,17 @@ include 'components/header-nav/header-nav.php';
 						$html .= "</div></div></section>";
 					}
 					$first_room = 0;
+          if($_SESSION['language']=='en'){
+            $add_component = 'Add a component';
+          }elseif ($_SESSION['language']=='fr') {
+            $add_component = 'Ajouter un composant';
+          }
 					$html .= "<section class='$current_room_id dashboard-big-container room'>
 
 								<div class='room_header'>
 									<h3>$room_name</h3>
 									<div class='section_add_component'>
-											<button class='plus-button new-comp-opener'></button><span id='add-comp-title'>Add a component</span>
+											<button class='plus-button new-comp-opener'></button><span id='add-comp-title'>$add_component</span>
 									</div>
 								</div>
 
@@ -167,7 +184,11 @@ include 'components/header-nav/header-nav.php';
 			?>
 
 			<div class="section_add_room">
-				<button class="plus-button plus-button--large" href="add_component.html"></button><span id="add-room-title">Add a room</span>
+				<button class="plus-button plus-button--large" href="add_component.html"></button><span id="add-room-title"><?php if($_SESSION['language']=='en'){
+          echo('Add a room');
+        }elseif ($_SESSION['language']=='fr') {
+          echo htmlentities('Ajouter une pièce');
+        } ?></span>
 			</div>
 		</div>
 	</div>
