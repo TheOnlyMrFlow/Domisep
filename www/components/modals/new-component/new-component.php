@@ -14,7 +14,7 @@
 			<h2>Add a component</h2><br/><br>
 		</div>
 
-		<form action= "handlers/handle_new_component_information.php" method="post" target="new-comp-result">
+		<form id="new-comp-form">
 			
 			<div class="gros_bloc">
 				<section class="input-container">
@@ -25,8 +25,12 @@
 					<span>Serial number:</span><input type="text" name="serialnumber">
 				</section>
 
+				 <input id="room-id" name="room-id" style="display: none;" />
+
+
 			</div>
 			<br>
+			<p id="new-comp-result"></p>
 			<br>
 			<div class="submit">
 				<input type="submit" value="Submit" name="new_component">
@@ -35,7 +39,6 @@
 
 
 
-		<iframe name="new-comp-result"></iframe>
 
 	</div>
 
