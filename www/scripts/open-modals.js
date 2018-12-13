@@ -1,20 +1,25 @@
 $('document').ready(function () {
 
+    
+
     let signupOpeners = document.getElementsByClassName("signup-opener");
     let loginOpeners = document.getElementsByClassName("login-opener");
     let contactOpeners = document.getElementsByClassName("contact-opener");
     let newCompOpeners = document.getElementsByClassName("new-comp-opener");
+    let compDetailsOpeners = document.getElementsByClassName("comp-details-opener");
 
     let signupCloser = document.getElementById("close-signup");
     let loginCloser = document.getElementById("close-login");
     let contactCloser = document.getElementById("close-contact");
     let newCompCloser = document.getElementById("close-new-comp");
+    let compDetailsCloser = document.getElementById("close-comp-details");
 
 
     let signupModal = document.getElementById("modal-signup");
     let loginModal = document.getElementById("modal-login");
     let contactModal = document.getElementById("modal-contact");
     let newCompModal = document.getElementById("modal-new-comp");
+    let CompDetailsModal = document.getElementById("modal-comp-details");
 
 
 
@@ -55,6 +60,19 @@ $('document').ready(function () {
         console.log(el.tagName);
     });
 
+    Array.prototype.forEach.call(compDetailsOpeners, function (el) {
+        el.addEventListener("click", function () {
+            if (CompDetailsModal != undefined) {
+                CompDetailsModal.style.display = "block";
+            }
+        });
+        console.log(el.tagName);
+    });
+
+
+
+
+
     if (signupCloser != undefined){
       signupCloser.addEventListener("click", function () {
           if (signupModal != undefined) {
@@ -81,6 +99,12 @@ $('document').ready(function () {
     newCompCloser.addEventListener("click", function () {
         if (newCompModal != undefined) {
             newCompModal.style.display = "none";
+        }
+    });
+
+    compDetailsCloser.addEventListener("click", function () {
+        if (CompDetailsModal != undefined) {
+            CompDetailsModal.style.display = "none";
         }
     });
 

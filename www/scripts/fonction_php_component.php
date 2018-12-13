@@ -32,7 +32,7 @@ function componentsFunction($serial_number, $name_component, $component_value){
 							  <input type='checkbox' checked>
 							  <span class='slider round'></span>
 							</label>
-								<div class='bouton_3_points'>
+								<div class='bouton_3_points comp-details-opener'>
 									<a href='#'>...</a>
 								</div>
 							</div>

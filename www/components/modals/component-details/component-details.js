@@ -24,13 +24,12 @@ $(document).ready(function () {
                 }
             }
             document.getElementById('comp-details-id').value = root.id;
-            var compDetailModal = document.getElementById("modal-comp-details");
+            
             $.get(
                 encodeURI('http://localhost/handlers/ajax-component-details.php?id=' + root.id),
                 function (compData) {
                     console.log(compData);
                     compData = JSON.parse(compData);
-                    compDetailModal.style.display = "block";
                     document.getElementById("comp-details-title").innerHTML = compData[0];
                     document.getElementById("comp-details-name").value = compData[0];
 

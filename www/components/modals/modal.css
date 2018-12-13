@@ -46,7 +46,7 @@
   cursor: pointer;
 }
 
-.modal-content input, .modal-content textarea {
+.modal-content input, .modal-content .select-container, .modal-content textarea {
   border: none;
   box-shadow: 1px 1px 4px 3px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
