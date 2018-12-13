@@ -46,9 +46,6 @@
 }
 
 .section_components{
-	display: flex;
-	flex-direction: row;
-	flex-wrap: wrap;
 	justify-content:flex-start;
 	align-items: flex-start;
 	max-height: 100%;
