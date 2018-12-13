@@ -29,7 +29,7 @@ if (!isset($_SESSION['connected']) || !$_SESSION['connected']){
 	<link rel="stylesheet" type="text/css" media="screen" href="style/add_a_component_pop_up.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="style/dashboard-style.min.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="style/full-site-style.min.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="style/component-style.min.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="style/component-style.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.min.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/footer/footer.min.css" />
 	<link rel="stylesheet" href="style/myhouse.min.css"/>
