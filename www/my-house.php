@@ -93,12 +93,14 @@ include 'components/header-nav/header-nav.php';
 						$html .= "</div></div></section>";
 					}
 					$first_room = 0;
+
           if($_SESSION['language']=='en'){
             $add_component = 'Add a component';
           }elseif ($_SESSION['language']=='fr') {
             $add_component = 'Ajouter un composant';
           }
-					$html .= "<section class='$current_room_id dashboard-big-container room'>
+
+					$html .= "<section id='$current_room_id' class='dashboard-big-container room'>
 
 								<div class='room_header'>
 									<h3>$room_name</h3>
@@ -150,6 +152,7 @@ include 'components/modals/new-component/new-component.php';
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
 
 <script src="components/modals/component-details/component-details.js"></script>
+<script src="components/modals/new-component/new-component.js"></script>
 
 
 </html>
