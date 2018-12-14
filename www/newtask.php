@@ -8,6 +8,38 @@ if(!isset($_SESSION['language'])){
 	$_SESSION['language'] = 'en';
 }
 require("scripts/fonction_php_component.php");
+$SESSION_home_id = $_SESSION['home_id']; // create a php variable matching the home id of the connected user
+
+// get presets from database //
+
+$dbhost = 'localhost';
+$dbuser = 'root';
+$dbpass = '';
+$dbname = 'mff';
+
+$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+} 
+
+$sql = "SELECT * FROM presets WHERE id_home = $SESSION_home_id";
+$result = mysqli_query($conn, $sql);
+
+$yourpresets = array();
+
+if (mysqli_num_rows($result) > 0) 
+{
+  // output data of each row
+  while($presets = mysqli_fetch_assoc($result)) 
+  {
+      array_push($yourpresets, $presets);
+  }
+} 
+else {
+  echo "You have no preset";
+}
+
+//les presets sont contenus dans la variable array $yourpresets//
 
 ?>
 
@@ -33,18 +65,18 @@ require("scripts/fonction_php_component.php");
   </head>
 
   <body>
-    <?php
+<?php
 
   if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// if ($_SESSION['connected']){
-//
-// }
-include 'components/header-nav/header-nav.php';
+if ($_SESSION['connected']){
+}
+//include 'components/header-nav/header-nav.php';//
 
 ?>
+
       <div class="page-content-container">
         <div class="page-content">
           <div class="dashboard-big-container">
@@ -53,28 +85,14 @@ include 'components/header-nav/header-nav.php';
 
               <div class="half-wrapper">
                 <section class="selectors">
-                  <span class="label">Preset</span>
+                  <span class="label">Presets</span>
                   <select class="dropdown" name="preset">
-                            <option value="notanoption" disabled selected>-- select a preset --</option>
-                            <option value="Light A">Lampe A</option>
-                            <option value="Heat A">Chauffage A</option>
-                            <option value="Light B">Lampe B</option>
-                            <option value="Stores">Volets A</option>
-                        </select>
-                </section>
-                <section class="selectors">
-                  <span class="label">State</span>
-                  <select class="dropdown" name="State">
-                            <option value="notanoption" disabled selected>-- select a state --</option>
-                            <option value="ON">ON</option>
-                            <option value="OFF">OFF</option>
-                        </select>
-                </section>
-                <section class="selectors">
-                  <span class="label">Value</span>
-                  <select class="dropdown" name="Value">
-                            <option value="tbd" disabled selected>-- to be disclosed --</option>
-                        </select>
+                    <?php 
+                    foreach ($yourpresets as $p){
+                      echo "<option value =" . $p['id']. ">". $p['name'] . "</option>";
+                    }
+                    ?>
+                  </select>
                 </section>
                 <section class="selectors">
                   <span class="label">Frequency</span>
@@ -83,35 +101,40 @@ include 'components/header-nav/header-nav.php';
                             <option value="Daily">Daily</option>
                             <option value="Hourly">Hourly</option>
                             <option value="Weekly">Weekly</option>
+                            <option value="Monthly">Monthly</option>
+                            <option value="One-time instance">One-time instance</option>
                          </select>
                 </section>
                 <section class="selectors">
                   <span class="label">Date</span>
                   <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
                 </section>
+                <section class="selectors">
+                    <span class="label">Hour</span>
+                    <input type="time" name="chosen_time">
+                </section>
               </div>
               <input id="buttonSaveTask" type="button" value="Save the task">
             </div>
           </div>
+
+
           <div class="dashboard-big-container">
             <h2>Scheduled Tasks</h2>
             <div class="dashboard-inner-container">
               <table id="presetsTable">
                 <tr>
                   <th>Component/preset</th>
-                  <th>State</th>
-                  <th>Value</th>
                   <th>Frequency</th>
+                  <th>Hour</th>
                 </tr>
                 <tr>
-                  <td>Room A</td@>
-                    <td></td>
+                  <td>Room A</td>
                     <td></td>
                     <td></td>
                 </tr>
                 <tr>
                   <td>Holdidays Mode</td>
-                  <td></td>
                   <td></td>
                   <td></td>
                 </tr>
