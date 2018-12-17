@@ -4,9 +4,26 @@ header('Content-Type: text/html; charset=ISO-8859-1');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-if(!isset($_SESSION['language'])){
-	$_SESSION['language'] = 'en';
+if (!isset($_SESSION['language'])) {
+    $_SESSION['language'] = 'en';
 }
+
+$db = mysqli_connect('localhost', 'root', '', 'mff');
+//mysqli_set_charset($db, "utf8");
+
+$result = mysqli_query($db, "SELECT users.*, homes.* FROM users LEFT JOIN homes ON homes.id=users.id_home WHERE users.id = " . $_SESSION['id']);
+
+echo (mysqli_error($db));
+$user = mysqli_fetch_assoc($result);
+$first_name = $user['first_name'];
+$last_name = $user['last_name'];
+$email = $user['email'];
+$birthdate = $user['birthdate'];
+$phone = $user['phone'];
+$address = $user['address'];
+
+//echo (mysqli_fetch_all($result, MYSQLI_NUM)[0])[2];
+//echo (json_encode(mysqli_fetch_all($result, MYSQLI_NUM)[0]));
 
 ?>
 <!DOCTYPE html>
@@ -47,34 +64,46 @@ include 'components/header-nav/header-nav.php';
 			<div class="dashboard-big-container">
 				<h2>My information</h2>
 				<div class="dashboard-inner-container">
-				<form action="#" method="post">
+				<form id="change-info-form">
 					<div>
 						<strong>First name</strong>
-						<input type="text" name="first-name">
+						<input class="edit-info" type="text" name="first-name" value=<?php echo $first_name ?>>
+						<p class="show-info" style="display: none;"><?php echo $first_name ?></p>
 					</div>
 					<br>
 					<div>
 						<strong>Last name</strong>
-						<input type="text" name="last-name">
+						<input type="text" name="last-name" value=<?php echo $last_name ?>>
+						<p class="show-info" style="display: none;"><?php echo $last_name ?></p>
+
 					</div>
 					<br>
 					<div>
 						<strong>Address</strong>
-						<input type="text" name="address">
+						<input type="text" name="address" value="<?php echo $address ?>">
+						<p class="show-info" style="display: none;"><?php echo $address ?></p>
+
 					</div>
 					<br>
 					<div>
 						<strong>Phone</strong>
-						<input type="text" name="phone-number">
+						<input type="text" name="phone-number" value=<?php echo $phone ?>>
+						<p class="show-info" style="display: none;"><?php echo $phone ?></p>
+
 					</div>
 					<br>
 					<div>
 						<strong>Email</strong>
-						<input type="mail" name="mail">
+						<input type="mail" name="mail" value=<?php echo $email ?>>
+						<p class="show-info" style="display: none;"><?php echo $email ?></p>
+
 					</div>
 					<br><br>
 					<div>
 						<input type="submit" value="Update my information">
+					</div>
+					<div>
+						<p id="change-info-result"></p>
 					</div>
 				</form>
 
@@ -83,7 +112,7 @@ include 'components/header-nav/header-nav.php';
 			<div class="dashboard-big-container">
 				<h2>Change my password</h2>
 				<div class="dashboard-inner-container">
-				<form action="#" method="post">
+				<form id="change-password-form">
 					<div>
 						<strong>Old password</strong>
 						<input type="password" name="old-password">
@@ -91,20 +120,23 @@ include 'components/header-nav/header-nav.php';
 					<br>
 					<div>
 						<strong>New password</strong>
-						<input type="password" name="new-password-1">
+						<input type="password" name="new-password1">
 					</div>
 					<br>
 					<div>
 						<strong>Confirm new password</strong>
-						<input type="password" name="new-password-2">
+						<input type="password" name="new-password2">
 					</div>
 					<br><br>
 					<div>
 						<input type="submit" name="change-password" value="Change my password">
 					</div>
+					<div>
+						<p id="change-password-result"></p>
+					</div>
 				</form>
 
-					
+
 				</div>
 			</div>
 
@@ -130,6 +162,7 @@ include 'components/modals/component-details/component-details.php';
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
 
 <script src="components/modals/component-details/component-details.js"></script>
+<script src="scripts/change-password.js"></script>
 
 
 </html>
