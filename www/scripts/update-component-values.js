@@ -1,8 +1,10 @@
 $(document).ready(function() {
   $('.switch').on('click', function(e){
-    var state = $(this).parents('div.component').attr('id');
-    $.post('/path/to/file', state: state, function(data, textStatus, xhr) {
-      /*optional stuff to do after success */
+    var id = $(this).parents('div.component').attr('id');
+    var state = $(this).children('input').val();
+    alert(state);
+    $.post('../handlers/handle_update_component_values.php', {'state': state,'id':id}, function(data) {
+
     });
   });
 });

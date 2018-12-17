@@ -38,6 +38,8 @@ if (!isset($_SESSION['connected']) || !$_SESSION['connected']){
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="components/header-nav/sticky-header.min.js"></script>
 	<script src="scripts/change-language.min.js"></script>
+  <script src="scripts\update-component-values.js"></script>
+
 </head>
 
 <body>
