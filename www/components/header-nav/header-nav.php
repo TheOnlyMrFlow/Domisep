@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <header>
   <div id="nav-container">
+    <div class="logo-container">
       <a href="/"><img src="../../resources/images/logo.svg" id="menu-logo"></a>
       <a href="/"><img src="../../resources/images/logo-white.svg" id="menu-logo-white"></a>
+    </div>
       <nav id="main-menu">
         <ul id="menu-list">
           <?php if (isset($_SESSION['connected']) && $_SESSION['connected']) {
@@ -43,9 +45,10 @@
           ?>
         </ul>
       </nav>
+      <div class="flags-container">
+        <a href=<?php $_SERVER['REQUEST_URI'] ?>><img src="../../resources/images/gb flag.svg" id="english_flag"></a>
+        <a href=<?php $_SERVER['REQUEST_URI'] ?>><img src="../../resources/images/fr flag.svg" id="french_flag"></a>
+      </div>
   </div>
-  <div class="flags-container">
-    <a href=<?php $_SERVER['REQUEST_URI'] ?>><img src="../../resources/images/gb flag.svg" id="english_flag"></a>
-    <a href=<?php $_SERVER['REQUEST_URI'] ?>><img src="../../resources/images/fr flag.svg" id="french_flag"></a>
-  </div>
+
 </header>

@@ -1,53 +1,62 @@
-:root{
-  --main-theme-color : #206ea5;
+:root {
+  --main-theme-color: #206ea5;
 }
 
-header{
+header {
   border-bottom: 3px var(--main-theme-color) solid;
   background-color: #fff;
+  max-height: 53px;
+  height: 53px;
+  transition: all 0.2s;
 }
 
-header.sticky{
+header.sticky {
   background-color: var(--main-theme-color);
   border-bottom: none;
+  max-height: 42px;
+  height: 42px;
 }
 
-#menu-logo-white{
-  display: none;
+#menu-logo-white {
+  height: 0px;
+  width: 0px;
+}
+#menu-logo {
+  height: 40px;
+  width: 40px;
+}
+#menu-logo, #menu-logo-white {
+  margin: 5px 0 5px 0;
+  float: left;
+  transition: all 0.3s;
+  transition-delay: 0.1s;
 }
 
-#menu-logo,#menu-logo-white{
-    height : 40px;
-    width: 40px;
-    margin-top : 4.6px;
-    float: left;
-}
-
-header.sticky #menu-logo-white{
-  margin-top : 4.6px;
-  height : 32px;
+header.sticky #menu-logo-white {
+  height: 32px;
   width: 32px;
   display: block;
 }
 
-header.sticky #menu-logo{
-  display: none;
+header.sticky #menu-logo {
+  height: 0px;
+  width: 0px;
 }
 
-.menu-item a{
-  color:  #262626;
+.menu-item a {
+  color: #262626;
 }
 
-header.sticky .menu-item a{
-  color : #fff;
+header.sticky .menu-item a {
+  color: #fff;
 }
 
-header.sticky .menu-item:hover a{
-  color : var(--main-theme-color);
+header.sticky .menu-item:hover a {
+  color: var(--main-theme-color);
   background-color: #fff;
 }
 
-.menu-item:hover a{
+.menu-item:hover a {
   background-color: #206ea5;
-  color : #fff;
+  color: #fff;
 }

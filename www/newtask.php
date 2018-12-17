@@ -20,21 +20,21 @@ $dbname = 'mff';
 $conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
-} 
+}
 
 $sql = "SELECT * FROM presets WHERE id_home = $SESSION_home_id";
 $result = mysqli_query($conn, $sql);
 
 $yourpresets = array();
 
-if (mysqli_num_rows($result) > 0) 
+if (mysqli_num_rows($result) > 0)
 {
   // output data of each row
-  while($presets = mysqli_fetch_assoc($result)) 
+  while($presets = mysqli_fetch_assoc($result))
   {
       array_push($yourpresets, $presets);
   }
-} 
+}
 else {
   echo "You have no preset";
 }
@@ -73,7 +73,7 @@ else {
 
 if ($_SESSION['connected']){
 }
-//include 'components/header-nav/header-nav.php';//
+include 'components/header-nav/header-nav.php';//
 
 ?>
 
@@ -87,7 +87,7 @@ if ($_SESSION['connected']){
                 <section class="selectors">
                   <span class="label">Presets</span>
                   <select class="dropdown" name="preset">
-                    <?php 
+                    <?php
                     foreach ($yourpresets as $p){
                       echo "<option value =" . $p['id']. ">". $p['name'] . "</option>";
                     }

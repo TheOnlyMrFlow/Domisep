@@ -21,11 +21,13 @@ if (!isset($_SESSION['connected']) || !$_SESSION['connected']){
 
 <head>
 	<meta charset="utf-8" />
-	<title><?php if($_SESSION['language']=='en'){
-    echo('My House - Domisep');
-  }elseif ($_SESSION['language']=='fr') {
-    echo('Ma maison - Domisep');
-  } ?></title>
+	<title>
+        <?php if($_SESSION['language']=='en'){
+        echo('My House - Domisep');
+      }elseif ($_SESSION['language']=='fr') {
+        echo('Ma maison - Domisep');
+      } ?>
+  </title>
 	<link rel="stylesheet" type="text/css" media="screen" href="style/add_a_component_pop_up.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="style/dashboard-style.min.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="style/full-site-style.min.css" />
@@ -55,11 +57,11 @@ include 'components/header-nav/header-nav.php';
 		<div class="page-content-container">
       <div class="page-content">
 				<div class="page-title">
-					<h1><?php if($_SESSION['language']=='en'){
+					<!-- <h1><?php if($_SESSION['language']=='en'){
             echo('My House');
           }elseif ($_SESSION['language']=='fr') {
             echo('Ma maison');
-          } ?></h1>
+          } ?></h1> -->
 				</div>
 			<section class="section_preset">
 
@@ -128,10 +130,15 @@ include 'components/header-nav/header-nav.php';
 				}
 			}
 
-      $empty_rooms_array = mysqli_query($db, "SELECT rooms.id,rooms.name FROM rooms LEFT JOIN components ON rooms.id=components.id_room WHERE count(components.id_room)=0");
+
+      			if($components_array->num_rows!=0){
+      				$html .= "</div></div></section>";
+      			}
+
+      $empty_rooms_array = mysqli_query($db, "SELECT rooms.id,rooms.name FROM rooms LEFT JOIN components ON rooms.id=components.id_room WHERE components.id_room IS NULL");
       while($empty_rooms_row = mysqli_fetch_row($empty_rooms_array)){
-        $current_room_id = $component_row[0];
-        $room_name = $component_row[1];
+        $current_room_id = $empty_rooms_row[0];
+        $room_name = $empty_rooms_row[1];
         $html .= "<section id='$current_room_id' class='dashboard-big-container room'>
 
               <div class='room_header'>
@@ -143,9 +150,6 @@ include 'components/header-nav/header-nav.php';
               </section>";
       }
 
-			if($components_array->num_rows!=0){
-				$html .= "</div></div></section>";
-			}
 				echo $html;
 			?>
 

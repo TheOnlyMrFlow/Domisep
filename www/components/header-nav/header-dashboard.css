@@ -1,29 +1,38 @@
 :root{
-  --main-theme-color : #206ea5;
+  --main-theme-color : #444444;
 }
 
-header.sticky{
-  background-color: #444444;
+header {
+  max-height: 53px;
+  height: 53px;
+  transition: all 0.3s;
+}
+
+header.sticky {
+  background-color: var(--main-theme-color);
   border-bottom: none;
+  max-height: 42px;
+  height: 42px;
 }
 
 #menu-logo{
   display: none;
 }
 
-#menu-logo,#menu-logo-white{
+#menu-logo-white{
     height : 40px;
     width: 40px;
-    margin-top : 4.6px;
+    margin: 5px 0 5px 0;
     float: left;
+    transition: all 0.3s;
 }
 
-header.sticky #menu-logo-white{
-  margin-top : 4.6px;
-  height : 32px;
+header.sticky #menu-logo-white {
+  height: 32px;
   width: 32px;
   display: block;
 }
+
 
 .menu-item a{
   color:  #fff;
