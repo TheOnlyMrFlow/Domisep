@@ -2,12 +2,6 @@
   --main-theme-color : #444444;
 }
 
-header {
-  max-height: 53px;
-  height: 53px;
-  transition: all 0.3s;
-}
-
 header.sticky {
   background-color: var(--main-theme-color);
   border-bottom: none;
@@ -24,7 +18,7 @@ header.sticky {
     width: 40px;
     margin: 5px 0 5px 0;
     float: left;
-    transition: all 0.3s;
+    transition: all 0.15s;
 }
 
 header.sticky #menu-logo-white {

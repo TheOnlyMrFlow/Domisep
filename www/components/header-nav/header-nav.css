@@ -5,6 +5,9 @@ header{
   top:0;
   flex: 0 1 auto;
   z-index: 9999;
+  max-height: 53px;
+  height: 53px;
+  transition: all 0.15s;
 }
 
 #nav-container{

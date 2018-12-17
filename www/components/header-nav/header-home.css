@@ -5,9 +5,6 @@
 header {
   border-bottom: 3px var(--main-theme-color) solid;
   background-color: #fff;
-  max-height: 53px;
-  height: 53px;
-  transition: all 0.2s;
 }
 
 header.sticky {
@@ -28,8 +25,7 @@ header.sticky {
 #menu-logo, #menu-logo-white {
   margin: 5px 0 5px 0;
   float: left;
-  transition: all 0.3s;
-  transition-delay: 0.1s;
+  transition: all 0.25s;
 }
 
 header.sticky #menu-logo-white {
