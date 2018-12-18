@@ -60,9 +60,7 @@ if (isset($_POST['delete-account'])) {
         $db->commit();
 
     } catch (Exception $e) {
-        // if any of the queries fails, the following code will be executed
-        $db->rollback(); // roll back everything to the point of begin_transaction()
-        // do other stuff to handle the error
+        $db->rollback(); 
     }
 
     logOut();
