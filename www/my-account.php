@@ -88,7 +88,7 @@ include 'components/header-nav/header-nav.php';
 					<br>
 					<div>
 						<strong>Email</strong>
-						<input class="edit-info" style="display: none;" type="mail" name="mail" value=<?php echo $email ?>>
+						<input disabled class="edit-info" style="display: none;" type="mail" name="mail" value=<?php echo $email ?>>
 						<p class="show-info"><?php echo $email ?></p>
 
 					</div>

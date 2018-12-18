@@ -9,11 +9,6 @@ $(document).ready(function () {
     console.log(editEls);
     console.log(showEls);
     
-    
-    
-    
-
-
     var cancelButton = document.getElementById("switch-change-info-off");
     var switchOnButton = document.getElementById("switch-change-info-on");
 
@@ -36,8 +31,6 @@ $(document).ready(function () {
     }
 
 
-
-
     $("#change-info-form").ajaxForm({
         url: 'http://localhost/handlers/handle_change_user_info.php',
         type: 'post',
@@ -51,10 +44,6 @@ $(document).ready(function () {
             document.getElementById("change-info-result").innerHTML=err['statusText'];
         }
     });
-
-
-
-
 
 
 });
