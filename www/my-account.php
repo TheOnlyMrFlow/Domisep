@@ -43,6 +43,7 @@ $address = $user['address'];
 	<script src="components/header-nav/sticky-header.min.js"></script>
 	<script src="scripts/user-rights.min.js"></script>
 	<script src="scripts/change-language.min.js"></script>
+	<script src="scripts/confirm-delete-account.js"></script>
 
 </head>
 
@@ -143,6 +144,11 @@ include 'components/header-nav/header-nav.php';
 
 			<form method="post" action="./handlers/handle-logout.php">
 				<input type="submit" value="Log out" name="logout">
+			</form>
+
+			<form method="post" action="./handlers/handle-delete-account.php">
+				<input style="display: none;" name="delete-account">
+				<input onClick="SubmitDeleteAccount(this.form)" type="button" value="Delete my account" name="delete-account">
 			</form>
 
 
