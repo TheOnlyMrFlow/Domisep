@@ -46,14 +46,20 @@ else {
 if (isset($_POST['savetask']))
 {
   $selectedPreset = $_POST['preset'];
+  $selectedPresetArray = explode( "-", $selectedPreset);
+  $selectedPresetId = $selectedPresetArray[0];
+  $selectedPresetName = $selectedPresetArray[1];
   $selectedFrequency = $_POST['frequency'];
   $selectedStartDate = $_POST['trip-start'];
   $selectedHour = $_POST['time'];
 
-  $stmt = $conn->prepare("INSERT INTO tasks (name, deadline, frequency) VALUES (?, ?, ?)");
-  $stmt->bind_param("sss", $selectedPreset, $selectedStartDate, $selectedFrequency);
+  $stmt = $conn->prepare("INSERT INTO tasks (id_preset, name, deadline, frequency) VALUES (?, ?, ?, ?)");
+  $stmt->bind_param("ssss", $selectedPresetId, $selectedPresetName, $selectedStartDate, $selectedFrequency);
   $stmt->execute();
 }
+
+//penser à supprimer le colonne on/off de la base de donnée mff
+//diviser la colonne deadline en deux colonnes : date et hour
 
 ?>
 
@@ -105,7 +111,7 @@ if ($_SESSION['connected']){
                   <option value ="notanoption" disabled selected>-- select preset --</option>
                     <?php 
                     foreach ($yourpresets as $p){
-                      echo "<option value =" . $p['id']. ">". $p['name'] . "</option>";
+                      echo "<option value ='" . $p['id']."-".$p['name']."'>". $p['name'] . "</option>";
                     }
                     ?>
                   </select>
