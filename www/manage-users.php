@@ -86,18 +86,20 @@ if(!isset($_SESSION['language'])){
 							</table>
 						</div>
 						<div class="dashboard-inner-container">
-							<form id="add-user-form" action="handlers/handle-add-user.php" method="post">
+							<form id="add-user-form">
 								<div>
 									<h3>Add a member</h3>
 								</div>
 								<div>
-									<input type="text" name="e-mail" placeholder="zac.smith@example.com">
+									<input required type="text" name="mail" placeholder="zac.smith@example.com">
 								</div>
 								<div>
-									<input type="submit" value="Add">
+									<input type="submit" name="invite-user" value="Invite">
 								</div>
 							</form>
 						</div>
+						<p id="invite-user-result"></p>
+
 				</div>
 				<div class="dashboard-big-container">
 						<h2>User Rights</h2>
@@ -184,6 +186,8 @@ include('components/footer/footer.php');
 ?>
 </body>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
 <script src="scripts/open-modals.js"></script>
+<script src="scripts/invite-user.js"></script>
 
 </html>
