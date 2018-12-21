@@ -53,19 +53,27 @@ if (isset($_POST['savetask']))
   $selectedStartDate = $_POST['trip-start'];
   $selectedHour = $_POST['time'];
 
-  $stmt = $conn->prepare("INSERT INTO tasks (id_preset, name, deadline, frequency) VALUES (?, ?, ?, ?)");
-  $stmt->bind_param("ssss", $selectedPresetId, $selectedPresetName, $selectedStartDate, $selectedFrequency);
+  $stmt = $conn->prepare("INSERT INTO tasks (id_preset, name, start_date, hour ,frequency) VALUES (?, ?, ?, ?, ?)");
+  $stmt->bind_param("sssss", $selectedPresetId, $selectedPresetName, $selectedStartDate, $selectedHour, $selectedFrequency);
   $stmt->execute();
 }
 
 //penser à supprimer le colonne on/off de la base de donnée mff
 //diviser la colonne deadline en deux colonnes : date et hour
 
+//sélection des tasks 
+$sql2 = "SELECT * FROM tasks";
+$result2 = mysqli_query($conn, $sql2);
+$yourtasks = array();
+while($returnedTasks = mysqli_fetch_assoc($result2)) 
+  {
+    array_push($yourtasks, $returnedTasks);
+  } 
+
 ?>
 
   <!DOCTYPE html>
   <html>
-
   <head>
     <meta charset="utf-8" />
     <title>New Task</title>
@@ -83,14 +91,12 @@ if (isset($_POST['savetask']))
     <link rel="stylesheet" type="text/css" href="style/newtask.css" />
     <script src="scripts/change-language.min.js"></script>
   </head>
-
   <body>
-<?php
 
+<?php
   if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
 if ($_SESSION['connected']){
 }
 //include 'components/header-nav/header-nav.php';//
@@ -100,7 +106,7 @@ if ($_SESSION['connected']){
       <div class="page-content-container">
         <div class="page-content">
           <div class="dashboard-big-container">
-            <h2>New task</h2>
+            <h2>New Task</h2>
             <div class="dashboard-inner-container">
 
               <div class="half-wrapper">
@@ -130,7 +136,7 @@ if ($_SESSION['connected']){
                 </section>
                 <section class="selectors">
                   <span class="label">Date</span>
-                  <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+                  <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2019-12-31">
                 </section>
                 <section class="selectors">
                     <span class="label">Hour</span>
@@ -145,7 +151,6 @@ if ($_SESSION['connected']){
             </div>
           </div>
 
-
           <div class="dashboard-big-container">
             <h2>Scheduled Tasks</h2>
             <div class="dashboard-inner-container">
@@ -153,17 +158,16 @@ if ($_SESSION['connected']){
                 <tr>
                   <th>Component/preset</th>
                   <th>Frequency</th>
-                  <th>Hour</th>
+                  <th>Start Date</th>
+                  <th>Start Time</th>
                 </tr>
                 <tr>
-                  <td>Room A</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                  <td>Holdidays Mode</td>
-                  <td></td>
-                  <td></td>
+                  <?php 
+                    foreach($yourtasks as $t)
+                    {
+                      echo "<tr><td>". $t['name']. "</td><td>" . $t['frequency'] . "</td><td>" . $t['start_date'] . "</td><td>" .$t['hour']."</td></tr>";
+                    }
+                    ?>
                 </tr>
               </table>
             </div>

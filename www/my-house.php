@@ -29,17 +29,17 @@ if (!isset($_SESSION['connected']) || !$_SESSION['connected']){
       } ?>
   </title>
 	<link rel="stylesheet" type="text/css" media="screen" href="style/add_a_component_pop_up.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="style/dashboard-style.min.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="style/full-site-style.min.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="style/dashboard-style.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="style/full-site-style.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="style/component-style.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.min.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="components/footer/footer.min.css" />
-	<link rel="stylesheet" href="style/myhouse.min.css"/>
-	<link rel="stylesheet" href="components/header-nav/header-nav.min.css">
-	<link rel="stylesheet" href="components/header-nav/header-dashboard.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="components/header-nav/sticky-header.min.js"></script>
-	<script src="scripts/change-language.min.js"></script>
+	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="components/footer/footer.css" />
+	<link rel="stylesheet" href="style/myhouse.css"/>
+	<link rel="stylesheet" href="components/header-nav/header-nav.css">
+	<link rel="stylesheet" href="components/header-nav/header-dashboard.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+	<script src="components/header-nav/sticky-header.js"></script>
+	<script src="scripts/change-language.js"></script>
   <script src="scripts\update-component-values.js"></script>
 
 </head>
@@ -108,7 +108,12 @@ include 'components/header-nav/header-nav.php';
 					$html .= "<section id='$current_room_id' class='dashboard-big-container room'>
 
 								<div class='room_header'>
-									<h3>$room_name</h3>
+									<form class='change-room-name'>
+										<input value='$current_room_id' name='room_id' style='display: none;'>
+              							<input class='room-name' type='text' name='room_name' value='$room_name'>
+										<input type='submit' name='update-name' style='display: none;'>
+
+	            					</form> 
 									<div class='section_add_component'>
 											<button class='plus-button new-comp-opener'></button><span id='add-comp-title'>$add_component</span>
 									</div>
@@ -142,10 +147,15 @@ include 'components/header-nav/header-nav.php';
         $html .= "<section id='$current_room_id' class='dashboard-big-container room'>
 
               <div class='room_header'>
-                <h3>$room_name</h3>
-                <div class='section_add_component'>
-                    <button class='plus-button new-comp-opener'></button><span id='add-comp-title'>$add_component</span>
-                </div>
+              	<form class='change-room-name'>
+              		<input value='$current_room_id' name='room_id' style='display: none;'>
+              		<input class='room-name' type='text' name='room_name' value='$room_name'>
+              		<input type='submit' name='update-name' style='display: none;'>
+	            </form>   
+	                <div class='section_add_component'>
+	                    <button class='plus-button new-comp-opener'></button><span id='add-comp-title'>$add_component</span>
+	                </div>
+                
               </div>
               </section>";
       }
@@ -175,9 +185,13 @@ include 'components/modals/new-component/new-component.php';
 <script src="scripts/open-modals.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/livequery/1.1.1/jquery.livequery.js"></script>
+
+
 
 <script src="components/modals/component-details/component-details.js"></script>
 <script src="components/modals/new-component/new-component.js"></script>
+<script src="scripts/change-room-name.js"></script>
 
 
 </html>
