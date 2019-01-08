@@ -17,7 +17,7 @@
               $contact = "Contact us";
             }elseif ($_SESSION['language']=='fr') {
               $house = 'Ma maison';
-              $schedule = htmlentities("Planifier des tâches");
+              $schedule = htmlentities("Tâches");
               $manage = htmlentities("Gérer les utilisateurs");
               $account = "Mon compte";
               $contact = "Contactez-nous";

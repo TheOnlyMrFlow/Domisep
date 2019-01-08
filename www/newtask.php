@@ -7,7 +7,7 @@ if (session_status() == PHP_SESSION_NONE) {
 if(!isset($_SESSION['language'])){
 	$_SESSION['language'] = 'en';
 }
-require("scripts/fonction_php_component.php");
+require("components/component/fonction-php-component.php");
 $SESSION_home_id = $_SESSION['home_id']; // create a php variable matching the home id of the connected user
 
 // get presets from database //
@@ -53,7 +53,7 @@ else {
     <title>My House - Domisep</title>
     <link rel="stylesheet" type="text/css" media="screen" href="style/dashboard-style.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="style/full-site-style.min.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="style/component-style.min.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="components/component/component-style.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="components/footer/footer.min.css" />
     <link rel="stylesheet" href="components/header-nav/header-nav.min.css">
