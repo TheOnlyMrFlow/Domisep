@@ -1,5 +1,7 @@
 <?php
 
+require_once('../models/User.php');
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -58,8 +60,8 @@ if ($newPassword1 != $newPassword2) {
     displayErrorAndLeave('Passwords dont match', 400);
 }
 
-if (!checkPassword($newPassword1)) {
-    displayErrorAndLeave(passwordRequirements(), 400);
+if (!User::checkPasswordValidity($newPassword1)) {
+    displayErrorAndLeave(User::$passwordRequirements, 400);
 }
 
 $newPassword = password_hash($newPassword1, PASSWORD_BCRYPT);

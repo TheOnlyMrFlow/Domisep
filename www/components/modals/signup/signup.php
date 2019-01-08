@@ -12,46 +12,46 @@
 			<div class="form-container">
 				<div class="half-form-container">
 					<section class="input-container">
-						<span>Last name</span><input type="text" name="lastname">
+						<span>Last name</span><input required type="text" name="lastname">
 					</section>
 					<section class="input-container">
-						<span>First name</span><input type="text" name="firstname">
-					</section>
-
-					<section class="input-container">
-						<span>Birth date</span><input type="date" name="birthdate">
-					</section>
-					<section class="input-container">
-						<span>Phone number</span><input type="tel" name="phone">
+						<span>First name</span><input required type="text" name="firstname">
 					</section>
 
+					<section class="input-container">
+						<span>Birth date</span><input required type="date" name="birthdate">
+					</section>
+					<section class="input-container">
+						<span>Phone number</span><input required type="tel" name="phone">
+					</section>
+
 
 					<section class="input-container">
-						<span>Address</span><input type="text" name="address">
+						<span>Address</span><input required type="text" name="address">
 					</section>
 					<section class="input-container">
-						<span>City</span><input type="text" name="city">
+						<span>City</span><input required type="text" name="city">
 					</section>
 					<section class="input-container">
-						<span>Zip code</span><input type="text" name="zipcode">
+						<span>Zip code</span><input required type="text" name="zipcode">
 					</section>
 					<section class="input-container">
-						<span>Country</span><input type="text" name="country">
+						<span>Country</span><input required type="text" name="country">
 					</section>
 				</div>
 
 				<div class="half-form-container">
 					<section class="input-container">
-						<span>Email address</span><input type="emailaddress" name="email">
+						<span>Email address</span><input required type="emailaddress" name="email">
 					</section>
 					<section class="input-container">
-						<span>Create a password</span><input type="password" name="password1">
+						<span>Create a password</span><input required type="password" name="password1">
 					</section>
 					<section class="input-container">
-						<span>Confirm your password</span><input type="password" name="password2">
+						<span>Confirm your password</span><input required type="password" name="password2">
 					</section>
 					<section class="input-container">
-						<span>Domisep product's serial number</span><input type="text" name="serialnumber">
+						<span>Domisep product's serial number</span><input required type="text" name="serialnumber">
 					</section>
 				</div>
 			</div>

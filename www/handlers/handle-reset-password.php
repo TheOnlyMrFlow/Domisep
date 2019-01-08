@@ -1,6 +1,7 @@
 <?php 
 
 include('../utils/input-checker.php');
+require_once('../models/User.php');
 
 if (isset($_POST['id']) && isset($_POST['key'])) {
     $db = mysqli_connect('localhost', 'root', '', 'mff');    
@@ -40,7 +41,7 @@ if (isset($_POST['id']) && isset($_POST['key'])) {
 
                     if ($password1 != $password2){
                         displayErrorAndLeave("Passwords do not match");
-                    } else if (!checkPassword($password1)){
+                    } else if (!User::checkPasswordValidity($password1)){
                         displayErrorAndLeave("Password must be at least 4 characters, no more than 16 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit.");
                     } else {
 

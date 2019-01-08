@@ -20,32 +20,60 @@ $dbname = 'mff';
 $conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
-}
+} 
 
 $sql = "SELECT * FROM presets WHERE id_home = $SESSION_home_id";
 $result = mysqli_query($conn, $sql);
 
 $yourpresets = array();
 
-if (mysqli_num_rows($result) > 0)
+if (mysqli_num_rows($result) > 0) 
 {
   // output data of each row
-  while($presets = mysqli_fetch_assoc($result))
+  while($presets = mysqli_fetch_assoc($result)) 
   {
       array_push($yourpresets, $presets);
   }
-}
+} 
 else {
   echo "You have no preset";
 }
 
 //les presets sont contenus dans la variable array $yourpresets//
 
+//maintenant : une fois le preset et les paramètres sélectionnés, les envoyer vers la bdd
+
+if (isset($_POST['savetask']))
+{
+  $selectedPreset = $_POST['preset'];
+  $selectedPresetArray = explode( "-", $selectedPreset);
+  $selectedPresetId = $selectedPresetArray[0];
+  $selectedPresetName = $selectedPresetArray[1];
+  $selectedFrequency = $_POST['frequency'];
+  $selectedStartDate = $_POST['trip-start'];
+  $selectedHour = $_POST['time'];
+
+  $stmt = $conn->prepare("INSERT INTO tasks (id_preset, name, start_date, hour ,frequency) VALUES (?, ?, ?, ?, ?)");
+  $stmt->bind_param("sssss", $selectedPresetId, $selectedPresetName, $selectedStartDate, $selectedHour, $selectedFrequency);
+  $stmt->execute();
+}
+
+//penser à supprimer le colonne on/off de la base de donnée mff
+//diviser la colonne deadline en deux colonnes : date et hour
+
+//sélection des tasks 
+$sql2 = "SELECT * FROM tasks";
+$result2 = mysqli_query($conn, $sql2);
+$yourtasks = array();
+while($returnedTasks = mysqli_fetch_assoc($result2)) 
+  {
+    array_push($yourtasks, $returnedTasks);
+  } 
+
 ?>
 
   <!DOCTYPE html>
   <html>
-
   <head>
     <meta charset="utf-8" />
     <title>New Task</title>
@@ -63,33 +91,33 @@ else {
     <link rel="stylesheet" type="text/css" href="style/newtask.css" />
     <script src="scripts/change-language.min.js"></script>
   </head>
-
   <body>
-<?php
 
+<?php
   if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
 if ($_SESSION['connected']){
 }
-include 'components/header-nav/header-nav.php';//
+//include 'components/header-nav/header-nav.php';//
 
 ?>
 
       <div class="page-content-container">
         <div class="page-content">
           <div class="dashboard-big-container">
-            <h2>New task</h2>
+            <h2>New Task</h2>
             <div class="dashboard-inner-container">
 
               <div class="half-wrapper">
+              <form method="post">
                 <section class="selectors">
                   <span class="label">Presets</span>
                   <select class="dropdown" name="preset">
-                    <?php
+                  <option value ="notanoption" disabled selected>-- select preset --</option>
+                    <?php 
                     foreach ($yourpresets as $p){
-                      echo "<option value =" . $p['id']. ">". $p['name'] . "</option>";
+                      echo "<option value ='" . $p['id']."-".$p['name']."'>". $p['name'] . "</option>";
                     }
                     ?>
                   </select>
@@ -103,21 +131,25 @@ include 'components/header-nav/header-nav.php';//
                             <option value="Weekly">Weekly</option>
                             <option value="Monthly">Monthly</option>
                             <option value="One-time instance">One-time instance</option>
-                         </select>
+                  </select>
+
                 </section>
                 <section class="selectors">
                   <span class="label">Date</span>
-                  <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31">
+                  <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2019-12-31">
                 </section>
                 <section class="selectors">
                     <span class="label">Hour</span>
-                    <input type="time" name="chosen_time">
+                    <input type="time" name="time">
                 </section>
+                <br/><br/>
+                <center>
+                <input id="buttonSaveTask" type="submit" value="Save the task" name="savetask">
+                </center>
+                </form>
               </div>
-              <input id="buttonSaveTask" type="button" value="Save the task">
             </div>
           </div>
-
 
           <div class="dashboard-big-container">
             <h2>Scheduled Tasks</h2>
@@ -126,17 +158,16 @@ include 'components/header-nav/header-nav.php';//
                 <tr>
                   <th>Component/preset</th>
                   <th>Frequency</th>
-                  <th>Hour</th>
+                  <th>Start Date</th>
+                  <th>Start Time</th>
                 </tr>
                 <tr>
-                  <td>Room A</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                  <td>Holdidays Mode</td>
-                  <td></td>
-                  <td></td>
+                  <?php 
+                    foreach($yourtasks as $t)
+                    {
+                      echo "<tr><td>". $t['name']. "</td><td>" . $t['frequency'] . "</td><td>" . $t['start_date'] . "</td><td>" .$t['hour']."</td></tr>";
+                    }
+                    ?>
                 </tr>
               </table>
             </div>

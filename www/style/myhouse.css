@@ -130,3 +130,21 @@
 .create_room{
 	margin-left: 0.5em;
 }
+
+
+input{
+	font-size: 22px;
+	border: 0px;
+}
+
+input:hover{
+	border:solid #EFEFEF 1px;
+	
+}
+input:focus{
+	border: solid #EFEFEF 1px;
+	/*background-color: #F5F5F5;*/
+	color:grey;
+	font-style: italic;
+
+}

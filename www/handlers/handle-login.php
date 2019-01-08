@@ -1,5 +1,7 @@
 <?php
 
+require_once('../models/Home.php');
+
 if (isset($_POST['login']))
 {
     $db = mysqli_connect('localhost', 'root', '', 'mff');
@@ -48,12 +50,16 @@ if (isset($_POST['login']))
                 {
 
                     if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+                        session_start();
+                    }
+
+                    $db = mysqli_connect('localhost', 'root', '', 'mff');
+
                     $_SESSION['connected'] = true;
                     $_SESSION['email'] = $row['email'];
                     $_SESSION['id'] = $row['id'];
                     $_SESSION['home_id'] = $row['id_home'];
+                    $_SESSION['home'] = serialize(new Home($row['id_home']));
                     $_SESSION['last_name'] = $row['last_name'];
                     $_SESSION['first_name'] = $row['first_name'];
                     $_SESSION['role'] = $row['role'];
