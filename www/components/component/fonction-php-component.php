@@ -7,13 +7,11 @@ function componentsFunction($serial_number, $name_component, $component_value,  
 				$smart = true;
 			}
 			$type = substr($serial_number, 5 , 3);
-			$icon = "<div>
-			icon
-			</div>";
+			$icon = "<i class='fas fa-lightbulb'></i>";
 
 
 			if ($type == 'lght'){
-				$icon = "<img src='./resources/images/lightbulb3.png' alt='light'>";
+				$icon = "<i class='fas fa-lightbulb'></i>";
 			}
 			elseif($type == 'temp'){
 

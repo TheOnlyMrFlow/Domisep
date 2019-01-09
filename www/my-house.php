@@ -79,7 +79,6 @@ include 'components/header-nav/header-nav.php';
 			</section>
 
 			<?php
-<<<<<<< HEAD
             $db = mysqli_connect('localhost', 'root', '', 'mff');
             $id_home = $_SESSION['home_id'];
             $id_user = $_SESSION['id'];
@@ -265,10 +264,9 @@ include 'components/header-nav/header-nav.php';
                   }
               }
             }
-=======
 			$db = mysqli_connect('localhost', 'root', '', 'mff');
 			$id_home = $_SESSION['home_id'];
-			$components_array = mysqli_query($db, "SELECT id_room,rooms.name,serial_number,components.name,value FROM components INNER JOIN rooms ON components.id_room=rooms.id WHERE rooms.id_home=$id_home ORDER BY rooms.name,components.name");
+			$components_array = mysqli_query($db, "SELECT id_room,rooms.name,serial_number,components.name,value,state FROM components INNER JOIN rooms ON components.id_room=rooms.id WHERE rooms.id_home=$id_home ORDER BY rooms.name,components.name");
 			$html = '';
 			$current_room_id = null;
 			$first_room = 1;
@@ -277,11 +275,12 @@ include 'components/header-nav/header-nav.php';
 			while($component_row = mysqli_fetch_row($components_array)){
 				if($component_row[0]!=$current_room_id){
           $new_component_line = 0;
-					$current_room_id = $component_row[0];
-					$room_name = $component_row[1];
-					$component_id = $component_row[2];
-					$component_name = $component_row[3];
-					$component_value = $component_row[4];
+          $current_room_id = $component_row[0];
+          $room_name = $component_row[1];
+          $component_id = $component_row[2];
+          $component_name = $component_row[3];
+          $component_value = $component_row[4];
+          $component_state = $component_row[5];
 					if(!$first_room){
 						$html .= "</div></div></section>";
 					}
@@ -309,7 +308,7 @@ include 'components/header-nav/header-nav.php';
 
 								<div class='section_components'>
 									<div class='components_line'>";
-            $html .= componentsFunction($component_id, $component_name, $component_value);
+            $html .= componentsFunction($component_id, $component_name, $component_value, $component_state, 'write');
             $new_component_line++;
 			}
 			else{
@@ -318,7 +317,7 @@ include 'components/header-nav/header-nav.php';
         }
 					$component_id = $component_row[2];
 					$component_name = $component_row[3];
-					$html .= componentsFunction($component_id, $component_name, $component_value);
+          $html .= componentsFunction($component_id, $component_name, $component_value, $component_state, 'write');
           $new_component_line++;
 				}
 			}
@@ -347,9 +346,6 @@ include 'components/header-nav/header-nav.php';
               </div>
               </section>";
       }
->>>>>>> 085992c6640bb0d6c45b3f048901dec9eb68bc20
-
-
                 echo $html;
             ?>
 
