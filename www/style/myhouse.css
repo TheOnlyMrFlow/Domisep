@@ -37,8 +37,10 @@
 
 .room_header{
 	display: flex;
-	align-items: center;
-	margin-bottom: 10px;
+/*	align-items: center;
+*/	margin-bottom: 10px;
+	justify-content: space-between;
+	align-content: space-between;
 }
 
 #add-comp-title,#add-preset-title,#add-room-title{
