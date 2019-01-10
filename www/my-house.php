@@ -362,7 +362,7 @@ include 'components/header-nav/header-nav.php';
                       </form>
                     </div>
                     <div class='section_add_component'>
-  	                   <button class='plus-button new-comp-opener'></button><span id='add-comp-title'>$add_component</span>
+  	                   <button class='plus-button new-comp-opener'></button><span id='add-comp-title'>Add a component</span>
   	                </div>
                   </div>
                   
