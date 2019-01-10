@@ -3,11 +3,13 @@ $(document).ready(function() {
     var data = {
       'user_id' : $(this).children('option:selected').val()
     }
-    $.post('../handlers/display-user-rights.php',data, function(response) {
+    $.post('../handlers/display-user-rights.php',data, 
+    function(response) { //success callback
+      console.log(response);
       var parsed_response = JSON.parse(response);
       for (var i in parsed_response) {
-        var serial_number = parsed_response[i][0];
-        var level = parsed_response[i][1];
+        var serial_number = parsed_response[i]['serial_number'];
+        var level = parsed_response[i]['access_level'];
         if(level=='read'){
           $("tr."+serial_number+" td div.view-button").removeClass('off').addClass('on');
           $("tr."+serial_number+" td div.edit-button").css('display','block');
