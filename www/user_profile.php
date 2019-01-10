@@ -1,5 +1,4 @@
 <?php
-
 header('Content-Type: text/html; charset=ISO-8859-1');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -7,6 +6,7 @@ if (session_status() == PHP_SESSION_NONE) {
 if(!isset($_SESSION['language'])){
 	$_SESSION['language'] = 'en';
 }
+$SESSION_id = $_SESSION['id'];
 $SESSION_home_id = $_SESSION['home_id'];
 
 $dbhost = 'localhost';
@@ -26,18 +26,56 @@ else
 }
 
 /*$sql = "SELECT * FROM users WHERE id_home = $SESSION_home_id";*/
-$sql = "SELECT * FROM users";
+$sql = "SELECT * FROM users WHERE id = $SESSION_id";
 $result = mysqli_query($conn, $sql);
 $userprofile = array();
-while($userinfo = mysqli_fetch_assoc($result)) 
+if(mysqli_num_rows($result) > 0)
+{
+  while($userinfo = mysqli_fetch_assoc($result)) 
   {
     array_push($userprofile, $userinfo);
   } 
+}
 
-if(empty($userinfo))
-echo " look at all those chickens";
+if(empty($userprofile)){echo"No user found";}
 
-echo $userinfo['role'];
+foreach($userprofile as $profile)
+{
+  echo "Utilisateur : " . $profile['first_name']. " ". $profile['last_name'];
+  echo"<br>";
+}
+
+$sql2 = "SELECT * FROM rooms WHERE id_home = $SESSION_home_id";
+$result2 = mysqli_query($conn, $sql2);
+$rooms = array();
+if(mysqli_num_rows($result2) > 0)
+{
+  while($user_rooms = mysqli_fetch_assoc($result2)) 
+  {
+    array_push($rooms, $user_rooms);
+  } 
+}
+if(empty($rooms))
+{
+  echo"I live in a house with no room so what";
+}
+
+$components = array();
+foreach($rooms as $rooms)
+{
+  $sql3 = "SELECT * FROM components where id_room = $rooms[id]";
+  $result3 = mysqli_query($conn, $sql3);
+  if(mysqli_num_rows($result3) > 0)
+{
+  while($user_components = mysqli_fetch_assoc($result3)) 
+  {
+    array_push($components, $user_components);
+  } 
+}
+//foreach($components as $components)
+//{echo $components['name'];echo"<br>"; echo $components['serial_number'];echo"<br>";}
+}
+//Penser à include le header et le footer
 ?>
 
 <!DOCTYPE html>
@@ -56,34 +94,29 @@ echo $userinfo['role'];
 <div id="information">
 <h1>
   <?php 
-  echo $userinfo['first_name'] . " " . $userinfo['last_name'];
+  echo $profile['first_name'] . " " . $profile['last_name'];
   ?>
-  Robert Belouvrage
 </h1>
 <div class="info_container">
 <table id="user_info">
 <tr>
-  <td>First Name</td>
-  <td>Robert</td>
+  <td><strong>First Name</td>
+  <td><?php echo $profile['first_name']?></td>
 </tr>
 <tr>
-  <td>Last Name</td>
-  <td>Belouvrage</td>
+  <td><strong>Last Name</td>
+  <td><?php echo $profile['last_name']?></td>
 </tr>
 <tr>
-  <td>Address</td>
-  <td>Rue des Roseaux</td>
+  <td><strong>Phone Number</td>
+  <td><?php echo $profile['phone']?></td>
 </tr>
 <tr>
-  <td>Phone Number</td>
-  <td>0102038975</td>
-</tr>
+  <td><strong>Mail</td>
+  <td><?php echo $profile['email']?></td>
 <tr>
-  <td>Mail</td>
-  <td>robert.beloulou@robert.fr</td>
-<tr>
-  <td>ID</td>
-  <td>3</td>
+  <td><strong>ID</td>
+  <td><?php echo $profile['id']?></td>
 </tr>
 </table>
 </div>
@@ -95,32 +128,22 @@ echo $userinfo['role'];
 <table id="user_sensors">
 <tr>
   <th>Serial Number</th>
-  <th>Type</th>
-  <th>Date of Activation</th>
+  <th>Name</th>
+  <th>Value</th>
   <th>State</th>
 </tr>
-<tr>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-</tr>
-<tr>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-</tr>
-<tr>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-</tr>
+<?php
+foreach($components as $components)
+{
+   echo "<tr><td>". $components['serial_number'] . "<td>". $components['name']. "<td>". $components['value']. "<td>". $components['state']. "</td></tr>";}?>
 </table>
 </div>
 </div>
 </div>
+
+<?php
+include 'components/footer/footer.php';
+?>
   
 </body>
 </html>
