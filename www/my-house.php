@@ -28,7 +28,7 @@ if (!isset($_SESSION['connected']) || !$_SESSION['connected']) {
     echo('Ma maison - Domisep');
 } ?>
   </title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" media="screen" href="style/add_a_component_pop_up.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="style/dashboard-style.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="style/full-site-style.min.css" />
@@ -306,7 +306,7 @@ include 'components/header-nav/header-nav.php';
 
 	            					</form>
                   <div class= 'header_left'>
-  									<div class='delete_room'>                    
+  									<div class='delete_room'>
                       <form method='POST' action='./handlers/handle_delete_a_room.php'>
                         <i class='material-icons' onclick='this.parentElement.submit()'>delete </i>
                         <input style='display: none;' name='remove_room' value='$current_room_id'>
@@ -320,7 +320,7 @@ include 'components/header-nav/header-nav.php';
 								</div>
 
 								<div class='section_components'>
-									<div class='components_line'>                  
+									<div class='components_line'>
                   ";
             $html .= componentsFunction($component_id, $component_name, $component_value, $component_state, 'write');
             $new_component_line++;
@@ -354,7 +354,7 @@ include 'components/header-nav/header-nav.php';
               		<input type='submit' name='update-name' style='display: none;'>
 	             </form>
                   <div class='header_left'>
-  	                <div class='delete_room'>                    
+  	                <div class='delete_room'>
                       <form method='POST' action='./handlers/handle_delete_a_room.php'>
                         <i class='material-icons' onclick='this.parentElement.submit()'>delete</i>
                         <input style='display: none;' name='remove_room' value='$current_room_id'>
@@ -365,9 +365,9 @@ include 'components/header-nav/header-nav.php';
   	                   <button class='plus-button new-comp-opener'></button><span id='add-comp-title'> Add a component</span>
   	                </div>
                   </div>
-                  
+
               </div>
-                  
+
               </section>";
       }
                 echo $html;
@@ -386,7 +386,7 @@ include 'components/header-nav/header-nav.php';
                     elseif ($_SESSION['language']=='fr') {
                         echo htmlentities('Ajouter une pièce');
                     } ?>
-                
+
               </span>
             </form>
         </div>
