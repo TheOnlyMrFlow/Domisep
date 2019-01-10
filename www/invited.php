@@ -3,9 +3,9 @@
 require_once('./models/Invitation.php');
 
 header('Content-Type: text/html; charset=ISO-8859-1');
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
+// if (session_status() == PHP_SESSION_NONE) {
+//     session_start();
+// }
 if (!isset($_SESSION['language'])) {
     $_SESSION['language'] = 'en';
 }

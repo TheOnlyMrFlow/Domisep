@@ -84,7 +84,7 @@ echo ' on est la ';
   try {
     $signupResult = User::signupMember($lastName, $firstName, $birthDate, $email, $phone, $password1, $password2, $key);
     if (!$signupResult) {
-      echo 'caca prout';
+      // echo qquechose de pas beau
     }
   }
   catch(FormException $e){
