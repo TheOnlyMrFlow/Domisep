@@ -60,11 +60,6 @@
 	margin-bottom: 20px;
 }
 
-.component_title{
-	margin-bottom: 0.7em;
-}
-
-
 /*bouton on/off fin*/
 
 
@@ -137,14 +132,7 @@ input{
 	border: 0px;
 }
 
-input:hover{
-	border:solid #EFEFEF 1px;
-	
-}
 input:focus{
-	border: solid #EFEFEF 1px;
-	/*background-color: #F5F5F5;*/
 	color:grey;
 	font-style: italic;
-
 }

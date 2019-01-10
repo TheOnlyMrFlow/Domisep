@@ -1,7 +1,19 @@
 <?php
 
-$state = $_POST['state'];
 
 $db = mysqli_connect('localhost', 'root', '', 'mff');
-$result = mysqli_query($db, "UPDATE components SET state='$state' WHERE serial_number='$id'");
-echo('level :'.$level.'component : '.$component.'user :'.$selected_user_id.'query :'.$result);
+
+$actionType = $_POST['action'];
+
+if ($actionType == 'change_state') {
+  $state = $_POST['state'];
+  $result = mysqli_query($db, "UPDATE components SET state='$state' WHERE serial_number='$id'");
+}
+elseif ($actionType == 'add_value') {
+  $id = $_POST['id'];
+  $result = mysqli_query($db, "UPDATE components SET value=value+1 WHERE serial_number='$id'");
+}
+elseif ($actionType == 'remove_value') {
+  $id = $_POST['id'];
+  $result = mysqli_query($db, "UPDATE components SET value=value-1 WHERE serial_number='$id'");
+}
