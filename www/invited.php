@@ -1,5 +1,7 @@
 <?php
 
+require_once('./models/Invitation.php');
+
 header('Content-Type: text/html; charset=ISO-8859-1');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -37,17 +39,61 @@ $db = mysqli_connect('localhost', 'root', '', 'mff');
 // }
 include 'components/header-nav/header-nav.php';
 
+
+if (!isset($_GET['key'])){
+	header('Location: ./../index.php');
+	exit();
+}
+
+$db = mysqli_connect('localhost', 'root', '', 'mff');
+$key =  mysqli_real_escape_string($db, $_GET['key']);
+//$key = $_GET['key'];
+
+$invitation = new Invitation($key);
+
+
+if (empty($key)){
+	header('Location: ./../index.php');
+	exit();
+}
+
+
+
+$stmt = $db->prepare("SELECT id_home, email FROM invite_keys WHERE inv_key = ?");
+$stmt->bind_param("s", $key);
+$stmt->execute();
+
+$result = $stmt->get_result();
+$stmt->close();
+$row = $result->fetch_assoc();
+if (!$row){
+	header('Location: ./../index.php');
+	exit();
+}
+$id_home = $row['id_home'];
+$mail = $row['email'];
+
+$ownerQuery = $db->query("SELECT first_name, last_name FROM users WHERE id_home = $id_home AND role='house_manager'");
+$row = $ownerQuery->fetch_assoc();
+$ownerName = $row['first_name'] . ' ' . $row['last_name'];
+
+
 ?>
 
 	<div class="page-content-container">
       	<div class="page-content">
 			<div class = "page-title">
-				<h1>Signup thanks to your invite</h1>
+				<h1><?php echo $ownerName ?> invited you to join his house</h1>
 			</div>
 			<div class="dashboard-big-container">
-			<h2>Join the house !</h2>
+			<h2>Please fill your information</h2>
 				<div class="dashboard-inner-container">
 				<form id="change-info-form">
+				<div>
+						<strong>Email</strong>
+						<input disabled value="<?php echo $mail ?>" type="mail" name="mail">
+					</div>
+					<br>
 				<div>
 						<strong>First name</strong>
 						<input type="text" name="firstname">
@@ -67,15 +113,9 @@ include 'components/header-nav/header-nav.php';
 						<strong>Birthdate</strong>
 						<input type="date" name="birthdate">
 					</div>
-					<br>
-					<div>
-						<strong>Email</strong>
-						<input type="mail" name="mail">
-
-					</div>
 					<br><br>
 					<div>
-						<input type="submit" value="Confirm changes">
+						<input type="submit" value="Signup">
 					</div>
 					<div>
 						<p id="signup-result"></p>

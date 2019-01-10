@@ -30,8 +30,8 @@ $(document).ready(function () {
                 function (compData) {
                     console.log(compData);
                     compData = JSON.parse(compData);
-                    document.getElementById("comp-details-title").innerHTML = compData[0];
-                    document.getElementById("comp-details-name").value = compData[0];
+                    document.getElementById("comp-details-title").innerHTML = compData['name'];
+                    document.getElementById("comp-details-name").value = compData['name'];
 
                     var roomSelect = document.getElementById("comp-details-room");
 
@@ -44,10 +44,10 @@ $(document).ready(function () {
                             roomsData = JSON.parse(roomsData);
                             for (var i = 0; i < roomsData.length; i++) {
                                 roomSelect.innerHTML +=
-                                    "<option value = '"+roomsData[i][0]+"'>" + roomsData[i][1] + "</option>";
+                                    "<option value = '"+roomsData[i]['id']+"'>" + roomsData[i]['name'] + "</option>";
 
                             }
-                            roomSelect.value = compData[2];
+                            roomSelect.value = compData['id_room'];
                         }
                     );
 

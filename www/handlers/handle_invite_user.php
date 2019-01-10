@@ -40,23 +40,20 @@ $seed = str_split('abcdefghijklmnopqrstuvwxyz'
     . 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
     . '0123456789');
 shuffle($seed);
-$secret_key = '';
+$key = '';
 foreach (array_rand($seed, 30) as $k) {
-    $secret_key .= $seed[$k];
+    $key .= $seed[$k];
 }
 
-$hashed_secret_key = password_hash($secret_key, PASSWORD_BCRYPT);
-
-
-$stmt = $db->prepare("INSERT INTO invite_keys (email, hashed_key, id_home)  VALUES (?, ?, ?)");
-$stmt->bind_param("ssi", $mail, $hashed_secret_key, $_SESSION['home_id']);
+$stmt = $db->prepare("INSERT INTO invite_keys (email, inv_key, id_home)  VALUES (?, ?, ?)");
+$stmt->bind_param("ssi", $mail, $key, $_SESSION['home_id']);
 $stmt->execute();
 
 
-sendInviteMail($mail, $hashed_secret_key);
+sendInviteMail($mail, $key);
 
 
-function sendInviteMail($email, $secret_key)
+function sendInviteMail($email, $key)
 {
     $transport = (new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'))
         ->setUsername('contact.domisep@gmail.com')
@@ -74,7 +71,7 @@ function sendInviteMail($email, $secret_key)
         ->setTo([$email])
         ->setBody(
             " <p>You have been invited to join $inviter's house on Domisep ! </p>
-        <p>Please follow <a href='$base_url/invited/?key=$secret_key'>this link</a> to create your account to access the home space</p>
+        <p>Please follow <a href='$base_url/invited?key=$key'>this link</a> to create your account to access the home space</p>
         ", 'text/html'
         );
 

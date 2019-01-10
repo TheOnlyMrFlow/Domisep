@@ -26,11 +26,14 @@ header{
   float: right;
   flex-grow: 1;
   display: flex;
+  justify-content: flex-end;
 }
 
 #menu-list{
-  display: inline-block;
-  margin: 0 auto;
+  display: block;
+  margin-right: 20px;
+  margin-top: auto;
+  margin-bottom: auto;
   height : 100%;
   padding: 0px;
 }

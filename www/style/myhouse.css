@@ -37,8 +37,10 @@
 
 .room_header{
 	display: flex;
-	align-items: center;
-	margin-bottom: 10px;
+/*	align-items: center;
+*/	margin-bottom: 10px;
+	justify-content: space-between;
+	align-content: space-between;
 }
 
 #add-comp-title,#add-preset-title,#add-room-title{
@@ -150,10 +152,14 @@ input:focus{
 }
 
 .delete_room{
-	display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: flex-end;
-    align-content: flex-start;
-    align-items: flex-end;
+	
+
+}
+
+.header_left{
+	display:flex;
+	flex-direction: row;
+	min-width:25%;
+	align-items: center;
+
 }

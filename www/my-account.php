@@ -35,6 +35,7 @@ $phone = $user['phone'];
 	<link rel="stylesheet" type="text/css" media="screen" href="style/dashboard-style.min.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="style/my-account.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="style/icons.min.css" />
+  <link rel='stylesheet' type='text/css' media='screen' href='=component-style.min.css' />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.min.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/footer/footer.min.css" />
 	<link rel="stylesheet" href="components/header-nav/header-nav.min.css">

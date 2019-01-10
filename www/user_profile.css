@@ -1,0 +1,61 @@
+body
+{
+    background-image: linear-gradient(to bottom right, #0E0E0E, #206ea5 50%);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+    color: #0E0E0E;
+}
+#page-content
+{
+    padding:5%;
+}
+
+#information
+{
+    background-color: #fff;
+    width: 100%;
+    border-radius:5px;
+    margin: auto;
+    margin-top: 1%;
+    color: #0E0E0E;
+}
+h1{padding-left:5%;padding-top:5%;}
+h2{padding-left:5%;padding-top:5%;}
+
+.info_container
+{
+    padding:5%;
+}
+#user_info{border-collapse: collapse;}
+.user_info, tr, td
+{
+    border: 1px solid #ddd;
+    border-collapse: collapse;
+    padding: 3%;
+    width: 35%; 
+}
+
+.sensors_container
+{
+    background-color: #fff;
+    width: 100%;
+    border-radius:5px;
+    margin: auto;
+    margin-top: 3%;
+    color: #0E0E0E;
+}
+
+.sensors
+{
+    padding:5%;
+}
+#user_sensors{border-collapse: collapse;}
+
+.user_sensors, tr, td
+{
+    border: 1px solid #0E0E0E;
+    padding: 3%;
+    width: 5%; 
+}
+
+

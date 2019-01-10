@@ -36,8 +36,7 @@ $(document).ready(function () {
         type: 'post',
         success: function(data) {
             console.log(data);
-            document.getElementById("change-info-result").innerHTML=data;
-            cancelButton.click();
+            location.reload();
         },
         error: function(err) {
             console.log(err['statustext']);
