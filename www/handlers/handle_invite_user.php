@@ -1,5 +1,6 @@
 <?php
 
+require_once '../models/Invitation.php';
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -36,54 +37,16 @@ if ($stmt->fetch()) {
 
 $stmt->close();
 
-$seed = str_split('abcdefghijklmnopqrstuvwxyz'
-    . 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
-    . '0123456789');
-shuffle($seed);
-$key = '';
-foreach (array_rand($seed, 30) as $k) {
-    $key .= $seed[$k];
+
+$result = Invitation::generateAndSend($mail, $_SESSION['home_id'], 'contact.domisep@gmail.com', 'WeLoveC00kies', $mail);
+
+if ($result > 0) {
+    echo 'message sent';
+} else {
+    echo 'fail sending mail';
 }
 
-$stmt = $db->prepare("INSERT INTO invite_keys (email, inv_key, id_home)  VALUES (?, ?, ?)");
-$stmt->bind_param("ssi", $mail, $key, $_SESSION['home_id']);
-$stmt->execute();
 
-
-sendInviteMail($mail, $key);
-
-
-function sendInviteMail($email, $key)
-{
-    $transport = (new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'))
-        ->setUsername('contact.domisep@gmail.com')
-        ->setPassword('WeLoveC00kies');
-
-    $mailer = new Swift_Mailer($transport);
-
-    $base_url = constant('BASE_URL');
-
-    $inviter = $_SESSION['first_name'] . ' ' . $_SESSION['last_name'];
-
-    // Create a message
-    $messageToCustomer = (new Swift_Message("You received an invitation"))
-        ->setFrom(['contact.domisep@gmail.com' => 'Service client Domisep'])
-        ->setTo([$email])
-        ->setBody(
-            " <p>You have been invited to join $inviter's house on Domisep ! </p>
-        <p>Please follow <a href='$base_url/invited?key=$key'>this link</a> to create your account to access the home space</p>
-        ", 'text/html'
-        );
-
-    $result = $mailer->send($messageToCustomer);
-
-    if ($result > 0) {
-        echo 'message sent';
-    } else {
-        echo 'fail sending mail';
-    }
-
-}
 
 function displayErrorAndLeave($error = 'Sorry, an error occured', $status = 500)
 {

@@ -4,7 +4,7 @@
 function componentsFunction($serial_number, $name_component, $component_value,  $state, $right){
 		$adjust = "";
 			$type = substr($serial_number, 4 , 4);
-			// $icon = "<i class='fas fa-lightbulb fa-2x'></i>";
+			$icon = "<i class='fas fa-lightbulb fa-2x'></i>";
 
 
 			if ($type == 'lght'){

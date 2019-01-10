@@ -2,6 +2,7 @@
 
 //require_once('./FormException.php');
 require_once 'Home.php';
+require_once 'Invitation.php';
 
 class User
 {
@@ -125,10 +126,88 @@ class User
 
         $homeId = Home::createHome($address, $city, $zipCode, $country);
 
-        $stmt = $db->prepare("INSERT INTO  users (first_name, last_name, email, birthdate, phone, password, id_home, role)  VALUES (?, ?, ?, ?, ?, ?, ?, 'house_manager')");
+        $stmt = $db->prepare("INSERT INTO  users (first_name, last_name, email, birthdate, phone, password, id_home, role)  VALUES (?, ?, ?, ?, ?, ?, ?, 'house_member')");
         $stmt->bind_param("ssssssi", $firstName, $lastName, $email, $birthDate, $phone, $password, $homeId);
         $stmt->execute();
         $stmt->close();
+
+    }
+
+    public static function signupMember(    $lastName,
+                                            $firstName,
+                                            $birthDate,
+                                            $email,
+                                            $phone,
+                                            $password1,
+                                            $password2,
+                                            $key
+    ) {
+
+        $db = mysqli_connect('localhost', 'root', '', 'mff');
+
+
+        $lastName = mysqli_real_escape_string($db, $lastName);
+        $firstName = mysqli_real_escape_string($db, $firstName);
+        $birthDate = mysqli_real_escape_string($db, $birthDate);
+        $email = mysqli_real_escape_string($db, $email);
+        $phone = mysqli_real_escape_string($db, $phone);
+        $password1 = mysqli_real_escape_string($db, $password1);
+        $password2 = mysqli_real_escape_string($db, $password2);
+
+        $invitation = Invitation::find($email, $key);
+
+        if (!$invitation) {
+            return false;
+        }
+
+        if (empty($lastName)) {
+            throw new FormException("Last name is required");
+        }
+        if (empty($firstName)) {
+            throw new FormException("First name is required");
+        }
+        if (empty($email)) {
+            throw new FormException("Email is required");
+        }
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            throw new FormException("Email is not valid");
+        }
+        if (User::exists($email)) {
+            throw new FormException("A user already exists with this mail adress");
+        }
+        if (empty($birthDate)) {
+            throw new FormException("Birthdate is required");
+        }
+        if (empty($phone)) {
+            throw new FormException("Phone number name is required");
+        }
+        if (empty($password1)) {
+            throw new FormException("Password is required");
+        }
+        if (!User::checkPasswordValidity($password1)) {
+            throw new FormException(User::$passwordRequirements);
+        }
+        if (empty($password2)) {
+            throw new FormException("Password confirmation is required");
+        }
+        if ($password1 != $password2) {
+            throw new FormException("The two passwords do not match");
+        }
+
+        $password = password_hash($password1, PASSWORD_BCRYPT);
+        $birthDate = date('Y-m-d', strtotime($birthDate));
+
+        $homeId = $invitation->home->getId();
+
+        $stmt = $db->prepare("INSERT INTO  users (first_name, last_name, email, birthdate, phone, password, id_home, role)  VALUES (?, ?, ?, ?, ?, ?, ?, 'house_manager')");
+        $stmt->bind_param("ssssssi", $firstName, $lastName, $email, $birthDate, $phone, $password, $homeId);
+        echo mysqli_error($db);
+
+        $stmt->execute();
+        $stmt->close();
+
+
+        return true;
 
     }
 
