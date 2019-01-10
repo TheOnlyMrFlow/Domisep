@@ -34,9 +34,15 @@ if (!isset($_SESSION['connected']) || !$_SESSION['connected']){
 	<link rel="stylesheet" type="text/css" media="screen" href="style/component-style.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/footer/footer.css" />
+
+	
 	<link rel="stylesheet" href="style/myhouse.css"/>
 	<link rel="stylesheet" href="components/header-nav/header-nav.css">
 	<link rel="stylesheet" href="components/header-nav/header-dashboard.css">
+	
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 	<script src="components/header-nav/sticky-header.js"></script>
 	<script src="scripts/change-language.js"></script>
@@ -114,13 +120,20 @@ include 'components/header-nav/header-nav.php';
 										<input type='submit' name='update-name' style='display: none;'>
 
 	            					</form> 
-									<div class='section_add_component'>
-											<button class='plus-button new-comp-opener'></button><span id='add-comp-title'>$add_component</span>
+	            					<div class='section_add_component'>
+										<button class='plus-button new-comp-opener'></button><span id='add-comp-title'>$add_component</span>
 									</div>
+
 								</div>
+								
+						        
 
 								<div class='section_components'>
-									<div class='components_line'>";
+									<div class='components_line'>
+								<div class='delete_room'>
+								    <i class='material-icons'>delete</i>
+								</div>
+									";
             $html .= componentsFunction($component_id, $component_name, $component_value);
             $new_component_line++;
 			}
@@ -155,8 +168,12 @@ include 'components/header-nav/header-nav.php';
 	                <div class='section_add_component'>
 	                    <button class='plus-button new-comp-opener'></button><span id='add-comp-title'>$add_component</span>
 	                </div>
-                
-              </div>
+
+	        </div>
+	        <div class='delete_room'>
+	            <i class='material-icons'>delete</i>
+	        </div>
+               
               </section>";
       }
 
@@ -164,12 +181,22 @@ include 'components/header-nav/header-nav.php';
 			?>
 
 			<div class="section_add_room">
-				<button class="plus-button plus-button--large" href="add_component.html"></button><span id="add-room-title"><?php if($_SESSION['language']=='en'){
-          echo('Add a room');
-        }elseif ($_SESSION['language']=='fr') {
-          echo htmlentities('Ajouter une pièce');
-        } ?></span>
-			</div>
+				<form method="POST" action="./handlers/handle_add_a_room.php">
+				<button class="plus-button plus-button--large" onclick="this.submit()"></button>
+				<input style="display: none;" name="new_room">
+				<span id="room_name">
+
+					<?php if($_SESSION['language']=='en'){
+         					 echo('Add a room');
+
+       				}
+       				elseif ($_SESSION['language']=='fr') {
+          				echo htmlentities('Ajouter une pièce');
+        			} ?>
+        	
+		        </span>
+		        </form>
+				</div>
 		</div>
 	</div>
 </div>
