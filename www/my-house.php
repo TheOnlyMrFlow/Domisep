@@ -28,8 +28,8 @@ if (!isset($_SESSION['connected']) || !$_SESSION['connected']) {
     echo('Ma maison - Domisep');
 } ?>
   </title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" media="screen" href="style/add_a_component_pop_up.css" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  	<link rel="stylesheet" type="text/css" media="screen" href="style/add_a_component_pop_up.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="style/dashboard-style.min.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="style/full-site-style.min.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/component/component-style.min.css" />
@@ -41,7 +41,11 @@ if (!isset($_SESSION['connected']) || !$_SESSION['connected']) {
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="components/header-nav/sticky-header.min.js"></script>
 	<script src="scripts/change-language.min.js"></script>
-  <script src="scripts\update-component-values.js"></script>
+  <script src="scripts/update-component-values.min.js"></script>  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/livequery/1.1.1/jquery.livequery.js"></script>
+
+
 
 </head>
 
@@ -166,12 +170,12 @@ include 'components/header-nav/header-nav.php';
             }
             elseif ($role == 'house_manager') {
               $query = "SELECT
-                      rooms.id,
+                      id_room,
                       rooms.name,
-                      components.serial_number,
+                      serial_number,
                       components.name,
-                      components.value,
-                      components.state
+                      value,
+                      state
                   FROM
                       components
                   INNER JOIN rooms ON components.id_room = rooms.id
@@ -266,7 +270,10 @@ include 'components/header-nav/header-nav.php';
             }
 			$db = mysqli_connect('localhost', 'root', '', 'mff');
 			$id_home = $_SESSION['home_id'];
-			$components_array = mysqli_query($db, "SELECT id_room,rooms.name,serial_number,components.name,value,state FROM components INNER JOIN rooms ON components.id_room=rooms.id WHERE rooms.id_home=$id_home ORDER BY rooms.name,components.name");
+			$components_array = mysqli_query($db, "SELECT id_room,rooms.name,serial_number,components.name,value,state
+                                             FROM components INNER JOIN rooms ON components.id_room=rooms.id
+                                             WHERE rooms.id_home=$id_home
+                                             ORDER BY rooms.name,components.name");
 			$html = '';
 			$current_room_id = null;
 			$first_room = 1;
@@ -327,7 +334,9 @@ include 'components/header-nav/header-nav.php';
       				$html .= "</div></div></section>";
       			}
 
-      $empty_rooms_array = mysqli_query($db, "SELECT rooms.id,rooms.name FROM rooms LEFT JOIN components ON rooms.id=components.id_room WHERE components.id_room IS NULL");
+      $empty_rooms_array = mysqli_query($db, "SELECT rooms.id,rooms.name
+                                              FROM rooms LEFT JOIN components ON rooms.id=components.id_room
+                                              WHERE components.id_room IS NULL");
       while($empty_rooms_row = mysqli_fetch_row($empty_rooms_array)){
         $current_room_id = $empty_rooms_row[0];
         $room_name = $empty_rooms_row[1];
@@ -369,12 +378,6 @@ include 'components/modals/new-component/new-component.php';
 </body>
 
 <script src="scripts/open-modals.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/livequery/1.1.1/jquery.livequery.js"></script>
-
-
-
 <script src="components/modals/component-details/component-details.js"></script>
 <script src="components/modals/new-component/new-component.js"></script>
 <script src="scripts/change-room-name.js"></script>
