@@ -40,40 +40,32 @@ $db = mysqli_connect('localhost', 'root', '', 'mff');
 include 'components/header-nav/header-nav.php';
 
 
-if (!isset($_GET['key'])){
+if (!isset($_GET['key']) || !isset($_GET['mail'])){
 	header('Location: ./../index.php');
 	exit();
 }
 
 $db = mysqli_connect('localhost', 'root', '', 'mff');
 $key =  mysqli_real_escape_string($db, $_GET['key']);
+$mail = mysqli_real_escape_string($db, $_GET['mail']);
 //$key = $_GET['key'];
 
-$invitation = new Invitation($key);
-
-
-if (empty($key)){
+if (empty($key) || empty($mail)){
 	header('Location: ./../index.php');
 	exit();
 }
 
 
+$invitation = Invitation::find($mail, $key);
 
-$stmt = $db->prepare("SELECT id_home, email FROM invite_keys WHERE inv_key = ?");
-$stmt->bind_param("s", $key);
-$stmt->execute();
-
-$result = $stmt->get_result();
-$stmt->close();
-$row = $result->fetch_assoc();
-if (!$row){
+if (!$invitation){
 	header('Location: ./../index.php');
 	exit();
 }
-$id_home = $row['id_home'];
-$mail = $row['email'];
 
-$ownerQuery = $db->query("SELECT first_name, last_name FROM users WHERE id_home = $id_home AND role='house_manager'");
+$home_id = $invitation->home->getId();
+
+$ownerQuery = $db->query("SELECT first_name, last_name FROM users WHERE id_home = $home_id AND role='house_manager'");
 $row = $ownerQuery->fetch_assoc();
 $ownerName = $row['first_name'] . ' ' . $row['last_name'];
 
@@ -88,10 +80,11 @@ $ownerName = $row['first_name'] . ' ' . $row['last_name'];
 			<div class="dashboard-big-container">
 			<h2>Please fill your information</h2>
 				<div class="dashboard-inner-container">
-				<form id="change-info-form">
+				<form method="POST" action="./handlers/handle-signup.php">
 				<div>
 						<strong>Email</strong>
-						<input disabled value="<?php echo $mail ?>" type="mail" name="mail">
+						<input readonly value="<?php echo $mail ?>" type="mail" name="email-disabled">
+						<input value="<?php echo $mail ?>" style="display:none;" type="mail" name="email">
 					</div>
 					<br>
 				<div>
@@ -105,6 +98,16 @@ $ownerName = $row['first_name'] . ' ' . $row['last_name'];
 					</div>
 					<br>
 					<div>
+						<strong>Password</strong>
+						<input type="password" name="password1">
+					</div>
+					<br>
+					<div>
+						<strong>Confirm password</strong>
+						<input type="password" name="password2">
+					</div>
+					<br>
+					<div>
 						<strong>Phone</strong>
 						<input type="text" name="phone">
 					</div>
@@ -113,9 +116,11 @@ $ownerName = $row['first_name'] . ' ' . $row['last_name'];
 						<strong>Birthdate</strong>
 						<input type="date" name="birthdate">
 					</div>
-					<br><br>
+					<br>
+					<br>
+					<input style="display: none;" name="key" value='<?php echo $key ?>'>
 					<div>
-						<input type="submit" value="Signup">
+						<input type="submit" value="Signup" name="signup-member">
 					</div>
 					<div>
 						<p id="signup-result"></p>
