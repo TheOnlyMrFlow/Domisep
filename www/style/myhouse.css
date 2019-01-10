@@ -111,7 +111,38 @@
 		height: 0.2em;
 		width: 1em;
 	}
+.plus-button-room {
+	border: 2px solid lightgrey;
+	background-color: #fff;
+	font-size: 16px;
+	height: 2em;
+	width: 2em;
+	border-radius: 999px;
+	position: relative;
+	cursor: pointer;
+}
 
+	.plus-button-room:after,
+	.plus-button-room:before {
+		content: "";
+		display: block;
+		background-color: grey;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
+
+	.plus-button-room:before {
+		height: 1em;
+		width: 0.2em;
+	}
+
+	.plus-button-room:after {
+		height: 0.2em;
+		width: 1em;
+	}
+	
 .plus-button--large {
 	font-size: 22px;
 }
@@ -151,10 +182,6 @@ input:focus{
 
 }
 
-.delete_room{
-	
-
-}
 
 .header_left{
 	display:flex;

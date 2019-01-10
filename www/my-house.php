@@ -309,12 +309,12 @@ include 'components/header-nav/header-nav.php';
   									<div class='delete_room'>                    
                       <form method='POST' action='./handlers/handle_delete_a_room.php'>
                         <i class='material-icons' onclick='this.parentElement.submit()'>delete </i>
-                        <input style='display: none;' name='remove_room'>
+                        <input style='display: none;' name='remove_room' value='$current_room_id'>
                         <span id='delete'>
                       </form>
                     </div>
                     <div class='section_add_component'>
-  											<button class='plus-button new-comp-opener'></button><span id='add-comp-title'>$add_component</span>
+  											<button class='plus-button new-comp-opener'></button><span id='add-comp-title'> Add a component</span>
   									</div>
                   </div>
 								</div>
@@ -357,12 +357,12 @@ include 'components/header-nav/header-nav.php';
   	                <div class='delete_room'>                    
                       <form method='POST' action='./handlers/handle_delete_a_room.php'>
                         <i class='material-icons' onclick='this.parentElement.submit()'>delete</i>
-                        <input style='display: none;' name='remove_room'>
+                        <input style='display: none;' name='remove_room' value='$current_room_id'>
                         <span id='delete'>
                       </form>
                     </div>
                     <div class='section_add_component'>
-  	                   <button class='plus-button new-comp-opener'></button><span id='add-comp-title'>Add a component</span>
+  	                   <button class='plus-button new-comp-opener'></button><span id='add-comp-title'> Add a component</span>
   	                </div>
                   </div>
                   
@@ -375,7 +375,7 @@ include 'components/header-nav/header-nav.php';
 
       			<div class="section_add_room">
               <form method="POST" action="./handlers/handle_add_a_room.php">
-              <button class="plus-button plus-button--large" onclick="this.submit()"></button>
+              <button onclick="this.parentElement.submit()" class="plus-button-room plus-button--large"></button>
               <input style="display: none;" name="new_room">
               <span id="room_name">
 
