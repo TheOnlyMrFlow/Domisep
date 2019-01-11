@@ -57,6 +57,7 @@
 .component_bas{
 	display:flex;
 	flex-direction: row;
+	margin-top: 10%;
 }
 
 .bouton_3_points a:link{
@@ -83,6 +84,7 @@
   display: inline-block;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+	margin-right: 20px;
 }
 
 .form-switch i {
