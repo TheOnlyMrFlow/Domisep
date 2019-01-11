@@ -9,10 +9,20 @@
 .component:not(:first-child){
 	margin-left: 4%;
 }
+
+.no-click{
+	pointer-events: none;
+}
+.cursor-not-allowed{
+	cursor: not-allowed;
+}
+
 .component_title{
 	color : #262626;
 	text-align: center;
 	height: 25%;
+	font-family: 'Montserrat', sans-serif;
+	font-weight:bold;
 }
 
 .component_middle{
@@ -58,26 +68,16 @@
 	display:flex;
 	flex-direction: row;
 	margin-top: 10%;
+	justify-content: center;
+	align-items: center;
 }
 
-.bouton_3_points a:link{
-	margin:2px;
-	text-decoration: none;
-	text-align:center;
-	width: 10px;
-	height: 10px;
-	padding: 5px;
-	border:grey;
-	border-radius: 50%;
-	color: black;
-	box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.2);
-	cursor:pointer;
-	transition: 0.2s;
-	}
+.comp-details-opener{
+	cursor: pointer;
+}
 
-.bouton_3_points a:visited{
-	text-decoration: none
-
+.comp-details-opener:hover{
+	color: #FE785C;
 }
 
 .form-switch {
