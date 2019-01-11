@@ -1,5 +1,7 @@
 $(document).ready(function () {
 
+	
+
 	Array.prototype.forEach.call($(".change-room-name"), (el)=>{
 		console.log($(el));
 		$(this).ajaxForm({

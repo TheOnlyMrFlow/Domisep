@@ -32,7 +32,7 @@ class Room
 
         $stmt1->execute();  
         $stmt2->execute();  
-        
+
         $stmt1->close();
         $stmt2->close();
         
@@ -40,6 +40,17 @@ class Room
         echo mysqli_error($db);
     }
 
+    function rename($newName) {
+
+        $stmt = $db->prepare("UPDATE rooms SET name = ? WHERE id = ?");
+        $stmt->bind_param("si", $newName, $this->id);
+        $stmt->execute();
+        echo mysqli_error($db);
+        $stmt->close();
+        
+        
+
+    }
     /**
      * Fait par Florian
      *

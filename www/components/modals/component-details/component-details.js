@@ -25,11 +25,14 @@ $(document).ready(function () {
             }
             document.getElementById('comp-details-id').value = root.id;
             
+            
+            
             $.get(
                 encodeURI('http://localhost/handlers/ajax-component-details.php?id=' + root.id),
                 function (compData) {
                     console.log(compData);
                     compData = JSON.parse(compData);
+                    
                     document.getElementById("comp-details-title").innerHTML = compData['name'];
                     document.getElementById("comp-details-name").value = compData['name'];
 

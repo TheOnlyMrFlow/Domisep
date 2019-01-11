@@ -6,7 +6,7 @@ $(document).ready(function () {
 	$("#new-comp-form").ajaxForm({
         url: 'http://localhost/handlers/handle_new_component_information.php',
         type: 'post',
-        success: function(data) {console.log(data); location.reload();},
+        success: function(data) {console.log(data); location.reload();  },
         error: function(err) {
         	console.log(err);
         	var p = document.getElementById("new-comp-result");
