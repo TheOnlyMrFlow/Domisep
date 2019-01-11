@@ -9,6 +9,15 @@ class Room
         
     }
 
+    public static function createRoom($name, $homeId) {
+    $db=mysqli_connect('localhost', 'root', '', 'mff');
+    $stmt = $db->prepare("INSERT INTO rooms (name, id_home) VALUES (?, ?)");
+    $stmt->bind_param("si", $roomName, $homeId);
+    $stmt->execute();
+    $stmt->close();
+
+    }
+
     /**
      * Fait par Florian
      *
