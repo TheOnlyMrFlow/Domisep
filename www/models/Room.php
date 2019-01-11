@@ -12,10 +12,32 @@ class Room
     public static function createRoom($name, $homeId) {
     $db=mysqli_connect('localhost', 'root', '', 'mff');
     $stmt = $db->prepare("INSERT INTO rooms (name, id_home) VALUES (?, ?)");
-    $stmt->bind_param("si", $roomName, $homeId);
+
+    $stmt->bind_param("si", $name, $homeId);
     $stmt->execute();
+    echo mysqli_error($db);
+
     $stmt->close();
 
+    }
+
+    public function deleteSelf() {
+        $db=mysqli_connect('localhost', 'root', '', 'mff');
+
+        $stmt1 = $db->prepare("DELETE FROM rooms WHERE id=?");
+        $stmt1->bind_param("i", $this->id);
+
+        $stmt2 = $db->prepare("DELETE FROM components WHERE id_room=?");
+        $stmt2->bind_param("i", $this->id);
+
+        $stmt1->execute();  
+        $stmt2->execute();  
+        
+        $stmt1->close();
+        $stmt2->close();
+        
+        
+        echo mysqli_error($db);
     }
 
     /**
