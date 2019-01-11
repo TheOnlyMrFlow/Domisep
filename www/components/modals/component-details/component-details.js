@@ -28,7 +28,7 @@ $(document).ready(function () {
             
             
             $.get(
-                encodeURI('http://localhost/handlers/ajax-component-details.php?id=' + root.id),
+                encodeURI('http://localhost/controllers/components/details-json.php?id=' + root.id),
                 function (compData) {
                     console.log(compData);
                     compData = JSON.parse(compData);
@@ -41,7 +41,7 @@ $(document).ready(function () {
                     roomSelect.innerHTML = "";
 
                     $.get(
-                        'http://localhost/handlers/ajax-rooms-of-house.php',
+                        'http://localhost/controllers/rooms/list-json.php',
                         function (roomsData) {
                             console.log(roomsData);
                             roomsData = JSON.parse(roomsData);

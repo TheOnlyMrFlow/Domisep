@@ -12,7 +12,7 @@ class Component
     /**
      * Fait par Florian
      *
-     * Retourne un array d'erreur, vide le cas échéant.
+     * Retourne un true si c'est ok, false si le serial number est deja utilise.
      **/
     public static function createComponent($name, $serialNumber, $roomId) {
 

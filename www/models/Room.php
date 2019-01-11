@@ -42,6 +42,7 @@ class Room
 
     function rename($newName) {
 
+        $db=mysqli_connect('localhost', 'root', '', 'mff');
         $stmt = $db->prepare("UPDATE rooms SET name = ? WHERE id = ?");
         $stmt->bind_param("si", $newName, $this->id);
         $stmt->execute();

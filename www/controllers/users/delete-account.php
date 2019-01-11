@@ -1,6 +1,6 @@
 <?php
 
-require_once '../utils/logout.php';
+require_once(dirname(__FILE__) . '/../../utils/logout.php');
 
 mysqli_report(MYSQLI_REPORT_STRICT);
 

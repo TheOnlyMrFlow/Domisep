@@ -3,7 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once(dirname(__FILE__) . '/../models/Room.php');
+require_once(dirname(__FILE__) . '/../../models/Room.php');
 
 $id_home = $_SESSION['home_id'];
 
@@ -23,7 +23,7 @@ $room->deleteSelf();
 
 
 
-header("Location: ../my-house.php");
+header("Location: ../../my-house.php");
 
 if (sizeof($errors)>0){
 	header("HTTP/1.1 403 " . $errors[0]);

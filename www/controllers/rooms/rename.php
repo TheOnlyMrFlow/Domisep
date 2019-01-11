@@ -9,7 +9,7 @@ if (!isset($_SESSION['connected']) || $_SESSION['connected'] == false) {
     displayErrorAndLeave('You are not connected', 401);
 }
 
-require_once(dirname(__FILE__) . '/../Room.php');
+require_once(dirname(__FILE__) . '/../../models/Room.php');
 
 // if (!isset($_POST['room_name']) ) {
 

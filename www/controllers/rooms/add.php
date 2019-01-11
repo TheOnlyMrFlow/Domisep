@@ -4,7 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 
-require_once(dirname(__FILE__) . '/../models/Room.php');
+require_once(dirname(__FILE__) . '/../../models/Room.php');
 
 $homeId = $_SESSION['home_id'];
 
@@ -15,7 +15,7 @@ if (isset($_POST['new_room'])) {
 	Room::createRoom($roomName, $homeId);
 	
 
-header("Location: ../my-house.php");
+header("Location: ../../my-house.php");
 
 	
 }

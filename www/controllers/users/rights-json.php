@@ -1,6 +1,6 @@
 <?php
 
-require_once('../models/User.php');
+require_once(dirname(__FILE__) . '/../../models/User.php');
 
 $selected_user_id = $_POST['user_id'];
 

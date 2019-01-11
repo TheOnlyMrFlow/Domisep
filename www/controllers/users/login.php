@@ -1,6 +1,6 @@
 <?php
 
-require_once('../models/Home.php');
+require_once(dirname(__FILE__) . '/../../models/Home.php');
 
 if (isset($_POST['login']))
 {

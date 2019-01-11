@@ -139,11 +139,11 @@ include 'components/header-nav/header-nav.php';
 			</div>
 
 
-			<form method="post" action="./handlers/handle-logout.php">
+			<form method="post" action="./controllers/users/logout.php">
 				<input type="submit" value="Log out" name="logout">
 			</form>
 
-			<form method="post" action="./handlers/handle-delete-account.php">
+			<form method="post" action="./controllers/users/delete-account.php">
 				<input style="display: none;" name="delete-account">
 				<input onClick="SubmitDeleteAccount(this.form)" type="button" value="Delete my account" name="delete-account">
 			</form>

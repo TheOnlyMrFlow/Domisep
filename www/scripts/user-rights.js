@@ -3,7 +3,7 @@ $(document).ready(function() {
     var data = {
       'user_id' : $(this).children('option:selected').val()
     }
-    $.post('../handlers/display-user-rights.php',data,
+    $.post('../controllers/users/rights-json.php',data,
     function(response) { //success callback
       console.log(response);
       var parsed_response = JSON.parse(response);

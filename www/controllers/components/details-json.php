@@ -1,6 +1,6 @@
 <?php
 
-    require_once('../models/Component.php');
+    require_once(dirname(__FILE__) . '/../../models/Component.php');
 
     $id = $_GET['id'];
     $db = mysqli_connect('localhost', 'root', '', 'mff');

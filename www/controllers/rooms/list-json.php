@@ -1,7 +1,7 @@
 <?php
 
-require_once('../models/Home.php');
-require_once('../models/Room.php');
+require_once(dirname(__FILE__) .'/../../models/Home.php');
+require_once(dirname(__FILE__) . '/../../models/Room.php');
 
 session_start();
 

@@ -315,7 +315,7 @@ include 'components/header-nav/header-nav.php';
 	            					</form>
                   <div class= 'header_left'>
   									<div class='delete_room'>
-                      <form method='POST' action='./handlers/handle_delete_a_room.php'>
+                      <form method='POST' action='./controllers/rooms/delete.php'>
                         <i class='material-icons' onclick='this.parentElement.submit()'>delete </i>
                         <input style='display: none;' name='remove_room' value='$current_room_id'>
                         <span id='delete'>
@@ -368,7 +368,7 @@ include 'components/header-nav/header-nav.php';
         	             </form>
                           <div class='header_left'>
           	                <div class='delete_room'>
-                              <form method='POST' action='./handlers/handle_delete_a_room.php'>
+                              <form method='POST' action='./controllers/rooms/delete.php'>
                                 <i class='material-icons' onclick='this.parentElement.submit()'>delete</i>
                                 <input style='display: none;' name='remove_room' value='$current_room_id'>
                                 <span id='delete'>
@@ -390,7 +390,7 @@ include 'components/header-nav/header-nav.php';
             ?>
 
       			<div class="section_add_room">
-              <form method="POST" action="./handlers/handle_add_a_room.php">
+              <form method="POST" action="./controllers/rooms/add.php">
               <button onclick="this.parentElement.submit()" class="plus-button-room plus-button--large"></button>
               <input style="display: none;" name="new_room">
               <span id="room_name">
