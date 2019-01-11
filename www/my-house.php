@@ -29,25 +29,6 @@ if (!isset($_SESSION['connected']) || !$_SESSION['connected']) {
 } ?>
   </title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-<<<<<<< HEAD
-  	<link rel="stylesheet" type="text/css" media="screen" href="style/add_a_component_pop_up.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="style/dashboard-style.min.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="style/full-site-style.min.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="components/component/component-style.min.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.min.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="components/footer/footer.min.css" />
-	<link rel="stylesheet" href="style/myhouse.min.css"/>
-	<link rel="stylesheet" href="components/header-nav/header-nav.min.css">
-	<link rel="stylesheet" href="components/header-nav/header-dashboard.min.css">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="components/header-nav/sticky-header.min.js"></script>
-	<script src="scripts/change-language.min.js"></script>
-  <script src="scripts/update-component-values.min.js"></script>  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/livequery/1.1.1/jquery.livequery.js"></script>
-
-
-=======
 	<link rel="stylesheet" type="text/css" media="screen" href="style/add_a_component_pop_up.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="style/dashboard-style.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="style/full-site-style.min.css" />
@@ -65,7 +46,6 @@ if (!isset($_SESSION['connected']) || !$_SESSION['connected']) {
 	<script src="components/header-nav/sticky-header.js"></script>
 	<script src="scripts/change-language.js"></script>
   <script src="scripts\update-component-values.js"></script>
->>>>>>> 54019fccca55ffaa905181ecc4f9a26baa79f118
 
 </head>
 
