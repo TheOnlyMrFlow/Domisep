@@ -22,19 +22,28 @@ function componentsFunction($serial_number, $name_component, $component_value,  
 				$icon = "<span style='color: $color;'><i class='fas fa-lightbulb fa-2x'></i></span>";
 			}
 			elseif($type == 'temp'){
-
+				$icon = "<i class='fas fa-thermometer-half fa-2x' ></i>";
+				$component_value = "<div class='component-value'>"."<span>".$component_value."</span><span>&deg;C</span></div>";
 			}
 			elseif($type == 'hmdt'){
-
+				$icon = "<i class='fas fa-tint fa-2x'></i>";
+				$component_value = "<div class='component-value'>"."<span>".$component_value."</span><span>%</span></div>";
 			}
 			elseif($type == 'smok'){
-
+				$icon = "<i class='fas fa-joint fa-2x' ></i>";
+				$component_value = "";
 			}
 			elseif($type == 'shtr'){
-
+				$icon = "<i class='fas fa-align-justify fa-2x'></i>";
+				$component_value = "";
 			}
 			elseif($type == 'airc'){
-
+				$icon = "<i class='fas fa-temperature-high fa-2x' ></i>";
+				$component_value = "<div class='component-value'>"."<span>".$component_value."</span><span>&deg;C</span></div>";
+				$adjust = "<div class='change-component-value'>
+										<button class='component-plus-button'><i class='fas fa-plus fa-lg'></i></button>
+										<button class='component-minus-button'><i class='fas fa-minus fa-lg'></i></button>
+									</div>";
 			}
 
 				$expected_value=$component_value;

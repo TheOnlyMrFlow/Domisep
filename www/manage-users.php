@@ -27,17 +27,17 @@ if(!isset($_SESSION['language'])){
 	<link rel="stylesheet" href="components/header-nav/header-dashboard.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="components/header-nav/sticky-header.min.js"></script>
-	<script src="scripts/user-rights.min.js"></script>
 	<script src="scripts/change-language.min.js"></script>
+	<script src="scripts/user-rights.js"></script>
 
 </head>
 
 <body>
 	<?php
 
-    include('components/header-nav/header-nav.php');
-		$db = mysqli_connect('localhost', 'root', '', 'mff');
-    ?>
+include('components/header-nav/header-nav.php');
+$db = mysqli_connect('localhost', 'root', '', 'mff');
+?>
 
 		<div class="page-content-container dashboard">
 			<div class="page-content dashboard">
@@ -72,13 +72,13 @@ if(!isset($_SESSION['language'])){
 										$first_name = $user_row[1];
 										$last_name = $user_row[2];
 										$email = $user_row[3];
-
+										
 										$html .= "		<tr>
-																	<td>$first_name</td>
-																	<td>$last_name</td>
-																	<td>$email</td>
-																	<td>$id</td>
-																</tr>";
+										<td>$first_name</td>
+										<td>$last_name</td>
+										<td>$email</td>
+										<td>$id</td>
+										</tr>";
 									}
 									echo $html;
 									?>
@@ -115,7 +115,7 @@ if(!isset($_SESSION['language'])){
 									$home_id = 1;
 									// $current_user_id = $_SESSION['id'];
 									$current_user_id = 1;
-
+									
 									$users_array = mysqli_query($db,"SELECT id, first_name, last_name, email FROM users WHERE id_home=$home_id AND role='house_member' ORDER BY last_name,first_name ASC");
 									$html = "<option disabled selected value > select user </option>";
 									while ($user_row = mysqli_fetch_row($users_array)) {
@@ -148,33 +148,33 @@ if(!isset($_SESSION['language'])){
 										}
 										$first_room = 0;
 										$html .= "<div class='$current_room_id room-container'>
-																	<h3>$room_name</h3>
-																	<table width='100%'>
-																		<colgroup>
-																			<col width='80%'/>
-																			<col width='10%'/>
-																			<col width='10%'/>
-																		</colgroup>
-																		<tr class='$component_id'>
-																			<td>$component_name</td>
-																			<td><div class='view-button ic ic-eye off'></div></td>
-																			<td><div class='edit-button ic ic-pencil off'></div></td>
-																		</tr>";
+										<h3>$room_name</h3>
+										<table width='100%'>
+										<colgroup>
+										<col width='80%'/>
+										<col width='10%'/>
+										<col width='10%'/>
+										</colgroup>
+										<tr class='$component_id'>
+										<td>$component_name</td>
+										<td><div class='view-button ic ic-eye off'></div></td>
+										<td><div class='edit-button ic ic-pencil off'></div></td>
+										</tr>";
 									}
 									else{
 										$component_id = $component_array[2];
 										$component_name = $component_array[3];
 										$html .= "<tr class='$component_id'>
-																			<td>$component_name</td>
-																			<td><div class='view-button ic ic-eye off'></div></td>
-																			<td><div class='edit-button ic ic-pencil off'></div></td>
-																		</tr>";
+										<td>$component_name</td>
+										<td><div class='view-button ic ic-eye off'></div></td>
+										<td><div class='edit-button ic ic-pencil off'></div></td>
+										</tr>";
 									}
-
+									
 								}
 								$html .= "</table></div>";
 								echo $html;
-							?>
+								?>
 						</div>
 				</div>
 			</div>

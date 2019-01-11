@@ -29,6 +29,7 @@ if (!isset($_SESSION['connected']) || !$_SESSION['connected']) {
 } ?>
   </title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+<<<<<<< HEAD
   	<link rel="stylesheet" type="text/css" media="screen" href="style/add_a_component_pop_up.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="style/dashboard-style.min.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="style/full-site-style.min.css" />
@@ -46,6 +47,25 @@ if (!isset($_SESSION['connected']) || !$_SESSION['connected']) {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/livequery/1.1.1/jquery.livequery.js"></script>
 
 
+=======
+	<link rel="stylesheet" type="text/css" media="screen" href="style/add_a_component_pop_up.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="style/dashboard-style.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="style/full-site-style.min.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="components/component/component-style.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="components/footer/footer.css" />
+	<link rel="stylesheet" href="style/myhouse.css"/>
+	<link rel="stylesheet" href="components/header-nav/header-nav.css">
+	<link rel="stylesheet" href="components/header-nav/header-dashboard.css">
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+	<script src="components/header-nav/sticky-header.js"></script>
+	<script src="scripts/change-language.js"></script>
+  <script src="scripts\update-component-values.js"></script>
+>>>>>>> 54019fccca55ffaa905181ecc4f9a26baa79f118
 
 </head>
 
@@ -308,13 +328,23 @@ include 'components/header-nav/header-nav.php';
 										<input type='submit' name='update-name' style='display: none;'>
 
 	            					</form>
-									<div class='section_add_component'>
-											<button class='plus-button new-comp-opener'></button><span id='add-comp-title'>$add_component</span>
-									</div>
+                  <div class= 'header_left'>
+  									<div class='delete_room'>
+                      <form method='POST' action='./handlers/handle_delete_a_room.php'>
+                        <i class='material-icons' onclick='this.parentElement.submit()'>delete </i>
+                        <input style='display: none;' name='remove_room' value='$current_room_id'>
+                        <span id='delete'>
+                      </form>
+                    </div>
+                    <div class='section_add_component'>
+  											<button class='plus-button new-comp-opener'></button><span id='add-comp-title'> Add a component</span>
+  									</div>
+                  </div>
 								</div>
 
 								<div class='section_components'>
-									<div class='components_line'>";
+									<div class='components_line'>
+                  ";
             $html .= componentsFunction($component_id, $component_name, $component_value, $component_state, 'write');
             $new_component_line++;
 			}
@@ -347,24 +377,45 @@ include 'components/header-nav/header-nav.php';
               		<input value='$current_room_id' name='room_id' style='display: none;'>
               		<input class='room-name' type='text' name='room_name' value='$room_name'>
               		<input type='submit' name='update-name' style='display: none;'>
-	            </form>
-	                <div class='section_add_component'>
-	                    <button class='plus-button new-comp-opener'></button><span id='add-comp-title'>$add_component</span>
-	                </div>
+	             </form>
+                  <div class='header_left'>
+  	                <div class='delete_room'>
+                      <form method='POST' action='./handlers/handle_delete_a_room.php'>
+                        <i class='material-icons' onclick='this.parentElement.submit()'>delete</i>
+                        <input style='display: none;' name='remove_room' value='$current_room_id'>
+                        <span id='delete'>
+                      </form>
+                    </div>
+                    <div class='section_add_component'>
+  	                   <button class='plus-button new-comp-opener'></button><span id='add-comp-title'> Add a component</span>
+  	                </div>
+                  </div>
 
               </div>
+
               </section>";
       }
                 echo $html;
             ?>
 
-			<div class="section_add_room">
-				<button class="plus-button plus-button--large" href="add_component.html"></button><span id="add-room-title"><?php if ($_SESSION['language']=='en') {
-                echo('Add a room');
-            } elseif ($_SESSION['language']=='fr') {
-                echo htmlentities('Ajouter une pièce');
-            } ?></span>
-			</div>
+      			<div class="section_add_room">
+              <form method="POST" action="./handlers/handle_add_a_room.php">
+              <button onclick="this.parentElement.submit()" class="plus-button-room plus-button--large"></button>
+              <input style="display: none;" name="new_room">
+              <span id="room_name">
+
+                <?php if($_SESSION['language']=='en'){
+                         echo('Add a room');
+
+                    }
+                    elseif ($_SESSION['language']=='fr') {
+                        echo htmlentities('Ajouter une pièce');
+                    } ?>
+
+              </span>
+            </form>
+        </div>
+    </div>
 		</div>
 	</div>
 </div>
