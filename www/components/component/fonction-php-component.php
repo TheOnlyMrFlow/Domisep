@@ -2,13 +2,21 @@
  -->
 <?php
 function componentsFunction($serial_number, $name_component, $component_value,  $state, $right){
-		$adjust = "";
+			if ($state == 0) {
+				$checked = "";
+				$color = '#7A7A7A';
+			}
+			else{
+				$checked = "checked";
+				$color = '#4BD763';
+			}
+			$adjust='';
 			$type = substr($serial_number, 4 , 4);
-			$icon = "<i class='fas fa-lightbulb fa-2x'></i>";
+			// $icon = "<span style='color: #4BD763;'><i class='fas fa-lightbulb fa-2x'></i></span>";
 
 
 			if ($type == 'lght'){
-				$icon = "<i class='fas fa-lightbulb fa-2x' ></i>";
+				$icon = "<span style='color: $color;'><i class='fas fa-lightbulb fa-2x'></i></span>";
 				$component_value = "";
 			}
 			elseif($type == 'temp'){
@@ -36,27 +44,28 @@ function componentsFunction($serial_number, $name_component, $component_value,  
 									</div>";
 			}
 
-				$expected_value=$component_value;
 				$html=	"
-				<div class='component' id='$serial_number'>
-							<div class='component_title'>$name_component</div>
-							<div class='component_middle'>
-								<div class='logo'>
-									$icon
-								</div>
-								$component_value
-								$adjust
-							</div>
-						</div>";
-						$à_garder = "							<div class='component_bas'>
-														<label class='switch'>
-														  <input type='checkbox' checked>
-														  <span class='slider round'></span>
-														</label>
-														<div class='bouton_3_points comp-details-opener'>
-															<a href='#'>...</a>
-														</div>
-													</div>";
+									<div class='component' id='$serial_number'>
+									  <div class='component_title'>
+									    $name_component
+									  </div>
+									  <div class='component_middle'>
+									    <div class='logo'>
+									      $icon
+									    </div>
+											$component_value
+											$adjust
+										</div>
+									  <div class='component_bas'>
+									    <label class='form-switch'>
+									      <input $checked type='checkbox'>
+									      <i></i>
+									    </label>
+									    <div class='bouton_3_points comp-details-opener'>
+									      <a href='#'>...</a>
+									    </div>
+									  </div>
+									</div>";
 				return($html);
 	}
 ?>

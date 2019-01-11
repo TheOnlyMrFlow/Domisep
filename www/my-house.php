@@ -170,12 +170,12 @@ include 'components/header-nav/header-nav.php';
             }
             elseif ($role == 'house_manager') {
               $query = "SELECT
-                      rooms.id,
+                      id_room,
                       rooms.name,
-                      components.serial_number,
+                      serial_number,
                       components.name,
-                      components.value,
-                      components.state
+                      value,
+                      state
                   FROM
                       components
                   INNER JOIN rooms ON components.id_room = rooms.id
@@ -270,7 +270,10 @@ include 'components/header-nav/header-nav.php';
             }
 			$db = mysqli_connect('localhost', 'root', '', 'mff');
 			$id_home = $_SESSION['home_id'];
-			$components_array = mysqli_query($db, "SELECT id_room,rooms.name,serial_number,components.name,value,state FROM components INNER JOIN rooms ON components.id_room=rooms.id WHERE rooms.id_home=$id_home ORDER BY rooms.name,components.name");
+			$components_array = mysqli_query($db, "SELECT id_room,rooms.name,serial_number,components.name,value,state
+                                             FROM components INNER JOIN rooms ON components.id_room=rooms.id
+                                             WHERE rooms.id_home=$id_home
+                                             ORDER BY rooms.name,components.name");
 			$html = '';
 			$current_room_id = null;
 			$first_room = 1;
@@ -309,12 +312,12 @@ include 'components/header-nav/header-nav.php';
   									<div class='delete_room'>
                       <form method='POST' action='./handlers/handle_delete_a_room.php'>
                         <i class='material-icons' onclick='this.parentElement.submit()'>delete </i>
-                        <input style='display: none;' name='remove_room'>
+                        <input style='display: none;' name='remove_room' value='$current_room_id'>
                         <span id='delete'>
                       </form>
                     </div>
                     <div class='section_add_component'>
-  											<button class='plus-button new-comp-opener'></button><span id='add-comp-title'>$add_component</span>
+  											<button class='plus-button new-comp-opener'></button><span id='add-comp-title'> Add a component</span>
   									</div>
                   </div>
 								</div>
@@ -341,7 +344,9 @@ include 'components/header-nav/header-nav.php';
       				$html .= "</div></div></section>";
       			}
 
-      $empty_rooms_array = mysqli_query($db, "SELECT rooms.id,rooms.name FROM rooms LEFT JOIN components ON rooms.id=components.id_room WHERE components.id_room IS NULL");
+      $empty_rooms_array = mysqli_query($db, "SELECT rooms.id,rooms.name
+                                              FROM rooms LEFT JOIN components ON rooms.id=components.id_room
+                                              WHERE components.id_room IS NULL");
       while($empty_rooms_row = mysqli_fetch_row($empty_rooms_array)){
         $current_room_id = $empty_rooms_row[0];
         $room_name = $empty_rooms_row[1];
@@ -357,12 +362,12 @@ include 'components/header-nav/header-nav.php';
   	                <div class='delete_room'>
                       <form method='POST' action='./handlers/handle_delete_a_room.php'>
                         <i class='material-icons' onclick='this.parentElement.submit()'>delete</i>
-                        <input style='display: none;' name='remove_room'>
+                        <input style='display: none;' name='remove_room' value='$current_room_id'>
                         <span id='delete'>
                       </form>
                     </div>
                     <div class='section_add_component'>
-  	                   <button class='plus-button new-comp-opener'></button><span id='add-comp-title'>Add a component</span>
+  	                   <button class='plus-button new-comp-opener'></button><span id='add-comp-title'> Add a component</span>
   	                </div>
                   </div>
 
@@ -375,7 +380,7 @@ include 'components/header-nav/header-nav.php';
 
       			<div class="section_add_room">
               <form method="POST" action="./handlers/handle_add_a_room.php">
-              <button class="plus-button plus-button--large" onclick="this.submit()"></button>
+              <button onclick="this.parentElement.submit()" class="plus-button-room plus-button--large"></button>
               <input style="display: none;" name="new_room">
               <span id="room_name">
 
@@ -404,12 +409,6 @@ include 'components/modals/new-component/new-component.php';
 </body>
 
 <script src="scripts/open-modals.js"></script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/livequery/1.1.1/jquery.livequery.js"></script>
-
-
-
 <script src="components/modals/component-details/component-details.js"></script>
 <script src="components/modals/new-component/new-component.js"></script>
 <script src="scripts/change-room-name.js"></script>

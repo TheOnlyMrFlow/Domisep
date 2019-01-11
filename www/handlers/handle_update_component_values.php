@@ -7,7 +7,15 @@ $actionType = $_POST['action'];
 
 if ($actionType == 'change_state') {
   $state = $_POST['state'];
-  $result = mysqli_query($db, "UPDATE components SET state='$state' WHERE serial_number='$id'");
+  $id = $_POST['id'];
+  if ($state =='false') {
+    $state = 1;
+  }
+  elseif($state == 'true'){
+    $state = 0;
+  }
+
+  $result = mysqli_query($db, "UPDATE components SET state=$state WHERE serial_number='$id'");
 }
 elseif ($actionType == 'add_value') {
   $id = $_POST['id'];
