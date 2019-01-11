@@ -1,15 +1,14 @@
 $(document).ready(function() {
   $('.component_bas>.form-switch>i').on('click', function(e){
-    var id = $(this).parents('div.component').attr('id');
+    var id = $(this).closest('div.component').attr('id');
     var state = this.previousElementSibling.checked;
     if (state==false) {
-      $(this).parents('.component_bas').siblings(".component_middle").find("i").css("color","#4BD763");
+      $(this).parents('.component_bas').prev(".component_middle").find("i").css("color","#4BD763");
     }
     else {
-      $(this).parents('.component_bas').siblings(".component_middle").find("i").css("color","#7A7A7A");
+      $(this).parents('.component_bas').prev(".component_middle").find("i").css("color","#7A7A7A");
     }
-
-    $.post('../handlers/handle_update_component_values.php', {'state': state,'id':id}, function(data) {
+    $.post('../handlers/handle_update_component_values.php', {'action':'change_state','state': state,'id':id}, function(data) {
     });
   });
 
@@ -17,10 +16,7 @@ $(document).ready(function() {
     var valueElement = $(this).parent().prev().children('span:first-child');
     valueElement.text(+valueElement.text()+1)
     var id = $(this).parents('div.component').attr('id');
-    var action = 'add_value';
-
-    $.post('../handlers/handle_update_component_values.php', {'action':action,'id':id}, function(data) {
-
+    $.post('../handlers/handle_update_component_values.php', {'action':'add_value','id':id}, function(data) {
     });
   })
 
@@ -28,9 +24,7 @@ $(document).ready(function() {
     var valueElement = $(this).parent().prev().children('span:first-child');
     valueElement.text(+valueElement.text()-1)
     var id = $(this).parents('div.component').attr('id');
-    var action = 'remove_value';
-    $.post('../handlers/handle_update_component_values.php', {'action':action,'id':id}, function(data) {
-
+    $.post('../handlers/handle_update_component_values.php', {'action':'remove_value','id':id}, function(data) {
     });
   })
 });
