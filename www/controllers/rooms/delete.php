@@ -4,13 +4,15 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 require_once(dirname(__FILE__) . '/../../models/Room.php');
+require_once(dirname(__FILE__) . '/../../utils/dbconnect.php');
+
 
 $id_home = $_SESSION['home_id'];
 
 
 $errors = array();
 
-$db=mysqli_connect('localhost', 'root', '', 'mff');
+$db=dbconnect();
 
 
 if (isset($_POST['remove_room'])){

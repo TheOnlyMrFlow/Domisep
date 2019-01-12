@@ -3,8 +3,11 @@
 require_once(dirname(__FILE__) . '/../../utils/input-checker.php');
 require_once(dirname(__FILE__) . '/../../models/User.php');
 
+require_once(dirname(__FILE__) . '/../../utils/dbconnect.php');
+
+
 if (isset($_POST['id']) && isset($_POST['key'])) {
-    $db = mysqli_connect('localhost', 'root', '', 'mff');    
+    $db = dbconnect();    
     $id = mysqli_real_escape_string($db, $_POST['id']);
     $secret_key = $_POST['key'];
 

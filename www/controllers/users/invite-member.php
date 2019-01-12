@@ -9,11 +9,14 @@ if (session_status() == PHP_SESSION_NONE) {
 require_once(dirname(__FILE__) . '/../../../vendor/autoload.php');
 require_once(dirname(__FILE__) . '/../../../globalVars.php');
 
+require_once(dirname(__FILE__) . '/../../utils/dbconnect.php');
+
+
 if (!isset($_POST['invite-user']) || !isset($_POST['mail'])) {
     exit();
 }
 
-$db = mysqli_connect('localhost', 'root', '', 'mff');
+$db = dbconnect();
 
 $mail = mysqli_real_escape_string($db, $_POST['mail']);
 

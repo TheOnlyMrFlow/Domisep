@@ -1,6 +1,8 @@
 <?php
 
-require_once('./models/Invitation.php');
+require_once(dirname(__FILE__) . '/models/Invitation.php');
+require_once(dirname(__FILE__) . '/utils/dbconnect.php');
+
 
 header('Content-Type: text/html; charset=ISO-8859-1');
 // if (session_status() == PHP_SESSION_NONE) {
@@ -10,7 +12,7 @@ if (!isset($_SESSION['language'])) {
     $_SESSION['language'] = 'en';
 }
 
-$db = mysqli_connect('localhost', 'root', '', 'mff');
+$db = dbconnect();
 
 ?>
 <!DOCTYPE html>
@@ -45,7 +47,7 @@ if (!isset($_GET['key']) || !isset($_GET['mail'])){
 	exit();
 }
 
-$db = mysqli_connect('localhost', 'root', '', 'mff');
+$db = dbconnect();
 $key =  mysqli_real_escape_string($db, $_GET['key']);
 $mail = mysqli_real_escape_string($db, $_GET['mail']);
 //$key = $_GET['key'];

@@ -10,6 +10,8 @@ if (!isset($_SESSION['connected']) || $_SESSION['connected'] == false) {
 }
 
 require_once(dirname(__FILE__) . '/../../models/Room.php');
+require_once(dirname(__FILE__) . '/../../utils/dbconnect.php');
+
 
 // if (!isset($_POST['room_name']) ) {
 
@@ -18,8 +20,7 @@ require_once(dirname(__FILE__) . '/../../models/Room.php');
 
 
 
-$db = mysqli_connect('localhost', 'root', '', 'mff');
-
+$db = dbconnect();
 
 $room_id = mysqli_real_escape_string($db, $_POST['room_id']);
 //$room_id = $_POST['room_id'];//
