@@ -38,9 +38,9 @@
 .room_header{
 	display: flex;
 /*	align-items: center;
-*/	margin-bottom: 10px;
+*/	margin-bottom: 20px;
 	justify-content: space-between;
-	align-content: space-between;
+	align-items: center;
 }
 
 #add-comp-title,#add-preset-title,#add-room-title{
@@ -152,11 +152,23 @@
 	justify-content: flex-start;
 	align-items: center;
 	align-content: center;
+}
 
+.section_add_room form{
+	display: flex;
+	align-items: center;
+}
+
+.section_add_room > form > button{
+	margin-right: 20px;
 }
 
 .create_room{
 	margin-left: 0.5em;
+}
+
+.delete-room-icon{
+	cursor: pointer;
 }
 
 

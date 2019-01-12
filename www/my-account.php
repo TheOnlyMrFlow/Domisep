@@ -78,7 +78,7 @@ include 'components/header-nav/header-nav.php';
 						<input class="edit-info" style="display: none;" type="text" name="lastname" value=<?php echo $last_name ?>>
 						<p class="show-info"><?php echo $last_name ?></p>
 
-					</div>	
+					</div>
 					<br>
 					<div>
 						<strong>Phone</strong>
@@ -98,7 +98,7 @@ include 'components/header-nav/header-nav.php';
 						<button type="button" id="switch-change-info-off" style="display: none;" class="edit-info">Cancel</button>
 						<input  class="edit-info" style="display: none;" type="submit" value="Confirm changes">
 						<button type="button" id="switch-change-info-on" class="show-info">Change my information</button>
-						
+
 					</div>
 					<div>
 						<p id="change-info-result"></p>

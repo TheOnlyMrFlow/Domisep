@@ -151,7 +151,7 @@ include 'components/header-nav/header-nav.php';
                         <div class= 'header_left'>
                           <div class='delete_room'>
                             <form method='POST' action='./handlers/handle_delete_a_room.php'>
-                              <i class='material-icons' onclick='this.parentElement.submit()'>delete </i>
+                              <i class='material-icons delete-room-icon' onclick='this.parentElement.submit()'>delete </i>
                               <input style='display: none;' name='remove_room' value='$current_room_id'>
                               <span id='delete'>
                             </form>
@@ -242,7 +242,7 @@ include 'components/header-nav/header-nav.php';
                         <div class= 'header_left'>
                           <div class='delete_room'>
                             <form method='POST' action='./handlers/handle_delete_a_room.php'>
-                              <i class='material-icons' onclick='this.parentElement.submit()'>delete </i>
+                              <i class='material-icons delete-room-icon' onclick='this.parentElement.submit()'>delete </i>
                               <input style='display: none;' name='remove_room' value='$current_room_id'>
                               <span id='delete'>
                             </form>
@@ -316,7 +316,7 @@ include 'components/header-nav/header-nav.php';
                           <div class= 'header_left'>
                             <div class='delete_room'>
                               <form method='POST' action='./handlers/handle_delete_a_room.php'>
-                                <i class='material-icons' onclick='this.parentElement.submit()'>delete </i>
+                                <i class='material-icons delete-room-icon' onclick='this.parentElement.submit()'>delete </i>
                                 <input style='display: none;' name='remove_room' value='$current_room_id'>
                                 <span id='delete'>
                               </form>
@@ -369,7 +369,7 @@ include 'components/header-nav/header-nav.php';
                           <div class='header_left'>
           	                <div class='delete_room'>
                               <form method='POST' action='./controllers/rooms/delete.php'>
-                                <i class='material-icons' onclick='this.parentElement.submit()'>delete</i>
+                                <i class='material-icons delete-room-icon' onclick='this.parentElement.submit()'>delete</i>
                                 <input style='display: none;' name='remove_room' value='$current_room_id'>
                                 <span id='delete'>
                               </form>
