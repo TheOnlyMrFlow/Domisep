@@ -43,7 +43,7 @@ include('components/header-nav/header-nav.php');
 ?>
 
     <div class="page-content-container">
-        <form method="post" action="/handlers/handle-reset-password" target='reset-password-result'>
+        <form method="post" action="/controllers/users/reset-password" target='reset-password-result'>
                 <p>Choose a new password :</p>
                 <input type="password" name="password1"></input>
                 <p>Confirm your new password :</p>

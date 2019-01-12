@@ -1,7 +1,7 @@
 <?php 
 
-include('../utils/input-checker.php');
-require_once('../models/User.php');
+require_once(dirname(__FILE__) . '/../../utils/input-checker.php');
+require_once(dirname(__FILE__) . '/../../models/User.php');
 
 if (isset($_POST['id']) && isset($_POST['key'])) {
     $db = mysqli_connect('localhost', 'root', '', 'mff');    

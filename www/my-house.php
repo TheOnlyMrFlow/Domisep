@@ -142,12 +142,25 @@ include 'components/header-nav/header-nav.php';
 
                       $html .= "<section id='$current_room_id' class='dashboard-big-container room'>
 
-                  <div class='room_header'>
-                    <h3>$room_name</h3>
-                    <div class='section_add_component'>
-                        <button class='plus-button new-comp-opener'></button><span id='add-comp-title'>$add_component</span>
-                    </div>
-                  </div>
+                      <div class='room_header'>
+                        <form class='change-room-name'>
+                              <input value='$current_room_id' name='room_id' style='display: none;'>
+                              <input class='room-name' type='text' name='room_name' value='$room_name'>
+                              <input type='submit' name='update-name' style='display: none;'>
+                        </form>
+                        <div class= 'header_left'>
+                          <div class='delete_room'>
+                            <form method='POST' action='./handlers/handle_delete_a_room.php'>
+                              <i class='material-icons' onclick='this.parentElement.submit()'>delete </i>
+                              <input style='display: none;' name='remove_room' value='$current_room_id'>
+                              <span id='delete'>
+                            </form>
+                          </div>
+                          <div class='section_add_component'>
+                              <button class='plus-button new-comp-opener'></button><span id='add-comp-title'> Add a component</span>
+                          </div>
+                        </div>
+                      </div>
 
                   <div class='section_components'>
                     <div class='components_line'>";
@@ -219,12 +232,26 @@ include 'components/header-nav/header-nav.php';
 
                       $html .= "<section id='$current_room_id' class='dashboard-big-container room'>
 
-                  <div class='room_header'>
-                    <h3>$room_name</h3>
-                    <div class='section_add_component'>
-                        <button class='plus-button new-comp-opener'></button><span id='add-comp-title'>$add_component</span>
-                    </div>
-                  </div>
+                      <div class='room_header'>
+                        <form class='change-room-name'>
+                          <input value='$current_room_id' name='room_id' style='display: none;'>
+                                  <input class='room-name' type='text' name='room_name' value='$room_name'>
+                          <input type='submit' name='update-name' style='display: none;'>
+
+                              </form>
+                        <div class= 'header_left'>
+                          <div class='delete_room'>
+                            <form method='POST' action='./handlers/handle_delete_a_room.php'>
+                              <i class='material-icons' onclick='this.parentElement.submit()'>delete </i>
+                              <input style='display: none;' name='remove_room' value='$current_room_id'>
+                              <span id='delete'>
+                            </form>
+                          </div>
+                          <div class='section_add_component'>
+                              <button class='plus-button new-comp-opener'></button><span id='add-comp-title'> Add a component</span>
+                          </div>
+                        </div>
+                      </div>
 
                   <div class='section_components'>
                     <div class='components_line'>";
@@ -245,111 +272,84 @@ include 'components/header-nav/header-nav.php';
               }
 
             }
+            elseif ($role == 'administrator') {
+              $components_array = mysqli_query($db, "SELECT id_room,rooms.name,serial_number,components.name,value,state
+                                                     FROM components INNER JOIN rooms ON components.id_room=rooms.id
+                                                     WHERE rooms.id_home=$id_home
+                                                     ORDER BY rooms.name,components.name");
+              $html = '';
+              $current_room_id = null;
+              $first_room = 1;
+              $new_component_line;
+              $remaining_rooms_vector = array();
+
+              while($component_row = mysqli_fetch_row($components_array)){
+                if($component_row[0]!=$current_room_id){
+                  $new_component_line = 0;
+                  $current_room_id = $component_row[0];
+                  array_push($remaining_rooms_vector, $current_room_id);
+                  $room_name = $component_row[1];
+                  $component_id = $component_row[2];
+                  $component_name = $component_row[3];
+                  $component_value = $component_row[4];
+                  $component_state = $component_row[5];
+                  if(!$first_room){
+                    $html .= "</div></div></section>";
+                  }
+                  $first_room = 0;
+
+                  if($_SESSION['language']=='en'){
+                    $add_component = 'Add a component';
+                  }elseif ($_SESSION['language']=='fr') {
+                    $add_component = 'Ajouter un composant';
+                  }
+
+                  $html .= "<section id='$current_room_id' class='dashboard-big-container room'>
+
+                        <div class='room_header'>
+                          <form class='change-room-name'>
+                            <input value='$current_room_id' name='room_id' style='display: none;'>
+                                    <input class='room-name' type='text' name='room_name' value='$room_name'>
+                            <input type='submit' name='update-name' style='display: none;'>
+
+                                </form>
+                          <div class= 'header_left'>
+                            <div class='delete_room'>
+                              <form method='POST' action='./handlers/handle_delete_a_room.php'>
+                                <i class='material-icons' onclick='this.parentElement.submit()'>delete </i>
+                                <input style='display: none;' name='remove_room' value='$current_room_id'>
+                                <span id='delete'>
+                              </form>
+                            </div>
+                            <div class='section_add_component'>
+                                <button class='plus-button new-comp-opener'></button><span id='add-comp-title'> Add a component</span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class='section_components'>
+                          <div class='components_line'>
+                          ";
+                    $html .= componentsFunction($component_id, $component_name, $component_value, $component_state, 'write');
+                    $new_component_line++;
+              }
+              else{
+                if($new_component_line%5==0){
+                  $html .= "</div><div class='components_line'>";
+                }
+                $component_id = $component_row[2];
+                $component_name = $component_row[3];
+                $component_value = $component_row[4];
+                $component_state = $component_row[5];
+                  $html .= componentsFunction($component_id, $component_name, $component_value, $component_state, 'write');
+                  $new_component_line++;
+                }
+              }
+            }
 
             if ($components_array->num_rows!=0) {
                 $html .= "</div></div></section>";
             }
-
-            $remaining_rooms_string = implode(',', $remaining_rooms_vector);
-            $remaining_rooms = mysqli_query($db, "SELECT id,name FROM rooms WHERE id_home=$id_home AND id NOT IN ($remaining_rooms_string) ORDER BY name");
-            if($remaining_rooms != false){
-              if ($remaining_rooms->num_rows!=0) {
-                  while ($empty_rooms_row = mysqli_fetch_row($remaining_rooms)) {
-                      $current_room_id = $empty_rooms_row[0];
-                      $room_name = $empty_rooms_row[1];
-                      $html .= "<section id='$current_room_id' class='dashboard-big-container room'>
-
-                <div class='room_header'>
-                  <h3>$room_name</h3>
-                  <div class='section_add_component'>
-                      <button class='plus-button new-comp-opener'></button><span id='add-comp-title'>$add_component</span>
-                  </div>
-                </div>
-                </section>";
-                  }
-              }
-            }
-
-
-			$db = mysqli_connect('localhost', 'root', '', 'mff');
-			$id_home = $_SESSION['home_id'];
-			$components_array = mysqli_query($db, "SELECT id_room,rooms.name,serial_number,components.name,value,state
-                                             FROM components INNER JOIN rooms ON components.id_room=rooms.id
-                                             WHERE rooms.id_home=$id_home
-                                             ORDER BY rooms.name,components.name");
-			$html = '';
-			$current_room_id = null;
-			$first_room = 1;
-      $new_component_line;
-      $remaining_rooms_vector = array();
-
-			while($component_row = mysqli_fetch_row($components_array)){
-				if($component_row[0]!=$current_room_id){
-          $new_component_line = 0;
-          $current_room_id = $component_row[0];
-          array_push($remaining_rooms_vector, $current_room_id);
-          $room_name = $component_row[1];
-          $component_id = $component_row[2];
-          $component_name = $component_row[3];
-          $component_value = $component_row[4];
-          $component_state = $component_row[5];
-					if(!$first_room){
-						$html .= "</div></div></section>";
-					}
-					$first_room = 0;
-
-          if($_SESSION['language']=='en'){
-            $add_component = 'Add a component';
-          }elseif ($_SESSION['language']=='fr') {
-            $add_component = 'Ajouter un composant';
-          }
-
-					$html .= "<section id='$current_room_id' class='dashboard-big-container room'>
-
-								<div class='room_header'>
-									<form class='change-room-name'>
-										<input value='$current_room_id' name='room_id' style='display: none;'>
-              							<input class='room-name' type='text' name='room_name' value='$room_name'>
-										<input type='submit' name='update-name' style='display: none;'>
-
-	            					</form>
-                  <div class= 'header_left'>
-  									<div class='delete_room'>
-                      <form method='POST' action='./controllers/rooms/delete.php'>
-                        <i class='material-icons' onclick='this.parentElement.submit()'>delete </i>
-                        <input style='display: none;' name='remove_room' value='$current_room_id'>
-                        <span id='delete'>
-                      </form>
-                    </div>
-                    <div class='section_add_component'>
-  											<button class='plus-button new-comp-opener'></button><span id='add-comp-title'> Add a component</span>
-  									</div>
-                  </div>
-								</div>
-
-								<div class='section_components'>
-									<div class='components_line'>
-                  ";
-            $html .= componentsFunction($component_id, $component_name, $component_value, $component_state, 'write');
-            $new_component_line++;
-			}
-			else{
-        if($new_component_line%5==0){
-          $html .= "</div><div class='components_line'>";
-        }
-        $component_id = $component_row[2];
-        $component_name = $component_row[3];
-        $component_value = $component_row[4];
-        $component_state = $component_row[5];
-          $html .= componentsFunction($component_id, $component_name, $component_value, $component_state, 'write');
-          $new_component_line++;
-				}
-			}
-
-
-      			if($components_array->num_rows!=0){
-      				$html .= "</div></div></section>";
-      			}
 
       $remaining_rooms_string = implode(',', $remaining_rooms_vector);
       $remaining_rooms = mysqli_query($db, "SELECT id,name FROM rooms WHERE id_home=$id_home AND id NOT IN ($remaining_rooms_string) ORDER BY name");
