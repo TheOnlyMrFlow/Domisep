@@ -4,7 +4,7 @@
 $(document).ready(function () {
 
 	$("#new-comp-form").ajaxForm({
-        url: location.origin + '/controllers/components/create.php',
+        url: location.origin + ':' + (location.port || 80) + '/controllers/components/create.php',
         type: 'post',
         success: function(data) {console.log(data); location.reload();  },
         error: function(err) {
