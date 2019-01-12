@@ -59,6 +59,7 @@ function componentsFunction($serial_number, $name_component, $component_value,  
 			}
 			else{
 				$icon = "<span style='color: $color;'><i class='fas fa-question fa-2x' ></i></span>";
+				$component_value = "";
 			}
 
 				$html=	"
