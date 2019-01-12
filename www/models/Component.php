@@ -22,7 +22,6 @@ class Component
         $errors = array();
 
         $db = dbconnect();
-        //$db = mysqli_connect('localhost', 'root', '', 'mff');
         $stmt = $db->prepare("SELECT * FROM components WHERE serial_number=? LIMIT 1");
         $stmt->bind_param("s", $serialNumber);
         $stmt->execute();
@@ -56,7 +55,7 @@ class Component
      **/
     public function getAllFields(): array
     {
-        $db = mysqli_connect('localhost', 'root', '', 'mff');
+        $db = dbconnect();
         $stmt = $db->prepare("SELECT * FROM components WHERE serial_number = ?");
         $stmt->bind_param("s", $this->id);
         $stmt->execute();

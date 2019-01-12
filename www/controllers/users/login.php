@@ -1,10 +1,12 @@
 <?php
 
 require_once(dirname(__FILE__) . '/../../models/Home.php');
+require_once(dirname(__FILE__) . '/../../utils/dbconnect.php');
+
 
 if (isset($_POST['login']))
 {
-    $db = mysqli_connect('localhost', 'root', '', 'mff');
+    $db = dbconnect();
     $emailaddress = mysqli_real_escape_string($db, $_POST['mail']);
     $password = $_POST['password'];
 
@@ -53,7 +55,7 @@ if (isset($_POST['login']))
                         session_start();
                     }
 
-                    $db = mysqli_connect('localhost', 'root', '', 'mff');
+                    $db = dbconnect();
 
                     $_SESSION['connected'] = true;
                     $_SESSION['email'] = $row['email'];

@@ -4,6 +4,9 @@
 require_once 'Home.php';
 require_once 'Invitation.php';
 
+require_once(dirname(__FILE__) . '/../utils/dbconnect.php');
+
+
 class User
 {
 
@@ -11,7 +14,7 @@ class User
 
     public static function getUserByMail($mail)
     {
-        $db = mysqli_connect('localhost', 'root', '', 'mff');
+        $db = dbconnect();
         $mail = mysqli_real_escape_string($db, $mail);
         $stmt = $db->prepare("SELECT id FROM users WHERE email = ?");
         $stmt->bind_param("s", $mail);
@@ -57,7 +60,7 @@ class User
         $zipCode,
         $country) {
 
-        $db = mysqli_connect('localhost', 'root', '', 'mff');
+        $db = dbconnect();
 
         $lastName = mysqli_real_escape_string($db, $lastName);
         $firstName = mysqli_real_escape_string($db, $firstName);
@@ -143,7 +146,7 @@ class User
                                             $key
     ) {
 
-        $db = mysqli_connect('localhost', 'root', '', 'mff');
+        $db = dbconnect();
 
 
         $lastName = mysqli_real_escape_string($db, $lastName);
@@ -213,7 +216,7 @@ class User
 
     public static function exists($email)
     {
-        $db = mysqli_connect('localhost', 'root', '', 'mff');
+        $db = dbconnect();
         $stmt = $db->prepare("SELECT id FROM users WHERE email=? LIMIT 1");
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -229,7 +232,7 @@ class User
     public function updateInfo($firstName, $lastName, $phone)
     {
 
-        $db = mysqli_connect('localhost', 'root', '', 'mff');
+        $db = dbconnect();
 
         $firstName = mysqli_real_escape_string($db, $firstName);
         $lastName = mysqli_real_escape_string($db, $lastName);
@@ -267,7 +270,7 @@ class User
         $expirationTime = time() + 86400; //24 hours
         $expiration = date('Y-m-d H:i:s', $expirationTime);
         //$expiration = date( 'Y-m-d H:i:s', $expiration );
-        $db = mysqli_connect('localhost', 'root', '', 'mff');
+        $db = dbconnect();
         $stmt = $db->prepare("REPLACE INTO  password_reset_keys (id_user, hashed_key, expiration)  VALUES (?, ?, ?)");
         $stmt->bind_param("iss", $this->id, $hashed_secret_key, $expiration);
         $stmt->execute();
@@ -276,7 +279,7 @@ class User
 
     public function changePassword($oldPassword, $newPassword1, $newPassword2)
     {
-        $db = mysqli_connect('localhost', 'root', '', 'mff');
+        $db = dbconnect();
 
         $oldPassword = mysqli_real_escape_string($db, $oldPassword);
         $newPassword1 = mysqli_real_escape_string($db, $newPassword1);
@@ -325,7 +328,7 @@ class User
     public function getRights()
     {
 
-        $db = mysqli_connect('localhost', 'root', '', 'mff');
+        $db = dbconnect();
         $stmt = $db->prepare("SELECT serial_number,access_level FROM user_rights WHERE id_user=?");
         $stmt->bind_param("i", $this->id);
         $stmt->execute();
@@ -347,7 +350,7 @@ class User
      **/
     public function getAllFields()
     {
-        $db = mysqli_connect('localhost', 'root', '', 'mff');
+        $db = dbconnect();
         $stmt = $db->prepare("SELECT * FROM users WHERE id = ?");
         $stmt->bind_param("i", $this->id);
         $stmt->execute();

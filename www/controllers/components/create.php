@@ -2,10 +2,11 @@
 //session_start();
 
 require_once(dirname(__FILE__) . '/../../models/Component.php');
+require_once(dirname(__FILE__) . '/../../utils/dbconnect.php');
 
 $errors = array();
 
-$db = mysqli_connect('localhost', 'root', '', 'mff');
+$db = dbconnect();
 
 if (isset($_POST['new_component'])) {
     $componentName = mysqli_real_escape_string($db, $_POST['component_name']);
