@@ -1,8 +1,9 @@
 <?php
 
+require_once(dirname(__FILE__) . '/../../utils/dbconnect.php');
 
 
-$db = mysqli_connect('localhost', 'root', '', 'mff');
+$db = dbconnect();
 mysqli_set_charset($db, "utf8");
 
 $selected_component_id = $_POST['comp-id'];

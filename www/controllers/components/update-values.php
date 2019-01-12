@@ -1,7 +1,8 @@
 <?php
 
+require_once(dirname(__FILE__) . '/../../utils/dbconnect.php');
 
-$db = mysqli_connect('localhost', 'root', '', 'mff');
+$db = dbconnect();
 
 $actionType = $_POST['action'];
 

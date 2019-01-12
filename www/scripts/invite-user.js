@@ -1,7 +1,9 @@
 $(document).ready(function () {
 
+    console.log(location);
+
     $("#add-user-form").ajaxForm({
-        url: 'http://localhost/handlers/handle_invite_user.php',
+        url: location.origin + '/controllers/users/invite-member.php',
         type: 'post',
         success: function(data) {
             console.log(data);

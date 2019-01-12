@@ -1,5 +1,8 @@
 <?php
 
+require_once(dirname(__FILE__) . '/utils/dbconnect.php');
+
+
 header('Content-Type: text/html; charset=ISO-8859-1');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -8,7 +11,7 @@ if (!isset($_SESSION['language'])) {
     $_SESSION['language'] = 'en';
 }
 
-$db = mysqli_connect('localhost', 'root', '', 'mff');
+$db = dbconnect();
 //mysqli_set_charset($db, "utf8");
 
 $result = mysqli_query($db, "SELECT users.*, homes.* FROM users LEFT JOIN homes ON homes.id=users.id_home WHERE users.id = " . $_SESSION['id']);

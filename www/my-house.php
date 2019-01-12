@@ -1,5 +1,8 @@
 <?php
 
+require_once(dirname(__FILE__) . '/utils/dbconnect.php');
+
+
 header('Content-Type: text/html; charset=ISO-8859-1');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -84,7 +87,7 @@ include 'components/header-nav/header-nav.php';
 			</section>
 
 			<?php
-            $db = mysqli_connect('localhost', 'root', '', 'mff');
+            $db = dbconnect();
             $id_home = $_SESSION['home_id'];
             $id_user = $_SESSION['id'];
             $role = $_SESSION['role'];

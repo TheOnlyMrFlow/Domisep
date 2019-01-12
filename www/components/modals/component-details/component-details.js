@@ -1,17 +1,21 @@
 $(document).ready(function () {
 
+    
+
     $("#comp-details-form").ajaxForm({
-        url: 'http://localhost/handlers/handle-modify-component.php',
+        url: location.origin + '/controllers/components/modify.php',
         type: 'post',
         success: function(data) {console.log(data); location.reload();},
         error: function(err) {console.log("An error occured");}
     })
 
-    var buttons = document.getElementsByClassName("bouton_3_points");
+    var buttons = document.getElementsByClassName("comp-details-opener");
+    
 
 
     Array.prototype.forEach.call((buttons), function(el) {
         el.addEventListener("click", function () {
+            console.log('click');
             var root = this;
             var safetyCount = 0;
 
@@ -28,7 +32,7 @@ $(document).ready(function () {
             
             
             $.get(
-                encodeURI('http://localhost/controllers/components/details-json.php?id=' + root.id),
+                encodeURI(location.origin + '/controllers/components/details-json.php?id=' + root.id),
                 function (compData) {
                     console.log(compData);
                     compData = JSON.parse(compData);
@@ -41,7 +45,7 @@ $(document).ready(function () {
                     roomSelect.innerHTML = "";
 
                     $.get(
-                        'http://localhost/controllers/rooms/list-json.php',
+                        location.origin + '/controllers/rooms/list-json.php',
                         function (roomsData) {
                             console.log(roomsData);
                             roomsData = JSON.parse(roomsData);

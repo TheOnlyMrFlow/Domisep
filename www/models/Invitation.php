@@ -4,6 +4,9 @@ require_once (dirname(__FILE__)."/../../vendor/autoload.php");
 require_once (dirname(__FILE__)."/../../globalVars.php");
 require_once (dirname(__FILE__)."/Home.php");
 
+require_once(dirname(__FILE__) . '/../utils/dbconnect.php');
+
+
 //require_once '../../vendor/autoload.php';
 //require_once '../../globalVars.php';
 //require_once 'Home.php';
@@ -23,7 +26,7 @@ class Invitation
 
         echo $mail . ' ' . $key;
 
-        $db = mysqli_connect('localhost', 'root', '', 'mff');
+        $db = dbconnect();
         $stmt = $db->prepare("SELECT * FROM invite_keys WHERE email = ?");
         $stmt->bind_param("s", $mail);
         $stmt->execute();
@@ -54,7 +57,7 @@ class Invitation
 
         $hashed_key = password_hash($key, PASSWORD_BCRYPT);
 
-        $db = mysqli_connect('localhost', 'root', '', 'mff');
+        $db = dbconnect();
 
         $stmt = $db->prepare("INSERT INTO invite_keys (email, inv_key, id_home)  VALUES (?, ?, ?)");
         $stmt->bind_param("ssi", $mail, $hashed_key, $home_id);
@@ -95,7 +98,7 @@ class Invitation
     private function __construct($id)
     {
         $this->id = $id;
-        $db = mysqli_connect('localhost', 'root', '', 'mff');
+        $db = dbconnect();
         $stmt = $db->prepare("SELECT * FROM invite_keys WHERE id = ?");
         $stmt->bind_param("s", $id);
         $stmt->execute();

@@ -5,7 +5,7 @@ $(document).ready(function () {
 	Array.prototype.forEach.call($(".change-room-name"), (el)=>{
 		console.log($(el));
 		$(this).ajaxForm({
-		url: 'http://localhost/controllers/rooms/rename.php',
+		url: location.origin + '/controllers/rooms/rename.php',
 		type: 'post',
 		success: function(data){
 			console.log($(this).children(".room-name"));

@@ -4,7 +4,7 @@
 $(document).ready(function () {
 
 	$("#new-comp-form").ajaxForm({
-        url: 'http://localhost/handlers/handle_new_component_information.php',
+        url: location.origin + '/controllers/components/create.php',
         type: 'post',
         success: function(data) {console.log(data); location.reload();  },
         error: function(err) {

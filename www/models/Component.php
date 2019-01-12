@@ -1,4 +1,7 @@
 <?php
+
+require_once(dirname(__FILE__) . '/../utils/dbconnect.php');
+
 class Component
 {
 
@@ -18,7 +21,7 @@ class Component
 
         $errors = array();
 
-        $db = mysqli_connect('localhost', 'root', '', 'mff');
+        $db = dbconnect();
         $stmt = $db->prepare("SELECT * FROM components WHERE serial_number=? LIMIT 1");
         $stmt->bind_param("s", $serialNumber);
         $stmt->execute();
@@ -52,7 +55,7 @@ class Component
      **/
     public function getAllFields(): array
     {
-        $db = mysqli_connect('localhost', 'root', '', 'mff');
+        $db = dbconnect();
         $stmt = $db->prepare("SELECT * FROM components WHERE serial_number = ?");
         $stmt->bind_param("s", $this->id);
         $stmt->execute();

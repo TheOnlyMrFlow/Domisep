@@ -32,7 +32,7 @@ $(document).ready(function () {
 
 
     $("#change-info-form").ajaxForm({
-        url: 'http://localhost/handlers/handle_change_user_info.php',
+        url: location.origin + '/controllers/users/change-info.php',
         type: 'post',
         success: function(data) {
             console.log(data);

@@ -6,7 +6,7 @@
 
 		<a class="close" id="close-signup">&times;</a>
 
-		<form method="post" action="./handlers/handle-signup.php" target="signup-result">
+		<form method="post" action="./controllers/users/signup.php" target="signup-result">
 
 			<h2>Register an account</h2>
 			<div class="form-container">

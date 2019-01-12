@@ -1,5 +1,8 @@
 <?php
 
+require_once(dirname(__FILE__) . '/utils/dbconnect.php');
+
+
 header('Content-Type: text/html; charset=ISO-8859-1');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -36,7 +39,7 @@ if(!isset($_SESSION['language'])){
 	<?php
 
 include('components/header-nav/header-nav.php');
-$db = mysqli_connect('localhost', 'root', '', 'mff');
+$db = dbconnect();
 ?>
 
 		<div class="page-content-container dashboard">
