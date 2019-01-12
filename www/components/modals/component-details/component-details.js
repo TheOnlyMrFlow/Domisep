@@ -3,7 +3,7 @@ $(document).ready(function () {
     
 
     $("#comp-details-form").ajaxForm({
-        url: location.origin + ':' + (location.port || 80) + '/controllers/components/modify.php',
+        url: location.origin + '/controllers/components/modify.php',
         type: 'post',
         success: function(data) {console.log(data); location.reload();},
         error: function(err) {console.log("An error occured");}
@@ -32,7 +32,7 @@ $(document).ready(function () {
             
             
             $.get(
-                encodeURI(location.origin + ':' + (location.port || 80) + '/controllers/components/details-json.php?id=' + root.id),
+                encodeURI(location.origin + '/controllers/components/details-json.php?id=' + root.id),
                 function (compData) {
                     console.log(compData);
                     compData = JSON.parse(compData);
@@ -45,7 +45,7 @@ $(document).ready(function () {
                     roomSelect.innerHTML = "";
 
                     $.get(
-                        location.origin + ':' + (location.port || 80) + '/controllers/rooms/list-json.php',
+                        location.origin + '/controllers/rooms/list-json.php',
                         function (roomsData) {
                             console.log(roomsData);
                             roomsData = JSON.parse(roomsData);
