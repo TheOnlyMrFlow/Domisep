@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+    console.log(location.origin + ':' + (location.port || 80) + '/controllers/users/change-password.php');
+    
+
     $("#change-password-form").ajaxForm({
         url: location.origin + ':' + (location.port || 80) + '/controllers/users/change-password.php',
         type: 'post',
@@ -8,7 +11,7 @@ $(document).ready(function () {
             document.getElementById("change-password-result").innerHTML=data;
         },
         error: function(err) {
-            console.log(err['statustext']);
+            console.log(err);
             document.getElementById("change-password-result").innerHTML=err['statusText'];
         }
     })
