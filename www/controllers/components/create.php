@@ -1,7 +1,7 @@
 <?php
 //session_start();
 
-require_once(dirname(__FILE__) . '/../models/Component.php');
+require_once(dirname(__FILE__) . '/../../models/Component.php');
 
 $errors = array();
 

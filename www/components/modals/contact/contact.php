@@ -11,7 +11,7 @@
 
 <a class="close" id="close-contact">&times;</a>
 
-		<form method="post" action="handlers/handle-contact.php" target="contact-result">
+		<form method="post" action="controllers/contact-us.php" target="contact-result">
 
 			<h2>Contact us</h2>
 

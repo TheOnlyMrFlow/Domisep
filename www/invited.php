@@ -80,7 +80,7 @@ $ownerName = $row['first_name'] . ' ' . $row['last_name'];
 			<div class="dashboard-big-container">
 			<h2>Please fill your information</h2>
 				<div class="dashboard-inner-container">
-				<form method="POST" action="./handlers/handle-signup.php">
+				<form method="POST" action="./controllers/users/signup.php">
 				<div>
 						<strong>Email</strong>
 						<input readonly value="<?php echo $mail ?>" type="mail" name="email-disabled">

@@ -85,7 +85,7 @@ if (isset($_POST['login']))
 }
 
 else if (isset($_POST['forgot-password'])) {
-    include("./handle-forgot-password.php");
+    include("./forgot-password.php");
 }
 
 else

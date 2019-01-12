@@ -9,7 +9,7 @@ $(document).ready(function() {
     else {
       $(this).parents('.component_bas').prev(".component_middle").find("i").css("color","#7A7A7A");
     }
-    $.post('../handlers/handle_update_component_values.php', {'action':'change_state','state': state,'id':id}, function(data) {
+    $.post('../controllers/components/update-values.php', {'action':'change_state','state': state,'id':id}, function(data) {
     });
   });
 
@@ -17,7 +17,7 @@ $(document).ready(function() {
     var valueElement = $(this).parent().prev().children('span:first-child');
     valueElement.text(+valueElement.text()+1);
     var id = $(this).parents('div.component').attr('id');
-    $.post('../handlers/handle_update_component_values.php', {'action':'add_value','id':id}, function(data) {
+    $.post('../controllers/components/update-values.php', {'action':'add_value','id':id}, function(data) {
     });
   })
 
@@ -25,7 +25,7 @@ $(document).ready(function() {
     var valueElement = $(this).parent().prev().children('span:first-child');
     valueElement.text(+valueElement.text()-1);
     var id = $(this).parents('div.component').attr('id');
-    $.post('../handlers/handle_update_component_values.php', {'action':'remove_value','id':id}, function(data) {
+    $.post('../controllers/components/update-values.php', {'action':'remove_value','id':id}, function(data) {
     });
   })
 });
