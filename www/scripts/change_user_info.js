@@ -32,7 +32,7 @@ $(document).ready(function () {
 
 
     $("#change-info-form").ajaxForm({
-        url: location.origin + ':' + (location.port || 80) + '/controllers/users/change-info.php',
+        url: location.origin + '/controllers/users/change-info.php',
         type: 'post',
         success: function(data) {
             console.log(data);
