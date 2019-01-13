@@ -3,7 +3,7 @@ $(document).ready(function() {
     var data = {
       'user_id' : $(this).children('option:selected').val()
     }
-    $.post('../handlers/display-user-rights.php',data, 
+    $.post('../controllers/users/rights-json.php',data,
     function(response) { //success callback
       console.log(response);
       var parsed_response = JSON.parse(response);
@@ -31,7 +31,7 @@ $(document).ready(function() {
         'component' : triggered_button.parents('tr').attr('class'),
         'user_id' : $("select[name='user-id']").children('option:selected').val()
       }
-      $.post('../handlers/update-rights.php',data, function(response) {
+      $.post('../controllers/users/update-rights.php',data, function(response) {
         triggered_button.removeClass('off').addClass('on');
         triggered_button.parent().next().children().css('display', 'block');
       });
@@ -42,7 +42,8 @@ $(document).ready(function() {
         'component' : triggered_button.parents('tr').attr('class'),
         'user_id' : $("select[name='user-id']").children('option:selected').val()
       }
-      $.post('../handlers/update-rights.php',data, function(response) {
+
+      $.post('../controllers/users/update-rights.php',data, function(response) {
         triggered_button.removeClass('on').addClass('off');
         triggered_button.parent().next().children().css('display', 'none');
         triggered_button.parent().next().children().removeClass('on').addClass('off');
@@ -57,7 +58,8 @@ $(document).ready(function() {
         'component' : triggered_button.parents('tr').attr('class'),
         'user_id' : $("select[name='user-id']").children('option:selected').val()
       }
-      $.post('../handlers/update-rights.php',data, function(response) {
+
+      $.post('../controllers/users/update-rights.php',data, function(response) {
         triggered_button.removeClass('off').addClass('on');
       });
     }
@@ -67,7 +69,8 @@ $(document).ready(function() {
         'component' : triggered_button.parents('tr').attr('class'),
         'user_id' : $("select[name='user-id']").children('option:selected').val()
       }
-      $.post('../handlers/update-rights.php',data, function(response) {
+
+      $.post('../controllers/users/update-rights.php',data, function(response) {
         triggered_button.removeClass('on').addClass('off');
       });
     }

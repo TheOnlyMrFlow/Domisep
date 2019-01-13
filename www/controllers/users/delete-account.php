@@ -1,6 +1,8 @@
 <?php
 
-require_once '../utils/logout.php';
+require_once(dirname(__FILE__) . '/../../utils/logout.php');
+require_once(dirname(__FILE__) . '/../../utils/dbconnect.php');
+
 
 mysqli_report(MYSQLI_REPORT_STRICT);
 
@@ -18,7 +20,7 @@ if (isset($_POST['delete-account'])) {
     $id_user = $_SESSION['id'];
     $id_home = $_SESSION['home_id'];
 
-    $db = mysqli_connect('localhost', 'root', '', 'mff');
+    $db = dbconnect();
     $db->begin_transaction();
 
     try {

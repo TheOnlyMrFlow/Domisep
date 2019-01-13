@@ -6,7 +6,7 @@
 
 		<a class="close" id="close-signup">&times;</a>
 
-		<form method="post" action="./handlers/handle-signup.php" target="signup-result">
+		<form method="post" action="./controllers/users/signup.php" target="signup-result">
 
 			<h2>Register an account</h2>
 			<div class="form-container">
@@ -55,14 +55,13 @@
 					</section>
 				</div>
 			</div>
-
-
-
 			<p>By creating an account, you agree to our
 				<strong>Terms and Conditions</strong>
 			</p>
-			<input type="submit" value="Submit" name="signup"><iframe name="signup-result"></iframe>
+			<div class="submit-container">
+				<input type="submit" value="Submit" name="signup">
+			</div>
+			<iframe name="signup-result"></iframe>
 		</form>
 	</div>
-
 </div>

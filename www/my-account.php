@@ -1,5 +1,8 @@
 <?php
 
+require_once(dirname(__FILE__) . '/utils/dbconnect.php');
+
+
 header('Content-Type: text/html; charset=ISO-8859-1');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -8,7 +11,7 @@ if (!isset($_SESSION['language'])) {
     $_SESSION['language'] = 'en';
 }
 
-$db = mysqli_connect('localhost', 'root', '', 'mff');
+$db = dbconnect();
 //mysqli_set_charset($db, "utf8");
 
 $result = mysqli_query($db, "SELECT users.*, homes.* FROM users LEFT JOIN homes ON homes.id=users.id_home WHERE users.id = " . $_SESSION['id']);
@@ -78,7 +81,7 @@ include 'components/header-nav/header-nav.php';
 						<input class="edit-info" style="display: none;" type="text" name="lastname" value=<?php echo $last_name ?>>
 						<p class="show-info"><?php echo $last_name ?></p>
 
-					</div>	
+					</div>
 					<br>
 					<div>
 						<strong>Phone</strong>
@@ -98,7 +101,7 @@ include 'components/header-nav/header-nav.php';
 						<button type="button" id="switch-change-info-off" style="display: none;" class="edit-info">Cancel</button>
 						<input  class="edit-info" style="display: none;" type="submit" value="Confirm changes">
 						<button type="button" id="switch-change-info-on" class="show-info">Change my information</button>
-						
+
 					</div>
 					<div>
 						<p id="change-info-result"></p>
@@ -139,11 +142,11 @@ include 'components/header-nav/header-nav.php';
 			</div>
 
 
-			<form method="post" action="./handlers/handle-logout.php">
+			<form method="post" action="./controllers/users/logout.php">
 				<input type="submit" value="Log out" name="logout">
 			</form>
 
-			<form method="post" action="./handlers/handle-delete-account.php">
+			<form method="post" action="./controllers/users/delete-account.php">
 				<input style="display: none;" name="delete-account">
 				<input onClick="SubmitDeleteAccount(this.form)" type="button" value="Delete my account" name="delete-account">
 			</form>

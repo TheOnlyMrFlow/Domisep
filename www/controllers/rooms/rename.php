@@ -9,23 +9,29 @@ if (!isset($_SESSION['connected']) || $_SESSION['connected'] == false) {
     displayErrorAndLeave('You are not connected', 401);
 }
 
+require_once(dirname(__FILE__) . '/../../models/Room.php');
+require_once(dirname(__FILE__) . '/../../utils/dbconnect.php');
+
+
 // if (!isset($_POST['room_name']) ) {
 
 //     displayErrorAndLeave('Please fill all the fields', 400);
 // }
 
-$db = mysqli_connect('localhost', 'root', '', 'mff');
 
+
+$db = dbconnect();
+
+$room_id = mysqli_real_escape_string($db, $_POST['room_id']);
+//$room_id = $_POST['room_id'];//
 $room_name = mysqli_real_escape_string($db, $_POST['room_name']);
 
 
 
-$room_id = $_POST['room_id'];
+$room = new Room ($room_id);
+$room->rename($room_name);
 
-$stmt = $db->prepare("UPDATE rooms SET name = ? WHERE id = ?");
-echo mysqli_error($db);
-$stmt->bind_param("si", $room_name, $room_id);
-$stmt->execute();
+
 
 
 // echo 'Your information have been successfully updated';

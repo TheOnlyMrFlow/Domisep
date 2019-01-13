@@ -1,9 +1,11 @@
 <?php
 
-    require_once('../models/Component.php');
+    require_once(dirname(__FILE__) . '/../../models/Component.php');
+    require_once(dirname(__FILE__) . '/../../utils/dbconnect.php');
+
 
     $id = $_GET['id'];
-    $db = mysqli_connect('localhost', 'root', '', 'mff');
+    $db = dbconnect();
     mysqli_set_charset($db, "utf8");
 
 

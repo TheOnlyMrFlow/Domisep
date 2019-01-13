@@ -1,13 +1,13 @@
 <?php
 
-require_once('../models/User.php');
-require_once('../models/FormException.php');
+require_once(dirname(__FILE__) . '/../../models/User.php');
+require_once(dirname(__FILE__) . '/../../models/FormException.php');
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-include '../utils/input-checker.php';
+include (dirname(__FILE__) . '/../../utils/input-checker.php');
 
 if (!isset($_SESSION['connected']) || $_SESSION['connected'] == false) {
     displayErrorAndLeave('You are not connected', 401);

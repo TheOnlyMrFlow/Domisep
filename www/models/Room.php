@@ -1,4 +1,8 @@
 <?php
+
+require_once(dirname(__FILE__) . '/../utils/dbconnect.php');
+
+
 class Room
 {
 
@@ -9,6 +13,49 @@ class Room
         
     }
 
+    public static function createRoom($name, $homeId) {
+    $db=dbconnect();
+    $stmt = $db->prepare("INSERT INTO rooms (name, id_home) VALUES (?, ?)");
+
+    $stmt->bind_param("si", $name, $homeId);
+    $stmt->execute();
+    echo mysqli_error($db);
+
+    $stmt->close();
+
+    }
+
+    public function deleteSelf() {
+        $db=dbconnect();
+
+        $stmt1 = $db->prepare("DELETE FROM rooms WHERE id=?");
+        $stmt1->bind_param("i", $this->id);
+
+        $stmt2 = $db->prepare("DELETE FROM components WHERE id_room=?");
+        $stmt2->bind_param("i", $this->id);
+
+        $stmt1->execute();  
+        $stmt2->execute();  
+
+        $stmt1->close();
+        $stmt2->close();
+        
+        
+        echo mysqli_error($db);
+    }
+
+    function rename($newName) {
+
+        $db=dbconnect();
+        $stmt = $db->prepare("UPDATE rooms SET name = ? WHERE id = ?");
+        $stmt->bind_param("si", $newName, $this->id);
+        $stmt->execute();
+        echo mysqli_error($db);
+        $stmt->close();
+        
+        
+
+    }
     /**
      * Fait par Florian
      *
@@ -16,7 +63,7 @@ class Room
      **/
     public function getAllFields(): array
     {
-        $db = mysqli_connect('localhost', 'root', '', 'mff');
+        $db = dbconnect();
         $stmt = $db->prepare("SELECT * FROM rooms WHERE id = ?");
         $stmt->bind_param("i", $this->id);
         $stmt->execute();
@@ -29,7 +76,7 @@ class Room
     }
 
     public function getComponents(){
-        $db = mysqli_connect('localhost', 'root', '', 'mff');
+        $db = dbconnect();
         $stmt = $db->prepare("SELECT id FROM components WHERE id_room = ?");
         $stmt->bind_param("i", $this->id);
         $stmt->execute();

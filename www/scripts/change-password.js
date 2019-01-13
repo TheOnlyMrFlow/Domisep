@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     $("#change-password-form").ajaxForm({
-        url: 'http://localhost/handlers/handle_change_password.php',
+        url: location.origin + '/controllers/users/change-password.php',
         type: 'post',
         success: function(data) {
             console.log(data);

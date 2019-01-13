@@ -38,9 +38,9 @@
 .room_header{
 	display: flex;
 /*	align-items: center;
-*/	margin-bottom: 10px;
+*/	margin-bottom: 20px;
 	justify-content: space-between;
-	align-content: space-between;
+	align-items: center;
 }
 
 #add-comp-title,#add-preset-title,#add-room-title{
@@ -61,11 +61,6 @@
 .components_line:not(:last-child){
 	margin-bottom: 20px;
 }
-
-.component_title{
-	margin-bottom: 0.7em;
-}
-
 
 /*bouton on/off fin*/
 
@@ -142,7 +137,7 @@
 		height: 0.2em;
 		width: 1em;
 	}
-	
+
 .plus-button--large {
 	font-size: 22px;
 }
@@ -157,11 +152,23 @@
 	justify-content: flex-start;
 	align-items: center;
 	align-content: center;
+}
 
+.section_add_room form{
+	display: flex;
+	align-items: center;
+}
+
+.section_add_room > form > button{
+	margin-right: 20px;
 }
 
 .create_room{
 	margin-left: 0.5em;
+}
+
+.delete-room-icon{
+	cursor: pointer;
 }
 
 
@@ -172,7 +179,7 @@ input{
 
 input:hover{
 	border:solid #EFEFEF 1px;
-	
+
 }
 input:focus{
 	border: solid #EFEFEF 1px;

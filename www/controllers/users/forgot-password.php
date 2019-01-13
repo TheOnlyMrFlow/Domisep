@@ -1,10 +1,10 @@
 <?php
 
-require_once('../models/User.php');
+require_once(dirname(__FILE__) . '/../../models/User.php');
 
 // Swift Mailer Library
-require_once '../../vendor/autoload.php';
-require_once '../../globalVars.php';
+require_once(dirname(__FILE__) .  '/../../../vendor/autoload.php');
+require_once(dirname(__FILE__) .  '/../../../globalVars.php');
 
 if (!isset($_POST['forgot-password']) ) {
     exit();

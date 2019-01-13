@@ -3,8 +3,8 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once('../models/User.php');
-require_once('../models/FormException.php');
+require_once(dirname(__FILE__) . '/../../models/User.php');
+require_once(dirname(__FILE__) . '/../../models/FormException.php');
 
 if (isset($_POST['signup'])) {
 

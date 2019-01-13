@@ -1,6 +1,8 @@
 <?php
 
-require_once('./models/Invitation.php');
+require_once(dirname(__FILE__) . '/models/Invitation.php');
+require_once(dirname(__FILE__) . '/utils/dbconnect.php');
+
 
 header('Content-Type: text/html; charset=ISO-8859-1');
 // if (session_status() == PHP_SESSION_NONE) {
@@ -10,7 +12,7 @@ if (!isset($_SESSION['language'])) {
     $_SESSION['language'] = 'en';
 }
 
-$db = mysqli_connect('localhost', 'root', '', 'mff');
+$db = dbconnect();
 
 ?>
 <!DOCTYPE html>
@@ -45,7 +47,7 @@ if (!isset($_GET['key']) || !isset($_GET['mail'])){
 	exit();
 }
 
-$db = mysqli_connect('localhost', 'root', '', 'mff');
+$db = dbconnect();
 $key =  mysqli_real_escape_string($db, $_GET['key']);
 $mail = mysqli_real_escape_string($db, $_GET['mail']);
 //$key = $_GET['key'];
@@ -80,7 +82,7 @@ $ownerName = $row['first_name'] . ' ' . $row['last_name'];
 			<div class="dashboard-big-container">
 			<h2>Please fill your information</h2>
 				<div class="dashboard-inner-container">
-				<form method="POST" action="./handlers/handle-signup.php">
+				<form method="POST" action="./controllers/users/signup.php">
 				<div>
 						<strong>Email</strong>
 						<input readonly value="<?php echo $mail ?>" type="mail" name="email-disabled">

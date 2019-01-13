@@ -1,17 +1,21 @@
 $(document).ready(function () {
 
+    
+
     $("#comp-details-form").ajaxForm({
-        url: 'http://localhost/handlers/handle-modify-component.php',
+        url: location.origin + '/controllers/components/modify.php',
         type: 'post',
         success: function(data) {console.log(data); location.reload();},
         error: function(err) {console.log("An error occured");}
     })
 
-    var buttons = document.getElementsByClassName("bouton_3_points");
+    var buttons = document.getElementsByClassName("comp-details-opener");
+    
 
 
     Array.prototype.forEach.call((buttons), function(el) {
         el.addEventListener("click", function () {
+            console.log('click');
             var root = this;
             var safetyCount = 0;
 
@@ -25,11 +29,14 @@ $(document).ready(function () {
             }
             document.getElementById('comp-details-id').value = root.id;
             
+            
+            
             $.get(
-                encodeURI('http://localhost/handlers/ajax-component-details.php?id=' + root.id),
+                encodeURI(location.origin + '/controllers/components/details-json.php?id=' + root.id),
                 function (compData) {
                     console.log(compData);
                     compData = JSON.parse(compData);
+                    
                     document.getElementById("comp-details-title").innerHTML = compData['name'];
                     document.getElementById("comp-details-name").value = compData['name'];
 
@@ -38,7 +45,7 @@ $(document).ready(function () {
                     roomSelect.innerHTML = "";
 
                     $.get(
-                        'http://localhost/handlers/ajax-rooms-of-house.php',
+                        location.origin + '/controllers/rooms/list-json.php',
                         function (roomsData) {
                             console.log(roomsData);
                             roomsData = JSON.parse(roomsData);
