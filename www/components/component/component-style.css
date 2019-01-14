@@ -55,7 +55,7 @@
 	cursor: pointer;
 }
 
-.change-component-value button i:hover{
+.change-component-value button:hover i{
 	color: #FE785C;
 }
 
