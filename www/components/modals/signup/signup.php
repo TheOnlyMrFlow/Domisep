@@ -55,14 +55,13 @@
 					</section>
 				</div>
 			</div>
-
-
-
 			<p>By creating an account, you agree to our
 				<strong>Terms and Conditions</strong>
 			</p>
-			<input type="submit" value="Submit" name="signup"><iframe name="signup-result"></iframe>
+			<div class="submit-container">
+				<input type="submit" value="Submit" name="signup">
+			</div>
+			<iframe name="signup-result"></iframe>
 		</form>
 	</div>
-
 </div>
