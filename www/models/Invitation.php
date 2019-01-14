@@ -85,7 +85,7 @@ class Invitation
             ->setTo([$to])
             ->setBody(
                 " <p>You have been invited to join $inviter's house on Domisep ! </p>
-            <p>Please follow <a href='$base_url/invited?key=$key&mail=$to'>this link</a> to create your account to access the home space</p>
+            <p>Please follow <a href='$base_url/invited.php?key=$key&mail=$to'>this link</a> to create your account to access the home space</p>
             ", 'text/html'
             );
     
