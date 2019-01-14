@@ -11,7 +11,7 @@
 
 <a class="close" id="close-contact">&times;</a>
 
-		<form method="post" action="controllers/contact-us.php" target="contact-result">
+		<form method="post" action="./controllers/contact-us.php" target="contact-result">
 
 			<h2>Contact us</h2>
 
@@ -21,7 +21,7 @@
 			<br>
 			<textarea style="resize: none;" cols="86" rows="20" name="request-content"></textarea>
 			<br>
-			<input type="submit" value="Send", name="contact">
+			<input type="submit" value="Send" name="contact">
     </form>
     <iframe name="contact-result"></iframe>
 	</div>
