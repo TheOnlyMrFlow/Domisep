@@ -1,7 +1,7 @@
 <!-- Fonction php component
  -->
 <?php
-function componentsFunction($serial_number, $name_component, $component_value,  $state, $right){
+function create_component_html($serial_number, $name_component, $component_value,  $state, $right){
 			if ($state == 0) {
 				$checked = "";
 				$color = '#7A7A7A';
@@ -69,6 +69,7 @@ function componentsFunction($serial_number, $name_component, $component_value,  
 
 				$html=	"
 									<div class='component' id='$serial_number'>
+										$cursor_not_allowed_beg<i class='far fa-minus-square fa-lg $cursor_not_allowed'></i>$cursor_not_allowed_end
 									  <div class='component_title'>
 									    $name_component
 									  </div>
