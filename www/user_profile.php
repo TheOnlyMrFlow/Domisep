@@ -27,6 +27,7 @@ else
 
 /*$sql = "SELECT * FROM users WHERE id_home = $SESSION_home_id";*/
 $sql = "SELECT * FROM users WHERE id = $SESSION_id";
+/*ici remplacer SESSION ID par la variable id placée dans l'url*/
 $result = mysqli_query($conn, $sql);
 $userprofile = array();
 if(mysqli_num_rows($result) > 0)

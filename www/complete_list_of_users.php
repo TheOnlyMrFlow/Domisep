@@ -83,10 +83,12 @@ include 'components/header-nav/header-nav.php';
                 <?php 
                     foreach ($users_admin as $admin)
                     {
-                      echo "<tr><td>" . $admin['first_name'] . 
+                      $var = $admin['id'];
+                      echo "<tr><td>" . $admin['first_name']. 
                       "<td>" . $admin['last_name'] . 
-                      "<td>" . "<center>". $admin['id'] . 
-                      "<center>" . "<td>" . $admin['email'] . "</tr>";
+                      "<td>" . "<center>".  "<a id = 'externalLink' href=<?php echo 'user_profile.php?id=$var' ?> $var </a>" ."<center>" . 
+                      "<td>" . $admin['email'] . 
+                      "</tr>";
                     }
                 ?>
                 </tr>
@@ -94,7 +96,9 @@ include 'components/header-nav/header-nav.php';
             <br>
             <br>
             <br>
-            <center><input type = "button" value = "Create administrator account"><center>
+            <center>
+                <input name="newadmin" type="button" value="Create a new administrator account" onclick="window.open('New_Admin_Account.php')"/>
+            <center>
             <br>
 </div>
 <br>
@@ -118,8 +122,9 @@ include 'components/header-nav/header-nav.php';
                     {
                       echo "<tr><td>" . $common['first_name'] . 
                       "<td>" . $common['last_name'] . 
-                      "<td>" . "<center>". $common['id'] . 
-                      "<center>" . "<td>" . $common['email'] . "</tr>";
+                      "<td>" . "<center>". "<a id = externalLink href='user_profile.php'>". $common['id'] . "</a>" . 
+                      "<center>" . "<td>" . $common['email'] . 
+                      "</tr>";
                     }
                 ?>
                 </tr>
@@ -128,6 +133,7 @@ include 'components/header-nav/header-nav.php';
     </div>
     <br><br><br><br><br><br>
 </div>
+
 
 <?php
 include 'components/footer/footer.php';
