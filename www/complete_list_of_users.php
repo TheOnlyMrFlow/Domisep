@@ -84,12 +84,13 @@ include 'components/header-nav/header-nav.php';
                     foreach ($users_admin as $admin)
                     {
                       $var = $admin['id'];
-                      echo "<tr><td>" . $admin['first_name']. 
-                      "<td>" . $admin['last_name'] . 
-                      "<td>" . "<center>".  "<a id = 'externalLink' href=<?php echo 'user_profile.php?id=$var' ?> $var </a>" ."<center>" . 
-                      "<td>" . $admin['email'] . 
-                      "</tr>";
-                    }
+                      ?>
+                      <tr><td><?php echo $admin['first_name']?></td>  
+                        <td><?php echo $admin['last_name'] ?></td> 
+                        <td><center><a id = 'externalLink' href="<?php echo 'user_profile.php?id=' . $var ?>"><?php echo $var ?></a></center></td> 
+                        <td><?php echo $admin['email']?></td> 
+                      </tr>
+                    <?php }
                 ?>
                 </tr>
             </table>
@@ -119,13 +120,18 @@ include 'components/header-nav/header-nav.php';
                 <tr>
                 <?php 
                     foreach ($users_common as $common)
-                    {
-                      echo "<tr><td>" . $common['first_name'] . 
-                      "<td>" . $common['last_name'] . 
-                      "<td>" . "<center>". "<a id = externalLink href='user_profile.php'>". $common['id'] . "</a>" . 
-                      "<center>" . "<td>" . $common['email'] . 
-                      "</tr>";
-                    }
+                    { ?>
+                      <tr>
+                        <td> <?php echo $common['first_name'] ?></td> 
+                        <td> <?php echo $common['last_name'] ?></td>
+                        <td>
+                            <center>
+                                <a id = externalLink href="<?php echo 'user_profile.php?id=' . $common['id'] ?>"><?php echo $common['id']?></a> 
+                            </center>
+                        </td>
+                        <td><?php echo $common['email']?></td>
+                      </tr>";
+                    <?php }
                 ?>
                 </tr>
   
