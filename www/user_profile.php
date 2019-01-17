@@ -25,9 +25,9 @@ else
   /*echo "We are online";*/
 }
 
-/*$sql = "SELECT * FROM users WHERE id_home = $SESSION_home_id";*/
-$sql = "SELECT * FROM users WHERE id = $SESSION_id";
-/*ici remplacer SESSION ID par la variable id placée dans l'url*/
+$your_id = $_GET['id'];
+//this function retrieves the id written in the URL
+$sql = "SELECT * FROM users WHERE id = $your_id;";
 $result = mysqli_query($conn, $sql);
 $userprofile = array();
 if(mysqli_num_rows($result) > 0)
@@ -42,8 +42,7 @@ if(empty($userprofile)){echo"No user found";}
 
 foreach($userprofile as $profile)
 {
-  echo "Utilisateur : " . $profile['first_name']. " ". $profile['last_name'];
-  echo"<br>";
+  echo "";
 }
 
 $sql2 = "SELECT * FROM rooms WHERE id_home = $SESSION_home_id";
