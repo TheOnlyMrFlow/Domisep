@@ -3,11 +3,28 @@
 	padding: 1em;
 	background-color: #fff;
 	width: 120px;
-	height: 120px;
+	max-width: 120px;
+	padding: 15px;
 	box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.3);
+	display: flex;
+	flex-direction: column;
+	position: relative;
 	}
 .component:not(:first-child){
 	margin-left: 4%;
+}
+
+.fa-minus-square{
+	position: absolute;
+	top: -5px;
+	right: -7px;
+	background: #fff;
+	color:  rgba(250,0,0,0.4);
+	cursor: pointer;
+}
+
+.fa-minus-square:hover{
+	color : #ff0000;
 }
 
 .no-click{
@@ -20,9 +37,9 @@
 .component_title{
 	color : #262626;
 	text-align: center;
-	height: 25%;
 	font-family: 'Montserrat', sans-serif;
 	font-weight:bold;
+	margin-bottom: 10px;
 }
 
 .component_middle{
@@ -31,6 +48,7 @@
 	align-items: center;
 	flex-direction: row;
 	height: 45%;
+	margin-bottom: auto;
 }
 
 .component_middle div{
@@ -67,9 +85,10 @@
 .component_bas{
 	display:flex;
 	flex-direction: row;
-	margin-top: 10%;
 	justify-content: center;
 	align-items: center;
+	height: 30px;
+	margin-top: 10px;
 }
 
 .comp-details-opener{
