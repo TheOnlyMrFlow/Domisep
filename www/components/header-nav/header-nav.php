@@ -12,20 +12,31 @@
             if($_SESSION['language']=='en'){
               $house = 'My house';
               $schedule = "Schedule tasks";
-              $manage = "Manage users";
+              if ($_SESSION['role']!='house_member') {
+                $manage = "<li class='menu-item manage-users-opener'><a href='../../manage-users.php'>Manage users</a></li>";
+              }
+              else{
+                $manage = '';
+              }
               $account = "My account";
               $contact = "Contact us";
             }elseif ($_SESSION['language']=='fr') {
               $house = 'Ma maison';
               $schedule = htmlentities("Tâches");
-              $manage = htmlentities("Gérer les utilisateurs");
+              if ($_SESSION['role']!='house_member') {
+                $fr = htmlentities("Gérer les utilisateurs");
+                $manage = "<li class='menu-item manage-users-opener'><a href='../../manage-users.php'>$fr</a></li>";
+              }
+              else{
+                $manage = '';
+              }
               $account = "Mon compte";
               $contact = "Contactez-nous";
             }
 
             echo "<li class='menu-item my-house-opener'><a href='../../my-house.php'>$house</a></li>
             <li class='menu-item schedule-opener'><a href='../../newtask.php'>$schedule</a></li>
-            <li class='menu-item manage-users-opener'><a href='../../manage-users.php'>$manage</a></li>
+            $manage
             <li class='menu-item my-account-opener'><a href='../../my-account.php'>$account</a></li>
             <li class='menu-item contact-opener'><a>$contact</a></li>";
           } else {

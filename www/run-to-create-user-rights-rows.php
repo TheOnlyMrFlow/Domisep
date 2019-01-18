@@ -1,6 +1,6 @@
 <?php
 
-require_once(dirname(__FILE__) . '/../utils/dbconnect.php');
+require_once(dirname(__FILE__) . '/utils/dbconnect.php');
 
 
 $db = dbconnect();

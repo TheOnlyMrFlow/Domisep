@@ -1,0 +1,90 @@
+body
+{
+    background-image: linear-gradient(to bottom right, #ddd, #206ea5 50%);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: lighter;
+    padding-left: 1%;
+    padding-right: 1%;
+}
+
+
+#admin-div
+{
+    background-color: #fff;
+    border-radius: 5px;
+    padding-top: 1%;
+    padding-left: 2%;
+}
+#admin-div-content
+{
+    padding-top: 2%;
+}
+#admin-info
+{
+    margin:auto;
+    border-collapse: collapse;
+}
+#admin-info th
+{
+    border: 3px solid #ddd;
+    padding: 8px;
+    width: 18%;
+}
+#admin-info td
+{
+    border : 1px solid #ddd;
+    padding: 8px; 
+    width: 18%;
+    text-align: left;
+}
+
+#common-div
+{
+    background-color: #fff;
+    border-radius: 5px;
+    padding-top: 1%;
+    padding-left: 2%;
+}
+#common-div-content
+{
+    padding-top: 2%;
+    padding-left: 3%;
+}
+#common-info
+{
+    margin:auto;
+    border-collapse: collapse;
+}
+#common-info th
+{
+    border: 3px solid #ddd;
+    padding: 8px;
+    width: 18%;
+}
+#common-info td
+{
+    border : 1px solid #ddd;
+    padding: 8px; 
+    width: 18%;
+    text-align: left;
+}
+
+a
+{
+    color: black;
+}
+a:link {
+    text-decoration: none;
+  }
+  
+  a:visited {
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  a:active {
+    text-decoration: underline;
+  }

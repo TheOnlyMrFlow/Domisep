@@ -5,6 +5,7 @@
 
 #add-user-form{
   display: flex;
+  align-items: center;
 }
 
 #add-user-form div{
@@ -14,6 +15,7 @@
 #add-user-form div input[type=text]{
   width: 80%;
   padding: 5px;
+
 }
 
 .dashboard-inner-container .room-container{
@@ -48,6 +50,8 @@ div.dashboard-inner-container.change-user-rights{
 
 .edit-button{
   display: none;
+  margin-left: 15px;
+  margin-top: 3px;
 }
 
 .off.ic.ic-eye:before {
