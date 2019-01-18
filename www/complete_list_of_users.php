@@ -83,18 +83,23 @@ include 'components/header-nav/header-nav.php';
                 <?php 
                     foreach ($users_admin as $admin)
                     {
-                      echo "<tr><td>" . $admin['first_name'] . 
-                      "<td>" . $admin['last_name'] . 
-                      "<td>" . "<center>". $admin['id'] . 
-                      "<center>" . "<td>" . $admin['email'] . "</tr>";
-                    }
+                      $var = $admin['id'];
+                      ?>
+                      <tr><td><?php echo $admin['first_name']?></td>  
+                        <td><?php echo $admin['last_name'] ?></td> 
+                        <td><center><a id = 'externalLink' href="<?php echo 'user_profile.php?id=' . $var ?>"><?php echo $var ?></a></center></td> 
+                        <td><?php echo $admin['email']?></td> 
+                      </tr>
+                    <?php }
                 ?>
                 </tr>
             </table>
             <br>
             <br>
             <br>
-            <center><input type = "button" value = "Create administrator account"><center>
+            <center>
+                <input name="newadmin" type="button" value="Create a new administrator account" onclick="window.open('New_Admin_Account.php')"/>
+            <center>
             <br>
 </div>
 <br>
@@ -115,12 +120,18 @@ include 'components/header-nav/header-nav.php';
                 <tr>
                 <?php 
                     foreach ($users_common as $common)
-                    {
-                      echo "<tr><td>" . $common['first_name'] . 
-                      "<td>" . $common['last_name'] . 
-                      "<td>" . "<center>". $common['id'] . 
-                      "<center>" . "<td>" . $common['email'] . "</tr>";
-                    }
+                    { ?>
+                      <tr>
+                        <td> <?php echo $common['first_name'] ?></td> 
+                        <td> <?php echo $common['last_name'] ?></td>
+                        <td>
+                            <center>
+                                <a id = externalLink href="<?php echo 'user_profile.php?id=' . $common['id'] ?>"><?php echo $common['id']?></a> 
+                            </center>
+                        </td>
+                        <td><?php echo $common['email']?></td>
+                      </tr>";
+                    <?php }
                 ?>
                 </tr>
   
@@ -128,6 +139,7 @@ include 'components/header-nav/header-nav.php';
     </div>
     <br><br><br><br><br><br>
 </div>
+
 
 <?php
 include 'components/footer/footer.php';
