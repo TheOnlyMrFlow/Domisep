@@ -35,7 +35,7 @@ input[type=submit] {
   transition: all 0.15s;
   padding: 15px 25px 15px 25px;
   color : #fff;
-  border: 2px solid #fff;
+  border: 2px solid #206ea5;
   border-radius: 5px;
   background-color: #206ea5;
 }
@@ -43,5 +43,5 @@ input[type=submit] {
 input[type=submit]:hover {
   background-color: #fff;
   color: #206ea5;
-  border-color: #206ea5;
+  border: 2px solid #206ea5;
 }

@@ -74,23 +74,67 @@ include 'components/header-nav/header-nav.php';
 				</div>
 			<section class="section_preset">
 
-				<div class= "preset">
-					<button>Preset name</button>
-				</div>
+				<?php
+        $id_home = $_SESSION['home_id'];
+        $id_user = $_SESSION['id'];
+        $role = $_SESSION['role'];
+        $db = dbconnect();
+        $html = '';
 
-				<button class="plus-button plus-button--large"  onclick="location.href='createpreset.php'" type="button"></button><span id="add-preset-title"><?php if ($_SESSION['language']=='en') {
-    echo htmlentities('Create a preset');
-} elseif ($_SESSION['language']=='fr') {
-    echo htmlentities('Créer un preset');
-} ?></span>
+        if($role=='house_member'){
+          $presetsArray = $db->prepare("SELECT presets.id, presets.name FROM presets
+                                INNER JOIN preset_values ON preset_values.id_preset=presets.id
+                                INNER JOIN user_rights ON preset_values.serial_number = user_rights.serial_number
+                                WHERE (user_rights.access_level='write' AND user_rights.id_user=? AND presets.id_home=?)");
+          $presetsArray->bind_param("ii", $id_user,$id_home);
+          $presetsArray->execute();
+          $presetsArray->bind_result($id,$name);
+
+          while ($presetsArray->fetch()) {
+            $html .= "<button class='preset-button' id='$id'>$name</button>";
+          }
+          echo($html);
+        }
+        elseif($role=='house_manager'){
+          $presetsArray = $db->prepare("SELECT presets.id, presets.name FROM presets WHERE id_home =? ");
+          $presetsArray->bind_param("i", $id_home);
+          $presetsArray->execute();
+          $presetsArray->bind_result($id,$name);
+
+          while ($presetsArray->fetch()) {
+            $html .= "<button class='preset-button' id='$id'>$name</button>";
+          }
+          echo($html);
+        }
+        elseif ($role == 'administrator') {
+          $presetsArray = $db->prepare("SELECT presets.id, presets.name FROM presets WHERE id_home =? ");
+          $presetsArray->bind_param("i", $id_home);
+          $presetsArray->execute();
+          $presetsArray->bind_result($id,$name);
+
+          while ($presetsArray->fetch()) {
+            $id = $preset[0];
+            $name = $preset[1];
+            $html .= "<button class='preset-button' id='$id'>$name</button>";
+          }
+          echo($html);
+        }
+
+        ?>
+
+        <i onclick="location.href='createpreset.php'" class='fas fa-plus fa-lg myhouse-add-button'><span id="add-preset-title">
+          <?php if ($_SESSION['language']=='en') {
+            echo htmlentities('Create a preset');
+        } elseif ($_SESSION['language']=='fr') {
+            echo htmlentities('Créer un preset');
+        } ?>
+      </span></i>
+
+
 
 			</section>
 
 			<?php
-            $db = dbconnect();
-            $id_home = $_SESSION['home_id'];
-            $id_user = $_SESSION['id'];
-            $role = $_SESSION['role'];
 
             if ($role == 'house_member') {
                 $query = "SELECT DISTINCT
@@ -156,11 +200,10 @@ include 'components/header-nav/header-nav.php';
                             <form method='POST' action='./handlers/handle_delete_a_room.php'>
                               <i class='material-icons delete-room-icon' onclick='this.parentElement.submit()'>delete </i>
                               <input style='display: none;' name='remove_room' value='$current_room_id'>
-                              <span id='delete'>
                             </form>
                           </div>
                           <div class='section_add_component'>
-                              <button class='plus-button new-comp-opener'></button><span id='add-comp-title'> Add a component</span>
+                            <i class='fas fa-plus fa-lg new-comp-opener myhouse-add-button'><span id='add-comp-title'> Add a component</span></i>
                           </div>
                         </div>
                       </div>
@@ -245,11 +288,10 @@ include 'components/header-nav/header-nav.php';
                             <form method='POST' action='./handlers/handle_delete_a_room.php'>
                               <i class='material-icons delete-room-icon' onclick='this.parentElement.submit()'>delete </i>
                               <input style='display: none;' name='remove_room' value='$current_room_id'>
-                              <span id='delete'>
                             </form>
                           </div>
                           <div class='section_add_component'>
-                              <button class='plus-button new-comp-opener'></button><span id='add-comp-title'> Add a component</span>
+                            <i class='fas fa-plus fa-lg new-comp-opener myhouse-add-button'><span id='add-comp-title'> Add a component</span></i>
                           </div>
                         </div>
                       </div>
@@ -317,11 +359,10 @@ include 'components/header-nav/header-nav.php';
                               <form method='POST' action='./handlers/handle_delete_a_room.php'>
                                 <i class='material-icons delete-room-icon' onclick='this.parentElement.submit()'>delete </i>
                                 <input style='display: none;' name='remove_room' value='$current_room_id'>
-                                <span id='delete'>
                               </form>
                             </div>
                             <div class='section_add_component'>
-                                <button class='plus-button new-comp-opener'></button><span id='add-comp-title'> Add a component</span>
+                              <i class='fas fa-plus fa-lg new-comp-opener myhouse-add-button'><span id='add-comp-title'> Add a component</span></i>
                             </div>
                           </div>
                         </div>
@@ -369,11 +410,10 @@ include 'components/header-nav/header-nav.php';
                               <form method='POST' action='./controllers/rooms/delete.php'>
                                 <i class='material-icons delete-room-icon' onclick='this.parentElement.submit()'>delete</i>
                                 <input style='display: none;' name='remove_room' value='$current_room_id'>
-                                <span id='delete'>
                               </form>
                             </div>
                             <div class='section_add_component'>
-          	                   <button class='plus-button new-comp-opener'></button><span id='add-comp-title'> Add a component</span>
+          	                   <i class='fas fa-plus fa-lg new-comp-opener myhouse-add-button'><span id='add-comp-title'> Add a component</span></i>
           	                </div>
                           </div>
 
@@ -389,17 +429,19 @@ include 'components/header-nav/header-nav.php';
 
       			<div class="section_add_room">
               <form method="POST" action="./controllers/rooms/add.php">
-              <button onclick="this.parentElement.submit()" class="plus-button-room plus-button--large"></button>
-              <input style="display: none;" name="new_room">
-              <span id="room_name">
+              <i onclick="this.parentElement.submit()" class='fas fa-plus fa-lg myhouse-add-button'>
+                <input style="display: none;" name="new_room">
+                <span id="room_name">
 
-                <?php if ($_SESSION['language']=='en') {
-                echo('Add a room');
-            } elseif ($_SESSION['language']=='fr') {
-                        echo htmlentities('Ajouter une pièce');
-                    } ?>
+                  <?php if ($_SESSION['language']=='en') {
+                  echo('Add a room');
+              } elseif ($_SESSION['language']=='fr') {
+                          echo htmlentities('Ajouter une pièce');
+                      } ?>
 
-              </span>
+                </span>
+              </i>
+
             </form>
         </div>
     </div>
