@@ -43,8 +43,8 @@ if(!isset($_SESSION['language'])){
 		<center>
 
 				<div class="full-screen-image">
-						<h1 style="margin-left:-15vw">Your House.
-							<br> Reinvented.</h1>
+					<h1 class = "main-title">Domisep</h1>
+
 				</div>
 				<div class="page-content-container">
 					<div class="page-content">
