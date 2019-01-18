@@ -3,6 +3,7 @@
 // Swift Mailer Library
 require_once '../../vendor/autoload.php';
 
+
 if (isset($_POST['contact'])) {
     // receive all input values from the form
     $userEmail = $_POST['request-email'];
