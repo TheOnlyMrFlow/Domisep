@@ -94,6 +94,7 @@ include 'components/header-nav/header-nav.php';
                                                 (
                                                     preset_values.id_preset = presets.id AND user_rights.id_user = ? AND user_rights.access_level <> 'write'
                                                 )
+                                            ORDER BY presets.name
                                         ) ");
 
           $presetsArray->bind_param("ii",$id_home,$id_user);
@@ -106,7 +107,7 @@ include 'components/header-nav/header-nav.php';
           echo($html);
         }
         elseif($role=='house_manager'){
-          $presetsArray = $db->prepare("SELECT presets.id, presets.name FROM presets WHERE id_home =? ");
+          $presetsArray = $db->prepare("SELECT presets.id, presets.name FROM presets WHERE id_home =? ORDER BY presets.name");
           $presetsArray->bind_param("i", $id_home);
           $presetsArray->execute();
           $presetsArray->bind_result($id,$name);
@@ -117,7 +118,7 @@ include 'components/header-nav/header-nav.php';
           echo($html);
         }
         elseif ($role == 'administrator') {
-          $presetsArray = $db->prepare("SELECT presets.id, presets.name FROM presets WHERE id_home =? ");
+          $presetsArray = $db->prepare("SELECT presets.id, presets.name FROM presets WHERE id_home =? ORDER BY presets.name");
           $presetsArray->bind_param("i", $id_home);
           $presetsArray->execute();
           $presetsArray->bind_result($id,$name);

@@ -32,4 +32,4 @@ foreach ($array as $key => $value) {
   $update_component_value->bind_param("ids", $value[1],$value[2],$value[0]);
   $update_component_value->execute();
 }
-echo(json_encode($array));
+echo (json_encode($array));
