@@ -9,7 +9,7 @@ class Component
 
     public function __construct($id) {
         $this->id = $id;
-        
+
     }
 
     /**
@@ -31,7 +31,7 @@ class Component
 
         //header("HTTP/1.1 403 " . isset($exisitng));
         //if ($exisitng)
-        
+
 
         if (isset($exisitng)) {
             return false;
@@ -41,10 +41,30 @@ class Component
         $stmt->bind_param("ssi", $name, $serialNumber, $roomId);
         $stmt->execute();
         $stmt->close();
-
+        $houseMembers = $db->prepare("SELECT
+                                          users.id
+                                      FROM
+                                          users
+                                      INNER JOIN rooms ON users.id_home = rooms.id_home
+                                      WHERE
+                                          rooms.id = ? AND users.role='house_member'");
+        $houseMembers->bind_param('i',$roomId);
+        $houseMembers->execute();
+        $houseMembers->store_result();
+        if($houseMembers->num_rows > 0){
+            $houseMembers->bind_result($userId);
+            $houseMembersArray = array();
+            while($houseMembers->fetch()){
+              array_push($houseMembersArray, $userId);
+            }
+            foreach($houseMembersArray as $userId) {
+              $stmt = $db->prepare("INSERT INTO user_rights (id_user,serial_number,access_level) VALUES (?,?,'write')");
+              $stmt->bind_param("is",$userId,$serialNumber);
+              $stmt->execute();
+              $stmt->close();
+          }
+        }
         return true;
-
-
 
     }
 
@@ -64,14 +84,14 @@ class Component
         $row = $result->fetch_assoc();
 
         return $row;
-       
+
     }
 
-    
+
 
     public function getId()
     {
         return $this->id;
     }
-    
+
 }

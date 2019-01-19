@@ -208,12 +208,12 @@ include 'components/header-nav/header-nav.php';
                               <input type='submit' name='update-name' style='display: none;'>
                         </form>
                         <div class= 'header_left'>
-                          <div class='delete_room'>
-                            <form method='POST' action='./handlers/handle_delete_a_room.php'>
-                              <i class='material-icons delete-room-icon' onclick='this.parentElement.submit()'>delete </i>
-                              <input style='display: none;' name='remove_room' value='$current_room_id'>
-                            </form>
-                          </div>
+                        <div class='delete_room'>
+                          <form method='POST' action='./controllers/rooms/delete.php'>
+                            <i class='material-icons delete-room-icon' onclick='this.parentElement.submit()'>delete</i>
+                            <input style='display: none;' name='remove_room' value='$current_room_id'>
+                          </form>
+                        </div>
                           <div class='section_add_component'>
                             <i class='fas fa-plus fa-lg new-comp-opener myhouse-add-button'><span id='add-comp-title'> Add a component</span></i>
                           </div>
@@ -296,12 +296,12 @@ include 'components/header-nav/header-nav.php';
 
                               </form>
                         <div class= 'header_left'>
-                          <div class='delete_room'>
-                            <form method='POST' action='./handlers/handle_delete_a_room.php'>
-                              <i class='material-icons delete-room-icon' onclick='this.parentElement.submit()'>delete </i>
-                              <input style='display: none;' name='remove_room' value='$current_room_id'>
-                            </form>
-                          </div>
+                        <div class='delete_room'>
+                          <form method='POST' action='./controllers/rooms/delete.php'>
+                            <i class='material-icons delete-room-icon' onclick='this.parentElement.submit()'>delete</i>
+                            <input style='display: none;' name='remove_room' value='$current_room_id'>
+                          </form>
+                        </div>
                           <div class='section_add_component'>
                             <i class='fas fa-plus fa-lg new-comp-opener myhouse-add-button'><span id='add-comp-title'> Add a component</span></i>
                           </div>
@@ -367,12 +367,12 @@ include 'components/header-nav/header-nav.php';
 
                                 </form>
                           <div class= 'header_left'>
-                            <div class='delete_room'>
-                              <form method='POST' action='./handlers/handle_delete_a_room.php'>
-                                <i class='material-icons delete-room-icon' onclick='this.parentElement.submit()'>delete </i>
-                                <input style='display: none;' name='remove_room' value='$current_room_id'>
-                              </form>
-                            </div>
+                          <div class='delete_room'>
+                            <form method='POST' action='./controllers/rooms/delete.php'>
+                              <i class='material-icons delete-room-icon' onclick='this.parentElement.submit()'>delete</i>
+                              <input style='display: none;' name='remove_room' value='$current_room_id'>
+                            </form>
+                          </div>
                             <div class='section_add_component'>
                               <i class='fas fa-plus fa-lg new-comp-opener myhouse-add-button'><span id='add-comp-title'> Add a component</span></i>
                             </div>

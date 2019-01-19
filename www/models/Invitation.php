@@ -38,7 +38,7 @@ class Invitation
             }
         }
 
-        return false;        
+        return false;
 
     }
 
@@ -72,28 +72,28 @@ class Invitation
         $transport = (new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'))
             ->setUsername($from)
             ->setPassword($pw);
-    
+
         $mailer = new Swift_Mailer($transport);
-    
+
         $base_url = constant('BASE_URL');
-    
+
         $inviter = $_SESSION['first_name'] . ' ' . $_SESSION['last_name'];
-    
+
         // Create a message
         $messageToCustomer = (new Swift_Message("You received an invitation"))
             ->setFrom([$from => 'Service client Domisep'])
             ->setTo([$to])
             ->setBody(
                 " <p>You have been invited to join $inviter's house on Domisep ! </p>
-            <p>Please follow <a href='$base_url/invited?key=$key&mail=$to'>this link</a> to create your account to access the home space</p>
+            <p>Please follow <a href='$base_url/invited.php?key=$key&mail=$to'>this link</a> to create your account to access the home space</p>
             ", 'text/html'
             );
-    
+
         return $mailer->send($messageToCustomer);
-        
+
     }
 
-    
+
 
     private function __construct($id)
     {
@@ -110,7 +110,7 @@ class Invitation
         $this->home = new Home($row['id_home']);
     }
 
-    
+
 
     public function getMail(): string
     {

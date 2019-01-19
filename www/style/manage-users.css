@@ -59,10 +59,15 @@ div.dashboard-inner-container.change-user-rights {
   display : none;
 }
 
+.view-button{
+  cursor: pointer;
+}
+
 .edit-button {
   display     : none;
   margin-top  : 3px;
   margin-left : 15px;
+  cursor: pointer;
 }
 
 .off.ic.ic-eye:before {

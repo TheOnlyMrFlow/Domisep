@@ -10,7 +10,7 @@ class Room
 
     public function __construct($id) {
         $this->id = $id;
-        
+
     }
 
     public static function createRoom($name, $homeId) {
@@ -27,20 +27,14 @@ class Room
 
     public function deleteSelf() {
         $db=dbconnect();
-
-        $stmt1 = $db->prepare("DELETE FROM rooms WHERE id=?");
-        $stmt1->bind_param("i", $this->id);
-
         $stmt2 = $db->prepare("DELETE FROM components WHERE id_room=?");
         $stmt2->bind_param("i", $this->id);
-
-        $stmt1->execute();  
-        $stmt2->execute();  
-
-        $stmt1->close();
+        $stmt2->execute();
         $stmt2->close();
-        
-        
+        $stmt1 = $db->prepare("DELETE FROM rooms WHERE id=?");
+        $stmt1->bind_param("i", $this->id);
+        $stmt1->execute();
+        $stmt1->close();
         echo mysqli_error($db);
     }
 
@@ -52,8 +46,8 @@ class Room
         $stmt->execute();
         echo mysqli_error($db);
         $stmt->close();
-        
-        
+
+
 
     }
     /**
@@ -72,7 +66,7 @@ class Room
         $row = $result->fetch_assoc();
 
         return $row;
-       
+
     }
 
     public function getComponents(){
@@ -93,5 +87,5 @@ class Room
     {
         return $this->id;
     }
-    
+
 }
