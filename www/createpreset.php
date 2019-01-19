@@ -1,6 +1,7 @@
 <?php
 
 header('Content-Type: text/html; charset=ISO-8859-1');
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -117,7 +118,7 @@ $db = dbconnect();
 
               <div class = "dashboard-inner-container" id="SaveZone">
                 <div>
-                  <input id="Save" type="button" value="Save the preset">
+                  <input id="Save" type="submit" value="Save the preset">
                 </div>
               </div>
             </div>

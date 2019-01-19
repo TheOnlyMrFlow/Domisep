@@ -6,7 +6,6 @@ $(document).ready(function() {
 
     var el = this.options[this.selectedIndex];
     el.remove();
-    // select.val("disabled");
     var data = {
       'serialNumber': el.value
     };
@@ -31,7 +30,6 @@ $(document).ready(function() {
   $('.dashboard-inner-container').on('click','.component_bas>.form-switch>i', function(e) {
     var id = $(this).closest('div.component').attr('id');
     var state = this.previousElementSibling.checked;
-    alert(state);
     if (state == false) {
       $(this).parents('.component_bas').prev(".component_middle").find("span>i").css("color", "#4BD763");
     } else {
@@ -57,6 +55,12 @@ $(document).ready(function() {
     $('.component').each(function(index) {
       var serialNumber = $(this).attr('id');
       var state = $(this)[0].querySelectorAll('.form-switch>input')[0].checked;
+      if(state==false){
+        state=0;
+      }
+      else{
+        state=1;
+      }
       var value = $(this).find('.component-value>span:first-child').text();
       if (value != ''){
         value = +value;
@@ -69,7 +73,7 @@ $(document).ready(function() {
     });
 
     $.post('controllers/presets/create-preset.php',{'name':presetName,'data' : dataArray},function(response){
-      console.log(response);
+      window.location.href = './../my-house.php';
     });
   })
 });

@@ -20,12 +20,7 @@ $preset_id = $stmt->insert_id;
 
 foreach ($componentsValuesArray as $componentValues) {
   $serial_number = mysqli_real_escape_string($db, $componentValues[0]);
-  if($componentValues[1]==true){
-    $state = 1;
-  }
-  else{
-    $state = 0;
-  }
+  $state = $componentValues[1];
   $value = $componentValues[2];
   if($value==null){
     $stmt = $db->prepare("INSERT INTO preset_values (id_preset,serial_number,on_off) VALUES (?,?,?)");
