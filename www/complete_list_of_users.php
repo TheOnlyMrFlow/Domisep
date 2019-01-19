@@ -1,5 +1,7 @@
 <?php
 
+require_once (DIRNAME(__FILE__) . '/utils/dbconnect.php');
+
 header('Content-Type: text/html; charset=ISO-8859-1');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -11,12 +13,7 @@ if(!isset($_SESSION['language'])){
 	$_SESSION['language'] = 'en';
 }
 
-$dbhost = 'localhost';
-$dbuser = 'root';
-$dbpass = '';
-$dbname = 'mff';
-
-$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
+$conn = dbconnect();
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
