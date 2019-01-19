@@ -2,6 +2,7 @@
  -->
 <?php
 function create_component_html($serial_number, $name_component, $component_value,  $state, $right){
+	    header('Content-Type: text/html; charset=ISO-8859-1');
 			if ($state == 0) {
 				$checked = "";
 				$color = '#7A7A7A';
@@ -24,7 +25,6 @@ function create_component_html($serial_number, $name_component, $component_value
 			}
 			else{
 				$pointer_events_none = '';
-				$cursor_not_allowed = '';
 				$cursor_not_allowed_beg = '';
 				$cursor_not_allowed_end = '';
 			}
@@ -66,10 +66,9 @@ function create_component_html($serial_number, $name_component, $component_value
 				$icon = "<span style='color: $color;'><i class='fas fa-question fa-2x' ></i></span>";
 				$component_value = "";
 			}
-
 				$html=	"
 									<div class='component' id='$serial_number'>
-										$cursor_not_allowed_beg<i class='far fa-minus-square fa-lg $cursor_not_allowed'></i>$cursor_not_allowed_end
+										$cursor_not_allowed_beg<i class='far fa-minus-square fa-lg $pointer_events_none'></i>$cursor_not_allowed_end
 									  <div class='component_title'>
 									    $name_component
 									  </div>

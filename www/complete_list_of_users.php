@@ -4,6 +4,9 @@ header('Content-Type: text/html; charset=ISO-8859-1');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+if($_SESSION['role']!='administrator'){
+  header('index.php');
+}
 if(!isset($_SESSION['language'])){
 	$_SESSION['language'] = 'en';
 }
@@ -16,7 +19,7 @@ $dbname = 'mff';
 $conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
-} 
+}
 
 $sql = "SELECT * FROM users WHERE role IN ('administrator')";
 $result = mysqli_query($conn, $sql);
@@ -80,15 +83,15 @@ include 'components/header-nav/header-nav.php';
                 <th>Mail</th>
                 </tr>
                 <tr>
-                <?php 
+                <?php
                     foreach ($users_admin as $admin)
                     {
                       $var = $admin['id'];
                       ?>
-                      <tr><td><?php echo $admin['first_name']?></td>  
-                        <td><?php echo $admin['last_name'] ?></td> 
-                        <td><center><a id = 'externalLink' href="<?php echo 'user_profile.php?id=' . $var ?>"><?php echo $var ?></a></center></td> 
-                        <td><?php echo $admin['email']?></td> 
+                      <tr><td><?php echo $admin['first_name']?></td>
+                        <td><?php echo $admin['last_name'] ?></td>
+                        <td><center><a id = 'externalLink' href="<?php echo 'user_profile.php?id=' . $var ?>"><?php echo $var ?></a></center></td>
+                        <td><?php echo $admin['email']?></td>
                       </tr>
                     <?php }
                 ?>
@@ -118,15 +121,15 @@ include 'components/header-nav/header-nav.php';
                     <th>Mail</th>
                 </tr>
                 <tr>
-                <?php 
+                <?php
                     foreach ($users_common as $common)
                     { ?>
                       <tr>
-                        <td> <?php echo $common['first_name'] ?></td> 
+                        <td> <?php echo $common['first_name'] ?></td>
                         <td> <?php echo $common['last_name'] ?></td>
                         <td>
                             <center>
-                                <a id = externalLink href="<?php echo 'user_profile.php?id=' . $common['id'] ?>"><?php echo $common['id']?></a> 
+                                <a id = externalLink href="<?php echo 'user_profile.php?id=' . $common['id'] ?>"><?php echo $common['id']?></a>
                             </center>
                         </td>
                         <td><?php echo $common['email']?></td>
@@ -134,7 +137,7 @@ include 'components/header-nav/header-nav.php';
                     <?php }
                 ?>
                 </tr>
-  
+
             </table>
     </div>
     <br><br><br><br><br><br>
@@ -144,6 +147,6 @@ include 'components/header-nav/header-nav.php';
 <?php
 include 'components/footer/footer.php';
 ?>
- 
+
 </body>
 </html>

@@ -7,6 +7,9 @@ if (session_status() == PHP_SESSION_NONE) {
 if(!isset($_SESSION['language'])){
 	$_SESSION['language'] = 'en';
 }
+if($_SESSION['id']==null){
+  header('index.php');
+}
 require("components/component/fonction-php-component.php");
 $SESSION_home_id = $_SESSION['home_id']; // create a php variable matching the home id of the connected user
 
@@ -20,21 +23,21 @@ $dbname = 'mff';
 $conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
-} 
+}
 
 $sql = "SELECT * FROM presets WHERE id_home = $SESSION_home_id";
 $result = mysqli_query($conn, $sql);
 
 $yourpresets = array();
 
-if (mysqli_num_rows($result) > 0) 
+if (mysqli_num_rows($result) > 0)
 {
   // output data of each row
-  while($presets = mysqli_fetch_assoc($result)) 
+  while($presets = mysqli_fetch_assoc($result))
   {
       array_push($yourpresets, $presets);
   }
-} 
+}
 else {
   echo "You have no preset";
 }
@@ -61,14 +64,14 @@ if (isset($_POST['savetask']))
 //penser à supprimer le colonne on/off de la base de donnée mff
 //diviser la colonne deadline en deux colonnes : date et hour
 
-//sélection des tasks 
+//sélection des tasks
 $sql2 = "SELECT * FROM tasks";
 $result2 = mysqli_query($conn, $sql2);
 $yourtasks = array();
-while($returnedTasks = mysqli_fetch_assoc($result2)) 
+while($returnedTasks = mysqli_fetch_assoc($result2))
   {
     array_push($yourtasks, $returnedTasks);
-  } 
+  }
 
 ?>
 
@@ -115,7 +118,7 @@ if ($_SESSION['connected']){
                   <span class="label">Presets</span>
                   <select class="dropdown" name="preset">
                   <option value ="notanoption" disabled selected>-- select preset --</option>
-                    <?php 
+                    <?php
                     foreach ($yourpresets as $p){
                       echo "<option value ='" . $p['id']."-".$p['name']."'>". $p['name'] . "</option>";
                     }
@@ -162,7 +165,7 @@ if ($_SESSION['connected']){
                   <th>Start Time</th>
                 </tr>
                 <tr>
-                  <?php 
+                  <?php
                     foreach($yourtasks as $t)
                     {
                       echo "<tr><td>". $t['name']. "</td><td>" . $t['frequency'] . "</td><td>" . $t['start_date'] . "</td><td>" .$t['hour']."</td></tr>";

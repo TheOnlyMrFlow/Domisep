@@ -3,6 +3,9 @@ header('Content-Type: text/html; charset=ISO-8859-1');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+if($_SESSION['id']==null){
+  header('index.php');
+}
 if(!isset($_SESSION['language'])){
 	$_SESSION['language'] = 'en';
 }
@@ -15,11 +18,11 @@ $dbpass = '';
 $dbname = 'mff';
 
 $conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
-if ($conn->connect_error) 
+if ($conn->connect_error)
 {
   echo "That did not work";
   die("Connection failed: " . $conn->connect_error);
-} 
+}
 else
 {
   /*echo "We are online";*/
@@ -32,10 +35,10 @@ $result = mysqli_query($conn, $sql);
 $userprofile = array();
 if(mysqli_num_rows($result) > 0)
 {
-  while($userinfo = mysqli_fetch_assoc($result)) 
+  while($userinfo = mysqli_fetch_assoc($result))
   {
     array_push($userprofile, $userinfo);
-  } 
+  }
 }
 
 if(empty($userprofile)){echo"No user found";}
@@ -50,10 +53,10 @@ $result2 = mysqli_query($conn, $sql2);
 $rooms = array();
 if(mysqli_num_rows($result2) > 0)
 {
-  while($user_rooms = mysqli_fetch_assoc($result2)) 
+  while($user_rooms = mysqli_fetch_assoc($result2))
   {
     array_push($rooms, $user_rooms);
-  } 
+  }
 }
 if(empty($rooms))
 {
@@ -67,10 +70,10 @@ foreach($rooms as $rooms)
   $result3 = mysqli_query($conn, $sql3);
   if(mysqli_num_rows($result3) > 0)
 {
-  while($user_components = mysqli_fetch_assoc($result3)) 
+  while($user_components = mysqli_fetch_assoc($result3))
   {
     array_push($components, $user_components);
-  } 
+  }
 }
 //foreach($components as $components)
 //{echo $components['name'];echo"<br>"; echo $components['serial_number'];echo"<br>";}
@@ -93,7 +96,7 @@ foreach($rooms as $rooms)
 <div id="page-content">
 <div id="information">
 <h1>
-  <?php 
+  <?php
   echo $profile['first_name'] . " " . $profile['last_name'];
   ?>
 </h1>
@@ -144,6 +147,6 @@ foreach($components as $components)
 <?php
 include 'components/footer/footer.php';
 ?>
-  
+
 </body>
 </html>

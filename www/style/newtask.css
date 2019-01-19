@@ -1,68 +1,82 @@
-body
-{
-    background-image: linear-gradient(to bottom right, #fff 0, #206ea5 50%);
-    font-family: Arial, Helvetica, sans-serif;
-    font-weight: lighter;
-    color: #fff;
+body {
+  color            : #fff;
+  background-image : -webkit-gradient(
+                       linear,
+                       left top, right bottom,
+                       color-stop(0, #fff),
+                       color-stop(50%, #206ea5)
+                     );
+  background-image : linear-gradient(
+                       to bottom right,
+                       #fff 0,
+                       #206ea5 50%
+                     );
+  font-family      : Arial,
+                     Helvetica,
+                     sans-serif;
+  font-weight      : lighter;
 }
 
-.total-wrapper
-{
-    display: flex;
+.total-wrapper {
+  display : -webkit-box;
+  display : -ms-flexbox;
+  display : flex;
 }
 
-.half-wrapper
-{
-    width: 90%;
-}
-.half-wrapper section
-{
-    display: flex;
-    flex-wrap: wrap;
-    width : 95%;
+.half-wrapper {
+  width : 90%;
 }
 
-.half-wrapper section select{
-  width : 45%;
-  text-indent: 5%;
+.half-wrapper section {
+  display   : -webkit-box;
+  display   : -ms-flexbox;
+  display   : flex;
+  width     : 95%;
+  -ms-flex-wrap : wrap;
+      flex-wrap : wrap;
 }
 
-.half-wrapper section select option{
-  text-align: center;
+.half-wrapper section select {
+  width       : 45%;
+  text-indent : 5%;
 }
 
-.selectors
-{
-    display: flex;
-    width: 50%;
-    margin-bottom: 0.6em;
+.half-wrapper section select option {
+  text-align : center;
 }
 
-.label
-{
-    width: 35%;
+.selectors {
+  display       : -webkit-box;
+  display       : -ms-flexbox;
+  display       : flex;
+  width         : 50%;
+  margin-bottom : 0.6em;
 }
 
-.dropdown
-{
-    width: 20%;
+.label {
+  width : 35%;
 }
 
+.dropdown {
+  width : 20%;
+}
 
-#presetsTable
-{
-    width: 90%;
-    float: center;
-    background-color: #fff;
-    color: #0E0E0E;
+#presetsTable {
+  width            : 90%;
+  float            : center;
+  color            : #0E0E0E;
+  background-color : #fff;
 }
-#presetsTable, th, td
-{
-    border: 1px solid #0E0E0E;
-    border-collapse: collapse;
-    padding: 1.5%; /* aggrandit la taille des cellules*/
+
+#presetsTable,
+td,
+th {
+  padding         : 1.5%;
+  border          : 1px solid #0E0E0E;
+  border-collapse : collapse;
+  /* aggrandit la taille des cellules */
 }
-th
-{
-   text-align: left;
+
+th {
+  text-align : left;
 }
