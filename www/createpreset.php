@@ -5,6 +5,9 @@ header('Content-Type: text/html; charset=ISO-8859-1');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+if($_SESSION['id']==null){
+  header('index.php');
+}
 if (!isset($_SESSION['language'])) {
     $_SESSION['language'] = 'en';
 }
@@ -75,7 +78,7 @@ $db = dbconnect();
                     INNER JOIN user_rights ON components.serial_number = user_rights.serial_number
                     WHERE
                         (
-                            rooms.id_home = $home_id AND user_rights.id_user = $user_id AND user_rights.access_level=='write'
+                            rooms.id_home = $home_id AND user_rights.id_user = $user_id AND user_rights.access_level='write'
                         )
                     ORDER BY
                         rooms.name,

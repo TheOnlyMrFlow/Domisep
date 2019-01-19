@@ -5,6 +5,9 @@ header('Content-Type: text/html; charset=ISO-8859-1');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+if($_SESSION['id']==null){
+  header('index.php');
+}
 if (!isset($_SESSION['language'])) {
     $_SESSION['language'] = 'en';
 }
