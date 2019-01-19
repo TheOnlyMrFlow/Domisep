@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 12, 2019 at 01:00 PM
+-- Generation Time: Jan 19, 2019 at 03:16 PM
 -- Server version: 5.7.23
 -- PHP Version: 7.2.10
 
@@ -43,22 +43,12 @@ CREATE TABLE IF NOT EXISTS `components` (
 --
 
 INSERT INTO `components` (`name`, `serial_number`, `id_room`, `value`, `state`) VALUES
-('qwertyuio', 'dfghjkl', 1, 0, 1),
-('TV2', 'iyutdysjd875443', 1, 0, 1),
-('Thermomètre', 'jhzerijeor5489', 2, 21, 1),
-('prout4', 'qqq', 1, 0, 1),
-('kokokokokok', 'qwderbt', 1, 0, 1),
-('AC', 'sma-airc-huihv', 1, 4, 1),
-('Light', 'sma-lght-rezrezr', 1, 0, 1),
-('wdefhtq', 'swaeft', 1, 0, 1),
-('ytu', 'tyh', 2, 0, 1),
-('Machine à café', 'uiezyriuer86', 2, 15, 1),
-('pipipipipi', 'wadefhjyuki,yef', 2, 0, 1),
-('prout3', 'wdefrgh', 1, 0, 1),
-('prout2', 'wefrgt', 2, 0, 1),
-('qwet', 'weg', 1, 0, 1),
-('weghjyrwefq3245hefqd35htbdvsawegbdfvsa', 'wert', 1, 0, 1),
-('wdefgt', 'yvghijk', 2, 0, 1);
+('Humidité', 'sen-hmdt-reztr', 1, 30, 1),
+('A/C', 'sen-smok-ughbuf', 2, 0, 1),
+('Thermomètre', 'sen-temp-rerzac', 2, 21, 1),
+('A/C', 'sma-airc-huihv', 1, 28, 1),
+('Veilleuse', 'sma-lght-mmmm', 1, 0, 1),
+('Volet', 'sma-shtr-ueri', 3, 20, 0);
 
 -- --------------------------------------------------------
 
@@ -163,14 +153,16 @@ CREATE TABLE IF NOT EXISTS `presets` (
   `id_home` int(11) NOT NULL,
   `name` varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
 -- Dumping data for table `presets`
 --
 
 INSERT INTO `presets` (`id`, `id_home`, `name`) VALUES
-(1, 1, 'Pre7');
+(1, 1, 'Pre7'),
+(2, 1, ''),
+(3, 1, 'Volet 20%');
 
 -- --------------------------------------------------------
 
@@ -186,14 +178,18 @@ CREATE TABLE IF NOT EXISTS `preset_values` (
   `on_off` bit(1) NOT NULL,
   `value` float DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
 -- Dumping data for table `preset_values`
 --
 
 INSERT INTO `preset_values` (`id`, `id_preset`, `serial_number`, `on_off`, `value`) VALUES
-(1, 1, 'iyutdysjd875443', b'0', NULL);
+(1, 1, 'iyutdysjd875443', b'0', NULL),
+(2, 2, 'sma-shtr-ueri', b'1', 26),
+(3, 2, 'sma-lght-mmmm', b'0', NULL),
+(4, 2, 'sen-smok-ughbuf', b'1', NULL),
+(5, 3, 'sma-shtr-ueri', b'0', 20);
 
 -- --------------------------------------------------------
 
@@ -207,15 +203,16 @@ CREATE TABLE IF NOT EXISTS `rooms` (
   `id_home` int(11) NOT NULL,
   `name` varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
 -- Dumping data for table `rooms`
 --
 
 INSERT INTO `rooms` (`id`, `id_home`, `name`) VALUES
-(1, 1, 'Antichambre'),
-(2, 1, 'Salon');
+(1, 1, 'Cuisine'),
+(2, 1, 'Salon'),
+(3, 1, 'Chambre');
 
 -- --------------------------------------------------------
 
@@ -228,16 +225,19 @@ CREATE TABLE IF NOT EXISTS `tasks` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_preset` int(11) NOT NULL,
   `name` varchar(50) COLLATE utf8mb4_unicode_520_ci NOT NULL,
+  `start_date` date DEFAULT NULL,
+  `hour` time DEFAULT NULL,
   `frequency` enum('daily','weekly','monthly','single use') COLLATE utf8mb4_unicode_520_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
 
 --
 -- Dumping data for table `tasks`
 --
 
-INSERT INTO `tasks` (`id`, `id_preset`, `name`, `frequency`) VALUES
-(1, 1, 'sksat', 'single use');
+INSERT INTO `tasks` (`id`, `id_preset`, `name`, `start_date`, `hour`, `frequency`) VALUES
+(1, 1, 'sksat', NULL, NULL, 'single use'),
+(2, 1, 'Pre7', '2018-07-22', '14:08:00', 'weekly');
 
 -- --------------------------------------------------------
 
@@ -269,7 +269,7 @@ INSERT INTO `users` (`id`, `role`, `first_name`, `last_name`, `email`, `birthdat
 (3, 'administrator', 'COMTE', 'Florian', 'comte.florian@gmail.com', '1997-09-27', '', '$2y$10$1jwCHDVpKMxx.c/IShftSewHA7YvunUzkGYKC.5KkRtc6euJiE2qO', NULL),
 (4, 'administrator', 'strap', 'on', 'ilikestrapon@strapon.com', '2018-10-02', '', 'heyheyhey', NULL),
 (5, 'house_member', 'house', 'member', 'house.member@test.com', '2018-11-27', '0687489685', 'housemember', 1),
-(7, 'house_manager', 'Jean-Michelee', 'Crapaudw', 'jean-michel@crapaud.com', '2018-11-28', '0666666666wer', '$2y$10$O0oLH0BwjMzJxXzFYDQxkOawqL6xuEIq9f9VUf5u2HQjQ/5rwjq.G', 1),
+(7, 'house_manager', 'Jean-Michelle', 'Crapaudw', 'jean-michel@crapaud.com', '2018-11-28', '0666666666wer', '$2y$10$O0oLH0BwjMzJxXzFYDQxkOawqL6xuEIq9f9VUf5u2HQjQ/5rwjq.G', 1),
 (8, 'house_manager', 'Michel', 'Pierrot', 'pierrot@gmail.com', '0890-06-07', '4567890-=', '$2y$10$/websZQbJkDgbmORoq1nu.wl6K0r6vGx9j9j/kOStzH.uW0DgDQlS', 4),
 (9, 'house_manager', 'fg', 'dfg', 'jean-ichel@crapaud.com', '0007-05-06', 'frtg', '$2y$10$4n1f8cQZgIa4z2IashVjDO43QL0MeEg2S/y.i9/U5D0fpuu0r4q1O', 7),
 (10, 'house_manager', 'yui', 'tyu', 'qqq@qqq.prout', '2000-04-05', 't6', '$2y$10$B1elBsDfv7.nCgrIeVNGT.p1vDNpM8TRFQWQyz2DzMSLQgraYUyoW', 8),
