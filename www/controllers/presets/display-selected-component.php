@@ -1,7 +1,7 @@
 <?php
 
-require("../components/component/fonction-php-component.php");
-require_once(dirname(__FILE__) . '/../utils/dbconnect.php');
+require("../../components/component/fonction-php-component.php");
+require_once(dirname(__FILE__) . '/../../utils/dbconnect.php');
 
 $serial_number = $_POST['serialNumber'];
 

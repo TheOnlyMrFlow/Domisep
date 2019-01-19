@@ -15,6 +15,11 @@ if (isset($_POST['new_component'])) {
 
     if (empty($componentName)) {array_push($errors, "Component name is required");}
     if (empty($serialNumber)) {array_push($errors, "Your product's serial number is required");}
+    $serialNumberArray = explode('-', $serialNumber);
+    if (!in_array($serialNumberArray[0], array('sen','sma')) || !in_array($serialNumberArray[1], array('lght','temp','hmdt','smok','shtr','airc'))) {
+      array_push($errors, "Your product's serial number is incorrect");
+    }
+
 
     if (count($errors) == 0) {
 
