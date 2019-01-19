@@ -4,7 +4,7 @@ require_once (dirname(__FILE__)."/../../vendor/autoload.php");
 require_once (dirname(__FILE__)."/../../globalVars.php");
 require_once (dirname(__FILE__)."/Home.php");
 
-require_once(dirname(__FILE__) . '/../utils/dbconnect.php');
+require_once (dirname(__FILE__) . '/../utils/dbconnect.php');
 
 
 //require_once '../../vendor/autoload.php';
