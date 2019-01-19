@@ -49,18 +49,14 @@ if (!isset($_SESSION['connected']) || !$_SESSION['connected']) {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
 	<script src="components/header-nav/sticky-header.js"></script>
 	<script src="scripts/change-language.js"></script>
-  <script src="scripts\update-component-values.js"></script>
+  <script src="scripts/update-component-values.js"></script>
+  <script src="./scripts/apply-preset.min.js"></script>
 
 </head>
 
 <body>
 	<?php
-
-// if ($_SESSION['connected']){
-//
-// }
 include 'components/header-nav/header-nav.php';
-
 ?>
 
 		<div class="page-content-container">
@@ -82,16 +78,30 @@ include 'components/header-nav/header-nav.php';
         $html = '';
 
         if($role=='house_member'){
-          $presetsArray = $db->prepare("SELECT presets.id, presets.name FROM presets
-                                INNER JOIN preset_values ON preset_values.id_preset=presets.id
-                                INNER JOIN user_rights ON preset_values.serial_number = user_rights.serial_number
-                                WHERE (user_rights.access_level='write' AND user_rights.id_user=? AND presets.id_home=?)");
-          $presetsArray->bind_param("ii", $id_user,$id_home);
+          $presetsArray = $db->prepare("SELECT
+                                            presets.id,
+                                            presets.name
+                                        FROM
+                                            presets
+                                        WHERE
+                                            id_home = ? AND NOT EXISTS(
+                                            SELECT
+                                                user_rights.access_level
+                                            FROM
+                                                user_rights
+                                            INNER JOIN preset_values ON preset_values.serial_number = user_rights.serial_number
+                                            WHERE
+                                                (
+                                                    preset_values.id_preset = presets.id AND user_rights.id_user = ? AND user_rights.access_level <> 'write'
+                                                )
+                                        ) ");
+
+          $presetsArray->bind_param("ii",$id_home,$id_user);
           $presetsArray->execute();
           $presetsArray->bind_result($id,$name);
 
           while ($presetsArray->fetch()) {
-            $html .= "<button class='preset-button' id='$id'>$name</button>";
+              $html .= "<button class='preset-button' id='$id'>$name</button>";
           }
           echo($html);
         }
