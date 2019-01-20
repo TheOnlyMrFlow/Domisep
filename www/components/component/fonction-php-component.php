@@ -68,7 +68,7 @@ function create_component_html($serial_number, $name_component, $component_value
 			}
 				$html=	"
 									<div class='component' id='$serial_number'>
-										$cursor_not_allowed_beg<i class='far fa-minus-square fa-lg $pointer_events_none'></i>$cursor_not_allowed_end
+										$cursor_not_allowed_beg<i onClick='deleteComponent(\"$serial_number\")' class='far fa-minus-square fa-lg $pointer_events_none'></i>$cursor_not_allowed_end
 									  <div class='component_title'>
 									    $name_component
 									  </div>
