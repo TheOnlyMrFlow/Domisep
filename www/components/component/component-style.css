@@ -21,17 +21,18 @@
   margin-left : 4%;
 }
 
-.fa-minus-square {
+.component .fa-minus-square {
   position   : absolute;
   top        : -5px;
   right      : -7px;
   color      : rgba(250,0,0,0.4);
   background : #fff;
   cursor     : pointer;
+  display: none;
 }
 
-.fa-minus-square:hover {
-  color : #ff0000;
+.component:hover .fa-minus-square {
+  display: block;
 }
 
 .no-click {
