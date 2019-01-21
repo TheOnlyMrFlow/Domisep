@@ -10,8 +10,8 @@ if (session_status() == PHP_SESSION_NONE) {
 if(!isset($_SESSION['language'])){
 	$_SESSION['language'] = 'en';
 }
-if($_SESSION['id']==null){
-  header('index.php');
+if(!isset($_SESSION['id'])){
+  header('location : index.php');
 }
 require("components/component/fonction-php-component.php");
 $SESSION_home_id = $_SESSION['home_id']; // create a php variable matching the home id of the connected user

@@ -5,8 +5,8 @@ header('Content-Type: text/html; charset=ISO-8859-1');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-if($_SESSION['id']==null){
-  header('index.php');
+if(!isset($_SESSION['id'])){
+  header('location : index.php');
 }
 if (!isset($_SESSION['language'])) {
     $_SESSION['language'] = 'en';
@@ -115,7 +115,7 @@ include 'components/header-nav/header-nav.php';
           $presetsArray->bind_result($id,$name);
 
           while ($presetsArray->fetch()) {
-            $html .= "<button class='preset-button' id='$id'>$name</button>";
+            $html .= "<div class='preset-button-container'><button class='preset-button' id='$id'>$name</button><i onClick='' class='far fa-minus-square'></i></div>";
           }
           echo($html);
         }

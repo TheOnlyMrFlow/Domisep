@@ -21,6 +21,29 @@ i span {
   margin : 20px 0 20px 0;
 }
 
+.preset-button-container{
+  position: relative;
+  display: inline-block;
+}
+
+.preset-button-container .fa-minus-square {
+  position   : absolute;
+  top        : -5px;
+  right      : 6px;
+  color      : rgba(250,0,0,0.4);
+  background : #fff;
+  cursor     : pointer;
+  display: none;
+}
+
+.preset-button-container:hover .fa-minus-square {
+  display: block;
+}
+
+.fa-minus-square:hover {
+  color : #ff0000;
+}
+
 .preset-button {
   display          : inline-block;
   margin-right     : 15px;
