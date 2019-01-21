@@ -94,4 +94,79 @@ class Component
         return $this->id;
     }
 
+    public function checkBelonging() {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
+        
+        $db = dbconnect();
+        $stmt = $db->prepare("  SELECT id_home
+                        FROM  rooms
+                        INNER JOIN  components
+                        ON rooms.id = components.id_room
+                        WHERE serial_number = ?");
+
+        $stmt->bind_param("s", $this->id);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        if ($row = $res->fetch_assoc()) {
+            if ($row['id_home'] != $_SESSION['home_id']) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+
+    public function deleteSelf() {
+        if (!$this->checkBelonging()) {
+            return "Nice try";
+        }
+
+        /* whene deleting a component, it will :
+
+        - delete any preset that concerned only this component
+        - delete it from component table
+        - delete all entries for this component in the user_rights table
+        - delete all entries for this component in the preset_values table
+
+        */
+
+
+        $db = dbconnect();
+        $stmt = $db->prepare("DELETE FROM presets WHERE
+                        id IN (SELECT id_preset AS id FROM preset_values WHERE serial_number = ?)
+                        AND 
+                        id NOT IN (SELECT id_preset AS id FROM preset_values WHERE serial_number != ?);");
+
+        $stmt->bind_param("ss", $this->id, $this->id);
+        $stmt->execute();
+
+        $stmt = $db->prepare("DELETE FROM preset_values WHERE serial_number = ?;");
+        $stmt->bind_param("s", $this->id);
+        $stmt->execute();
+
+        $stmt = $db->prepare("DELETE FROM components WHERE serial_number = ?;");
+        $stmt->bind_param("s", $this->id);
+        $stmt->execute();
+
+        $stmt = $db->prepare("DELETE FROM user_rights WHERE serial_number = ?;");
+        $stmt->bind_param("s", $this->id);
+        $stmt->execute();
+
+    }
+
+    public function modify ($newName, $newRoomId) {
+        if (!$this->checkBelonging()) {
+            return "Nice try";
+        }
+        $db = dbconnect();
+        $stmt = $db->prepare("UPDATE components SET name = ?, id_room = ? WHERE serial_number = ?");
+        $stmt->bind_param("sis", $newName, $newRoomId, $this->id);
+        $stmt->execute();
+    }
+
 }
