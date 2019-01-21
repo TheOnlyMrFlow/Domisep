@@ -16,7 +16,9 @@ $(document).ready(function() {
         else {
           $('#'+id+">.component_middle>div.logo>span>i").css("color","#7A7A7A");
         }
-        $('#'+id).find('.component-value>span:first-child').text(value);
+        if(value!=null){
+          $('#'+id).find('.component-value>span:first-child').text(value);
+        }
       }
     });
   })

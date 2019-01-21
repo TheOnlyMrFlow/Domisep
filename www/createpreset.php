@@ -6,7 +6,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 if(!isset($_SESSION['id'])){
-  header('location : index.php');
+  header('location: index.php');
 }
 if (!isset($_SESSION['language'])) {
     $_SESSION['language'] = 'en';
