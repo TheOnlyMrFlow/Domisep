@@ -8,11 +8,11 @@
 
     <form id="comp-details-form">
 
-      <h2 id="comp-details-title">FAIRE LE AJAX POUR METTRE NOM/PIECE</h2>
+      <h2 id="comp-details-title"></h2>
 
         <section class="input-container">
           <span>Renommer le composant</span>
-          <input id="comp-details-name" type="text" name="name" placeholder="*Name*">
+          <input id="comp-details-name" type="text" name="name">
         </section>
 
         <section class="input-container">
@@ -23,7 +23,6 @@
       <input id="comp-details-id" name="comp-id" style="display: none;" />
 
       <div class="submit-container">
-        <input type="submit" value="Delete component" name="delete-comp">
         <input type="submit" value="Sauvegarder les modifications" name="update-comp">
       </div>
     </form>

@@ -134,7 +134,7 @@ $ownerName = $row['first_name'] . ' ' . $row['last_name'];
 
 		</div>
 	</div>
-
+</div>
 <?php
 include 'components/modals/contact/contact.php';
 include 'components/footer/footer.php';

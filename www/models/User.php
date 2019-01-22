@@ -129,12 +129,14 @@ class User
 
         $homeId = Home::createHome($address, $city, $zipCode, $country);
 
-        $stmt = $db->prepare("INSERT INTO  users (first_name, last_name, email, birthdate, phone, password, id_home, role)  VALUES (?, ?, ?, ?, ?, ?, ?, 'house_member')");
+        $stmt = $db->prepare("INSERT INTO  users (first_name, last_name, email, birthdate, phone, password, id_home, role)  VALUES (?, ?, ?, ?, ?, ?, ?, 'house_manager')");
         $stmt->bind_param("ssssssi", $firstName, $lastName, $email, $birthDate, $phone, $password, $homeId);
         $stmt->execute();
         $stmt->close();
 
-    }
+      }
+
+
 
     public static function signupMember(    $lastName,
                                             $firstName,
@@ -202,13 +204,31 @@ class User
 
         $homeId = $invitation->home->getId();
 
-        $stmt = $db->prepare("INSERT INTO  users (first_name, last_name, email, birthdate, phone, password, id_home, role)  VALUES (?, ?, ?, ?, ?, ?, ?, 'house_manager')");
+        $stmt = $db->prepare("INSERT INTO  users (first_name, last_name, email, birthdate, phone, password, id_home, role)  VALUES (?, ?, ?, ?, ?, ?, ?, 'house_member')");
         $stmt->bind_param("ssssssi", $firstName, $lastName, $email, $birthDate, $phone, $password, $homeId);
         echo mysqli_error($db);
-
         $stmt->execute();
+        $userId = $stmt->insert_id;
         $stmt->close();
 
+        $components = $db->prepare("SELECT serial_number FROM components INNER JOIN rooms ON components.id_room=rooms.id WHERE rooms.id_home=?");
+        $components->bind_param('i',$homeId);
+        $components->execute();
+        $components->store_result();
+        if($components->num_rows > 0){
+            $components->bind_result($serialNumber);
+            $componentsArray = array();
+            while($components->fetch()){
+              array_push($componentsArray, $serialNumber);
+            }
+            foreach($componentsArray as $componentId) {
+              $componentId = mysqli_real_escape_string($db, $componentId);
+              $stmt = $db->prepare("INSERT INTO user_rights (id_user,serial_number,access_level) VALUES (?,?,'write')");
+              $stmt->bind_param("is",$userId,$componentId);
+              $stmt->execute();
+              $stmt->close();
+          }
+        }
 
         return true;
 

@@ -4,11 +4,25 @@
 require_once(dirname(__FILE__) . '/../../models/Component.php');
 require_once(dirname(__FILE__) . '/../../utils/dbconnect.php');
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+
 $errors = array();
 
 $db = dbconnect();
 
+
+
 if (isset($_POST['new_component'])) {
+    
+    if (!isset($_SESSION['connected']) || !$_SESSION['connected']) { //check if connected
+        array_push($errors, "You must be connected");
+    }
+
+    
+
     $componentName = mysqli_real_escape_string($db, $_POST['component_name']);
     $serialNumber = mysqli_real_escape_string($db, $_POST['serialnumber']);
     $roomId = mysqli_real_escape_string($db, $_POST['room-id']);

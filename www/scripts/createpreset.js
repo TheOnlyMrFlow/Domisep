@@ -71,9 +71,15 @@ $(document).ready(function() {
       var temp = [serialNumber,state,value];
       dataArray.push(temp);
     });
+    console.log(dataArray + presetName);
 
-    $.post('controllers/presets/create-preset.php',{'name':presetName,'data' : dataArray},function(response){
-      window.location.href = './../my-house.php';
-    });
+    if (dataArray !== undefined && dataArray.length != 0 && presetName != '') {
+      $.post('controllers/presets/create-preset.php',{'name':presetName,'data' : dataArray},function(response){
+        window.location.href = './../my-house.php';
+      });
+    }
+    else{
+      alert("Please choose a name and select at least one component");
+    }
   })
 });
