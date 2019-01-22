@@ -1,23 +1,24 @@
 <?php
 
-require_once(dirname(__FILE__) . '/../utils/dbconnect.php');
-require_once(dirname(__FILE__) . '/../models/Component.php');
-
+require_once dirname(__FILE__) . '/../utils/dbconnect.php';
+require_once dirname(__FILE__) . '/../models/Component.php';
 
 class Preset
 {
 
     private $id;
 
-    public function __construct($id) {
+    public function __construct($id)
+    {
         $this->id = $id;
 
     }
 
-    public static function createPreset($name, $homeId, $userId, $componentsValuesArray) {
+    public static function createPreset($name, $homeId, $userId, $componentsValuesArray)
+    {
 
-        $db=dbconnect();
-        
+        $db = dbconnect();
+
         $stmt = $db->prepare("INSERT INTO presets (id_home,name) VALUES (?,?)");
         $stmt->bind_param("is", $homeId, $name);
         $stmt->execute();
@@ -34,13 +35,12 @@ class Preset
             }
             $state = $componentValues[1];
             $value = $componentValues[2];
-            if($value==null){
+            if ($value == null) {
                 $stmt = $db->prepare("INSERT INTO preset_values (id_preset,serial_number,on_off) VALUES (?,?,?)");
-                $stmt->bind_param("isi", $preset_id,$serial_number,$state);
-            }
-            else{
+                $stmt->bind_param("isi", $preset_id, $serial_number, $state);
+            } else {
                 $stmt = $db->prepare("INSERT INTO preset_values (id_preset,serial_number,on_off,value) VALUES (?,?,?,?)");
-                $stmt->bind_param("isii", $preset_id,$serial_number,$state,$value);
+                $stmt->bind_param("isii", $preset_id, $serial_number, $state, $value);
             }
 
             $stmt->execute();
@@ -50,36 +50,24 @@ class Preset
 
     }
 
-    public function deleteSelf() {
+    public function deleteSelf()
+    {
         if (!$this->checkBelonging()) {
-            return "You don't own this room";
+            return "You have no power here, Gandalf the grey !";
         }
-        $db=dbconnect(); 
 
+        $db = dbconnect();
 
-        // todo
-
+        $stmt = $db->prepare("DELETE FROM preset_values WHERE id_preset = ?");
+        $stmt->bind_param("i", $this->id);
+        $stmt->execute();
+        $stmt = $db->prepare("DELETE FROM presets WHERE id = ?");
+        $stmt->bind_param("i", $this->id);
+        $stmt->execute();
 
         $stmt->close();
     }
 
-    function rename($newName) {
-
-        if (!$this->checkBelonging()) {
-            return "You don't own this room";
-        }
-
-        $db=dbconnect();
-        
-        
-        // todo
-        
-
-        $stmt->close();
-
-
-
-    }
     /**
      * Fait par Florian
      *
@@ -92,24 +80,24 @@ class Preset
         }
 
         $db = dbconnect();
-         //todo
+        //todo
         $row = $result->fetch_assoc();
 
         return $row;
 
     }
 
-
     public function getId()
     {
         return $this->id;
     }
 
-    public function checkBelonging() {
+    public function checkBelonging()
+    {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        
+
         $db = dbconnect();
         $stmt = $db->prepare("SELECT id_home FROM presets WHERE id = ? LIMIT 1");
         $stmt->bind_param("i", $this->id);
@@ -126,10 +114,11 @@ class Preset
         return false;
     }
 
-    public function apply() {
+    public function apply()
+    {
 
         if (!$this->checkBelonging()) {
-            return array();   
+            return array();
         }
 
         $db = dbconnect();
@@ -143,13 +132,13 @@ class Preset
                           preset_values.id_preset = ?");
         $stmt->bind_param("i", $this->id);
         $stmt->execute();
-        $stmt->bind_result($serial_number,$state,$value);
+        $stmt->bind_result($serial_number, $state, $value);
 
         $array = array();
 
-        while($stmt->fetch()){
-        $temp = array($serial_number,$state,$value);
-        array_push($array, $temp);
+        while ($stmt->fetch()) {
+            $temp = array($serial_number, $state, $value);
+            array_push($array, $temp);
 
         }
         foreach ($array as $key => $value) {
