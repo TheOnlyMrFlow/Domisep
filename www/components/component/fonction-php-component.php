@@ -2,7 +2,7 @@
  -->
 <?php
 function create_component_html($serial_number, $name_component, $component_value,  $state, $right){
-	    header('Content-Type: text/html; charset=ISO-8859-1');
+	    //header('Content-Type: text/html; charset=ISO-8859-1');
 			if ($state == 0) {
 				$checked = "";
 				$color = '#7A7A7A';

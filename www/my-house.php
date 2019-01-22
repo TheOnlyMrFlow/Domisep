@@ -51,7 +51,7 @@ if (!isset($_SESSION['connected']) || !$_SESSION['connected']) {
 	<script src="components/header-nav/sticky-header.js"></script>
 	<script src="scripts/change-language.js"></script>
   <script src="scripts/update-component-values.js"></script>
-  <script src="./scripts/apply-preset.min.js"></script>
+  <script src="./scripts/apply-preset.js"></script>
   <script src="./scripts/delete-component.js"></script>
 
 </head>

@@ -1,10 +1,11 @@
 $(document).ready(function() {
   $('.preset-button').on('click', function(event) {
     $(this).attr('id');
-    $.post('./../controllers/presets/apply-preset.php',{'id':$(this).attr('id')},function(response){
+    $.post('./../controllers/presets/apply.php',{'id':$(this).attr('id')},function(response){
+      console.log(response);
+      
       var array = JSON.parse(response);
       for (var row_number in array) {
-
         var id = array[row_number][0];
         var state = array[row_number][1];
         var value = array[row_number][2];

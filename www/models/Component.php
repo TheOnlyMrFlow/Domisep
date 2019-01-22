@@ -121,6 +121,32 @@ class Component
 
     }
 
+    public function rightsOfUser($userId) {
+        // return either 'unowned, none, read or write'
+        if (!$this->checkBelonging()) {
+            return 'unowned';
+        }
+
+        $db = dbconnect();
+        $stmt = $db->prepare("SELECT role FROM users WHERE id = ? ");
+        $stmt->bind_param("i", $userId);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        $row = $res->fetch_assoc();
+        if ($row['role'] == 'administrator' || $row['role'] == 'house_manager') {
+            return 'write';
+        }
+        
+        $db = dbconnect();
+        $stmt = $db->prepare("SELECT access_level FROM user_rights WHERE id_user = ? AND serial_number = ?");
+        $stmt->bind_param("is", $userId, $this->id);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        $row = $res->fetch_assoc();
+        return $row['access_level'];
+
+    }
+
     public function deleteSelf() {
         if (!$this->checkBelonging()) {
             return "Nice try";
@@ -167,6 +193,38 @@ class Component
         $stmt = $db->prepare("UPDATE components SET name = ?, id_room = ? WHERE serial_number = ?");
         $stmt->bind_param("sis", $newName, $newRoomId, $this->id);
         $stmt->execute();
+    }
+
+    public function update($state, $value) {
+        if (!$this->checkBelonging()) {
+            return;
+        }
+        $db = dbconnect();
+        $stmt = $db->prepare("UPDATE components SET state = ?, value = ? WHERE serial_number = ?");
+        $stmt->bind_param("ids", $state, $value, $this->id);
+        $stmt->execute();
+    }
+
+    public function updateState($state) {
+        if (!$this->checkBelonging()) {
+            return;
+        }
+        $db = dbconnect();
+        $stmt = $db->prepare("UPDATE components SET state= ? WHERE serial_number= ?");
+        $stmt->bind_param("is", $state, $this->id);
+        $stmt->execute();
+
+    }
+
+    public function addValue($delta) {
+        if (!$this->checkBelonging()) {
+            return;
+        }
+        $db = dbconnect();
+        $stmt = $db->prepare("UPDATE components SET value=value + ? WHERE serial_number= ?");
+        $stmt->bind_param("is", $delta, $this->id);
+        $stmt->execute();
+
     }
 
 }

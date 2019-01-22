@@ -72,7 +72,7 @@ $(document).ready(function() {
       dataArray.push(temp);
     });
 
-    $.post('controllers/presets/create-preset.php',{'name':presetName,'data' : dataArray},function(response){
+    $.post('controllers/presets/create.php',{'name':presetName,'data' : dataArray},function(response){
       window.location.href = './../my-house.php';
     });
   })
