@@ -4,70 +4,106 @@
 function create_component_html($serial_number, $name_component, $component_value,  $state, $right){
 	    //header('Content-Type: text/html; charset=ISO-8859-1');
 			if ($state == 0) {
-				$checked = "";
+
+				$checked = '';
 				$color = '#7A7A7A';
 			}
+
 			else{
+
 				$checked = "checked";
 				$color = '#4BD763';
 			}
-			$adjust='';
-			if(strlen($serial_number)>8){
-				$type = substr($serial_number, 4 , 4);
-			}
-			else {
-				$type = null;
-			}
+
 			if ($right == 'read') {
+
 				$pointer_events_none = 'no-click';
 				$cursor_not_allowed_beg = "<div class='cursor-not-allowed'>";
 				$cursor_not_allowed_end = "</div>";
 			}
+
 			else{
+
 				$pointer_events_none = '';
 				$cursor_not_allowed_beg = '';
 				$cursor_not_allowed_end = '';
 			}
 
+			switch (substr($serial_number, 4 , 4)) {
 
-			if ($type == 'lght'){
+			case 'lght':
+
 				$icon = "<span style='color: $color;'><i class='fas fa-lightbulb fa-2x'></i></span>";
-				$component_value = "";
-			}
-			elseif($type == 'temp'){
+				$unit = '';
+				break;
+
+			case 'temp':
+
 				$icon = "<span style='color: $color;'><i class='fas fa-thermometer-half fa-2x' ></i></span>";
-				$component_value = "<div class='component-value'>"."<span>".$component_value."</span><span>&deg;C</span></div>";
-			}
-			elseif($type == 'hmdt'){
+				$unit = '&deg;C';
+				break;
+
+			case 'hmdt':
+
 				$icon = "<span style='color: $color;'><i class='fas fa-tint fa-2x'></i></span>";
-				$component_value = "<div class='component-value'>"."<span>".$component_value."</span><span>%</span></div>";
-			}
-			elseif($type == 'smok'){
+				$unit = '%';
+				break;
+
+			case 'smok':
+
 				$icon = "<span style='color: $color;'><i class='fas fa-joint fa-2x' ></i></span>";
-				$component_value = "";
-			}
-			elseif($type == 'shtr'){
+				$unit = '';
+				break;
+
+			case 'shtr':
+
 				$icon = "<span style='color: $color;'><i class='fas fa-align-justify fa-2x'></i></span>";
-				$component_value = "<div class='component-value'>"."<span>".$component_value."</span><span>%</span></div>";
-				$adjust = "$cursor_not_allowed_beg<div class='change-component-value'>
-										<button class='change-value-button component-plus-button $pointer_events_none'><i class='fas fa-plus fa-lg'></i></button>
-										<button class='change-value-button component-minus-button $pointer_events_none'><i class='fas fa-minus fa-lg'></i></button>
-									</div>$cursor_not_allowed_end";
-			}
-			elseif($type == 'airc'){
-				$icon = "<span style='color: $color;'><i class='fas fa-temperature-high fa-2x' ></i></span>";
-				$component_value = "<div class='component-value'>"."<span>".$component_value."</span><span>&deg;C</span></div>";
-				$adjust = "$cursor_not_allowed_beg<div class='change-component-value'>
-										<button class='change-value-button component-plus-button $pointer_events_none'><i class='fas fa-plus fa-lg'></i></button>
-										<button class='change-value-button component-minus-button $pointer_events_none'><i class='fas fa-minus fa-lg'></i></button>
-									</div>$cursor_not_allowed_end";
-			}
-			else{
+				$unit = '%';
+				break;
+
+			case 'airc' :
+
+				$icon = "<span style='color: $color;'><i class='fas fa-temperature-high fa-2x'></i></span>";
+				$unit = '&deg;C';
+				break;
+
+			default :
+
 				$icon = "<span style='color: $color;'><i class='fas fa-question fa-2x' ></i></span>";
-				$component_value = "";
+				$unit = '';
+				break;
+
 			}
+
+			switch (substr($serial_number, 0 , 3)) {
+
+				case 'sen':
+
+				$component_value = "<div class='component-value'>"."<span>".$component_value."</span><span>$unit</span></div>";
+				$adjust = '';
+
+					break;
+
+				case 'sma':
+
+				$component_value = "<div class='component-value'>"."<span>".$component_value."</span><span>$unit</span></div>";
+				$adjust = "$cursor_not_allowed_beg<div class='change-component-value'>
+										<button class='change-value-button component-plus-button $pointer_events_none'><i class='fas fa-plus fa-lg'></i></button>
+										<button class='change-value-button component-minus-button $pointer_events_none'><i class='fas fa-minus fa-lg'></i></button>
+									</div>$cursor_not_allowed_end";
+					break;
+
+				case 'bas':
+
+					$component_value = '';
+					$adjust='';
+
+					break;
+			}
+
+
 				$html=	"
-									<div class='component' id='$serial_number'>
+								<div class='component' id='$serial_number'>
 										$cursor_not_allowed_beg<i onClick='deleteComponent(\"$serial_number\")' class='far fa-minus-square fa-lg $pointer_events_none'></i>$cursor_not_allowed_end
 									  <div class='component_title'>
 									    $name_component
@@ -89,6 +125,7 @@ function create_component_html($serial_number, $name_component, $component_value
 									  </div>
 										$cursor_not_allowed_end
 									</div>";
+
 				return($html);
 	}
 ?>

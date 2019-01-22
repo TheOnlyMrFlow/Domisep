@@ -9,7 +9,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 if(!isset($_SESSION['id']) || ($_SESSION['role']!='house_manager' && $_SESSION['id']!='administrator' )){
-  header('location : index.php');
+  header('location: index.php');
 }
 if(!isset($_SESSION['language'])){
 	$_SESSION['language'] = 'en';

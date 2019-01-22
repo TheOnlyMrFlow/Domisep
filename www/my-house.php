@@ -1,12 +1,12 @@
 <?php
+header('Content-Type: text/html; charset=ISO-8859-1');
 
 require_once(dirname(__FILE__) . '/utils/dbconnect.php');
-header('Content-Type: text/html; charset=ISO-8859-1');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 if(!isset($_SESSION['id'])){
-  header('location : index.php');
+  header('location: index.php');
 }
 if (!isset($_SESSION['language'])) {
     $_SESSION['language'] = 'en';
@@ -24,7 +24,6 @@ if (!isset($_SESSION['connected']) || !$_SESSION['connected']) {
 <html>
 
 <head>
-	<meta charset="utf-8" />
 	<title>
         <?php if ($_SESSION['language']=='en') {
     echo('My House - Domisep');
@@ -33,7 +32,6 @@ if (!isset($_SESSION['connected']) || !$_SESSION['connected']) {
 } ?>
   </title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" media="screen" href="style/add_a_component_pop_up.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="style/dashboard-style.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="style/full-site-style.min.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/component/component-style.css" />
@@ -51,7 +49,8 @@ if (!isset($_SESSION['connected']) || !$_SESSION['connected']) {
 	<script src="components/header-nav/sticky-header.js"></script>
 	<script src="scripts/change-language.js"></script>
   <script src="scripts/update-component-values.js"></script>
-  <script src="./scripts/apply-preset.js"></script>
+  <script src="scripts/update-tasks.min.js"></script>
+  <script src="./scripts/apply-preset.min.js"></script>
   <script src="./scripts/delete-component.js"></script>
 
 </head>
@@ -64,11 +63,11 @@ include 'components/header-nav/header-nav.php';
 		<div class="page-content-container">
       <div class="page-content">
 				<div class="page-title">
-					<!-- <h1><?php if ($_SESSION['language']=='en') {
-    echo('My House');
-} elseif ($_SESSION['language']=='fr') {
-    echo('Ma maison');
-} ?></h1> -->
+      					<h1><?php if ($_SESSION['language']=='en') {
+          echo('My House');
+      } elseif ($_SESSION['language']=='fr') {
+          echo('Ma maison');
+      } ?></h1>
 				</div>
 			<section class="section_preset">
 
@@ -106,7 +105,7 @@ include 'components/header-nav/header-nav.php';
           while ($presetsArray->fetch()) {
               $html .= "<button class='preset-button' id='$id'>$name</button>";
           }
-          echo($html);
+          echo(htmlentities($html));
         }
         elseif($role=='house_manager'){
           $presetsArray = $db->prepare("SELECT presets.id, presets.name FROM presets WHERE id_home =? ORDER BY presets.name");
