@@ -88,6 +88,7 @@ include 'components/header-nav/header-nav.php';
 
       <div class="page-content-container">
         <div class="page-content">
+        
           <div class="page-title">
                   <h1><?php if ($_SESSION['language']=='en') {
             echo('Tasks');
@@ -131,11 +132,21 @@ include 'components/header-nav/header-nav.php';
 
                 </section>
                 <section class="selectors">
-                  <span class="label">Date</span>
+                  <span class="label">
+                  <?php if ($_SESSION['language']=='en') {
+                      echo htmlentities('Date');
+                  } elseif ($_SESSION['language']=='fr') {
+                      echo htmlentities('Date');
+                  } ?></span>
                   <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2019-12-31">
                 </section>
                 <section class="selectors">
-                    <span class="label">Hour</span>
+                    <span class="label">
+                    <?php if ($_SESSION['language']=='en') {
+                      echo htmlentities('Hour');
+                  } elseif ($_SESSION['language']=='fr') {
+                      echo htmlentities('Heure');
+                  } ?></span>
                     <input type="time" name="time">
                 </section>
                 <br/><br/>
@@ -148,7 +159,13 @@ include 'components/header-nav/header-nav.php';
           </div>
 
           <div class="dashboard-big-container">
-            <h2>Scheduled Tasks</h2>
+            <h2>
+            <?php if ($_SESSION['language']=='en') {
+                      echo htmlentities('Scheduled Tasks');
+                  } elseif ($_SESSION['language']=='fr') {
+                      echo htmlentities('Tâches programmées');
+                  } ?>
+            </h2>
             <div class="dashboard-inner-container">
               <table id="presetsTable">
                 <colgroup>
@@ -160,9 +177,27 @@ include 'components/header-nav/header-nav.php';
                 </colgroup>
                 <tr>
                   <th>Preset</th>
-                  <th>Frequency</th>
-                  <th>Next date</th>
-                  <th>Time</th>
+                  <th>
+                  <?php if ($_SESSION['language']=='en') {
+                      echo htmlentities('Frequency');
+                  } elseif ($_SESSION['language']=='fr') {
+                      echo htmlentities('Fréquence');
+                  } ?>
+                  </th>
+                  <th>
+                  <?php if ($_SESSION['language']=='en') {
+                      echo htmlentities('Next date');
+                  } elseif ($_SESSION['language']=='fr') {
+                      echo htmlentities('Prochaine date');
+                  } ?>
+                  </th>
+                  <th>
+                  <?php if ($_SESSION['language']=='en') {
+                      echo htmlentities('Hour');
+                  } elseif ($_SESSION['language']=='fr') {
+                      echo htmlentities('Heure');
+                  } ?>
+                  </th>
                   <th>On/Off</th>
                 </tr>
                 <tr>
