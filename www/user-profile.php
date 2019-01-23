@@ -83,14 +83,15 @@ foreach($rooms as $rooms)
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>User Profile</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="/style/user-profile.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="user-profile.css" />
   <script src="main.js"></script>
 </head>
 <body>
 
 <div id="page-content">
+<h1 id = "page-title"><center>User Profile<center></h1>
 <div id="information">
-<h1>
+<h1 id="profile-name">
   <?php
   echo $profile['first_name'] . " " . $profile['last_name'];
   ?>
@@ -127,11 +128,11 @@ foreach($rooms as $rooms)
 if ($profile['role'] != 'administrator') {
 	?>
   <div class = "sensors_container">
-<h2>Sensors and switches owned by the user</h2>
+<h1>Sensors owned by the user</h1>
 <div class="sensors">
 
 <table id="user_sensors">
-<tr>
+<tr id = "title-row">
   <th>Serial Number</th>
   <th>Name</th>
   <th>Value</th>
@@ -147,7 +148,7 @@ foreach($components as $components)
 
 </div>
 
-<form name = "delete_user" method = "post" action = "/controllers/delete_user.php">
+<form name = "delete_user" method = "post" action = "/delete-user.php">
 <br><br>
 <div><center>
   <input style = "display:none" name = "id_user" value = "<?php echo $your_id ?>">

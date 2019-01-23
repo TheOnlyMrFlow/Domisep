@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 if(!isset($_SESSION['id']) || $_SESSION['role']!='administrator'){
-  header('location: index.php');
+  //header('location: index.php');
 }
 if(!isset($_SESSION['language'])){
 	$_SESSION['language'] = 'en';
@@ -16,10 +16,10 @@ $dbuser = 'root';
 $dbpass = '';
 $dbname = 'mff';
 
-$conn = dbconnect();
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
+//$conn = dbconnect();
+//if ($conn->connect_error) {
+  //die("Connection failed: " . $conn->connect_error);
+//}
 
 if (isset($_POST['confirm']))
 {
@@ -59,7 +59,7 @@ echo("We got there !");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Create Administrator Account</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="/style/new-admin-account.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="new-admin-account.css" />
     <script src="main.js"></script>
 </head>
 <body>
@@ -72,10 +72,9 @@ if ($_SESSION['connected']){
 }
 include 'components/header-nav/header-nav.php';//
 ?>
-
+<div id="page-content">
 <div id = "total-wrapper">
-<h1><center>Create a new administrator account</center></h1>
-
+<h1 id = "page-title"><center>Create a new administrator account</center></h1>
 <div id = "wrapper">
 
 <form name="newadmin" method="post" onsubmit="return validateForm()">
@@ -117,8 +116,8 @@ include 'components/header-nav/header-nav.php';//
 </section>
 <br><br>
 <section id = "submit_buttons">
-<input type="submit" value="Cancel" name="cancel">
-<input type="submit" value="Confirm" name="confirm">
+<input id = "cancel" type="submit" value="Cancel" name="cancel">
+<input id = "confirm" type="submit" value="Confirm" name="confirm">
 </section>
 </form>
 </div>
@@ -150,6 +149,11 @@ function validateForm()
 
     }
 </script>
+</div>
+
+<?php
+include 'components/footer/footer.php';
+?>
 
 </body>
 </html>
