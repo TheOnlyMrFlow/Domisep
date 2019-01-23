@@ -59,7 +59,7 @@ echo("We got there !");
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Create Administrator Account</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="New_Admin_Account.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/style/new-admin-account.css" />
     <script src="main.js"></script>
 </head>
 <body>
