@@ -32,8 +32,8 @@ if (!isset($_SESSION['connected']) || !$_SESSION['connected']) {
 } ?>
   </title>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" media="screen" href="style/add_a_component_pop_up.css" />
-	<link rel="stylesheet" type="text/css" media="screen" href="style/dashboard-style.css" />
+<!-- 	<link rel="stylesheet" type="text/css" media="screen" href="style/add_a_component_pop_up.css" />
+ -->	<link rel="stylesheet" type="text/css" media="screen" href="style/dashboard-style.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="style/full-site-style.min.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/component/component-style.css" />
 	<link rel="stylesheet" type="text/css" media="screen" href="components/modals/modal.css" />
