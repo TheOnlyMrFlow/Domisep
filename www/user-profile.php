@@ -147,7 +147,7 @@ foreach($components as $components)
 
 </div>
 
-<form name = "delete_user" method = "post" action = "delete_user.php">
+<form name = "delete_user" method = "post" action = "/controllers/delete_user.php">
 <br><br>
 <div><center>
   <input style = "display:none" name = "id_user" value = "<?php echo $your_id ?>">
