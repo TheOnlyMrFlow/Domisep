@@ -20,9 +20,11 @@ class Room
 
     $stmt->bind_param("si", $name, $homeId);
     $stmt->execute();
-    echo mysqli_error($db);
 
     $stmt->close();
+
+    return mysqli_insert_id($db);
+
 
     }
 

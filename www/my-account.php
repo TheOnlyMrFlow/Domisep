@@ -64,77 +64,119 @@ include 'components/header-nav/header-nav.php';
 
 	<div class="page-content-container">
       	<div class="page-content">
-			<div class = "page-title">
-				<h1>My account</h1>
+      		<?php	
+			if ($_SESSION['language'] == 'en') {
+				$language_account="My account";
+				$language_info="My information";
+				$language_1name="First name:";
+				$language_name="Last name:";
+				$language_phone="Phone number:";
+				$language_email="Email address:";
+				$language_cancel="Cancel";
+				$language_change="Change my information";
+				$language_save="Confirm changes";
+				$language_change_pass="Change my password";
+				$language_old_pass="Old password:";
+				$language_new_pass="New password:";
+				$language_new_pass_conf="Confirm password:";
+				$language_log_out="Log out";
+				$language_delete="Delete account";
+}
+				
+						
+			elseif ($_SESSION['language'] == 'fr') {
+				$language_account=htmlentities("Mon compte");
+				$language_info=htmlentities("Mes informations");
+				$language_1name=htmlentities("Prénom :");
+				$language_name=htmlentities("Nom de famille :");
+				$language_phone=htmlentities("Numéro de téléphone :");
+				$language_email= htmlentities("Adresse e-mail :");
+				$language_cancel=htmlentities("Annuler");
+				$language_change=htmlentities("Modifier les informations");
+				$language_save=htmlentities("Confirmer les modifications");
+				$language_change_pass=htmlentities("Modifier le mot de passe");
+				$language_old_pass=htmlentities("Ancien mot de passe :");
+				$language_new_pass=htmlentities("Nouveau mot de passe :");
+				$language_new_pass_conf="Confirmation mot de passe :";
+				$language_log_out="Déconnexion";
+				$language_delete="Supprimer le compte";
+
+			}
+				
+
+
+			echo "
+			<div class = 'page-title'>
+				<h1>$language_account</h1>
 			</div>
-			<div class="dashboard-big-container">
-				<h2>My information</h2>
-				<div class="dashboard-inner-container">
-				<form id="change-info-form">
+			<div class='dashboard-big-container'>
+				<h2>$language_info</h2>
+				<div class='dashboard-inner-container'>
+				<form id='change-info-form'>
 					<div>
-						<strong>First name</strong>
-						<input class="edit-info" style="display: none;" type="text" name="firstname" value=<?php echo $first_name ?>>
-						<p class="show-info"><?php echo $first_name ?></p>
+						<strong>$language_1name</strong>
+						<input class='edit-info' style='display: none;' type='text' name='firstname' value=$first_name>
+						<p class='show-info'>$first_name</p>
 					</div>
 					<br>
 					<div>
-						<strong>Last name</strong>
-						<input class="edit-info" style="display: none;" type="text" name="lastname" value=<?php echo $last_name ?>>
-						<p class="show-info"><?php echo $last_name ?></p>
+						<strong>$language_name</strong>
+						<input class='edit-info' style='display: none;' type='text' name='lastname' value=$last_name>
+						<p class='show-info'>$last_name</p>
 
 					</div>
 					<br>
 					<div>
-						<strong>Phone</strong>
-						<input class="edit-info" style="display: none;" type="text" name="phone" value=<?php echo $phone ?>>
-						<p class="show-info"><?php echo $phone ?></p>
+						<strong>$language_phone</strong>
+						<input class='edit-info' style='display: none;' type='text' name='phone' value=$phone>
+						<p class='show-info'>$phone</p>
 
 					</div>
 					<br>
 					<div>
-						<strong>Email</strong>
-						<input disabled class="edit-info" style="display: none;" type="mail" name="mail" value=<?php echo $email ?>>
-						<p class="show-info"><?php echo $email ?></p>
+						<strong>$language_email</strong>
+						<input disabled class='edit-info' style='display: none;' type='mail' name='mail' value=$email>
+						<p class='show-info'>$email</p>
 
 					</div>
 					<br><br>
 					<div>
-						<button type="button" id="switch-change-info-off" style="display: none;" class="edit-info">Cancel</button>
-						<input  class="edit-info" style="display: none;" type="submit" value="Confirm changes">
-						<button type="button" id="switch-change-info-on" class="show-info">Change my information</button>
+						<button type='button' id='switch-change-info-off' style='display: none;' class='edit-info'>$language_cancel</button>
+						<input  class='edit-info' style='display: none;' type='submit' value='$language_save'>
+						<button type='button' id='switch-change-info-on' class='show-info'>$language_change</button>
 
 					</div>
 					<div>
-						<p id="change-info-result"></p>
+						<p id='change-info-result'></p>
 					</div>
 				</form>
 
 				</div>
 			</div>
-			<div class="dashboard-big-container">
-				<h2>Change my password</h2>
-				<div class="dashboard-inner-container">
-				<form id="change-password-form">
+			<div class='dashboard-big-container'>
+				<h2>$language_change_pass</h2>
+				<div class='dashboard-inner-container'>
+				<form id='change-password-form'>
 					<div>
-						<strong>Old password</strong>
-						<input type="password" name="old-password">
+						<strong>$language_old_pass</strong>
+						<input type='password' name='old-password'>
 					</div>
 					<br>
 					<div>
-						<strong>New password</strong>
-						<input type="password" name="new-password1">
+						<strong>$language_new_pass</strong>
+						<input type='password' name='new-password1'>
 					</div>
 					<br>
 					<div>
-						<strong>Confirm new password</strong>
-						<input type="password" name="new-password2">
+						<strong>$language_new_pass_conf</strong>
+						<input type='password' name='new-password2'>
 					</div>
 					<br><br>
 					<div>
-						<input type="submit" name="change-password" value="Change my password">
+						<input type='submit' name='change-password' value='$language_change_pass'>
 					</div>
 					<div>
-						<p id="change-password-result"></p>
+						<p id='change-password-result'></p>
 					</div>
 				</form>
 
@@ -143,19 +185,19 @@ include 'components/header-nav/header-nav.php';
 			</div>
 
 
-			<form method="post" action="./controllers/users/logout.php">
-				<input type="submit" value="Log out" name="logout">
+			<form method='post' action='./controllers/users/logout.php'>
+				<input type='submit' value='$language_log_out' name='logout'>
 			</form>
 
-			<form method="post" action="./controllers/users/delete-account.php">
-				<input style="display: none;" name="delete-account">
-				<input onClick="SubmitDeleteAccount(this.form)" type="button" value="Delete my account" name="delete-account">
+			<form method='post' action='./controllers/users/delete-account.php'>
+				<input style='display: none;'' name='delete-account'>
+				<input onClick='SubmitDeleteAccount(this.form)' type='button' value='language_delete' name='delete-account'>
 			</form>
 
 
 
 		</div>
-	</div>
+	</div>"?>
 
 <?php
 include 'components/modals/contact/contact.php';
