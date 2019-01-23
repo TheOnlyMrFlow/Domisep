@@ -22,6 +22,7 @@ $(document).ready(function() {
   jQuery('.modal').click(function(e) {
     e.stopPropagation();
     if (!jQuery(e.target).closest('.modal-content').length && jQuery(e.target).is('.modal')) {
+      document.getElementById('myChart').style.display = 'none';
       jQuery('.modal').css({
         'display': 'none',
       });
@@ -118,6 +119,7 @@ $(document).ready(function() {
 
   compDetailsCloser.addEventListener("click", function() {
     if (compDetailsModal != undefined) {
+      document.getElementById('myChart').style.display = 'none';
       compDetailsModal.style.display = "none";
     }
   });

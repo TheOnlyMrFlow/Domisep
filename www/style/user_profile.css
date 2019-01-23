@@ -7,9 +7,7 @@ body
 }
 #page-content
 {
-    margin:auto;
     padding:5%;
-    width: 980px;
 }
 
 #information
@@ -21,23 +19,13 @@ body
     margin-top: 1%;
     color: #0E0E0E;
 }
-h1
-{
-    padding-left:5%;
-    padding-top:5%;
-    color:  #206ea5;
-}
-#page-title
-{
-    color: #fff;
-    font-size: 48px;
-}
+h1{padding-left:5%;padding-top:5%;}
+h2{padding-left:5%;padding-top:5%;}
 
 .info_container
 {
     padding:5%;
 }
-
 #user_info{border-collapse: collapse;}
 .user_info, tr, td
 {
@@ -66,29 +54,5 @@ h1
     padding: 3%;
     width: 5%; 
 }
-#title-row
-{
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-#delete
-{
-    padding          : 10px 20px 10px 20px;
-    color            : #fff;
-    border           : 2px solid #df0a0a;
-    border-radius    : 5px;
-    background-color : #df0a0a;
-    font-size        : 1.2em;
-    -webkit-transition       : all 0.15s;
-    transition       : all 0.15s;
-    cursor           : pointer;
-  }
-  #delete:hover
-  {
-    color            : #df0a0a;
-    border           : 2px solid #df0a0a;
-    background-color : #fff;
-  }
-  
 
 

@@ -108,3 +108,8 @@ form iframe {
   margin       : 0 5% 0 2%;
   border-right : 1px solid #262626;
 }
+
+#myChart{
+  display: none;
+  margin-bottom: 40px;
+}

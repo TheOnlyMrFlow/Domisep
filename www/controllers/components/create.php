@@ -1,5 +1,5 @@
 <?php
-//session_start();
+
 
 require_once(dirname(__FILE__) . '/../../models/Component.php');
 require_once(dirname(__FILE__) . '/../../utils/dbconnect.php');
@@ -16,12 +16,12 @@ $db = dbconnect();
 
 
 if (isset($_POST['new_component'])) {
-    
+
     if (!isset($_SESSION['connected']) || !$_SESSION['connected']) { //check if connected
         array_push($errors, "You must be connected");
     }
 
-    
+
 
     $componentName = mysqli_real_escape_string($db, $_POST['component_name']);
     $serialNumber = mysqli_real_escape_string($db, $_POST['serialnumber']);

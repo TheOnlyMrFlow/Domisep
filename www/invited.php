@@ -1,13 +1,10 @@
 <?php
 
+
+
 require_once(dirname(__FILE__) . '/models/Invitation.php');
 require_once(dirname(__FILE__) . '/utils/dbconnect.php');
 
-
-header('Content-Type: text/html; charset=ISO-8859-1');
-// if (session_status() == PHP_SESSION_NONE) {
-//     session_start();
-// }
 if (!isset($_SESSION['language'])) {
     $_SESSION['language'] = 'en';
 }

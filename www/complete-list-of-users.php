@@ -1,6 +1,14 @@
 <?php
 
+<<<<<<< HEAD:www/complete_list_of_users.php
+
+
+require_once (DIRNAME(__FILE__) . '/utils/dbconnect.php');
+
+
+=======
 header('Content-Type: text/html; charset=ISO-8859-1');
+>>>>>>> 8595296cb62cafba1835b398a41e0facb786a47d:www/complete-list-of-users.php
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -64,13 +72,15 @@ include 'components/header-nav/header-nav.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="/style/complete_list_of_users.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="complete-list-of-users.css" />
     <script src="main.js"></script>
 </head>
 <body>
 
+<div id = "page-content">
+<h2 id = "page-title"><center>List of Domisep users and administrators</center><h1>
 <div id = "admin-div">
-    <h2>Administrator</h2>
+    <h2 id = "category">Administrators</h2>
         <div id = "admin-div-content">
             <table id = "admin-info">
                 <tr>
@@ -87,7 +97,7 @@ include 'components/header-nav/header-nav.php';
                       ?>
                       <tr><td><?php echo $admin['first_name']?></td>  
                         <td><?php echo $admin['last_name'] ?></td> 
-                        <td><center><a id = 'externalLink' href="<?php echo 'user_profile.php?id=' . $var ?>"><?php echo $var ?></a></center></td> 
+                        <td><center><a id = externalLink href="<?php echo 'user-profile.php?id=' . $var ?>"><?php echo $var ?></a></center></td> 
                         <td><?php echo $admin['email']?></td> 
                       </tr>
                     <?php }
@@ -98,7 +108,7 @@ include 'components/header-nav/header-nav.php';
             <br>
             <br>
             <center>
-                <input name="newadmin" type="button" value="Create a new administrator account" onclick="window.open('New_Admin_Account.php')"/>
+                <input name="newadmin" id="newadmin" type="button" value="Create a new administrator account" onclick="window.open('new-admin-account.php')"/>
             <center>
             <br>
 </div>
@@ -108,7 +118,7 @@ include 'components/header-nav/header-nav.php';
 <br><br>
 
 <div id = "common-div">
-    <h2>Common users</h2>
+    <h2 id="category">Common users</h2>
     <div id = "common-div-content">
             <table id = "common-info">
                 <tr>
@@ -126,7 +136,7 @@ include 'components/header-nav/header-nav.php';
                         <td> <?php echo $common['last_name'] ?></td>
                         <td>
                             <center>
-                                <a id = externalLink href="<?php echo 'user_profile.php?id=' . $common['id'] ?>"><?php echo $common['id']?></a> 
+                                <a id = externalLink href="<?php echo 'user-profile.php?id=' . $common['id'] ?>"><?php echo $common['id']?></a> 
                             </center>
                         </td>
                         <td><?php echo $common['email']?></td>
@@ -138,6 +148,7 @@ include 'components/header-nav/header-nav.php';
             </table>
     </div>
     <br><br><br><br><br><br>
+</div>
 </div>
 
 
