@@ -1,6 +1,5 @@
 <?php
 
-header('Content-Type: text/html; charset=ISO-8859-1');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -65,7 +64,7 @@ if(!isset($_SESSION['language'])){
 		<?php
 include('components/footer/footer.php');
 include('components/modals/contact/contact.php');
-include('components/modals/login/login.html');
+include('components/modals/login/login.php');
 include('components/modals/signup/signup.php');
 ?>
 </body>

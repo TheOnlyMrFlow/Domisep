@@ -55,8 +55,9 @@
 					</section>
 				</div>
 			</div>
-			<p>By creating an account, you agree to our
-				<strong>Terms and Conditions</strong>
+			<p><input required type="checkbox" name="terms-and-conditions"/>
+				By creating an account, you agree to our
+				<a href="./../../../mentions-legales.php" target="_blank"><strong>Terms and Conditions</strong></a>
 			</p>
 			<div class="submit-container">
 				<input type="submit" value="Submit" name="signup">

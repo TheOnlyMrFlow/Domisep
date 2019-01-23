@@ -58,11 +58,11 @@ if (isset($_POST['delete-account'])) {
 
         $db->query("DELETE FROM users WHERE id = $id_user");
 
-        
+
         $db->commit();
 
     } catch (Exception $e) {
-        $db->rollback(); 
+        $db->rollback();
     }
 
     logOut();

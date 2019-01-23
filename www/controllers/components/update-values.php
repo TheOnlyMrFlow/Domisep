@@ -25,7 +25,7 @@ $comp = new Component($id);
 
 if ($actionType == 'change_state' && isset($_POST['state'])) {
   $state = mysqli_real_escape_string($db, $_POST['state']);
-  
+
   if ($state == 'false') {
     $comp->updateState(1);
     echo($state);
@@ -34,7 +34,7 @@ if ($actionType == 'change_state' && isset($_POST['state'])) {
     $comp->updateState(0);
     echo($state);
   }
-  
+
 }
 elseif ($actionType == 'add_value') {
   $comp->addValue(1);

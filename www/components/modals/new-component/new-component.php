@@ -1,3 +1,4 @@
+
 <div id="modal-new-comp" class="modal">
 	<!-- Modal content -->
 	<div class="modal-content">

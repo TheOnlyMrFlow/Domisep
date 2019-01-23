@@ -1,4 +1,5 @@
 <?php
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -8,7 +9,7 @@ require_once(dirname(__FILE__) . '/../../models/FormException.php');
 
 if (isset($_POST['signup'])) {
 
-  if (  !isset($_POST['lastname']) || 
+  if (  !isset($_POST['lastname']) ||
         !isset($_POST['firstname']) ||
         !isset($_POST['birthdate']) ||
         !isset($_POST['email']) ||
@@ -54,7 +55,7 @@ if (isset($_POST['signup'])) {
 else if (isset($_POST['signup-member'])) {
 
 echo ' on est la ';
-  if (  !isset($_POST['lastname']) || 
+  if (  !isset($_POST['lastname']) ||
         !isset($_POST['firstname']) ||
         !isset($_POST['birthdate']) ||
         !isset($_POST['email']) ||
@@ -76,7 +77,7 @@ echo ' on est la ';
   $password2 = $_POST['password2'];
   $phone = $_POST['phone'];
 
-  
+
 
   $email = $_POST['email'];
   $key = $_POST['key'];
@@ -92,7 +93,7 @@ echo ' on est la ';
     exit();
   }
 
-  
+
 
 
 }

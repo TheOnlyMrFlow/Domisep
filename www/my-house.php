@@ -1,5 +1,4 @@
 <?php
-header('Content-Type: text/html; charset=ISO-8859-1');
 
 require_once dirname(__FILE__) . '/utils/dbconnect.php';
 if (session_status() == PHP_SESSION_NONE) {
@@ -40,10 +39,9 @@ if (!isset($_SESSION['connected']) || !$_SESSION['connected']) {
     <link rel="stylesheet" href="style/myhouse.css" />
     <link rel="stylesheet" href="components/header-nav/header-nav.css">
     <link rel="stylesheet" href="components/header-nav/header-dashboard.css">
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.form/4.2.2/jquery.form.min.js"></script>
     <script src="components/header-nav/sticky-header.js"></script>
@@ -79,6 +77,8 @@ $id_home = $_SESSION['home_id'];
 $id_user = $_SESSION['id'];
 $role = $_SESSION['role'];
 $db = dbconnect();
+$db->set_charset("utf8");
+
 $html = '';
 
 if ($role == 'house_member') {

@@ -1,3 +1,4 @@
+
 <div id="modal-comp-details" class="modal">
 
 
@@ -9,6 +10,7 @@
     <form id="comp-details-form">
 
       <h2 id="comp-details-title"></h2>
+      <canvas id="myChart"></canvas>
 
         <section class="input-container">
           <span>Renommer le composant</span>

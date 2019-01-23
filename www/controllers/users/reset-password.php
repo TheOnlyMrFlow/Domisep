@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 require_once(dirname(__FILE__) . '/../../utils/input-checker.php');
 require_once(dirname(__FILE__) . '/../../models/User.php');
@@ -7,7 +7,7 @@ require_once(dirname(__FILE__) . '/../../utils/dbconnect.php');
 
 
 if (isset($_POST['id']) && isset($_POST['key'])) {
-    $db = dbconnect();    
+    $db = dbconnect();
     $id = mysqli_real_escape_string($db, $_POST['id']);
     $secret_key = $_POST['key'];
 
@@ -29,10 +29,10 @@ if (isset($_POST['id']) && isset($_POST['key'])) {
 
             $today = date("Y-m-d H:i:s");
             $expires = $row['expiration'];
-            
+
             $today_time = strtotime($today);
             $expire_time = strtotime($expires);
-            
+
             if ($expire_time < $today_time) {
                 displayErrorAndLeave();
             } else if(password_verify($secret_key, $db_hashed_key)){
@@ -58,7 +58,7 @@ if (isset($_POST['id']) && isset($_POST['key'])) {
                         $stmt->execute();
 
                         echo "<script>window.top.location.href =  'http://' + window.location.hostname; </script>";
-                        
+
                     }
 
 
@@ -79,10 +79,10 @@ if (isset($_POST['id']) && isset($_POST['key'])) {
 
         }
     }
-     
+
 }
 else {
-    displayErrorAndLeave();    
+    displayErrorAndLeave();
 }
 
 function displayErrorAndLeave($error = 'Sorry, you tried to reset your password from a link either expired or invalid'){

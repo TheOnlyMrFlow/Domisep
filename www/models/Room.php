@@ -14,7 +14,7 @@ class Room
     }
 
     public static function createRoom($name, $homeId) {
-    
+
     $db=dbconnect();
     $stmt = $db->prepare("INSERT INTO rooms (name, id_home) VALUES (?, ?)");
 
@@ -86,11 +86,11 @@ class Room
     }
 
     public function getComponents(){
-        
+
         if (!$this->checkBelonging()) {
             return "You don't own this room";
         }
-        
+
         $db = dbconnect();
         $stmt = $db->prepare("SELECT id FROM components WHERE id_room = ?");
         $stmt->bind_param("i", $this->id);
@@ -113,7 +113,7 @@ class Room
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        
+
         $db = dbconnect();
         $stmt = $db->prepare("SELECT id_home FROM rooms WHERE id = ? LIMIT 1");
         $stmt->bind_param("s", $this->id);

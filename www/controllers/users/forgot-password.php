@@ -66,7 +66,7 @@ function displayErrorAndLeave($error = 'Sorry, an error occured', $status = 500)
 {
     echo $error;
     header("HTTP/1.1 " . $status ." " . $error);
-    
+
     exit();
 }
 // $messageToSelf = (new Swift_Message("New request received"))

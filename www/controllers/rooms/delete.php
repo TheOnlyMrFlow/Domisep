@@ -1,4 +1,6 @@
 <?php
+
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -30,11 +32,8 @@ if (isset($_POST['remove_room'])){
 		// echo(json_encode(errors[0]));
 
 		// header("statusText: LOLOL", true, 403);
-		
+
 	}
 }
 
 ?>
-
-
-

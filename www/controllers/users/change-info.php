@@ -31,7 +31,7 @@ try {
 }
 catch (FormException $e) {
     displayErrorAndLeave($e->getMessage());
-    
+
 }
 catch (Exception $e) {
     displayErrorAndLeave($e->getMessage());

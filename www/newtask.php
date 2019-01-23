@@ -1,6 +1,5 @@
 <?php
 
-
 require_once (DIRNAME(__FILE__) . '/utils/dbconnect.php');
 
 if (session_status() == PHP_SESSION_NONE) {
