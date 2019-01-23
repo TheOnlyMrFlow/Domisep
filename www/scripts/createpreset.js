@@ -32,8 +32,8 @@ $(document).ready(function() {
     var o = new Option(
       title,
       $(this)
-        .parents(".component")
-        .attr("id")
+      .parents(".component")
+      .attr("id")
     );
     $(o).html(title);
     $("#select-sensor").append(o);
@@ -62,35 +62,39 @@ $(document).ready(function() {
       }
     }
   );
-  $(".dashboard-inner-container").on(
-    "click",
-    ".component>.component_middle>.change-component-value>.component-plus-button",
-    function(e) {
-      var valueElement = $(this)
-        .parent()
-        .prev()
-        .children("span:first-child");
-      valueElement.text(+valueElement.text() + 1);
-      var id = $(this)
-        .parents("div.component")
-        .attr("id");
-    }
-  );
+
+
+  var intervalId;
 
   $(".dashboard-inner-container").on(
-    "click",
-    ".component>.component_middle>.change-component-value>.component-minus-button",
-    function(e) {
-      var valueElement = $(this)
-        .parent()
-        .prev()
-        .children("span:first-child");
-      valueElement.text(+valueElement.text() - 1);
-      var id = $(this)
-        .parents("div.component")
-        .attr("id");
+    "mousedown",
+    ".component>.component_middle>.change-component-value>.component-plus-button",
+    function() {
+      var pressed = $(this);
+      intervalId = setInterval(function(e) {
+        var valueElement = pressed.parent().prev().children('span:first-child');
+        valueElement.text(+valueElement.text() + 1);
+        var id = pressed.parents('div.component').attr('id');
+      }, 100);
     }
-  );
+  ).on('mouseup', '.component>.component_middle>.change-component-value>.component-plus-button', function() {
+    clearInterval(intervalId);
+  });
+
+  $(".dashboard-inner-container").on(
+    "mousedown",
+    ".component>.component_middle>.change-component-value>.component-minus-button",
+    function() {
+      var pressed = $(this);
+      intervalId = setInterval(function(e) {
+        var valueElement = pressed.parent().prev().children('span:first-child');
+        valueElement.text(+valueElement.text() - 1);
+        var id = pressed.parents('div.component').attr('id');
+      }, 100);
+    }
+  ).on('mouseup', '.component>.component_middle>.change-component-value>.component-minus-button', function() {
+    clearInterval(intervalId);
+  });
 
   $("#Save").on("click", function(event) {
     var dataArray = [];
@@ -119,8 +123,10 @@ $(document).ready(function() {
 
     if (dataArray !== undefined && dataArray.length != 0 && presetName != "") {
       $.post(
-        "controllers/presets/create.php",
-        { name: presetName, data: dataArray },
+        "controllers/presets/create.php", {
+          name: presetName,
+          data: dataArray
+        },
         function(response) {
           window.location.href = "./../my-house.php";
         }

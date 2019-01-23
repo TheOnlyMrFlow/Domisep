@@ -216,7 +216,7 @@ if ($role == 'house_member') {
                           </form>
                         </div>
                           <div class='section_add_component'>
-                            <i class='fas fa-plus fa-lg new-comp-opener myhouse-add-button'><span id='add-comp-title'> Add a component</span></i>
+                            <i class='fas fa-plus fa-lg new-comp-opener myhouse-add-button'><span id='add-comp-title'> $add_component</span></i>
                           </div>
                         </div>
                       </div>
@@ -304,7 +304,7 @@ if ($role == 'house_member') {
                           </form>
                         </div>
                           <div class='section_add_component'>
-                            <i class='fas fa-plus fa-lg new-comp-opener myhouse-add-button'><span id='add-comp-title'> Add a component</span></i>
+                            <i class='fas fa-plus fa-lg new-comp-opener myhouse-add-button'><span id='add-comp-title'> $add_component</span></i>
                           </div>
                         </div>
                       </div>
@@ -375,7 +375,7 @@ if ($role == 'house_member') {
                             </form>
                           </div>
                             <div class='section_add_component'>
-                              <i class='fas fa-plus fa-lg new-comp-opener myhouse-add-button'><span id='add-comp-title'> Add a component</span></i>
+                              <i class='fas fa-plus fa-lg new-comp-opener myhouse-add-button'><span id='add-comp-title'> $add_component</span></i>
                             </div>
                           </div>
                         </div>
@@ -431,7 +431,7 @@ if ($remaining_rooms != false) {
                               </form>
                             </div>
                             <div class='section_add_component'>
-          	                   <i class='fas fa-plus fa-lg new-comp-opener myhouse-add-button'><span id='add-comp-title'> Add a component</span></i>
+          	                   <i class='fas fa-plus fa-lg new-comp-opener myhouse-add-button'><span id='add-comp-title'> $add_component</span></i>
           	                </div>
                           </div>
 
