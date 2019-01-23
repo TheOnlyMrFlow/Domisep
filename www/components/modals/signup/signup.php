@@ -119,9 +119,17 @@
                             echo(htmlentities('Conditions d\'utilisation'));
                          } ?></strong></a>
       			</p>
-            <div class="submit-container">
-                <input type="submit" value="Submit" name="signup">
+
+                <?php if ($_SESSION['language']=='en') {
+                            $language_submit="Submit";
+                        } elseif ($_SESSION['language']=='fr') {
+                            $language_submit=htmlentities("Valider");
+                         } 
+            echo "
+            <div class='submit-container'>
+                <input type='submit' value='$language_submit' name='signup'>
             </div>
+            "?>
             <p id="signup-result"></p>
         </form>
     </div>
