@@ -244,4 +244,7 @@ include 'components/header-nav/header-nav.php';
 
   </body>
 
+  <script src="scripts/open-modals.js"></script>
+
+
   </html>

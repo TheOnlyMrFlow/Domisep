@@ -170,6 +170,10 @@ class Component
         $stmt->bind_param("s", $this->id);
         $stmt->execute();
 
+        $stmt = $db->prepare("DELETE FROM values_history WHERE serial_number = ?;");
+        $stmt->bind_param("s", $this->id);
+        $stmt->execute();
+
         $stmt = $db->prepare("DELETE FROM user_rights WHERE serial_number = ?;");
         $stmt->bind_param("s", $this->id);
         $stmt->execute();
