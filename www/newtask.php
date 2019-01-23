@@ -46,7 +46,7 @@ else {
 //diviser la colonne deadline en deux colonnes : date et hour
 
 //sélection des tasks
-$sql2 = "SELECT * FROM tasks";
+$sql2 = "SELECT * FROM tasks WHERE id_preset IN (SELECT id as id_preset FROM presets WHERE id_home = $SESSION_home_id)";
 $result2 = mysqli_query($conn, $sql2);
 $yourtasks = array();
 while($returnedTasks = mysqli_fetch_assoc($result2))
