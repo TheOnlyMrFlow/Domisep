@@ -29,7 +29,7 @@ if (isset($_POST['update-comp']) &&
     $error = $comp->modify($newName, $newRoomId);
 
     if ($error) {
-        displayErrorAndLeave($error, 401);        
+        displayErrorAndLeave($error, 401);
     }
 
     function displayErrorAndLeave($error = 'Sorry, an error occured', $status = 500)
@@ -37,6 +37,6 @@ if (isset($_POST['update-comp']) &&
         header("HTTP/1.1 " . $status ." " . $error);
         exit();
     }
-    
+
 
 }

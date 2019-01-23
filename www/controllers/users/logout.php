@@ -6,19 +6,19 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-if (isset($_POST['logout'])) 
+if (isset($_POST['logout']))
 {
-    
+
 
     logOut();
 
     // // remove all session variables
-    // session_unset(); 
+    // session_unset();
 
-    // // destroy the session 
-    // session_destroy();    
-    
+    // // destroy the session
+    // session_destroy();
+
 
     header("Location: ../../index.php");
-    
+
 }

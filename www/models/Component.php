@@ -12,11 +12,6 @@ class Component
 
     }
 
-    /**
-     * Fait par Florian
-     *
-     * Retourne un true si c'est ok, false si le serial number est deja utilise.
-     **/
     public static function createComponent($name, $serialNumber, $roomId) {
 
         $errors = array();
@@ -65,7 +60,6 @@ class Component
           }
         }
         return true;
-
     }
 
     /**
@@ -84,10 +78,7 @@ class Component
         $row = $result->fetch_assoc();
 
         return $row;
-
     }
-
-
 
     public function getId()
     {
@@ -98,7 +89,7 @@ class Component
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
-        
+
         $db = dbconnect();
         $stmt = $db->prepare("  SELECT id_home
                         FROM  rooms
@@ -136,7 +127,7 @@ class Component
         if ($row['role'] == 'administrator' || $row['role'] == 'house_manager') {
             return 'write';
         }
-        
+
         $db = dbconnect();
         $stmt = $db->prepare("SELECT access_level FROM user_rights WHERE id_user = ? AND serial_number = ?");
         $stmt->bind_param("is", $userId, $this->id);
@@ -165,7 +156,7 @@ class Component
         $db = dbconnect();
         $stmt = $db->prepare("DELETE FROM presets WHERE
                         id IN (SELECT id_preset AS id FROM preset_values WHERE serial_number = ?)
-                        AND 
+                        AND
                         id NOT IN (SELECT id_preset AS id FROM preset_values WHERE serial_number != ?);");
 
         $stmt->bind_param("ss", $this->id, $this->id);
@@ -176,6 +167,10 @@ class Component
         $stmt->execute();
 
         $stmt = $db->prepare("DELETE FROM components WHERE serial_number = ?;");
+        $stmt->bind_param("s", $this->id);
+        $stmt->execute();
+
+        $stmt = $db->prepare("DELETE FROM values_history WHERE serial_number = ?;");
         $stmt->bind_param("s", $this->id);
         $stmt->execute();
 

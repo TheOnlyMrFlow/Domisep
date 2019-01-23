@@ -1,9 +1,9 @@
 <?php
 
+
+
 require_once(dirname(__FILE__) . '/utils/dbconnect.php');
 
-
-header('Content-Type: text/html; charset=ISO-8859-1');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -48,10 +48,19 @@ $db = dbconnect();
 		<div class="page-content-container dashboard">
 			<div class="page-content dashboard">
 				<div class="page-title">
-					<h1>Manage Users</h1>
+					<h1>
+						<?php if ($_SESSION['language']=='en') {
+            				echo('Manage Users');
+        				} elseif ($_SESSION['language']=='fr') {
+            				echo(htmlentities('Gérer les utilisateurs'));
+       					 } ?></h1>
 				</div>
 				<div class="dashboard-big-container">
-						<h2>Users</h2>
+						<h2><?php if ($_SESSION['language']=='en') {
+            				echo('Users');
+        				} elseif ($_SESSION['language']=='fr') {
+            				echo(htmlentities('Utilisateurs'));
+       					 } ?></th></h2>
 						<div class="dashboard-inner-container">
 							<table id="users-table" width="100%">
 								<colgroup>
@@ -62,8 +71,19 @@ $db = dbconnect();
 								</colgroup>
 								<thead>
 									<tr>
-										<th>Last Name</th>
-										<th>First Name</th>
+										<th>
+										<?php if ($_SESSION['language']=='en') {
+					            				echo('Last name');
+					        				} elseif ($_SESSION['language']=='fr') {
+					            				echo(htmlentities('Nom de famille'));
+					       					 } ?></th>
+										<th>
+										<?php if ($_SESSION['language']=='en') {
+										        echo('First name');
+										    } elseif ($_SESSION['language']=='fr') {
+										        echo(htmlentities('Prénom'));
+										    } ?>
+										</th>
 										<th>Mail</th>
 										<th></th>
 									</tr>
@@ -94,7 +114,11 @@ $db = dbconnect();
 						<div class="dashboard-inner-container">
 							<form id="add-user-form">
 								<div>
-									<h3>Add a member</h3>
+									<h3><?php if ($_SESSION['language']=='en') {
+            								echo('Add a member');
+        								} elseif ($_SESSION['language']=='fr') {
+            								echo(htmlentities('Ajouter un membre'));
+       					 				} ?></h3>
 								</div>
 								<div>
 									<input required type="text" name="mail" placeholder="zac.smith@example.com">
@@ -108,13 +132,26 @@ $db = dbconnect();
 
 				</div>
 				<div class="dashboard-big-container">
-						<h2>User Rights</h2>
+						<h2>
+							<?php if ($_SESSION['language']=='en') {
+            				echo('User rights');
+        				} elseif ($_SESSION['language']=='fr') {
+            				echo(htmlentities('Droits des utilisateurs'));
+       					 } ?></h2>
+
+
 						<div class="dashboard-inner-container select-user">
 							<div>
-								<h3>Select User</h3>
+								<h3><?php if ($_SESSION['language']=='en') {
+            				echo('Select user:');
+        				} elseif ($_SESSION['language']=='fr') {
+            				echo(htmlentities('Selectionner un utilisateur :'));
+       					 } ?></h3>
+
+
 							</div>
 							<div>
-								<select name="user-id" placeholder="select user">
+								<select name="user-id" placeholder= "select user">
 									<?php
 									// $home_id = $_SESSION['id_home'];
 									$html = '';

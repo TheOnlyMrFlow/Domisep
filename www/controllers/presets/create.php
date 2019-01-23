@@ -22,7 +22,3 @@ $componentsValuesArray = $_POST['data'];
 $name = mysqli_real_escape_string($db, $_POST['name']);
 
 Preset::createPreset($name, $_SESSION['home_id'], $_SESSION['id'], $componentsValuesArray);
-
-
-
-

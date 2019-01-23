@@ -1,6 +1,5 @@
 <?php
 
-header('Content-Type: text/html; charset=ISO-8859-1');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -45,30 +44,54 @@ include 'components/header-nav/header-nav.php';
     <center>
 
         <div class="full-screen-image">
-            <h1 class="main-title">Domisep</h1>
+           <h1 class='main-title'>Domisep</h1>
 
         </div>
-        <div class="page-content-container">
-            <div class="page-content">
-                <h2>What is Domisep ?</h2>
-                <h3>At Domisep, we propose our customers a complete range of finely crafted smart sensors. At Domisep,
-                    we offer you a doorway to the future.</h3>
-                <img class='content-image' src="../resources/images/smart-home-tablet.jpg">
 
-                <h2>Freedom</h2>
-                <h3>Control everything from the confort of your bed.</h3>
-                <img class='content-image' src="../resources/images/phone-bed.jpg">
-                <div class="signup-wrapper">
-                    <a class="signup-opener">Ready to upgrade your life ? Create your account now</a>
+            <?php   
+            if ($_SESSION['language'] == 'en') {
+                $language_what_is="What is DomIsep?";
+                $language_text="At Domisep, we propose our customers a complete range of finely crafted smart sensors. At Domisep,
+                    we offer you a doorway to the future.";
+                $language_control_text="Control everything from the confort of your bed.";
+                $language_upgrade="Ready to upgrade your life ? Create your account now";
+                $language_freedom="Freedom";
+                
+}
+                
+                        
+            elseif ($_SESSION['language'] == 'fr') {
+                $language_what_is=htmlentities("DomIsep c'est quoi?");
+                $language_text=htmlentities("A DomIsep, nous proposons à nos clients une selection de capteurs intelligents ultra-performants. Ensemble, façonnons votre avenir dès maintenant.");
+                $language_control_text=htmlentities("Contrôlez ce qui vous entoure depuis le confort de votre lit");
+                $language_upgrade=htmlentities("Prêt à améliorer votre quotidien? Créez votre compte dès maintenant");
+                $language_freedom=htmlentities("Liberté");
+                }
+
+
+            
+            
+        echo "
+        <div class='page-content-container'>
+            <div class='page-content'>
+                <h2>$language_what_is</h2>
+                <h3>$language_text</h3>
+                <img class='content-image' src='../resources/images/monsieur-doigt.jpg'>
+
+                <h2>$language_freedom</h2>
+                <h3>$language_control_text</h3>
+                <img class='content-image' src='../resources/images/phone-bed.jpg'>
+                <div class='signup-wrapper'>
+                    <a class='signup-opener'>$language_upgrade</a>
                 </div>
             </div>
-        </div>
+        </div>"?>
 
     </center>
     <?php
 include 'components/footer/footer.php';
 include 'components/modals/contact/contact.php';
-include 'components/modals/login/login.html';
+include 'components/modals/login/login.php';
 include 'components/modals/signup/signup.php';
 ?>
 </body>

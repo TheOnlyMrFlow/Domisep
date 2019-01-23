@@ -7,10 +7,10 @@ class Home
 {
 
     private $id;
-    
+
     public function __construct($id) {
         $this->id = $id;
-        
+
     }
 
     public static function createHome ($address, $city, $zipCode, $country) {
@@ -57,13 +57,13 @@ class Home
         $row = $result->fetch_assoc();
 
         return $row;
-       
+
     }
 
-   
+
     public function getId()
     {
         return $this->id;
     }
-    
+
 }

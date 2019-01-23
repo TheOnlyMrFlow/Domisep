@@ -6,7 +6,7 @@
 	<div class="modal-content">
 
 		<a class="close" id="close-new-comp">&times;</a>
-			<?php 
+			<?php
 				if ($_SESSION['language'] == 'en') {
 					$language_add="Add a component";
 					$language_name_comp="Name your component:";
@@ -22,7 +22,7 @@
 		<h2>$language_add</h2><br/>
 
 		<form id='new-comp-form'>
-		
+
 			<section class='input-container'>
 				<span>$language_name_comp</span><input type='text' name='component_name'>
 			</section>

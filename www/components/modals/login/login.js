@@ -6,6 +6,8 @@ $(document).ready(function() {
       console.log(data);
       if (data == "ok") {
         window.location.href = location.origin + "/my-house.php";
+      } else if (data == "admin") {
+        window.location.href = location.origin + "/admin-main.php";
       }
       document.getElementById("login-result").innerHTML = data;
     },

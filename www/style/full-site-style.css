@@ -37,6 +37,7 @@ center {
 
 .page-content {
   width : 980px;
+  margin: 0 auto;
 }
 
 input[type=submit] {

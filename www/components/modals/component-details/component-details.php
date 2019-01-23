@@ -1,3 +1,4 @@
+
 <div id="modal-comp-details" class="modal">
 
 
@@ -9,7 +10,7 @@
     <form id="comp-details-form">
 
       <h2 id="comp-details-title"></h2>
-        <?php   
+        <?php
             if ($_SESSION['language'] == 'en') {
                 $language_rename="Rename your component:";
                 $language_move="Move your component to:";
@@ -21,6 +22,7 @@
                 $language_submit="Sauvegarder les modifications";}
 
             echo "
+            <canvas id='myChart'></canvas>
         <section class='input-container'>
           <span>$language_rename</span>
           <input id='comp-details-name' type='text' name='name'>
