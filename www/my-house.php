@@ -404,7 +404,12 @@ if ($components_array->num_rows != 0) {
 }
 
 $remaining_rooms_string = implode(',', $remaining_rooms_vector);
-$remaining_rooms = mysqli_query($db, "SELECT id,name FROM rooms WHERE id_home=$id_home AND id NOT IN ($remaining_rooms_string) ORDER BY name");
+if($remaining_rooms_string!=null){
+  $remaining_rooms = mysqli_query($db, "SELECT id,name FROM rooms WHERE id_home=$id_home AND id NOT IN ($remaining_rooms_string) ORDER BY name");
+}
+else{
+  $remaining_rooms = mysqli_query($db, "SELECT id,name FROM rooms WHERE id_home=$id_home ORDER BY name");
+}
 if ($remaining_rooms != false) {
     if ($remaining_rooms->num_rows != 0) {
         while ($empty_rooms_row = mysqli_fetch_row($remaining_rooms)) {
