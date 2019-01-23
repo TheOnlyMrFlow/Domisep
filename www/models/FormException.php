@@ -1,4 +1,5 @@
-<?php 
+<?php
+
 class FormException extends Exception {
-    
+
 }

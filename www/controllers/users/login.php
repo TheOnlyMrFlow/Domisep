@@ -16,7 +16,13 @@ if (isset($_POST['login'])) {
     }
 
     if (User::login($emailaddress, $password)) {
-        echo 'ok';
+        if ($_SESSION['role'] == 'administrator') {
+            echo 'admin';
+        }
+        else {
+            echo 'ok';
+        }
+        
     } else {
         echo 'Incorrect email or password';
     }

@@ -23,4 +23,3 @@ echo(json_encode($res));
 
 // $homeId = $_SESSION['home_id'];
 // echo(json_encode(Home::getRoomsOf($homeId)));
-

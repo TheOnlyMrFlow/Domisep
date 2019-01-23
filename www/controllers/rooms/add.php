@@ -1,4 +1,6 @@
 <?php
+
+
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -13,12 +15,9 @@ if (isset($_POST['new_room'])) {
 	$roomName = "Room";
 
 	Room::createRoom($roomName, $homeId);
-	
+
 
 header("Location: ../../my-house.php");
 
-	
+
 }
-
-
-
