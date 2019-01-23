@@ -83,7 +83,7 @@ foreach($rooms as $rooms)
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>User Profile</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="user_profile.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="/style/user-profile.css" />
   <script src="main.js"></script>
 </head>
 <body>

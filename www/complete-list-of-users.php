@@ -64,7 +64,7 @@ include 'components/header-nav/header-nav.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="complete_list_of_users.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/style/complete_list_of_users.css" />
     <script src="main.js"></script>
 </head>
 <body>
