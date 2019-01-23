@@ -67,7 +67,7 @@ include 'components/header-nav/header-nav.php';
     <?php
 include 'components/footer/footer.php';
 include 'components/modals/contact/contact.php';
-include 'components/modals/login/login.html';
+include 'components/modals/login/login.php';
 include 'components/modals/signup/signup.php';
 ?>
 </body>
