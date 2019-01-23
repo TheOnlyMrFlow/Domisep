@@ -2,10 +2,15 @@
 
 //require_once('./FormException.php');
 require_once 'Home.php';
+require_once 'Room.php';
+require_once 'Component.php';
 require_once 'Invitation.php';
 
-require_once(dirname(__FILE__) . '/../utils/dbconnect.php');
+require_once dirname(__FILE__) . '/../utils/dbconnect.php';
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 
 class User
 {
@@ -41,6 +46,34 @@ class User
     public static function checkPasswordValidity($input)
     {
         return filter_var($input, FILTER_VALIDATE_REGEXP, array("options" => array("regexp" => "/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,16}$/")));
+    }
+
+    public static function login($email, $password)
+    {
+        $db = dbconnect();
+        $stmt = $db->prepare("SELECT * FROM users WHERE email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute(); //order 66
+        $res = $stmt->get_result();
+        $row = $res->fetch_assoc();
+        if (!$row) {
+            return false;
+        }
+        if (password_verify($password, $row['password'])) {
+            $_SESSION['connected'] = true;
+            $_SESSION['email'] = $row['email'];
+            $_SESSION['id'] = $row['id'];
+            $_SESSION['home_id'] = $row['id_home'];
+            $_SESSION['home'] = serialize(new Home($row['id_home']));
+            $_SESSION['last_name'] = $row['last_name'];
+            $_SESSION['first_name'] = $row['first_name'];
+            $_SESSION['role'] = $row['role'];
+            $_SESSION['birthdate'] = $row['birthdate'];
+            $_SESSION['phone'] = $row['phone'];
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -111,6 +144,22 @@ class User
         if (empty($serialNumber)) {
             throw new FormException("Your product's serial number is required");
         }
+        $sNumberSplit = explode("-", $serialNumber);
+        if (sizeof($sNumberSplit) != 3
+            ||
+            !in_array($sNumberSplit[0], ['sma', 'sen', 'bas'])
+            ||
+            !in_array($sNumberSplit[1], ['lght', 'temp', 'hmdt', 'smok', 'shtr', 'airc'])
+        ) {
+            throw new FormException("Your product's serial number is invalid");
+        }
+        $stmt = $db->prepare("SELECT serial_number FROM components WHERE serial_number = ?");
+        $stmt->bind_param("s", $serialNumber);
+        $stmt->execute();
+        $res = $stmt->get_result();
+        if ($res->fetch_assoc()) {
+            throw new FormException("Your product's serial number is already used on another account");
+        }
         if (empty($address)) {
             throw new FormException("Your address is required");
         }
@@ -124,6 +173,8 @@ class User
             throw new FormException("Your country is required");
         }
 
+        //$stmt = $db->prepare()
+
         $password = password_hash($password1, PASSWORD_BCRYPT);
         $birthDate = date('Y-m-d', strtotime($birthDate));
 
@@ -134,22 +185,22 @@ class User
         $stmt->execute();
         $stmt->close();
 
-      }
+        $roomId = Room::createRoom("Room", $homeId);
+        Component::createComponent("Unanmed", $serialNumber, $roomId);
 
+    }
 
-
-    public static function signupMember(    $lastName,
-                                            $firstName,
-                                            $birthDate,
-                                            $email,
-                                            $phone,
-                                            $password1,
-                                            $password2,
-                                            $key
+    public static function signupMember($lastName,
+        $firstName,
+        $birthDate,
+        $email,
+        $phone,
+        $password1,
+        $password2,
+        $key
     ) {
 
         $db = dbconnect();
-
 
         $lastName = mysqli_real_escape_string($db, $lastName);
         $firstName = mysqli_real_escape_string($db, $firstName);
@@ -212,22 +263,22 @@ class User
         $stmt->close();
 
         $components = $db->prepare("SELECT serial_number FROM components INNER JOIN rooms ON components.id_room=rooms.id WHERE rooms.id_home=?");
-        $components->bind_param('i',$homeId);
+        $components->bind_param('i', $homeId);
         $components->execute();
         $components->store_result();
-        if($components->num_rows > 0){
+        if ($components->num_rows > 0) {
             $components->bind_result($serialNumber);
             $componentsArray = array();
-            while($components->fetch()){
-              array_push($componentsArray, $serialNumber);
+            while ($components->fetch()) {
+                array_push($componentsArray, $serialNumber);
             }
-            foreach($componentsArray as $componentId) {
-              $componentId = mysqli_real_escape_string($db, $componentId);
-              $stmt = $db->prepare("INSERT INTO user_rights (id_user,serial_number,access_level) VALUES (?,?,'write')");
-              $stmt->bind_param("is",$userId,$componentId);
-              $stmt->execute();
-              $stmt->close();
-          }
+            foreach ($componentsArray as $componentId) {
+                $componentId = mysqli_real_escape_string($db, $componentId);
+                $stmt = $db->prepare("INSERT INTO user_rights (id_user,serial_number,access_level) VALUES (?,?,'write')");
+                $stmt->bind_param("is", $userId, $componentId);
+                $stmt->execute();
+                $stmt->close();
+            }
         }
 
         return true;
@@ -268,7 +319,8 @@ class User
 
     }
 
-    public static function generateSecretKey() {
+    public static function generateSecretKey()
+    {
 
         $seed = str_split('abcdefghijklmnopqrstuvwxyz'
             . 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
