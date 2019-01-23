@@ -63,7 +63,7 @@ include 'components/header-nav/header-nav.php';
             elseif ($_SESSION['language'] == 'fr') {
                 $language_what_is=htmlentities("DomIsep c'est quoi?");
                 $language_text=htmlentities("A DomIsep, nous proposons à nos clients une selection de capteurs intelligents ultra-performants. Ensemble, façonnons votre avenir dès maintenant.");
-                $language_control_text=htmlentities("Controllez ce qui vous entoure depuis le confort de votre lit");
+                $language_control_text=htmlentities("Contrôlez ce qui vous entoure depuis le confort de votre lit");
                 $language_upgrade=htmlentities("Prêt à améliorer votre quotidien? Créez votre compte dès maintenant");
                 $language_freedom=htmlentities("Liberté");
                 }
