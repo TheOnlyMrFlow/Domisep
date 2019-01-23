@@ -1,22 +1,22 @@
 <?php
 
-require_once (DIRNAME(__FILE__) . '/utils/dbconnect.php');
-
 header('Content-Type: text/html; charset=ISO-8859-1');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
-}
-if(!!isset($_SESSION['id']) || $_SESSION['role']!='administrator'){
-  header('location: index.php');
 }
 if(!isset($_SESSION['language'])){
 	$_SESSION['language'] = 'en';
 }
 
-$conn = dbconnect();
+$dbhost = 'localhost';
+$dbuser = 'root';
+$dbpass = '';
+$dbname = 'mff';
+
+$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
-}
+} 
 
 $sql = "SELECT * FROM users WHERE role IN ('administrator')";
 $result = mysqli_query($conn, $sql);
@@ -64,7 +64,7 @@ include 'components/header-nav/header-nav.php';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Page Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="complete_list_of_users.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="/style/complete_list_of_users.css" />
     <script src="main.js"></script>
 </head>
 <body>
@@ -80,15 +80,15 @@ include 'components/header-nav/header-nav.php';
                 <th>Mail</th>
                 </tr>
                 <tr>
-                <?php
+                <?php 
                     foreach ($users_admin as $admin)
                     {
                       $var = $admin['id'];
                       ?>
-                      <tr><td><?php echo $admin['first_name']?></td>
-                        <td><?php echo $admin['last_name'] ?></td>
-                        <td><center><a id = 'externalLink' href="<?php echo 'user_profile.php?id=' . $var ?>"><?php echo $var ?></a></center></td>
-                        <td><?php echo $admin['email']?></td>
+                      <tr><td><?php echo $admin['first_name']?></td>  
+                        <td><?php echo $admin['last_name'] ?></td> 
+                        <td><center><a id = 'externalLink' href="<?php echo 'user_profile.php?id=' . $var ?>"><?php echo $var ?></a></center></td> 
+                        <td><?php echo $admin['email']?></td> 
                       </tr>
                     <?php }
                 ?>
@@ -118,23 +118,23 @@ include 'components/header-nav/header-nav.php';
                     <th>Mail</th>
                 </tr>
                 <tr>
-                <?php
+                <?php 
                     foreach ($users_common as $common)
                     { ?>
                       <tr>
-                        <td> <?php echo $common['first_name'] ?></td>
+                        <td> <?php echo $common['first_name'] ?></td> 
                         <td> <?php echo $common['last_name'] ?></td>
                         <td>
                             <center>
-                                <a id = externalLink href="<?php echo 'user_profile.php?id=' . $common['id'] ?>"><?php echo $common['id']?></a>
+                                <a id = externalLink href="<?php echo 'user_profile.php?id=' . $common['id'] ?>"><?php echo $common['id']?></a> 
                             </center>
                         </td>
                         <td><?php echo $common['email']?></td>
-                      </tr>";
+                      </tr>
                     <?php }
                 ?>
                 </tr>
-
+  
             </table>
     </div>
     <br><br><br><br><br><br>
@@ -144,6 +144,6 @@ include 'components/header-nav/header-nav.php';
 <?php
 include 'components/footer/footer.php';
 ?>
-
+ 
 </body>
 </html>
