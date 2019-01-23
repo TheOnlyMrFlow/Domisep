@@ -47,7 +47,7 @@ function sendResetMail($email, $id, $secret_key)
     ->setBody(
         " <p>You have requested to reset your password, you can follow this link to set a new one.</p>
         <p>This link will be working for the next 24 hours.</p>
-        <a href='www.domisep.floriancomte.fr/reset-password?id=$id&key=$secret_key'>Reset your password</a>
+        <a href='www.domisep.floriancomte.fr/reset-password.php?id=$id&key=$secret_key'>Reset your password</a>
         ", 'text/html'
     );
 
