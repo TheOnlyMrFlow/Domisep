@@ -143,7 +143,7 @@ include 'components/header-nav/header-nav.php';
 					<div>
 						<button type='button' id='switch-change-info-off' style='display: none;' class='edit-info'>$language_cancel</button>
 						<input  class='edit-info' style='display: none;' type='submit' value='$language_save'>
-						<button type='button' id='switch-change-info-on' class='show-info'>$language_change</button>
+						<button type='button' id='switch-change-info-on' class='show-info, button-info'>$language_change</button>
 
 					</div>
 					<div>
@@ -191,7 +191,7 @@ include 'components/header-nav/header-nav.php';
 
 			<form method='post' action='./controllers/users/delete-account.php'>
 				<input style='display: none;'' name='delete-account'>
-				<input onClick='SubmitDeleteAccount(this.form)' type='button' value='language_delete' name='delete-account'>
+				<input class='delete' onClick='SubmitDeleteAccount(this.form)' type='button' value='$language_delete' name='delete-account'>
 			</form>
 
 
