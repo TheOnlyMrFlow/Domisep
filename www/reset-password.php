@@ -26,11 +26,7 @@ if (!isset($_SESSION['language'])) {
 </head>
 
 <body>
-    <?php
 
-include 'components/header-nav/header-nav.php';
-
-?>
 
 
     <?php
@@ -43,7 +39,7 @@ if (isset($_GET['id']) && isset($_GET['key'])) {
 ?>
 
     <div class="page-content-container">
-        <form method="post" action="/controllers/users/reset-password" target='reset-password-result'>
+        <form method="post" action="/controllers/users/reset-password.php" target='reset-password-result'>
             <p>Choose a new password :</p>
             <input type="password" name="password1"></input>
             <p>Confirm your new password :</p>
