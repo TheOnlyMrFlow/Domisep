@@ -34,12 +34,23 @@ h3{
 }
 
 .full-screen-image{
-  background-image: url("../resources/images/smarthome1.jpg");
-  padding: 40vh 0 40vh 0;
+  background-image: url("../resources/images/index-main-image.jpg");
+  // padding: 40vh 0 40vh 0;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  height: 100vh;
+  padding-top: 5vh;
 }
+
+.main-title {
+  color: white; 
+  justify: end;
+  position: absolute;
+  margin-left: 40px;
+  
+}
+
 
 img.content-image{
   width: 100%;

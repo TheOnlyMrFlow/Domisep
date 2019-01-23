@@ -1,29 +1,44 @@
 <?php
 
 require_once(dirname(__FILE__) . '/../../utils/dbconnect.php');
+require_once(dirname(__FILE__) . '/../../models/Component.php');
+
+if (session_status() == PHP_SESSION_NONE) {
+  session_start();
+}
+
+
+if (!isset($_POST['id']) || !isset($_POST['action'])) {
+  exit();
+}
+
+if (!isset($_SESSION['connected']) || !$_SESSION['connected']) { //check if connected
+  exit();
+}
 
 $db = dbconnect();
 
-$actionType = $_POST['action'];
+$actionType = mysqli_real_escape_string($db, $_POST['action']);
+$id = mysqli_real_escape_string($db, $_POST['id']);
 
-if ($actionType == 'change_state') {
-  $state = $_POST['state'];
-  $id = $_POST['id'];
+$comp = new Component($id);
+
+if ($actionType == 'change_state' && isset($_POST['state'])) {
+  $state = mysqli_real_escape_string($db, $_POST['state']);
+  
   if ($state == 'false') {
-    $bool = 1;
+    $comp->updateState(1);
     echo($state);
   }
   elseif($state == 'true'){
-    $bool = 0;
+    $comp->updateState(0);
     echo($state);
   }
-  $result = mysqli_query($db, "UPDATE components SET state=$bool WHERE serial_number='$id'");
+  
 }
 elseif ($actionType == 'add_value') {
-  $id = $_POST['id'];
-  $result = mysqli_query($db, "UPDATE components SET value=value+1 WHERE serial_number='$id'");
+  $comp->addValue(1);
 }
 elseif ($actionType == 'remove_value') {
-  $id = $_POST['id'];
-  $result = mysqli_query($db, "UPDATE components SET value=value-1 WHERE serial_number='$id'");
+  $comp->addValue(-1);
 }

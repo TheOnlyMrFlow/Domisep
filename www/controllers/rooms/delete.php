@@ -17,23 +17,21 @@ $db=dbconnect();
 
 if (isset($_POST['remove_room'])){
 
-$selected_room_id = $_POST['remove_room'];
+	$selected_room_id = mysqli_real_escape_string($db, $_POST['remove_room']);
 
-$room = new Room ($selected_room_id);
+	$room = new Room ($selected_room_id);
 
-$room->deleteSelf();
+	$error = $room->deleteSelf();
 
+	header("Location: ../../my-house.php");
 
+	if (sizeof($errors)>0){
+		header("HTTP/1.1 403 " . $errors[0]);
+		// echo(json_encode(errors[0]));
 
-header("Location: ../../my-house.php");
-
-if (sizeof($errors)>0){
-	header("HTTP/1.1 403 " . $errors[0]);
-	// echo(json_encode(errors[0]));
-
-	// header("statusText: LOLOL", true, 403);
-	
-}
+		// header("statusText: LOLOL", true, 403);
+		
+	}
 }
 
 ?>

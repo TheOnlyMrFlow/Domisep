@@ -8,6 +8,9 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+if(!isset($_SESSION['id']) || ($_SESSION['role']!='house_manager' && $_SESSION['id']!='administrator' )){
+  header('location: index.php');
+}
 if(!isset($_SESSION['language'])){
 	$_SESSION['language'] = 'en';
 }
@@ -75,7 +78,7 @@ $db = dbconnect();
 										$first_name = $user_row[1];
 										$last_name = $user_row[2];
 										$email = $user_row[3];
-										
+
 										$html .= "		<tr>
 										<td>$first_name</td>
 										<td>$last_name</td>
@@ -118,7 +121,7 @@ $db = dbconnect();
 									$home_id = 1;
 									// $current_user_id = $_SESSION['id'];
 									$current_user_id = 1;
-									
+
 									$users_array = mysqli_query($db,"SELECT id, first_name, last_name, email FROM users WHERE id_home=$home_id AND role='house_member' ORDER BY last_name,first_name ASC");
 									$html = "<option disabled selected value > select user </option>";
 									while ($user_row = mysqli_fetch_row($users_array)) {
@@ -173,7 +176,7 @@ $db = dbconnect();
 										<td><div class='edit-button ic ic-pencil off'></div></td>
 										</tr>";
 									}
-									
+
 								}
 								$html .= "</table></div>";
 								echo $html;

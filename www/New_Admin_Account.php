@@ -4,6 +4,9 @@ header('Content-Type: text/html; charset=ISO-8859-1');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+if(!isset($_SESSION['id']) || $_SESSION['role']!='administrator'){
+  header('location: index.php');
+}
 if(!isset($_SESSION['language'])){
 	$_SESSION['language'] = 'en';
 }
@@ -13,12 +16,12 @@ $dbuser = 'root';
 $dbpass = '';
 $dbname = 'mff';
 
-$conn = new mysqli($dbhost, $dbuser, $dbpass, $dbname);
+$conn = dbconnect();
 if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
-} 
+}
 
-if (isset($_POST['confirm'])) 
+if (isset($_POST['confirm']))
 {
     $firstName = $_POST['firstname'];
     $lastName = $_POST['lastname'];
@@ -30,7 +33,7 @@ if (isset($_POST['confirm']))
 $login_check ="SELECT * FROM users WHERE email = '$mail' LIMIT 1";
 $result = mysqli_query($conn, $login_check);
 $user = mysqli_fetch_assoc($result);
-        
+
 if($user)
 {
     echo("This login already exists");
@@ -43,8 +46,8 @@ $stmt = $conn->prepare("INSERT INTO users (email, password) VALUES (?, ?)");
 $stmt->bind_param("ss", $mail, $inputPassword);
 $stmt->execute();
 }
-echo("We got there !"); 
-}    
+echo("We got there !");
+}
 
 
 ?>
@@ -77,7 +80,7 @@ include 'components/header-nav/header-nav.php';//
 
 <form name="newadmin" method="post" onsubmit="return validateForm()">
 <section class="input">
-<span class ="label">First Name 
+<span class ="label">First Name
 </span>
 <input class = "input" type="text" name="firstname">
 <br>
@@ -144,9 +147,9 @@ function validateForm()
             alert("Les mots de passe doivent etre identiques");
             return false;
         }
-       
+
     }
 </script>
-    
+
 </body>
 </html>
