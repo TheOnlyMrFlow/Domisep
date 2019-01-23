@@ -1,10 +1,5 @@
 <?php
-<<<<<<< HEAD
-
-require_once(dirname(__FILE__) . '/../../utils/dbconnect.php');
-=======
 require_once dirname(__FILE__) . '/../../utils/dbconnect.php';
->>>>>>> 8595296cb62cafba1835b398a41e0facb786a47d
 $conn = dbconnect();
 
 if (isset($_POST['savetask'])) {

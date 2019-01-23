@@ -40,34 +40,6 @@
                     </section>
                 </div>
 
-<<<<<<< HEAD
-				<div class="half-form-container">
-					<section class="input-container">
-						<span>Email address</span><input required type="emailaddress" name="email">
-					</section>
-					<section class="input-container">
-						<span>Create a password</span><input required type="password" name="password1">
-					</section>
-					<section class="input-container">
-						<span>Confirm your password</span><input required type="password" name="password2">
-					</section>
-					<section class="input-container">
-						<span>Domisep product's serial number</span><input required type="text" name="serialnumber">
-					</section>
-				</div>
-			</div>
-			<p><input required type="checkbox" name="terms-and-conditions"/>
-				By creating an account, you agree to our
-				<a href="./../../../mentions-legales.php" target="_blank"><strong>Terms and Conditions</strong></a>
-			</p>
-			<div class="submit-container">
-				<input type="submit" value="Submit" name="signup">
-			</div>
-			<iframe name="signup-result"></iframe>
-		</form>
-	</div>
-</div>
-=======
                 <div class="half-form-container">
                     <section class="input-container">
                         <span>Email address</span><input required type="emailaddress" name="email">
@@ -83,9 +55,10 @@
                     </section>
                 </div>
             </div>
-            <p>By creating an account, you agree to our
-                <strong>Terms and Conditions</strong>
-            </p>
+            <p><input required type="checkbox" name="terms-and-conditions"/>
+      				By creating an account, you agree to our
+      				<a href="./../../../mentions-legales.php" target="_blank"><strong>Terms and Conditions</strong></a>
+      			</p>
             <div class="submit-container">
                 <input type="submit" value="Submit" name="signup">
             </div>
@@ -93,4 +66,3 @@
         </form>
     </div>
 </div>
->>>>>>> 8595296cb62cafba1835b398a41e0facb786a47d

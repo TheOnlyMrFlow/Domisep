@@ -56,10 +56,6 @@ if (isset($_POST['delete-account'])) {
 
         $db->query("DELETE FROM users WHERE id = $id_user");
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 8595296cb62cafba1835b398a41e0facb786a47d
         $db->commit();
 
     } catch (Exception $e) {

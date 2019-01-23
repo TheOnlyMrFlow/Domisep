@@ -9,11 +9,7 @@ require_once dirname(__FILE__) . '/../../models/FormException.php';
 
 if (isset($_POST['signup'])) {
 
-<<<<<<< HEAD
-  if (  !isset($_POST['lastname']) ||
-=======
     if (!isset($_POST['lastname']) ||
->>>>>>> 8595296cb62cafba1835b398a41e0facb786a47d
         !isset($_POST['firstname']) ||
         !isset($_POST['birthdate']) ||
         !isset($_POST['email']) ||
@@ -58,13 +54,8 @@ if (isset($_POST['signup'])) {
 // to signup to an already existing house, thanx to an invitation key
 else if (isset($_POST['signup-member'])) {
 
-<<<<<<< HEAD
-echo ' on est la ';
-  if (  !isset($_POST['lastname']) ||
-=======
     echo ' on est la ';
     if (!isset($_POST['lastname']) ||
->>>>>>> 8595296cb62cafba1835b398a41e0facb786a47d
         !isset($_POST['firstname']) ||
         !isset($_POST['birthdate']) ||
         !isset($_POST['email']) ||
@@ -78,16 +69,12 @@ echo ' on est la ';
 
     }
 
-<<<<<<< HEAD
-
-=======
     $lastName = $_POST['lastname'];
     $firstName = $_POST['firstname'];
     $birthDate = $_POST['birthdate'];
     $password1 = $_POST['password1'];
     $password2 = $_POST['password2'];
     $phone = $_POST['phone'];
->>>>>>> 8595296cb62cafba1835b398a41e0facb786a47d
 
     $email = $_POST['email'];
     $key = $_POST['key'];
@@ -102,11 +89,4 @@ echo ' on est la ';
         exit();
     }
 
-<<<<<<< HEAD
-
-
-
 }
-=======
-}
->>>>>>> 8595296cb62cafba1835b398a41e0facb786a47d

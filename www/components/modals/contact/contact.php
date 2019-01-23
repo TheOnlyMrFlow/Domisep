@@ -1,10 +1,7 @@
 
-<<<<<<< HEAD
-=======
 
 
 <!DOCTYPE html>
->>>>>>> 8595296cb62cafba1835b398a41e0facb786a47d
 <div id="modal-contact" class="modal">
 
 
@@ -12,11 +9,11 @@
 	<div class="modal-content">
         <span ></span>
 
- 
+
 <a class="close" id="close-contact">&times;</a>
 
 		<form method="post" action="controllers/contact-us.php" target="contact-result">
-			<?php	
+			<?php
 			if ($_SESSION['language'] == 'en') {
 				$language_email="Your email address";
 				$language_object="Object of your request";
