@@ -1,16 +1,15 @@
 <?php
 
-require_once(dirname(__FILE__) . '/../../models/Invitation.php');
+require_once dirname(__FILE__) . '/../../models/Invitation.php';
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-require_once(dirname(__FILE__) . '/../../../vendor/autoload.php');
-require_once(dirname(__FILE__) . '/../../../globalVars.php');
+require_once dirname(__FILE__) . '/../../../vendor/autoload.php';
+require_once dirname(__FILE__) . '/../../../globalVars.php';
 
-require_once(dirname(__FILE__) . '/../../utils/dbconnect.php');
-
+require_once dirname(__FILE__) . '/../../utils/dbconnect.php';
 
 if (!isset($_POST['invite-user']) || !isset($_POST['mail'])) {
     exit();
@@ -28,8 +27,6 @@ if (!filter_var($mail, FILTER_VALIDATE_EMAIL)) {
     displayErrorAndLeave("Incorrect email", 403);
 }
 
-echo $mail;
-
 $stmt = $db->prepare("SELECT id FROM users WHERE email = ?");
 $stmt->bind_param("s", $mail);
 $result = $stmt->execute();
@@ -40,16 +37,13 @@ if ($stmt->fetch()) {
 
 $stmt->close();
 
-
 $result = Invitation::generateAndSend($mail, $_SESSION['home_id'], 'contact.domisep@gmail.com', 'WeLoveC00kies', $mail);
 
 if ($result > 0) {
-    echo 'message sent';
+    echo 'Invitation sent to' . $mail;
 } else {
-    echo 'fail sending mail';
+    echo 'Invitation has failed, please check that the mail you entered exists';
 }
-
-
 
 function displayErrorAndLeave($error = 'Sorry, an error occured', $status = 500)
 {

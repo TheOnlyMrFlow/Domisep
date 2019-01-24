@@ -54,7 +54,6 @@ if (isset($_POST['signup'])) {
 // to signup to an already existing house, thanx to an invitation key
 else if (isset($_POST['signup-member'])) {
 
-    echo ' on est la ';
     if (!isset($_POST['lastname']) ||
         !isset($_POST['firstname']) ||
         !isset($_POST['birthdate']) ||
@@ -64,7 +63,6 @@ else if (isset($_POST['signup-member'])) {
         !isset($_POST['password2']) ||
         !isset($_POST['key'])) {
 
-        echo ' on est ici meme';
         //header('Location: ../index.php');
 
     }
@@ -81,9 +79,9 @@ else if (isset($_POST['signup-member'])) {
 
     try {
         $signupResult = User::signupMember($lastName, $firstName, $birthDate, $email, $phone, $password1, $password2, $key);
-        if (!$signupResult) {
-            // echo qquechose de pas beau
-        }
+        User::login($email, $password1);
+        header("Location: /my-house.php");
+        
     } catch (FormException $e) {
         echo $e->getMessage();
         exit();
