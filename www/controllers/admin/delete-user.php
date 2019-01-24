@@ -1,55 +1,54 @@
 <?php
 
-require_once(dirname(__FILE__) . '/dbconnect.php');
+require_once (dirname(__FILE__) . '/../../utils/dbconnect.php');
+require_once (dirname(__FILE__) . '/../../models/User.php');
+
 //changer le lien du fichier
 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+
+if(!isset($_SESSION['role']) || $_SESSION['role']!='administrator'){
+    header('Location: /index.php');
+    exit();
+  }
+  if(!isset($_SESSION['language'])){
+      $_SESSION['language'] = 'en';
+  }
+
 $errorManager = "You cannot delete the account of the House Manager";
 $errorAdmin = "You cannot delete an administrator account";
 
-if(isset($_POST['delete_user']))
+if(isset($_POST['delete-user']) && isset($_POST['id']))
 {
-    $your_role = $_POST['role_user'];
-    $your_id = $_POST['id_user'];
     $db = dbconnect();
-$db->set_charset("utf8");
-    if($your_role == 'administrator')
-    {
-        echo "<script>{alert('You cannot delete the account of an administrator');
-            window.history.back()
+    $db->set_charset("utf8");
+    $id = mysqli_real_escape_string($db, $_POST['id']);
+
+    $user = new User($id);
+    $userInfos = $user->getAllFields();
+
+    if ($userInfos['role'] != 'house_member' ) {
+        echo "You cannot delete a house_manager or an administrator
+        <script>setTimeout(function(){   window.history.back();}, 1500);
             </script>";
         exit();
-        
     }
-    elseif($your_role == 'house_manager')
-    {
-        echo "<script>alert('You cannot delete the account of an House Manager');
-            window.history.back();
-            </script>";
 
-        exit();   
+    $stmt = $db->prepare("DELETE FROM users WHERE id = ? ");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->close();
+    $stmt = $db->prepare("DELETE FROM user_rights WHERE id_user = ? ");
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $stmt->close();
 
-    }
-    else
-    {
-        $sqlDeleteU = "DELETE FROM users WHERE id = $your_id";
-        $sqlDeleteR = "DELETE FROM user_rights where id_user = $your_id";
-        if ($db->query($sqlDeleteU) === TRUE && $db->query($sqlDeleteR) === TRUE) 
-        {
-            echo "<script>alert('Record deleted successfully');
-            window.history.go(-2);
-            </script>";
-        } 
-        else 
-        {
-            echo "<script>alert('An error occurred');
-            window.history.go(-2);
-            </script>" . $db->error;
-        }
-    }
+
+    header("Location: /admin-main.php");
+
 
 }
 
