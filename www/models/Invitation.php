@@ -1,11 +1,10 @@
 <?php
 
-require_once (dirname(__FILE__)."/../../vendor/autoload.php");
-require_once (dirname(__FILE__)."/../../globalVars.php");
-require_once (dirname(__FILE__)."/Home.php");
+require_once dirname(__FILE__) . "/../../vendor/autoload.php";
+require_once dirname(__FILE__) . "/../../globalVars.php";
+require_once dirname(__FILE__) . "/Home.php";
 
-require_once (dirname(__FILE__) . '/../utils/dbconnect.php');
-
+require_once dirname(__FILE__) . '/../utils/dbconnect.php';
 
 //require_once '../../vendor/autoload.php';
 //require_once '../../globalVars.php';
@@ -14,17 +13,13 @@ require_once (dirname(__FILE__) . '/../utils/dbconnect.php');
 class Invitation
 {
 
-
     // pas utile de stocker la key puisque elle est encryptee
     public $id;
     public $mail;
     public $home;
 
-
-    public static function find($mail, $key) {
-
-
-        echo $mail . ' ' . $key;
+    public static function find($mail, $key)
+    {
 
         $db = dbconnect();
         $stmt = $db->prepare("SELECT * FROM invite_keys WHERE email = ?");
@@ -33,7 +28,7 @@ class Invitation
         $result = $stmt->get_result();
         $stmt->close();
         while ($row = $result->fetch_assoc()) {
-            if (password_verify($key, $row['inv_key'])){
+            if (password_verify($key, $row['inv_key'])) {
                 return new self($row['id']);
             }
         }
@@ -93,8 +88,6 @@ class Invitation
 
     }
 
-
-
     private function __construct($id)
     {
         $this->id = $id;
@@ -109,8 +102,6 @@ class Invitation
         $this->mail = $row['email'];
         $this->home = new Home($row['id_home']);
     }
-
-
 
     public function getMail(): string
     {
