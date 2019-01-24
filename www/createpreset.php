@@ -83,7 +83,7 @@ $db = dbconnect();
                         components.name";
 
                 }
-              elseif($role=='house_manager'){
+              elseif($role=='house_manager' || $role=='administrator'){
                 $query = "SELECT
                               rooms.name,
                               components.serial_number,
@@ -97,6 +97,7 @@ $db = dbconnect();
                             rooms.name,
                             components.name";
 
+                            
               }
               $components_array = mysqli_query($db, $query);
               $html = "<option value='disabled' selected>-- Select a sensor --</option>";
