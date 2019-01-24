@@ -8,7 +8,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-if(!isset($_SESSION['id']) || ($_SESSION['role']!='house_manager' && $_SESSION['id']!='administrator' )){
+if(!isset($_SESSION['id']) || ($_SESSION['role']!='house_manager' && $_SESSION['role']!='administrator' )){
   header('location: index.php');
 }
 if(!isset($_SESSION['language'])){
