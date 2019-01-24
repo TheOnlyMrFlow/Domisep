@@ -65,19 +65,16 @@ $(document).ready(function() {
           var chart = document.getElementById('myChart');
           if (root.id.substr(0, 3) == 'sen' || root.id.substr(0, 3) == 'sma') {
             chart.style.display = 'block';
-            $.post('./../utils/update-chart.php', {
+            $.post('./../../../controllers/components/show-chart.php', {
               'serial_number': root.id
             }, function(response) {
               var array = JSON.parse(response);
-              console.log(array);
-
+              var maxYValue = Math.max(...array[1]) + 10;
+              var minYValue = Math.min(...array[1]) - 10;
               var tempData = {
                 labels: array[0],
                 datasets: [{
-                  fillColor: "rgba(172,194,132,0.4)",
-                  strokeColor: "#ACC26D",
-                  pointColor: "#fff",
-                  pointStrokeColor: "#9DB86D",
+                  borderColor: 'rgba(255, 166, 0,1)',
                   data: array[1]
                 }]
               };
@@ -87,10 +84,36 @@ $(document).ready(function() {
                 type: 'line',
                 data: tempData,
                 options: {
-
+                  scales: {
+                    yAxes: [{
+                      display: true,
+                      ticks: {
+                        suggestedMin: minYValue,
+                        suggestedMax: maxYValue // minimum will be 0, unless there is a lower value.
+                      }
+                    }]
+                  },
                   legend: "Values history"
                 }
               });
+              setInterval(function() {
+                $.post('./../../../controllers/components/update-chart.php', {
+                  'serial_number': root.id,
+                  'last_time': myLineChart.data.labels[myLineChart.data.labels.length - 1]
+                }, function(response) {
+                  if (response!='') {
+                  var array = JSON.parse(response);
+                    myLineChart.data.labels.push(array[0]);
+                    myLineChart.data.labels.splice(0, 1); // remove first label
+                    myLineChart.data.datasets.forEach((dataset) => {
+                      dataset.data.push(array[1]);
+                      dataset.data.splice(0, 1); // remove first data point
+                    });
+                    
+                    myLineChart.update();
+                  }
+                });
+              }, 5000);
             });
           }
         });

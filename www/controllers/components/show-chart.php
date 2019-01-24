@@ -1,5 +1,5 @@
 <?php
-require_once(dirname(__FILE__) . '/dbconnect.php');
+require_once(dirname(__FILE__) . './../../utils/dbconnect.php');
 $db = dbconnect();
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
@@ -18,7 +18,7 @@ WHERE
 ORDER BY
     id
 DESC
-LIMIT 1, 15";
+LIMIT 1, 25";
 
 $times_array = array();
 $values_array = array();
