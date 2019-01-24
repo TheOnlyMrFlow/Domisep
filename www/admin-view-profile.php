@@ -152,7 +152,12 @@ foreach ($components as $components) {
         </div>
     </div>
 
-    <?php }?>
+    <?php } ?>
+
+    <form action="controllers/admin/delete-user.php" method="post">
+    <input style="display: none;" name="id" value="<?php echo $profile['id']; ?>">
+    <input type="submit" name="delete-user" value="Delete this user">
+    </form>
 
 
 
