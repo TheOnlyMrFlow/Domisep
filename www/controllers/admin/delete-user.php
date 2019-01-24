@@ -1,6 +1,6 @@
 <?php
 
-require_once(dirname(__FILE__) . '/dbconnect.php');
+require_once (dirname(__FILE__) . '/../../utils/dbconnect.php');
 require_once (dirname(__FILE__) . '/../../models/User.php');
 
 //changer le lien du fichier
@@ -21,7 +21,7 @@ if(!isset($_SESSION['role']) || $_SESSION['role']!='administrator'){
 $errorManager = "You cannot delete the account of the House Manager";
 $errorAdmin = "You cannot delete an administrator account";
 
-if(isset($_POST['delete_user']) && isset($_POST['id']))
+if(isset($_POST['delete-user']) && isset($_POST['id']))
 {
     $db = dbconnect();
     $id = mysqli_real_escape_string($db, $_POST['id']);
