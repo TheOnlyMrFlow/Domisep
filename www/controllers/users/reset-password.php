@@ -8,6 +8,7 @@ require_once(dirname(__FILE__) . '/../../utils/dbconnect.php');
 
 if (isset($_POST['id']) && isset($_POST['key'])) {
     $db = dbconnect();
+$db->set_charset("utf8");
     $id = mysqli_real_escape_string($db, $_POST['id']);
     $secret_key = $_POST['key'];
 

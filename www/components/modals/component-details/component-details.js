@@ -109,7 +109,6 @@ $(document).ready(function() {
                       dataset.data.push(array[1]);
                       dataset.data.splice(0, 1); // remove first data point
                     });
-                    
                     myLineChart.update();
                   }
                 });

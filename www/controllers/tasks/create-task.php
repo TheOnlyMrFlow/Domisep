@@ -1,6 +1,7 @@
 <?php
 require_once dirname(__FILE__) . '/../../utils/dbconnect.php';
 $conn = dbconnect();
+$conn->set_charset("utf8");
 
 if (isset($_POST['savetask'])) {
     $selectedPreset = $_POST['preset'];

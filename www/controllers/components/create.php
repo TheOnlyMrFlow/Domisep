@@ -12,6 +12,7 @@ if (session_status() == PHP_SESSION_NONE) {
 $errors = array();
 
 $db = dbconnect();
+$db->set_charset("utf8");
 
 
 

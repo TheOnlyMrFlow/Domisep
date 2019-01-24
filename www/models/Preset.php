@@ -18,6 +18,7 @@ class Preset
     {
 
         $db = dbconnect();
+$db->set_charset("utf8");
 
         $stmt = $db->prepare("INSERT INTO presets (id_home,name) VALUES (?,?)");
         $stmt->bind_param("is", $homeId, $name);
@@ -57,6 +58,7 @@ class Preset
         }
 
         $db = dbconnect();
+$db->set_charset("utf8");
 
         $stmt = $db->prepare("DELETE FROM preset_values WHERE id_preset = ?");
         $stmt->bind_param("i", $this->id);
@@ -80,6 +82,7 @@ class Preset
         }
 
         $db = dbconnect();
+$db->set_charset("utf8");
         //todo
         $row = $result->fetch_assoc();
 
@@ -99,6 +102,7 @@ class Preset
         }
 
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("SELECT id_home FROM presets WHERE id = ? LIMIT 1");
         $stmt->bind_param("i", $this->id);
         $stmt->execute();
@@ -122,6 +126,7 @@ class Preset
         }
 
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("SELECT
                           preset_values.serial_number,
                           preset_values.on_off,

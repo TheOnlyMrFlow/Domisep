@@ -18,6 +18,7 @@ if(!isset($_SESSION['language'])){
 if (isset($_POST['new-admin']))
 {
     $db = dbconnect();
+$db->set_charset("utf8");
     $firstName = mysqli_real_escape_string($db, $_POST['firstname']);
     $lastName = mysqli_real_escape_string($db, $_POST['lastname']);
     $phoneNumber = mysqli_real_escape_string($db, $_POST['phonenumber']);

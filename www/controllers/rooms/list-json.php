@@ -9,6 +9,7 @@ require_once(dirname(__FILE__) . '/../../utils/dbconnect.php');
 session_start();
 
 $db = dbconnect();
+$db->set_charset("utf8");
 mysqli_set_charset($db,"utf8");
 
 

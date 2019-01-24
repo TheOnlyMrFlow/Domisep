@@ -13,6 +13,7 @@ if (!isset($_SESSION['language'])) {
 }
 
 $db = dbconnect();
+$db->set_charset("utf8");
 //mysqli_set_charset($db, "utf8");
 
 $result = mysqli_query($db, "SELECT users.*, homes.* FROM users LEFT JOIN homes ON homes.id=users.id_home WHERE users.id = " . $_SESSION['id']);

@@ -6,6 +6,7 @@ require_once(dirname(__FILE__) . '/../../utils/dbconnect.php');
 $serial_number = $_POST['serialNumber'];
 
 $db = dbconnect();
+$db->set_charset("utf8");
 
 $query = "SELECT
               rooms.name,
@@ -16,13 +17,15 @@ $query = "SELECT
               components
           INNER JOIN rooms ON components.id_room = rooms.id
           WHERE
-                  components.serial_number = '$serial_number'
+                  components.serial_number = ?
           ORDER BY
               rooms.name,
               components.name";
 
-    $component_array = mysqli_query($db, $query);
-    $component_row = mysqli_fetch_row($component_array);
+    $component_array = $db->prepare($query);
+    $component_array->bind_param('s',$serial_number);
+    $component_array->execute();
+    $component_row = $component_array->get_result()->fetch_row();
     $name_component = $component_row[1].' - '.$component_row[0];
     $component_value = $component_row[2];
     $state = $component_row[3];

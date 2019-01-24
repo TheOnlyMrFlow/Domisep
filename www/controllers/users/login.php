@@ -6,6 +6,7 @@ require_once dirname(__FILE__) . '/../../utils/dbconnect.php';
 
 if (isset($_POST['login'])) {
     $db = dbconnect();
+$db->set_charset("utf8");
     $emailaddress = mysqli_real_escape_string($db, $_POST['mail']);
     $password = $_POST['password'];
 

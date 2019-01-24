@@ -20,6 +20,7 @@ class User
     public static function getUserByMail($mail)
     {
         $db = dbconnect();
+$db->set_charset("utf8");
         $mail = mysqli_real_escape_string($db, $mail);
         $stmt = $db->prepare("SELECT id FROM users WHERE email = ?");
         $stmt->bind_param("s", $mail);
@@ -51,6 +52,7 @@ class User
     public static function login($email, $password)
     {
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("SELECT * FROM users WHERE email = ?");
         $stmt->bind_param("s", $email);
         $stmt->execute(); //order 66
@@ -94,6 +96,7 @@ class User
         $country) {
 
         $db = dbconnect();
+$db->set_charset("utf8");
 
         $lastName = mysqli_real_escape_string($db, $lastName);
         $firstName = mysqli_real_escape_string($db, $firstName);
@@ -201,6 +204,7 @@ class User
     ) {
 
         $db = dbconnect();
+$db->set_charset("utf8");
 
         $lastName = mysqli_real_escape_string($db, $lastName);
         $firstName = mysqli_real_escape_string($db, $firstName);
@@ -288,6 +292,7 @@ class User
     public static function exists($email)
     {
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("SELECT id FROM users WHERE email=? LIMIT 1");
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -304,6 +309,7 @@ class User
     {
 
         $db = dbconnect();
+$db->set_charset("utf8");
 
         $firstName = mysqli_real_escape_string($db, $firstName);
         $lastName = mysqli_real_escape_string($db, $lastName);
@@ -343,6 +349,7 @@ class User
         $expiration = date('Y-m-d H:i:s', $expirationTime);
         //$expiration = date( 'Y-m-d H:i:s', $expiration );
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("REPLACE INTO  password_reset_keys (id_user, hashed_key, expiration)  VALUES (?, ?, ?)");
         $stmt->bind_param("iss", $this->id, $hashed_secret_key, $expiration);
         $stmt->execute();
@@ -352,6 +359,7 @@ class User
     public function changePassword($oldPassword, $newPassword1, $newPassword2)
     {
         $db = dbconnect();
+$db->set_charset("utf8");
 
         $oldPassword = mysqli_real_escape_string($db, $oldPassword);
         $newPassword1 = mysqli_real_escape_string($db, $newPassword1);
@@ -401,6 +409,7 @@ class User
     {
 
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("SELECT serial_number,access_level FROM user_rights WHERE id_user=?");
         $stmt->bind_param("i", $this->id);
         $stmt->execute();
@@ -423,6 +432,7 @@ class User
     public function getAllFields()
     {
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("SELECT * FROM users WHERE id = ?");
         $stmt->bind_param("i", $this->id);
         $stmt->execute();

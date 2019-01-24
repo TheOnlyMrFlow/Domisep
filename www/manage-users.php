@@ -43,6 +43,7 @@ if(!isset($_SESSION['language'])){
 
 include('components/header-nav/header-nav.php');
 $db = dbconnect();
+$db->set_charset("utf8");
 ?>
 
 		<div class="page-content-container dashboard">
@@ -153,11 +154,8 @@ $db = dbconnect();
 							<div>
 								<select name="user-id" placeholder= "select user">
 									<?php
-									// $home_id = $_SESSION['id_home'];
 									$html = '';
-									$home_id = 1;
-									// $current_user_id = $_SESSION['id'];
-									$current_user_id = 1;
+									$current_user_id = $_SESSION['id'];
 
 									$users_array = mysqli_query($db,"SELECT id, first_name, last_name, email FROM users WHERE id_home=$home_id AND role='house_member' ORDER BY last_name,first_name ASC");
 									$html = "<option disabled selected value > select user </option>";
@@ -174,9 +172,7 @@ $db = dbconnect();
 						</div>
 						<div class="dashboard-inner-container change-user-rights">
 							<?php
-								// $id_home = $_SESSION['id_home'];
-								$id_home = 1;
-								$components_array = mysqli_query($db, "SELECT id_room,rooms.name,serial_number,components.name FROM components INNER JOIN rooms ON components.id_room=rooms.id WHERE rooms.id_home=$id_home ORDER BY rooms.name,components.name");
+								$components_array = mysqli_query($db, "SELECT id_room,rooms.name,serial_number,components.name FROM components INNER JOIN rooms ON components.id_room=rooms.id WHERE rooms.id_home=$home_id ORDER BY rooms.name,components.name");
 								$html = '';
 								$current_room_id = null;
 								$first_room = 1;

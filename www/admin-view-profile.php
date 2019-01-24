@@ -2,7 +2,6 @@
 
 require_once DIRNAME(__FILE__) . '/utils/dbconnect.php';
 
-header('Content-Type: text/html; charset=ISO-8859-1');
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -16,6 +15,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] != 'administrator') {
 }
 
 $conn = dbconnect();
+$conn->set_charset("utf8");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }

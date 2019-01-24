@@ -18,6 +18,7 @@ if (!isset($_SESSION['connected']) || !$_SESSION['connected']) { //check if conn
 }
 
 $db = dbconnect();
+$db->set_charset("utf8");
 
 $id_preset = mysqli_real_escape_string($db, $_POST['id']);
 

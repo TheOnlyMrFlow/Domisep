@@ -15,6 +15,7 @@ if(isset($_POST['delete_user']))
     $your_role = $_POST['role_user'];
     $your_id = $_POST['id_user'];
     $db = dbconnect();
+$db->set_charset("utf8");
     if($your_role == 'administrator')
     {
         echo "<script>{alert('You cannot delete the account of an administrator');

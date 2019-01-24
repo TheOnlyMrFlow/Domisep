@@ -21,6 +21,7 @@ require_once(dirname(__FILE__) . '/../../utils/dbconnect.php');
 
 
 $db = dbconnect();
+$db->set_charset("utf8");
 
 $room_id = mysqli_real_escape_string($db, $_POST['room_id']);
 //$room_id = $_POST['room_id'];//

@@ -20,6 +20,7 @@ if (isset($_POST['delete-account'])) {
     $id_home = $_SESSION['home_id'];
 
     $db = dbconnect();
+$db->set_charset("utf8");
     $db->begin_transaction();
 
     try {

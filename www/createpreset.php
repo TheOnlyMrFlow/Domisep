@@ -45,6 +45,7 @@ $home_id = $_SESSION['home_id'];
 $role = $_SESSION['role'];
 $user_id = $_SESSION['id'];
 $db = dbconnect();
+$db->set_charset("utf8");
 ?>
   <div class="page-content-container">
     <div class="page-content">
@@ -92,19 +93,19 @@ $db = dbconnect();
                             components
                         INNER JOIN rooms ON components.id_room = rooms.id
                         WHERE
-                                rooms.id_home = $home_id
+                                rooms.id_home = ?
                         ORDER BY
                             rooms.name,
                             components.name";
 
-                            
+
               }
-              $components_array = mysqli_query($db, $query);
+              $components_array = $db->prepare($query);
+              $components_array->bind_param('i',$home_id);
+              $components_array->execute();
+              $components_array->bind_result($room_name,$component_id,$component_name);
               $html = "<option value='disabled' selected>-- Select a sensor --</option>";
-              while ($component_row = mysqli_fetch_row($components_array)) {
-                  $room_name = $component_row[0];
-                  $component_id = $component_row[1];
-                  $component_name = $component_row[2];
+              while ($component_row = $components_array->fetch()) {
                   $html .= "<option value='$component_id'>$room_name - $component_name</option>";
               }
               echo $html;

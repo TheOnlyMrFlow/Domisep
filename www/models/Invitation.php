@@ -22,6 +22,7 @@ class Invitation
     {
 
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("SELECT * FROM invite_keys WHERE email = ?");
         $stmt->bind_param("s", $mail);
         $stmt->execute();
@@ -53,6 +54,7 @@ class Invitation
         $hashed_key = password_hash($key, PASSWORD_BCRYPT);
 
         $db = dbconnect();
+$db->set_charset("utf8");
 
         $stmt = $db->prepare("INSERT INTO invite_keys (email, inv_key, id_home)  VALUES (?, ?, ?)");
         $stmt->bind_param("ssi", $mail, $hashed_key, $home_id);
@@ -92,6 +94,7 @@ class Invitation
     {
         $this->id = $id;
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("SELECT * FROM invite_keys WHERE id = ?");
         $stmt->bind_param("s", $id);
         $stmt->execute();

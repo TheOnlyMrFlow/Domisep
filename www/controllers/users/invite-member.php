@@ -16,6 +16,7 @@ if (!isset($_POST['invite-user']) || !isset($_POST['mail'])) {
 }
 
 $db = dbconnect();
+$db->set_charset("utf8");
 
 $mail = mysqli_real_escape_string($db, $_POST['mail']);
 

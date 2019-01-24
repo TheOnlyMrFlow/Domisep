@@ -15,6 +15,7 @@ class Home
 
     public static function createHome ($address, $city, $zipCode, $country) {
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("INSERT INTO homes (address, city, zip_code, country) VALUES (?, ?, ?, ?)");
         $stmt->bind_param("ssss", $address, $city, $zipCode, $country);
         $stmt->execute();
@@ -25,6 +26,7 @@ class Home
 
     public function getRooms() {
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("SELECT id FROM rooms WHERE id_home = ?");
         $stmt->bind_param("i", $this->id);
         $stmt->execute();
@@ -49,6 +51,7 @@ class Home
     public function getAllFields()
     {
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("SELECT * FROM homes WHERE id = ?");
         $stmt->bind_param("i", $this->id);
         $stmt->execute();

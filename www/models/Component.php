@@ -17,6 +17,7 @@ class Component
         $errors = array();
 
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("SELECT * FROM components WHERE serial_number=? LIMIT 1");
         $stmt->bind_param("s", $serialNumber);
         $stmt->execute();
@@ -70,6 +71,7 @@ class Component
     public function getAllFields(): array
     {
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("SELECT * FROM components WHERE serial_number = ?");
         $stmt->bind_param("s", $this->id);
         $stmt->execute();
@@ -91,6 +93,7 @@ class Component
         }
 
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("  SELECT id_home
                         FROM  rooms
                         INNER JOIN  components
@@ -119,6 +122,7 @@ class Component
         }
 
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("SELECT role FROM users WHERE id = ? ");
         $stmt->bind_param("i", $userId);
         $stmt->execute();
@@ -129,6 +133,7 @@ class Component
         }
 
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("SELECT access_level FROM user_rights WHERE id_user = ? AND serial_number = ?");
         $stmt->bind_param("is", $userId, $this->id);
         $stmt->execute();
@@ -154,6 +159,7 @@ class Component
 
 
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("DELETE FROM presets WHERE
                         id IN (SELECT id_preset AS id FROM preset_values WHERE serial_number = ?)
                         AND
@@ -185,6 +191,7 @@ class Component
             return "Nice try";
         }
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("UPDATE components SET name = ?, id_room = ? WHERE serial_number = ?");
         $stmt->bind_param("sis", $newName, $newRoomId, $this->id);
         $stmt->execute();
@@ -195,6 +202,7 @@ class Component
             return;
         }
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("UPDATE components SET state = ?, value = ? WHERE serial_number = ?");
         $stmt->bind_param("ids", $state, $value, $this->id);
         $stmt->execute();
@@ -205,6 +213,7 @@ class Component
             return;
         }
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("UPDATE components SET state= ? WHERE serial_number= ?");
         $stmt->bind_param("is", $state, $this->id);
         $stmt->execute();
@@ -216,6 +225,7 @@ class Component
             return;
         }
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("UPDATE components SET value=value + ? WHERE serial_number= ?");
         $stmt->bind_param("is", $delta, $this->id);
         $stmt->execute();

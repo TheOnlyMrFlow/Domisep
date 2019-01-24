@@ -16,6 +16,7 @@ class Room
     public static function createRoom($name, $homeId) {
 
     $db=dbconnect();
+$db->set_charset("utf8");
     $stmt = $db->prepare("INSERT INTO rooms (name, id_home) VALUES (?, ?)");
 
     $stmt->bind_param("si", $name, $homeId);
@@ -33,6 +34,7 @@ class Room
             return "You don't own this room";
         }
         $db=dbconnect();
+$db->set_charset("utf8");
         $stmt2 = $db->prepare("SELECT serial_number FROM components WHERE id_room = ?");
         $stmt2->bind_param("i", $this->id);
         $stmt2->execute();
@@ -55,6 +57,7 @@ class Room
         }
 
         $db=dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("UPDATE rooms SET name = ? WHERE id = ?");
         $stmt->bind_param("si", $newName, $this->id);
         $stmt->execute();
@@ -76,6 +79,7 @@ class Room
         }
 
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("SELECT * FROM rooms WHERE id = ?");
         $stmt->bind_param("i", $this->id);
         $stmt->execute();
@@ -94,6 +98,7 @@ class Room
         }
 
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("SELECT id FROM components WHERE id_room = ?");
         $stmt->bind_param("i", $this->id);
         $stmt->execute();
@@ -117,6 +122,7 @@ class Room
         }
 
         $db = dbconnect();
+$db->set_charset("utf8");
         $stmt = $db->prepare("SELECT id_home FROM rooms WHERE id = ? LIMIT 1");
         $stmt->bind_param("s", $this->id);
         $stmt->execute();

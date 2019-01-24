@@ -5,6 +5,7 @@ require_once(dirname(__FILE__) . '/../../models/Component.php');
 
 
 $db = dbconnect();
+$db->set_charset("utf8");
 mysqli_set_charset($db, "utf8");
 
 if (session_status() == PHP_SESSION_NONE) {

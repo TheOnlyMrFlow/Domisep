@@ -10,6 +10,7 @@ if (!isset($_SESSION['language'])) {
 }
 
 $db = dbconnect();
+$db->set_charset("utf8");
 
 ?>
 <!DOCTYPE html>
@@ -45,6 +46,7 @@ if (!isset($_GET['key']) || !isset($_GET['mail'])){
 }
 
 $db = dbconnect();
+$db->set_charset("utf8");
 $key =  mysqli_real_escape_string($db, $_GET['key']);
 $mail = mysqli_real_escape_string($db, $_GET['mail']);
 //$key = $_GET['key'];

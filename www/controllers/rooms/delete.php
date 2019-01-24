@@ -15,6 +15,7 @@ $id_home = $_SESSION['home_id'];
 $errors = array();
 
 $db=dbconnect();
+$db->set_charset("utf8");
 
 
 if (isset($_POST['remove_room'])){

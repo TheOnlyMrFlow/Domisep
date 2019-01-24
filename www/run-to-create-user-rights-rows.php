@@ -4,6 +4,7 @@ require_once(dirname(__FILE__) . '/utils/dbconnect.php');
 
 
 $db = dbconnect();
+$db->set_charset("utf8");
 mysqli_query($db, "DELETE FROM user_rights");
 $result = mysqli_query($db, "SELECT id,id_home FROM users WHERE role ='house_member'");
 while ($user_row = mysqli_fetch_array($result)) {

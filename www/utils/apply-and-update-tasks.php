@@ -1,6 +1,7 @@
 <?php
 require_once(dirname(__FILE__) . '/dbconnect.php');
 $db = dbconnect();
+$db->set_charset("utf8");
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
