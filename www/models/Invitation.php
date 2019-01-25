@@ -82,7 +82,7 @@ $db->set_charset("utf8");
             ->setTo([$to])
             ->setBody(
                 " <p>You have been invited to join $inviter's house on Domisep ! </p>
-            <p>Please follow <a href='$www.domisep.floriancomte.fr/invited.php?key=$key&mail=$to'>this link</a> to create your account to access the home space</p>
+            <p>Please follow <a href='www.domisep.floriancomte.fr/invited.php?key=$key&mail=$to'>this link</a> to create your account to access the home space</p>
             ", 'text/html'
             );
 
